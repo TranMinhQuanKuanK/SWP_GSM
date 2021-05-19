@@ -1,2 +1,2 @@
-# SWP_WMS
+# SWP_GSM
 Warehouse Management System
