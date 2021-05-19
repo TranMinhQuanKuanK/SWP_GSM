@@ -1,2 +1,2 @@
 # SWP_GSM
-Warehouse Management System
+Grocery Management System
