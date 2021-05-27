@@ -15,7 +15,7 @@
             Text welcome (optional)
             Setting icon -> Logout và Change password
          -->
-    <header class="p-2 bg-warning d-flex justify-content-between">
+    <header class="p-2 pl-3 bg-warning d-flex justify-content-between">
 
         <div class="input-group w-25">
             <span class="input-group-text" id="search-product-bar">
@@ -56,14 +56,14 @@
             - thanh Search customer + nút tạo Customer
             - thanh toán (checkout) + nút tạo feedback
          -->
-    <div class="container-fluid">
-        <div class="row h-75">
-            <div class="col-4 d-flex p-0">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-4 d-flex">
                 <!-- Table nhóm hàng + hàng hóa -->
                 <div class="col-4 border p-0 bg-light">
-                    <h6 style="height: 40px;" class="text-muted mt-2 ml-2">
-                        <small>NHÓM HÀNG</small>
-                    </h6>
+                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
+                        <span class="text-muted font-weight-light">Nhóm hàng</span>
+                    </p>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link p-2" href="#">
@@ -86,9 +86,9 @@
                     </ul>
                 </div>
                 <div class="col-8 border p-0">
-                    <h6 style="height: 40px;" class="text-muted mt-2 ml-2">
-                        <small>HÀNG HÓA</small>
-                    </h6>
+                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
+                        <span class="text-muted font-weight-light">Hàng hóa</span>
+                    </p>
                     <ul class="nav flex-column">
                         <li class="nav-item">
                             <a class="nav-link p-2" href="#">
@@ -113,16 +113,79 @@
             </div>
             <div class="col-8">
                 <!-- Table bill -->
+
+                <table class="table table-striped border">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-muted font-weight-light">Sản phẩm</th>
+                            <th scope="col" class="text-muted font-weight-light">Đơn giá</th>
+                            <th scope="col" class="text-muted font-weight-light">Số lượng</th>
+                            <th scope="col" class="text-muted font-weight-light"></th>
+                            <th scope="col" class="text-muted font-weight-light">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tương ớt</td>
+                            <td><sup>đ</sup>10000</td>
+                            <td><input style="width: 50px;" class="text-center" type="number" value="3" min="1"></td>
+                            <td><button class="btn btn-outline-danger btn-sm">Xóa</button></td>
+                            <td><sup>đ</sup>30000</td>
+                        </tr>
+                        <tr>
+                            <td>Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L</td>
+                            <td><sup>đ</sup>20000</td>
+                            <td><input style="width: 50px;" class="text-center" type="number" value="2" min="1"></td>
+                            <td><button class="btn btn-outline-danger btn-sm">Xóa</button></td>
+                            <td><sup>đ</sup>40000</td>
+                        </tr>
+                        <tr>
+                            <td>Bánh mì</td>
+                            <td><sup>đ</sup>5000</td>
+                            <td><input style="width: 50px;" class="text-center" type="number" value="1" min="1"></td>
+                            <td><button class="btn btn-outline-danger btn-sm">Xóa</button></td>
+                            <td><sup>đ</sup>5000</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </div> <!-- Kết thúc hàng của Category/Product list và Bill -->
+
         <div class="row">
-            <div class="col">
+            <div class="col-4">
                 <!-- Table khách hàng + Search Customer -->
-            </div>
-            <div class="col">
-                <!-- Thanh toán Checkout -->
+                <div class="input-group">
+                    <span class="input-group-text" id="search-customer-bar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                        </svg>
+                    </span>
+
+                    <!-- Thanh Search Khách hàng -->
+                    <input type="text" class="form-control" placeholder="Nhập SĐT" aria-label="Nhập SĐT"
+                        aria-describedby="search-customer-bar">
+
+                    <!-- Button register customer -->
+                    <button type="button" class="btn btn-outline-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-person-plus" viewBox="0 0 16 16">
+                            <path
+                                d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                            <path fill-rule="evenodd"
+                                d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
+                        </svg>
+                    </button>
+                </div>
+                
             </div>
         </div>
+        <div class="col-8">
+            <!-- Thanh toán Checkout -->
+            WALSFLSFJLASDKJDIS GOING ON WITH MY CODE I CAN't MAKE IT GO THE THE OTHER COLUMN>???
+        </div>
+    </div> <!-- Kết thúc hàng của Customer và Chẹckout -->
 
 
     </div>
