@@ -15,3 +15,7 @@ li {
 .scroll-list-height {
     height: 94vh;
 }
+
+.search-product-bar {
+    max-width: 31%;
+}
