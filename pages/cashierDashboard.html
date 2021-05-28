@@ -6,16 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS Tạp Hóa</title>
+    <link rel="stylesheet" href="/css/cashierDashboard.css">
 </head>
 
-<body>
+<body class="overflow-hidden">
 
     <!--    HEADER CỦA CASHIER DASHBOARD:
             Một thanh search hàng hóa
             Text welcome (optional)
             Setting icon -> Logout và Change password
          -->
-    <header class="bg-warning p-2">
+    <header class="bg-warning p-2 header-height">
         <div class="container-fluid d-flex justify-content-between">
             <div class="input-group w-25">
                 <span class="input-group-text" id="search-product-bar">
@@ -57,15 +58,15 @@
             - thanh Search customer + nút tạo Customer
             - thanh toán (checkout) + nút tạo feedback
          -->
-    <div class="container-fluid">
-        <div class="row mb-5">
-            <div class="col-4 d-flex vh-100 pr-2">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-4 d-flex pr-2 scroll-list-height">
                 <!-- Table nhóm hàng + hàng hóa -->
                 <div class="col-4 border p-0 bg-light shadow-sm">
                     <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
                         <span class="text-muted font-weight-light">Nhóm hàng</span>
                     </p>
-                    <ul class="nav flex-column">
+                    <ul class="scroll-list nav">
                         <li class="nav-item">
                             <a class="nav-link p-2" href="#">
                                 <span data-feather="file-text"></span>
@@ -90,7 +91,7 @@
                     <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
                         <span class="text-muted font-weight-light">Hàng hóa</span>
                     </p>
-                    <ul class="nav flex-column">
+                    <ul class="scroll-list nav">
                         <li class="nav-item">
                             <a class="nav-link p-2" href="#">
                                 <span data-feather="file-text"></span>
@@ -109,12 +110,192 @@
                                 Bánh mì que
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Tương ớt chin su
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Dầu ăn Tường An 1.5L
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link p-2" href="#">
+                                <span data-feather="file-text"></span>
+                                Bánh mì que
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="col-8 vh-100">
                 <!-- Table bill -->
-                <div style="height: 70%;">
+                <div style="height: 75%;">
                     <table class="table table-striped border shadow-sm">
                         <thead>
                             <tr>
@@ -154,8 +335,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="row">
-                    <div class="col-4 border p-2 shadow-sm">
+                <div class="row border shadow-sm pt-2">
+                    <div class="col-4 shadow-sm">
                         <!-- Table khách hàng + Search Customer -->
                         <div class="input-group">
                             <span class="input-group-text" id="search-customer-bar">
@@ -208,7 +389,7 @@
                     </div>
                     <div class="col-8">
                         <!-- Thanh toán Checkout -->
-                        <ul class="list-unstyled text-right border p-2 shadow-sm">
+                        <ul class="list-unstyled text-right p-2">
                             <li class="mb-2">
                                 <span>Tổng tiền hàng</span>
                                 <span class="pl-5"><sup>đ</sup>75000</span>
@@ -220,7 +401,7 @@
                             <li class="mb-4">
                                 <span>Tổng cộng</span>
                                 <span style="color: #ffc12d; font-size: 1.375rem;"
-                                    class="pl-4"><strong><sup>đ</sup>10000</strong></span>
+                                    class="pl-4"><strong><sup>đ</sup>65000</strong></span>
                             </li>
                             <li>
                                 <button type="button" class="btn btn-outline-success btn-lg">

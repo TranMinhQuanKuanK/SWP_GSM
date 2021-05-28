@@ -1,0 +1,17 @@
+li {
+    width: 100%;
+}
+
+
+.scroll-list {
+    overflow-y: auto;
+    max-height: 90%;
+}
+
+.header-height {
+    height: 5vh;
+}
+
+.scroll-list-height {
+    height: 94vh;
+}
