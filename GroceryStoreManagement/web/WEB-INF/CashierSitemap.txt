@@ -3,3 +3,6 @@ GetCurrentName = GetCurrentNameServlet
 Logout = LogoutServlet
 CashierDashboard.html = CashierDashboard.html
 a=b
+TestEverythingPage.html = TestEverythingPage.html
+GetCategoryList = GetCategoryListServlet
+GetProductList = GetProductListServlet

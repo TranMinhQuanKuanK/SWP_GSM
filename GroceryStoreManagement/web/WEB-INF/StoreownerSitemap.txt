@@ -3,3 +3,6 @@ a=b
  = StartupServlet
 GetCurrentName = GetCurrentNameServlet
 Logout = LogoutServlet
+TestEverythingPage.html = TestEverythingPage.html
+GetCategoryList = GetCategoryListServlet
+GetProductList = GetProductListServlet
