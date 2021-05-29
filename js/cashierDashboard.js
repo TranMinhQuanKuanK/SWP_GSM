@@ -1,7 +1,6 @@
-
-
 // Load all products and categories
-$(document).ready(function () {
+$(document).ready(function() {
+    document.body.style.zoom = 1.0
 
     /*
         THIS IS WHEN U CAN INTERACT WITH DB
@@ -64,7 +63,7 @@ function SearchProduct(param) {
         THIS IS WHEN U HAVE RAW JSON TO TEST ON FRONTEND HAHA :(
     */
     var list;
-    fetch("/public/productListTest.json")
+    fetch("../public/productListTest.json")
         .then(response => {
             return response.json();
         })
@@ -83,11 +82,11 @@ function renderHTMLForCategory(data) {
     var html = "";
     for (var int in data) {
         var json = data[int];
-        html += "<li class=\"nav-item\">\n"
-            + "         <a class=\"nav-link p-2\" href=\"#\">\n"
-            + "             <span data-feather=\"file-text\">" + json.name + "</span>\n"
-            + "         </a>\n"
-            + "    </li>";
+        html += "<li class=\"nav-item\">\n" +
+            "         <a class=\"nav-link p-2\" href=\"#\">\n" +
+            "             <span data-feather=\"file-text\">" + json.name + "</span>\n" +
+            "         </a>\n" +
+            "    </li>";
     }
     document.getElementById("category-list").innerHTML = html;
 }
@@ -96,11 +95,11 @@ function renderHTMLForProduct(data) {
     var html = "";
     for (var int in data) {
         var json = data[int];
-        html += "<li class=\"nav-item\">\n"
-            + "         <a class=\"nav-link p-2\" href=\"#\">\n"
-            + "             <span data-feather=\"file-text\">" + json.name + "</span>\n"
-            + "         </a>\n"
-            + "    </li>";
+        html += "<li class=\"nav-item\">\n" +
+            "         <a class=\"nav-link p-2\" href=\"#\">\n" +
+            "             <span data-feather=\"file-text\">" + json.name + "</span>\n" +
+            "         </a>\n" +
+            "    </li>";
     }
     document.getElementById("product-list").innerHTML = html;
 }
