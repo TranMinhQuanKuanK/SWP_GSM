@@ -1,0 +1,2 @@
+CashierDashboard.html = CashierDashboard.html
+a=b
