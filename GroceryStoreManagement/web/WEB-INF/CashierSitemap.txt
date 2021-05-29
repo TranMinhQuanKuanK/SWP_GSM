@@ -1,2 +1,5 @@
+ = StartupServlet
+GetCurrentName = GetCurrentNameServlet
+Logout = LogoutServlet
 CashierDashboard.html = CashierDashboard.html
 a=b

@@ -127,8 +127,7 @@ public class AuthAndDispatcherFilter implements Filter {
             System.out.println("resource dang la: "+resource);
             String convertedURI = ERROR_PAGE;
 
-            if (uri.contains(".")) {
-                System.out.println("vong lap 1, resource bien thanh "+resource);
+            if (uri.contains(".")) { 
                 String fileType = uri.substring(uri.lastIndexOf(".") + 1);
                 if (fileType.equals("css")
                         || fileType.equals("js")
@@ -139,8 +138,8 @@ public class AuthAndDispatcherFilter implements Filter {
                 }
             } 
             if (userType == null) {
-                if (resource.equals("LoginServlet")) {
-                    convertedURI = "LoginServlet";
+                if (resource.equals("LoginServlet") || resource.equals("Login.html")) {
+                    convertedURI = resource;
                 } else {
                     convertedURI = LOGIN_PAGE;
                 }
@@ -148,7 +147,7 @@ public class AuthAndDispatcherFilter implements Filter {
                 HashMap<String, String> storeownerSites = (HashMap<String, String>) 
                         context.getAttribute("StoreownerSitemap");
                 System.out.println("???");
-                System.out.println("resource vo đay bien thanh: "+resource);
+                System.out.println("resource vo đay bien thanh:ss "+ storeownerSites.get(resource));
                 if (storeownerSites.containsKey(resource)) {
                     convertedURI = storeownerSites.get(resource);
                 } 

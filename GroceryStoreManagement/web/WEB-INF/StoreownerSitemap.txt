@@ -1,2 +1,5 @@
 StoreownerDashboard.html = StoreownerDashboard.html
 a=b
+ = StartupServlet
+GetCurrentName = GetCurrentNameServlet
+Logout = LogoutServlet
