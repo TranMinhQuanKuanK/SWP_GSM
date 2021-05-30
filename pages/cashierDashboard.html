@@ -28,33 +28,40 @@
     -->
     <header class="bg-warning p-2 header-height">
         <div class="container-fluid d-flex justify-content-between">
-            <div class="search-product-bar input-group ">
-                <span class="input-group-text" id="search-product-bar">
+            <div class="input-group search-product-bar">
+                <span class="input-group-text h-100" id="search-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
                         <path
                             d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                     </svg>
                 </span>
-
                 <!-- Thanh Search Hàng Hóa -->
-                <input oninput="SearchProduct(this)" type="text" class="form-control" placeholder="Tìm kiếm món hàng" aria-label="Tìm kiếm món hàng"
-                    aria-describedby="search-product-bar">
+                <input oninput="SearchProduct(this)" type="text" class="form-control" placeholder="Tìm kiếm món hàng"
+                    aria-label="Tìm kiếm món hàng" aria-describedby="search-product-bar">
             </div>
 
 
             <!-- Welcome text and Setting button -->
             <div class="d-flex justify-content-between">
                 <p class="h5 text-muted mr-3 my-auto">Chào, Thành</p>
-                <button type="button" class="btn btn-outline-secondary btn-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                        class="bi bi-gear" viewBox="0 0 16 16">
-                        <path
-                            d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
-                        <path
-                            d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
-                    </svg>
-                </button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-gear" viewBox="0 0 16 16">
+                            <path
+                                d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
+                            <path
+                                d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
+                        </svg>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Đổi mật khẩu..</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
@@ -64,7 +71,7 @@
     -->
     <div class="container-fluid ">
         <div class="row">
-            <div class="col-4 d-flex pr-2 scroll-list-height">
+            <div class="col-4 col-xl-6 d-flex pr-2 body-height">
                 <!-- Table nhóm hàng + hàng hóa -->
                 <div class="col-4 border p-0 bg-light shadow-sm">
                     <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
@@ -72,21 +79,98 @@
                     </p>
                     <ul id="category-list" class="scroll-list nav">
                         <!-- JSON content here -->
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Tương ớt</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Tương ớt</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Tương ớt</a>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="col-8 border p-0 shadow-sm">
-                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
-                        <span class="text-muted font-weight-light">Hàng hóa</span>
+                <div class="col-8 border p-0 d-flex flex-column shadow-sm">
+                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2 text-muted">
+                        <span>Hàng hóa</span>
                     </p>
-                    <ul id="product-list" class="scroll-list nav">
-                        <!-- JSON content here -->
-                    </ul>
+                    <!-- JSON content here -->
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between ">
+                                <p class="w-50 my-auto">Tương ớt chinsu 850gr</p>
+                                <h5 class="text-muted"><sup>đ</sup>30000</h5>
+                                <div class="product-info-button">
+                                    <button class="btn btn-outline-secondary rounded-circle" data-toggle="collapse"
+                                        data-target="#showProductInfo" aria-expanded="false"
+                                        aria-controls="showProductInfo">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between ">
+                                <p class="w-50 my-auto">Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L </p>
+                                <h5 class="text-muted"><sup>đ</sup>30000</h5>
+                                <div class="product-info-button">
+                                    <button class="btn btn-outline-secondary rounded-circle" data-toggle="collapse"
+                                        data-target="#showProductInfo2" aria-expanded="false"
+                                        aria-controls="showProductInfo2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
+                                            <path
+                                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
+                                        </svg>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Show additional info of products -->
+                    <div class="mt-auto">
+                        <div class="collapse" id="showProductInfo">
+                            <div class="d-flex flex-row card card-body border-warning justify-content-between">
+                                <div class="w-50">
+                                    <h5 class="card-title">Tương ớt chinsu</h5>
+                                    <h6><sup>đ</sup>30000</h6>
+                                </div>
+                                <div>
+                                    <p>Số lượng còn lại: <span>10</span></p>
+                                    <p>Vị trí: <span>Kệ 2 Xếp 3</span></p>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="collapse" id="showProductInfo2">
+                            <div class="d-flex flex-row card card-body border-warning justify-content-between">
+                                <div class="w-50">
+                                    <h5 class="card-title">Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L</h5>
+                                    <h6><sup>đ</sup>30000</h6>
+                                </div>
+                                <div>
+                                    <p>Số lượng còn lại: <span>10</span></p>
+                                    <p>Vị trí: <span>Kệ 2 Xếp 3</span></p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-            <div class="col-8 vh-100">
+            <div class="col-8 col-xl-6 body-height">
                 <!-- Table bill -->
-                <div style="height: 75%;">
+                <div class="bill">
                     <table class="table table-striped border shadow-sm">
                         <thead>
                             <tr>
@@ -97,7 +181,7 @@
                                 <th scope="col" class="text-muted font-weight-light text-right">Thành tiền</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="scroll-list">
                             <tr>
                                 <td scope="row">Tương ớt</td>
                                 <td class="text-right pr-5 mr-5"><sup>đ</sup>10000</td>
@@ -154,7 +238,7 @@
                             </button>
                         </div> <!-- Kết thúc của Thanh Search Khách và Register Button-->
 
-                        <div class="customer-list ">
+                        <div class="customer-list">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -162,7 +246,7 @@
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody class="scroll-list">
                                     <tr>
                                         <td>Nguyễn Phạm Minh Quân</td>
                                         <td>
@@ -182,11 +266,11 @@
                         <!-- Thanh toán Checkout -->
                         <ul class="list-unstyled text-right p-2">
                             <li class="mb-2">
-                                <span>Tổng tiền hàng</span>
+                                <span>Tiền hàng</span>
                                 <span class="pl-5"><sup>đ</sup>75000</span>
                             </li>
                             <li class="mb-2">
-                                <span>Ưu đãi</span>
+                                <span>Giảm giá</span>
                                 <span class="pl-5"><del><sup>đ</sup>10000</del></span>
                             </li>
                             <li class="mb-4">
@@ -195,7 +279,8 @@
                                     class="pl-4"><strong><sup>đ</sup>65000</strong></span>
                             </li>
                             <li>
-                                <button type="button" class="btn btn-outline-success btn-lg">
+                                <button type="button" class="btn btn-outline-success btn-lg" data-toggle="modal"
+                                    data-target="#createFeedback">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
                                         class="bi bi-pencil-square" viewBox="0 0 16 16">
                                         <path
@@ -204,7 +289,7 @@
                                             d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                                     </svg>
                                 </button>
-                                <button class="btn btn-warning btn-lg w-25">Thanh toán</button>
+                                <button class="btn btn-warning btn-lg w-50">Thanh toán</button>
                             </li>
                         </ul>
                     </div>
@@ -215,6 +300,32 @@
     </div> <!-- Kết thúc hàng của Category/Product list và Bill -->
 
 
+    <!-- MODAL -->
+    <!-- Create Feedback Modal -->
+    <div class="modal fade" id="createFeedback" tabindex="-1" aria-labelledby="createFeedbackLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createFeedbackLabel">Tạo Feedback</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="feedback" class="col-form-label">Nội dung:</label>
+                            <textarea class="form-control" id="feedback"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success">Gửi Feedback</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer>
         <!-- Hiện tại ko có -->
     </footer>

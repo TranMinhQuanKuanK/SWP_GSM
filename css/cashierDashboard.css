@@ -2,20 +2,31 @@ li {
     width: 100%;
 }
 
+h5 {
+    margin: auto 0;
+}
+
+span {
+    margin: auto 0;
+}
+
+.search-product-bar {
+    max-width: 31%;
+}
 
 .scroll-list {
     overflow-y: auto;
     max-height: 90%;
 }
 
-.header-height {
-    height: 5vh;
-}
-
-.scroll-list-height {
+.body-height {
     height: 94vh;
 }
 
-.search-product-bar {
-    max-width: 31%;
+.bill {
+    height: 75vh;
+}
+
+.product-info-button {
+    margin: auto 0;
 }
