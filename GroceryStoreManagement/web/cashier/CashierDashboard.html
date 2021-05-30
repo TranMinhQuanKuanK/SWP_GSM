@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body onload="getName()">
+        <div>Đây là cái cashier dashboard!!!</div>
+         <div>You are <span id="storeownername"></span></div>
+         <script>
+        function getName() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState >= 4 && this.status <= 200) {
+                    document.getElementById("storeownername").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("GET", "GetCurrentName", true);
+            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhttp.send();
+        }
+        
+    </script>
+    </body>
+</html>

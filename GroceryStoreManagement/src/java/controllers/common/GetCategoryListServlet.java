@@ -3,47 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.authorization;
+package controllers.common;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.category.CategoryDAO;
+import models.category.CategoryDTO;
 
-/**
- *
- * @author Tran Minh Quan
- */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "GetCategoryListServlet", urlPatterns = {"/GetCategoryListServlet"})
+public class GetCategoryListServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("I went to logout");
-            try {
-                request.getSession().invalidate();
-            } finally {
-                response.sendRedirect("Login.html");
-                out.close();
-            }
+            CategoryDAO cDAO = new CategoryDAO();
+            ArrayList<CategoryDTO> categoryList = cDAO.GetAllCategory();
+            Gson gson = new Gson();
+            String categoryJSONString = gson.toJson(categoryList);
+            out.print(categoryJSONString);
+            out.flush();
+        } catch (SQLException e ) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e ) {
+            log("NamingException " + e.getMessage());
         }
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -80,7 +77,6 @@ public class LogoutServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
-// </editor-fold>
+    }// </editor-fold>
 
 }

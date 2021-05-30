@@ -3,47 +3,54 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.authorization;
+package controllers.common;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.product.ProductDAO;
+import models.product.ProductDTO;
 
-/**
- *
- * @author Tran Minh Quan
- */
-@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
-public class LogoutServlet extends HttpServlet {
+@WebServlet(name = "GetProductListServlet", urlPatterns = {"/GetProductListServlet"})
+public class GetProductListServlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("I went to logout");
-            try {
-                request.getSession().invalidate();
-            } finally {
-                response.sendRedirect("Login.html");
-                out.close();
+            Integer category_id;
+            if (request.getParameter("category_id") == null) {
+                category_id = null;
+            } else {
+                category_id = Integer.parseInt(request.getParameter("category_id"));
             }
+
+            String search_value = request.getParameter("search_value");
+            boolean only_noos_items = (request.getParameter("only_noos_items") != null);
+
+            ProductDAO pDAO = new ProductDAO();
+            ArrayList<ProductDTO> productList
+                    = pDAO.GetProductList(category_id, search_value, only_noos_items);
+            Gson gson = new Gson();
+            String productJSONString = gson.toJson(productList);
+            out.print(productJSONString);
+            out.flush();
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -80,7 +87,6 @@ public class LogoutServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }
-// </editor-fold>
+    }// </editor-fold>
 
 }
