@@ -1,4 +1,4 @@
-StoreownerDashboard.html = StoreownerDashboard.html
+StoreownerDashboardPage = storeowner/StoreownerDashboard.html
 a=b
  = StartupServlet
 GetCurrentName = GetCurrentNameServlet

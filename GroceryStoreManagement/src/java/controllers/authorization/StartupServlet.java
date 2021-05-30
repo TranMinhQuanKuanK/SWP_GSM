@@ -32,8 +32,8 @@ public class StartupServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     private final String LOGIN_PAGE = "Login.html";
-    private final String STOREOWNER_DASHBOARD = "StoreownerDashboard.html";
-    private final String CASHIER_DASHBOARD = "CashierDashboard.html";
+    private final String STOREOWNER_DASHBOARD = "storeowner/StoreownerDashboard.html";
+    private final String CASHIER_DASHBOARD = "cashier/CashierDashboard.html";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
