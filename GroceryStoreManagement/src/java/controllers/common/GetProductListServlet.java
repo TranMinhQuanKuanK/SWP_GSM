@@ -27,8 +27,14 @@ public class GetProductListServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            Integer category_id = Integer.parseInt(request.getParameter("category_id"));
+            String search_value = request.getParameter("search_value");
+            boolean only_noos_items = (request.getParameter("only_noos_items")!=null);
+            
+            
             ProductDAO pDAO = new ProductDAO();
-            ArrayList<ProductDTO> productList = pDAO.GetAllProduct();
+            ArrayList<ProductDTO> productList = 
+                    pDAO.GetProductList(category_id, search_value, only_noos_items);
             Gson gson = new Gson();
             String productJSONString = gson.toJson(productList);
             out.print(productJSONString);
