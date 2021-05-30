@@ -96,13 +96,13 @@
                         <span>Hàng hóa</span>
                     </p>
                     <!-- JSON content here -->
-                    <div class="list-group">
-                        <a href="#" class="list-group-item list-group-item-action">
+                    <div id="product-list" class="list-group">
+                        <!-- <a href="#" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between ">
                                 <p class="w-50 my-auto">Tương ớt chinsu 850gr</p>
                                 <h5 class="text-muted"><sup>đ</sup>30000</h5>
                                 <div class="product-info-button">
-                                    <button class="btn btn-outline-secondary rounded-circle" data-toggle="collapse"
+                                    <button onclick="ShowProductInfo(1)" class="btn btn-outline-secondary rounded-circle" data-toggle="collapse"
                                         data-target="#showProductInfo" aria-expanded="false"
                                         aria-controls="showProductInfo">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -130,27 +130,25 @@
                                         </svg>
                                     </button>
                                 </div>
-
                             </div>
-                        </a>
+                        </a> -->
                     </div>
 
                     <!-- Show additional info of products -->
                     <div class="mt-auto">
-                        <div class="collapse" id="showProductInfo">
+                        <div id="showProductInfo" class="d-none">
                             <div class="d-flex flex-row card card-body border-warning justify-content-between">
                                 <div class="w-50">
-                                    <h5 class="card-title">Tương ớt chinsu</h5>
-                                    <h6><sup>đ</sup>30000</h6>
+                                    <h5 id="product-info-name" class="card-title"></h5>
+                                    <h6 id="product-info-price"></h6>
                                 </div>
                                 <div>
-                                    <p>Số lượng còn lại: <span>10</span></p>
-                                    <p>Vị trí: <span>Kệ 2 Xếp 3</span></p>
+                                    <p>Số lượng còn lại: <span id="product-info-quantity"></span></p>
+                                    <p>Vị trí: <span id="product-info-location"></span></p>
                                 </div>
-
                             </div>
                         </div>
-
+<!-- 
                         <div class="collapse" id="showProductInfo2">
                             <div class="d-flex flex-row card card-body border-warning justify-content-between">
                                 <div class="w-50">
@@ -163,7 +161,7 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                 </div>
