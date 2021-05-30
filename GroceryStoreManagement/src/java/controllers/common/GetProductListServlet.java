@@ -21,27 +21,31 @@ import models.product.ProductDTO;
 
 @WebServlet(name = "GetProductListServlet", urlPatterns = {"/GetProductListServlet"})
 public class GetProductListServlet extends HttpServlet {
-    
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            Integer category_id = Integer.parseInt(request.getParameter("category_id"));
+            Integer category_id;
+            if (request.getParameter("category_id") == null) {
+                category_id = null;
+            } else {
+                category_id = Integer.parseInt(request.getParameter("category_id"));
+            }
+
             String search_value = request.getParameter("search_value");
-            boolean only_noos_items = (request.getParameter("only_noos_items")!=null);
-            
-            
+            boolean only_noos_items = (request.getParameter("only_noos_items") != null);
+
             ProductDAO pDAO = new ProductDAO();
-            ArrayList<ProductDTO> productList = 
-                    pDAO.GetProductList(category_id, search_value, only_noos_items);
+            ArrayList<ProductDTO> productList
+                    = pDAO.GetProductList(category_id, search_value, only_noos_items);
             Gson gson = new Gson();
             String productJSONString = gson.toJson(productList);
             out.print(productJSONString);
             out.flush();
-        }catch (SQLException e ) {
+        } catch (SQLException e) {
             log("SQLException " + e.getMessage());
-        } catch (NamingException e ) {
+        } catch (NamingException e) {
             log("NamingException " + e.getMessage());
         }
     }

@@ -77,7 +77,7 @@ and open the template in the editor.
                         processProduct(productObject);
                     }
                 };
-                xhttp.open("GET", "GetProductList?category_id=4&name=a&only_noos_items=true", true);
+                xhttp.open("GET", "GetProductList", true);
                 xhttp.send();
             }
             function processProduct(data) {
