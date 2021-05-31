@@ -77,7 +77,7 @@ and open the template in the editor.
                         processProduct(productObject);
                     }
                 };
-                xhttp.open("GET", "GetProductList", true);
+                xhttp.open("GET", "GetProductList?search_value=sua  tuoi", true);
                 xhttp.send();
             }
             function processProduct(data) {
