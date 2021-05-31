@@ -34,15 +34,15 @@ function ToggleProductInfoState(id) {
         $("#showProductInfo")
             .removeClass("d-none")
             .hide() // hides it first, or style it with 'display: none;' instead
-            .fadeIn(300); // fades it in
+            .fadeIn(300);
     }
 
     if (previousProductInfo == id && previousProductInfo != "") {
+        previousProductInfo = "";
         $("#showProductInfo")
-            .fadeOut(1000, function () {
+            .fadeOut(300, function () {
                 $("#showProductInfo").addClass("d-none");
             })
-        previousProductInfo = "";
     }
     else {
         previousProductInfo = id;
@@ -55,7 +55,6 @@ function ShowProductInfo(id) {
         clearTimeout(ProductInfoDuration);
         ProductInfoDuration = 0;
     }
-
     ToggleProductInfoState(id);
 
 
@@ -72,26 +71,7 @@ function ShowProductInfo(id) {
 // Load all products and categories
 $(document).ready(function () {
 
-    /*
-        THIS IS WHEN U CAN INTERACT WITH DB
-    */
-    // $.ajax({
-    //     url: "/SWP_GSM/GetCategoryList",
-    //     type: "GET",
-    //     success: function (data) {
-    //         renderHTMLForCategory(data);
-    //     }
-    // });
-
-    // $.ajax({
-    //     url: "/SearchDemo/GetProductList",
-    //     type: "GET",
-    //     success: function (data) {
-    //         renderHTMLForProduct(data);
-    //     }
-    // });
-
-
+    // Load products
     var htmlList = document.getElementById("product-list");
     for (var index in productList) {
         var product = productList[index];
@@ -154,55 +134,3 @@ function createHTMLForEachProduct(product) {
                         </a>
     */
 }
-
-// // Search for Product list based on user search input
-// function SearchProduct(param) {
-//     var txtSearch = param.value;
-
-//     /*
-//         THIS IS WHEN U CAN INTERACT WITH DB
-//     */
-//     $.ajax({
-//         url: "/SWP_GSM/SearchProduct",
-//         type: "GET",
-//         data: {
-//             txtSearch: txtSearch
-//         },
-//         success: function (data) {
-//             renderHTMLForProduct(data);
-//         }
-//     });
-
-
-//     /*
-//         THIS IS WHEN U HAVE RAW JSON TO TEST ON FRONTEND HAHA :(
-//     */
-
-// }
-
-
-// function renderHTMLForCategory(data) {
-//     var html = "";
-//     for (var int in data) {
-//         var json = data[int];
-//         html += "<li class=\"nav-item\">\n"
-//             + "         <a class=\"nav-link p-2\" href=\"#\">\n"
-//             + "             <span data-feather=\"file-text\">" + json.name + "</span>\n"
-//             + "         </a>\n"
-//             + "    </li>";
-//     }
-//     document.getElementById("category-list").innerHTML = html;
-// }
-
-// function renderHTMLForProduct(data) {
-//     var html = "";
-//     for (var int in data) {
-//         var json = data[int];
-//         html += "<li class=\"nav-item\">\n"
-//             + "         <a class=\"nav-link p-2\" href=\"#\">\n"
-//             + "             <span data-feather=\"file-text\">" + json.name + "</span>\n"
-//             + "         </a>\n"
-//             + "    </li>";
-//     }
-//     document.getElementById("product-list").innerHTML = html;
-// }
