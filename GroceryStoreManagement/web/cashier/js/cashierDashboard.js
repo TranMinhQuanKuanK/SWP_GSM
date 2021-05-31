@@ -1,6 +1,4 @@
-
-var productList = [
-    {
+var productList = [{
         id: 1,
         name: "Tương ớt chinsu 850gr",
         price: "20000",
@@ -145,13 +143,12 @@ function ToggleProductInfoState(id) {
     if (previousProductInfo == id && previousProductInfo != "") {
         previousProductInfo = "";
         $("#showProductInfo")
-            .fadeOut(300, function () {
+            .fadeOut(300, function() {
                 $("#showProductInfo").addClass("d-none");
             })
-    }
-    else {
+    } else {
         previousProductInfo = id;
-        ProductInfoDuration = setTimeout(function () { ToggleProductInfoState(id); }, 9000);
+        ProductInfoDuration = setTimeout(function() { ToggleProductInfoState(id); }, 9000);
     }
 }
 
@@ -174,7 +171,7 @@ function ShowProductInfo(id) {
 
 
 // Load all products and categories
-$(document).ready(function () {
+$(document).ready(function() {
 
     // Load products
     var htmlList = document.getElementById("product-list");
@@ -195,14 +192,14 @@ function createHTMLForEachProduct(product) {
     var p = document.createElement("p");
     p.setAttribute("class", "w-50 my-auto");
     p.innerHTML = product.name;
-    
+
     var h5 = document.createElement("h5");
     h5.setAttribute("class", "text-muted");
     h5.innerHTML = "<sup>đ</sup>" + product.price;
 
     var div2 = document.createElement("div");
     div2.setAttribute("class", "product-info-button");
-    
+
     var button = document.createElement("button");
     button.setAttribute("id", product.id);
     button.setAttribute("onclick", "ShowProductInfo(" + product.id + ")");
@@ -241,4 +238,15 @@ function createHTMLForEachProduct(product) {
                             </div>
                         </a>
     */
+}
+
+// KuanK's function
+function sendFeedback() {
+    var xhttp = new XMLHttpRequest();
+    content = "feedback_content=" + encodeURIComponent(document.getElementById("feedback").value);
+    xhttp.open("POST", "SendFeedback", true);
+    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+    xhttp.send(content);
+    document.getElementById("feedback").value = "";
+    $('#createFeedback').modal('hide');
 }
