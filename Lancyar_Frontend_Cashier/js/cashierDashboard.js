@@ -13,6 +13,111 @@ var productList = [
         price: "30000",
         quantity: 20,
         location: "B"
+    },
+    {
+        id: 3,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 4,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 5,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 6,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 7,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 8,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 9,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 10,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 11,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 12,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 13,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 14,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 15,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 16,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 17,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
     }
 ]
 
