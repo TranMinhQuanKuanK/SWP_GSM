@@ -1,0 +1,7 @@
+ = StartupServlet
+GetCurrentName = GetCurrentNameServlet
+Logout = LogoutServlet
+CashierDashboardPage = cashier/CashierDashboard.html
+TestEverythingPage.html = TestEverythingPage.html
+GetCategoryList = GetCategoryListServlet
+GetProductList = GetProductListServlet

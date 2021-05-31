@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+not main branch
+-->
+<html>
+
+<head>
+    <title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <h1>Đây là trang login tạm thời!</h1>
+    <form action="LoginServlet" method="POST">
+        Username <input type="text" id="txtUsername" value="" /><br> Password <input type="password" id="txtPassword" value="" /><br>
+        <div id="ErrorMessage"></div>
+        <input type="button" value="Login" name="btAction" onclick="checkLogin()" />
+    </form>
+    <script>
+        function checkLogin() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState >= 4 && this.status <= 200) {
+                    var loginErrorObject = JSON.parse(this.responseText);
+                    processLoginResponse(loginErrorObject);
+                }
+            };
+            var txtUsername = document.getElementById("txtUsername").value;
+            var txtPassword = document.getElementById("txtPassword").value;
+            //                var formdata = new FormData();
+            //                formdata.append('txtUsername', txtUsername);
+            //                formdata.append('txtPassword', txtPassword);
+            var formTxt = 'txtUsername=' + encodeURIComponent(txtUsername) +
+                '&txtPassword=' + encodeURIComponent(txtPassword);
+
+            xhttp.open("POST", "LoginServlet", true);
+            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhttp.send(formTxt);
+        }
+
+        function processLoginResponse(data) {
+            if (data.has_Error) {
+                document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
+            } else {
+                //window.location.href = "TestSuccessLogin.html";
+
+                if (data.user_type == 1) {
+                    window.location.href = "StoreownerDashboardPage";
+                } else {
+                    window.location.href = "CashierDashboardPage";
+                }
+                //document.getElementById("ErrorMessage").innerHTML = "login successs! you are " + role;
+            }
+        }
+    </script>
+</body>
+
+</html>

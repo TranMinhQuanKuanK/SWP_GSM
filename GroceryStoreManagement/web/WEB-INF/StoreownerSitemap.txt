@@ -1,0 +1,7 @@
+StoreownerDashboardPage = storeowner/StoreownerDashboard.html
+ = StartupServlet
+GetCurrentName = GetCurrentNameServlet
+Logout = LogoutServlet
+TestEverythingPage.html = TestEverythingPage.html
+GetCategoryList = GetCategoryListServlet
+GetProductList = GetProductListServlet
