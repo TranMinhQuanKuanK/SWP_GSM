@@ -46,7 +46,7 @@ function ToggleProductInfoState(id) {
     }
     else {
         previousProductInfo = id;
-        ProductInfoDuration = setTimeout(function () { ToggleProductInfoState(id); }, 4000);
+        ProductInfoDuration = setTimeout(function () { ToggleProductInfoState(id); }, 9000);
     }
 }
 
