@@ -40,3 +40,32 @@ span {
 .product-info-button {
     margin: auto 0;
 }
+
+/* TABLE BILL */
+th.number {
+    width: 5%;
+}
+
+th.name {
+    width: 40%;
+}
+
+th.price {
+    width: 15%;
+}
+
+th.quantity {
+    width: 15%;
+}
+
+td > input {
+    max-width: 70px;
+}
+
+th.remove {
+    width: 10%;
+}
+
+th.total-price {
+    width: 15%;
+}
