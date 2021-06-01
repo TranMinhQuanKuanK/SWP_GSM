@@ -250,3 +250,19 @@ function sendFeedback() {
     document.getElementById("feedback").value = "";
     $('#createFeedback').modal('hide');
 }
+
+// KuanK's function
+function getCashierName() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "GetCurrentName", true);
+    xhttp.onload = function() {
+        document.getElementById("cashier-name").innerHTML += this.responseText;
+    };
+    xhttp.send();
+    console.log("I run!!!")
+}
+
+// KuanK's function
+function pageLoadKuanK() {
+    getCashierName();
+}
