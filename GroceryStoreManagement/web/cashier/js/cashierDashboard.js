@@ -1,133 +1,9 @@
-var productList = [{
-        id: 1,
-        name: "Tương ớt chinsu 850gr",
-        price: "20000",
-        quantity: 10,
-        location: "A"
-    },
-    {
-        id: 2,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 3,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 4,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 5,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 6,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 7,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 8,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 9,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 10,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 11,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 12,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 13,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 14,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 15,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 16,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    },
-    {
-        id: 17,
-        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
-        price: "30000",
-        quantity: 20,
-        location: "B"
-    }
-]
-
 var previousProductInfo = "";
 var ProductInfoDuration;
 
 function SearchForProduct(id) {
-    for (var index in productList) {
-        var product = productList[index];
-        if (id == product.id) {
-            return product;
-        }
+    for (i = 0; i < productList.length; i++) {
+        if (productList[i].product_ID == id) return productList[i];
     }
     return -1;
 }
@@ -164,22 +40,20 @@ function ShowProductInfo(id) {
     if (product == -1) console.log("error! Can't find product");
     document.getElementById("product-info-name").innerHTML = product.name;
     document.getElementById("product-info-quantity").innerHTML = product.quantity;
-    document.getElementById("product-info-price").innerHTML = "<sup>đ</sup>" + product.price;
+    document.getElementById("product-info-price").innerHTML = "<sup>đ</sup>" + product.selling_price + "/" + product.unit_label;
     document.getElementById("product-info-location").innerHTML = product.location;
 
 }
 
-
-// Load all products and categories
-$(document).ready(function() {
-
+//KuanK đã sửa - render product list
+function RenderProduct() {
     // Load products
     var htmlList = document.getElementById("product-list");
-    for (var index in productList) {
-        var product = productList[index];
-        htmlList.appendChild(createHTMLForEachProduct(product));
+    htmlList.innerHTML = "";
+    for (i = 0; i < productList.length; i++) {
+        htmlList.appendChild(createHTMLForEachProduct(productList[i]));
     }
-});
+}
 
 function createHTMLForEachProduct(product) {
     var a = document.createElement("a");
@@ -195,14 +69,14 @@ function createHTMLForEachProduct(product) {
 
     var h5 = document.createElement("h5");
     h5.setAttribute("class", "text-muted");
-    h5.innerHTML = "<sup>đ</sup>" + product.price;
+    h5.innerHTML = "<sup>đ</sup>" + product.selling_price + "/" + product.unit_label;
 
     var div2 = document.createElement("div");
     div2.setAttribute("class", "product-info-button");
 
     var button = document.createElement("button");
-    button.setAttribute("id", product.id);
-    button.setAttribute("onclick", "ShowProductInfo(" + product.id + ")");
+    button.setAttribute("id", product.product_ID);
+    button.setAttribute("onclick", "ShowProductInfo(" + product.product_ID + ")");
     button.setAttribute("class", "btn btn-outline-secondary rounded-circle");
     button.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"\n" +
         "                                            fill=\"currentColor\" class=\"bi bi-three-dots\" viewBox=\"0 0 16 16\">\n" +
@@ -240,7 +114,7 @@ function createHTMLForEachProduct(product) {
     */
 }
 
-// KuanK's function
+// KuanK's function - send feedback to server
 function sendFeedback() {
     var xhttp = new XMLHttpRequest();
     content = "feedback_content=" + encodeURIComponent(document.getElementById("feedback").value);
@@ -251,7 +125,7 @@ function sendFeedback() {
     $('#createFeedback').modal('hide');
 }
 
-// KuanK's function
+// KuanK's function - get cashier name from server
 function getCashierName() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "GetCurrentName", true);
@@ -259,10 +133,124 @@ function getCashierName() {
         document.getElementById("cashier-name").innerHTML += this.responseText;
     };
     xhttp.send();
-    console.log("I run!!!")
+}
+
+//KuanK function - get bill from server
+function getBill() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "GetBill", true);
+    xhttp.onload = function() {
+        printBill(JSON.parse(this.responseText));
+    };
+    xhttp.send();
+}
+
+//KuanK function - render bill
+function printBill(billObject) {
+    document.getElementById('bill-area').innerHTML = "";
+    for (i = 0; i < billObject.Bill_Detail.length; i++) {
+        var detail = billObject.Bill_Detail[i]
+        var tr = document.createElement("tr");
+
+        var td_name = document.createElement("td");
+        td_name.innerHTML = billObject.Bill_Detail[i].product.name;
+
+        var td_selling_price = document.createElement("td");
+        td_selling_price.setAttribute("class", "text-right pr-5 mr-5");
+        td_selling_price.innerHTML = "<sup>đ</sup>" + detail.product.selling_price;
+
+        var td_quantity = document.createElement("td");
+        var input_quantity = document.createElement("input");
+        input_quantity.setAttribute("style", "width: 50px");
+        input_quantity.setAttribute("class", "text-center");
+        input_quantity.setAttribute("type", "number");
+        input_quantity.setAttribute("value", detail.quantity);
+        input_quantity.setAttribute("min", "1");
+        td_quantity.appendChild(input_quantity);
+
+        var td_delete = document.createElement("td");
+        td_delete.setAttribute("class", "text-center");
+        var delete_button = document.createElement("button");
+        delete_button.setAttribute("class", "btn btn-outline-danger btn-sm");
+        delete_button.innerHTML = "XÓA";
+        td_delete.appendChild(delete_button);
+
+        var td_total = document.createElement("td");
+        td_total.setAttribute("class", "text-right");
+        td_total.innerHTML = "<sup>đ</sup>" + detail.quantity * detail.product.selling_price;
+
+        tr.appendChild(td_name);
+        tr.appendChild(td_selling_price);
+        tr.appendChild(td_quantity);
+        tr.appendChild(td_delete);
+        tr.appendChild(td_total);
+
+        document.getElementById('bill-area').appendChild(tr);
+    }
+    /* <tr>
+<td>Bánh mì</td>s
+<td class="text-right pr-5 mr-5"><sup>đ</sup>5000</td>
+<td><input style="width: 50px;" class="text-center" type="number" value="1" min="1">
+</td>
+
+<td class="text-center"><button class="btn btn-outline-danger btn-sm">Xóa</button></td>
+<td class="text-right"><sup>đ</sup>5000</td>
+</tr> */
+}
+
+var category_id = null;
+var productList;
+
+function SearchProduct() {
+    var name = document.getElementById("product-search-bar").value;
+    url = "GetProductList?search_value=" + name;
+    if (category_id != null) url += "&category_id=" + category_id;
+    if (name == "") {
+        productList = [];
+        RenderProduct();
+        console.log("name is empty!!!");
+    } else {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("GET", url, true);
+        xhttp.onload = function() {
+            productList = JSON.parse(this.responseText);
+            //  console.log(productList);
+            RenderProduct();
+        };
+        xhttp.send();
+    }
+}
+
+function getCategory() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "GetCategoryList", true);
+    xhttp.onload = function() {
+        renderCategory(JSON.parse(this.responseText));
+    };
+    xhttp.send();
+}
+
+function renderCategory(categoryListObject) {
+    document.getElementById('category-list').innerHTML = "";
+    for (i = 0; i < categoryListObject.length; i++) {
+
+        var li = document.createElement("li");
+        li.setAttribute("class", "nav-item");
+        var a = document.createElement("a");
+        a.setAttribute("class", "nav-link");
+        a.setAttribute("href", "#");
+        a.innerHTML = categoryListObject[i].name;
+        li.appendChild(a);
+        document.getElementById('category-list').appendChild(li);
+    }
+    //     <li class="nav-item">
+    //     <a href="#" class="nav-link">Tương ớt</a>
+    // </li>
 }
 
 // KuanK's function
 function pageLoadKuanK() {
     getCashierName();
+    getBill();
+    getCategory();
 }

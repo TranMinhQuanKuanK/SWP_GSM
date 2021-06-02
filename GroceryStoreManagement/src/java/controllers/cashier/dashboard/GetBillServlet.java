@@ -8,35 +8,49 @@ package controllers.cashier.dashboard;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.customer.CustomerDAO;
-import models.customer.CustomerDTO;
+import javax.servlet.http.HttpSession;
+import models.category.CategoryDTO;
+import models.product.ProductDTO;
+import models.sessionBill.BillItemObject;
+import models.sessionBill.BillObj;
 
-//chưa test
-@WebServlet(name = "GetCustomerByPhoneServlet", urlPatterns = {"/GetCustomerByPhoneServlet"})
-public class GetCustomerByPhoneServlet extends HttpServlet {
+/**
+ *
+ * @author Tran Minh Quan
+ */
+@WebServlet(name = "GetBillServlet", urlPatterns = {"/GetBillServlet"})
+public class GetBillServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CustomerDAO cDAO = new CustomerDAO();
-            CustomerDTO cDTO = cDAO.GetCustomerByPhone(request.getParameter("phone_no"));
+            HttpSession session = request.getSession();
+            BillObj bill = null;
+
+            if (session.getAttribute("BILL") == null) {
+                //testing
+                BillObj testBill = new BillObj();
+                testBill.getBill_Detail().add(new BillItemObject(
+                        new ProductDTO(98, "TestProduct1", 1000, 1010, 500, 5, new CategoryDTO(1, "TestCategory", "info"),
+                                "chai", true, "no where"), 5));
+                testBill.getBill_Detail().add(new BillItemObject(
+                        new ProductDTO(99, "TestProduct2", 2230, 2340, 2340, 6, new CategoryDTO(1, "TestCategory2", "info"),
+                                "chai", true, "no where"), 2));
+                session.setAttribute("BILL", testBill);
+            } else {
+                bill = (BillObj) session.getAttribute("BILL");
+            }
 
             Gson gson = new Gson();
-            String customerJSONString = gson.toJson(cDTO);
-            out.print(customerJSONString);
+            String billJSONString = gson.toJson(bill);
+            out.print(billJSONString);
             out.flush();
-        } catch (SQLException e) {
-            log("SQLException " + e.getMessage());
-        } catch (NamingException e) {
-            log("NamingException " + e.getMessage());
         }
     }
 

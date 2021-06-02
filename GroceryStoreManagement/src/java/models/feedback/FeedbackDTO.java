@@ -5,10 +5,12 @@
  */
 package models.feedback;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Tran Minh Quan
  */
-public class FeedbackDTO {
+public class FeedbackDTO  implements Serializable { 
     
 }

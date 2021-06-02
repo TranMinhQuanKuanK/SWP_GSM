@@ -6,3 +6,4 @@ TestEverythingPage.html = TestEverythingPage.html
 GetCategoryList = GetCategoryListServlet
 GetProductList = GetProductListServlet
 SendFeedback = SendFeedbackServlet
+GetBill = GetBillServlet

@@ -33,7 +33,7 @@
                     </svg>
                 </span>
                 <!-- Thanh Search Hàng Hóa -->
-                <input oninput="SearchProduct(this)" type="text" class="form-control" placeholder="Tìm kiếm món hàng" aria-label="Tìm kiếm món hàng" aria-describedby="search-product-bar">
+                <input oninput="SearchProduct()" id="product-search-bar" type="text" class="form-control" placeholder="Tìm kiếm món hàng" aria-label="Tìm kiếm món hàng" aria-describedby="search-product-bar">
             </div>
 
 
@@ -53,7 +53,7 @@
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item" href="#">Đổi mật khẩu..</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
+                        <a class="dropdown-item" href="Logout">Đăng xuất</a>
                     </div>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                                 <th scope="col" class="text-muted font-weight-light text-right">Thành tiền</th>
                             </tr>
                         </thead>
-                        <tbody class="scroll-list">
+                        <tbody class="scroll-list" id="bill-area">
                             <tr>
                                 <td scope="row">Tương ớt</td>
                                 <td class="text-right pr-5 mr-5"><sup>đ</sup>10000</td>
