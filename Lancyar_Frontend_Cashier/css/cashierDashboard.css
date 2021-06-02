@@ -1,0 +1,71 @@
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
+li {
+    width: 100%;
+}
+
+h5 {
+    margin: auto 0;
+}
+
+
+
+span {
+    margin: auto 0;
+}
+
+.search-product-bar {
+    max-width: 31%;
+}
+
+.product-width {
+    min-width: 500px; 
+}
+
+.scroll-list {
+    overflow: auto;
+    max-height: 90%;
+}
+
+.body-height {
+    height: 94vh;
+}
+
+.bill {
+    height: 75vh;
+}
+
+.product-info-button {
+    margin: auto 0;
+}
+
+/* TABLE BILL */
+th.number {
+    width: 5%;
+}
+
+th.name {
+    width: 40%;
+}
+
+th.price {
+    width: 15%;
+}
+
+th.quantity {
+    width: 15%;
+}
+
+td > input {
+    max-width: 70px;
+}
+
+th.remove {
+    width: 10%;
+}
+
+th.total-price {
+    width: 15%;
+}
