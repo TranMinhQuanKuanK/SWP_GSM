@@ -46,15 +46,17 @@ public class EditQuantityBillServlet extends HttpServlet {
 
             for (int i = 0; i < details.size(); i++) {
                 if (details.get(i).getProduct().getProduct_ID() == product_id) {
-                    Integer quantity_difference = quantity - bill.getBill_Detail().get(i).getQuantity();
-                    Integer currentPrice = quantity - bill.getBill_Detail().get(i).getQuantity();
-                    bill.setTotal_cost(bill.getTotal_cost() + quantity_difference * currentPrice);
+                    if (quantity >= 1) {
+                        Integer quantity_difference = quantity - bill.getBill_Detail().get(i).getQuantity();
+                        Integer currentPrice = bill.getBill_Detail().get(i).getProduct().getSelling_price();
+                        bill.setTotal_cost(bill.getTotal_cost() + quantity_difference * currentPrice);
 
-                    details.get(i).setQuantity(quantity);
+                        details.get(i).setQuantity(quantity);
+                    }
                 }
             }
             session.setAttribute("BILL", bill);
-            
+
             Gson gson = new Gson();
             String billJSONString = gson.toJson(bill);
             out.print(billJSONString);

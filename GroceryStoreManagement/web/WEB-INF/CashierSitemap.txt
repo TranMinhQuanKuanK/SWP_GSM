@@ -11,3 +11,4 @@ GetCustomerByPhone = GetCustomerByPhoneServlet
 AddProductToBill = AddProducToBillServlet
 RemoveProductFromBill = RemoveProductFromBillServlet
 ToggleDiscount = ToggleDiscountServlet
+EditQuantityBill = EditQuantityBillServlet

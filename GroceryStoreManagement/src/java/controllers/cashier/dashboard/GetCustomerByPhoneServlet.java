@@ -15,8 +15,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import models.customer.CustomerDAO;
 import models.customer.CustomerDTO;
+import models.sessionBill.BillObj;
 
 //chưa test
 @WebServlet(name = "GetCustomerByPhoneServlet", urlPatterns = {"/GetCustomerByPhoneServlet"})
@@ -28,6 +30,15 @@ public class GetCustomerByPhoneServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             CustomerDAO cDAO = new CustomerDAO();
             CustomerDTO cDTO = cDAO.GetCustomerByPhone(request.getParameter("phone_no"));
+
+            HttpSession session = request.getSession();
+            BillObj bill = (BillObj) session.getAttribute("BILL");
+            if (cDTO != null) {
+                bill.setCustomer_dto(cDTO);
+                bill.setPhone_no(cDTO.getPhone_no());
+            }
+            session.setAttribute("BILL", bill);
+
             Gson gson = new Gson();
             String customerJSONString = gson.toJson(cDTO);
             out.print(customerJSONString);

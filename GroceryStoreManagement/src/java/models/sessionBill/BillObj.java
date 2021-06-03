@@ -8,6 +8,7 @@ package models.sessionBill;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import models.customer.CustomerDTO;
 
 /**
  *
@@ -20,9 +21,10 @@ public class BillObj implements Serializable {
     private Timestamp buy_date;
     private String cashier_username;
     private int total_cost;
-    private int point_used;
+   // private int point_used;
     private int cash;
-    boolean use_point;
+    boolean use_point; //thêm
+    CustomerDTO customer_dto; //thêm
 
     public BillObj() {
         this.Bill_Detail = new ArrayList<>();
@@ -30,9 +32,18 @@ public class BillObj implements Serializable {
         this.buy_date = null;
         this.cashier_username = null;
         this.total_cost = 0;
-        this.point_used = 0;
+        //this.point_used = 0;
         this.cash = 0;
         this.use_point = false;
+        this.customer_dto = null;
+    }
+
+    public CustomerDTO getCustomer_dto() {
+        return customer_dto;
+    }
+
+    public void setCustomer_dto(CustomerDTO customer_dto) {
+        this.customer_dto = customer_dto;
     }
 
     public boolean isUse_point() {
@@ -82,14 +93,14 @@ public class BillObj implements Serializable {
     public void setTotal_cost(int total_cost) {
         this.total_cost = total_cost;
     }
-
-    public int getPoint_used() {
-        return point_used;
-    }
-
-    public void setPoint_used(int point_used) {
-        this.point_used = point_used;
-    }
+//
+//    public int getPoint_used() {
+//        return point_used;
+//    }
+//
+//    public void setPoint_used(int point_used) {
+//        this.point_used = point_used;
+//    }
 
     public int getCash() {
         return cash;

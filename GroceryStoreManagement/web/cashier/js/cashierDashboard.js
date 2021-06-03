@@ -1,8 +1,9 @@
 var previousProductInfo = "";
 var ProductInfoDuration;
-var category_id = null;
-var productList;
-var currentCustomer;
+var category_id = null; //selected category
+var productList; //story list ProductDTO
+//var currentCustomer; //store current CustomerDTO
+var currentBill; //store current billObj
 
 function SearchForProduct(id) {
     for (i = 0; i < productList.length; i++) {
@@ -47,8 +48,6 @@ function ShowProductInfo(id) {
     document.getElementById("product-info-location").innerHTML = product.location;
 
 }
-
-
 
 function createHTMLForEachProduct(product) {
     var a = document.createElement("a");
@@ -135,11 +134,11 @@ function getBill() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "GetBill", true);
     xhttp.onload = function() {
-        printBill(JSON.parse(this.responseText));
+        currentBill = JSON.parse(this.responseText);
+        printBill(currentBill);
     };
     xhttp.send();
 }
-
 
 //KuanK function - render bill
 function printBill(billObject) {
@@ -162,9 +161,11 @@ function printBill(billObject) {
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
         input_quantity.setAttribute("class", "text-right float-right");
+        input_quantity.setAttribute("id", "quantity-for-product-" + detail.product.product_ID);
         input_quantity.setAttribute("type", "number");
         input_quantity.setAttribute("value", detail.quantity);
         input_quantity.setAttribute("min", "1");
+        input_quantity.setAttribute("onchange", "EditQuantityBill(" + detail.product.product_ID + ")"); //muốn lấy một giá trị 
         td_quantity.appendChild(input_quantity);
 
 
@@ -194,8 +195,27 @@ function printBill(billObject) {
 
         document.getElementById('bill-area').appendChild(tr);
     }
-    document.getElementById('total-after-discount').innerHTML = "<strong><sup>đ</sup>" + billObject.total_cost + "</strong>";
-    document.getElementById('total').innerHTML = "<sup>đ</sup>" + billObject.total_cost; //sẽ thay đổi sau
+
+    //tính toán discount
+    currentCustomer = currentBill.customer_dto;
+
+    var discount;
+    if (currentBill.use_point == true) {
+        console.log("Current bill use point: " + currentBill.use_point);
+        if (Math.ceil(currentBill.total_cost / 1000) < currentCustomer.point)
+            discount = Math.ceil(currentBill.total_cost / 1000) * 1000;
+        else discount = currentCustomer.point * 1000;
+    } else discount = 0;
+
+    var total_cost_after_discount = Math.max(0, billObject.total_cost - discount);
+
+    document.getElementById('total').innerHTML = "<sup>đ</sup>" + billObject.total_cost;
+    document.getElementById('discount').innerHTML = "<del><sup>đ</sup>" + discount + "</del>";
+    document.getElementById('total-after-discount').innerHTML = "<strong><sup>đ</sup>" + total_cost_after_discount + "</strong>";
+
+    renderCustomer();
+
+
     /* <tr>
                                     <th scope="row">1</td>
                                     <td>Tương ớt</td>
@@ -220,8 +240,6 @@ function printBill(billObject) {
 
 }
 
-
-
 //KuanK - search and render product results
 function SearchProduct() {
     var name = document.getElementById("product-search-bar").value;
@@ -241,6 +259,7 @@ function SearchProduct() {
         xhttp.send();
     }
 }
+
 //KuanK đã sửa - render product list
 function RenderProduct() {
     // Load products
@@ -296,26 +315,38 @@ function setCategoryAndSearch(id) {
 }
 
 function searchCustomerByPhone() {
+
     var xhttp = new XMLHttpRequest();
     var phone_no = document.getElementById("phone-no-input").value;
     xhttp.open("GET", "GetCustomerByPhone?phone_no=" + phone_no, true);
     xhttp.onload = function() {
-        currentCustomer = JSON.parse(this.responseText);
-        renderCustomer(currentCustomer);
+        //nếu kết quả trả về null thì thôi, còn nếu khác null thì in ra
+        result_dto = JSON.parse(this.responseText);
+        if (result_dto != null) {
+            currentBill.customer_dto = result_dto;
+            printBill(currentBill);
+        }
     };
     xhttp.send();
 }
 
-function renderCustomer(customerObject) {
-    document.getElementById("customer-name").innerHTML = " " + customerObject.name + " và có sẵn: " + customerObject.point + " điểm";
+function renderCustomer() {
+    currentCustomer = currentBill.customer_dto;
+    // console.log(currentBill.customer_dto);
+    if (currentCustomer != null) {
+        document.getElementById("customer-name").innerHTML = " " + currentCustomer.name + ", điểm: " + currentCustomer.point + " điểm";
+        //set attribute cho ô giảm giá
+        document.getElementById("discount-checkbox").checked = (currentBill.use_point == true);
+    }
 }
 
 function AddProductToBill(product_ID) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "AddProductToBill?product_id=" + product_ID, true);
     xhttp.onload = function() {
-        console.log(this.responseText); //debug
-        printBill(JSON.parse(this.responseText));
+        // console.log(this.responseText); //debug
+        currentBill = JSON.parse(this.responseText);
+        printBill(currentBill);
     };
     xhttp.send();
 }
@@ -324,23 +355,48 @@ function RemoveProductFromBill(product_ID) {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "RemoveProductFromBill?product_id=" + product_ID, true);
     xhttp.onload = function() {
-        console.log(this.responseText); //debug
-        printBill(JSON.parse(this.responseText));
+        //console.log(this.responseText); //debug
+        currentBill = JSON.parse(this.responseText);
+        printBill(currentBill);
     };
     xhttp.send();
 }
 
 function usePointToggle() {
+    //set use_point state
     var use_point;
     if (document.getElementById("discount-checkbox").checked == true) {
         use_point = "true";
     } else use_point = "false";
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "wtf?use_point=" + use_point, true);
+    xhttp.open("GET", "ToggleDiscount?use_point=" + use_point, true);
     xhttp.onload = function() {
         console.log(this.responseText); //debug
-        printBill(JSON.parse(this.responseText));
+        currentBill = JSON.parse(this.responseText);
+        printBill(currentBill);
+    };
+    xhttp.send();
+}
+
+function calculateDiscount() {
+    //trả về discount để in ra bill
+    currentCustomer = currentBill.customer_dto;
+    if (currentBill.use_point == true) {
+        if (Math.floor(currentBill.total_cost / 1000) < currentCustomer.point)
+            return Math.floor(currentBill.total_cost / 1000) * 1000;
+        else return currentCustomer.point * 1000;
+    } else return 0;
+}
+
+function EditQuantityBill(product_id) {
+    var xhttp = new XMLHttpRequest();
+    quantity = document.getElementById("quantity-for-product-" + product_id).value;
+    xhttp.open("GET", "EditQuantityBill?product_id=" + product_id + "&quantity=" + quantity, true);
+    xhttp.onload = function() {
+        console.log(this.responseText); //debug
+        currentBill = JSON.parse(this.responseText);
+        printBill(currentBill);
     };
     xhttp.send();
 }

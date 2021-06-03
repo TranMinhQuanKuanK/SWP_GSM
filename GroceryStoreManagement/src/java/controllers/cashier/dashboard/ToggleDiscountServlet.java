@@ -39,7 +39,8 @@ public class ToggleDiscountServlet extends HttpServlet {
             HttpSession session = request.getSession();
             BillObj bill = (BillObj) session.getAttribute("BILL");
             
-            boolean use_point = request.getParameter("use_point").equals("True");
+            boolean use_point = request.getParameter("use_point").equals("true");
+            System.out.println("toi set use_point thanh "+use_point);
             bill.setUse_point(use_point);
             session.setAttribute("BILL", bill);
             
