@@ -36,13 +36,15 @@ public class GetBillServlet extends HttpServlet {
             if (session.getAttribute("BILL") == null) {
                 //testing
                 BillObj testBill = new BillObj();
-                testBill.getBill_Detail().add(new BillItemObject(
-                        new ProductDTO(98, "TestProduct1", 1000, 1010, 500, 5, new CategoryDTO(1, "TestCategory", "info"),
-                                "chai", true, "no where"), 5));
-                testBill.getBill_Detail().add(new BillItemObject(
-                        new ProductDTO(99, "TestProduct2", 2230, 2340, 2340, 6, new CategoryDTO(1, "TestCategory2", "info"),
-                                "chai", true, "no where"), 2));
+//                testBill.getBill_Detail().add(new BillItemObject(
+//                        new ProductDTO(98, "TestProduct1 asd asdasd asd asd ád", 1000, 1010, 500, 5, new CategoryDTO(1, "TestCategory", "info"),
+//                                "chai", true, "no where"), 5));
+//                testBill.getBill_Detail().add(new BillItemObject(
+//                        new ProductDTO(99, "TestProduct2 adsasd asd asd asd asd asd ", 2230, 2340, 2340, 6, new CategoryDTO(1, "TestCategory2", "info"),
+//                                "chai", true, "no where"), 2));
+                bill = testBill;
                 session.setAttribute("BILL", testBill);
+               
             } else {
                 bill = (BillObj) session.getAttribute("BILL");
             }

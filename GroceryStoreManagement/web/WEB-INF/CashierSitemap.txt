@@ -7,3 +7,7 @@ GetCategoryList = GetCategoryListServlet
 GetProductList = GetProductListServlet
 SendFeedback = SendFeedbackServlet
 GetBill = GetBillServlet
+GetCustomerByPhone = GetCustomerByPhoneServlet
+AddProductToBill = AddProducToBillServlet
+RemoveProductFromBill = RemoveProductFromBillServlet
+ToggleDiscount = ToggleDiscountServlet

@@ -8,34 +8,45 @@ package controllers.cashier.dashboard;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.customer.CustomerDAO;
-import models.customer.CustomerDTO;
+import javax.servlet.http.HttpSession;
+import models.sessionBill.BillObj;
 
-//chưa test
-@WebServlet(name = "GetCustomerByPhoneServlet", urlPatterns = {"/GetCustomerByPhoneServlet"})
-public class GetCustomerByPhoneServlet extends HttpServlet {
+/**
+ *
+ * @author Tran Minh Quan
+ */
+@WebServlet(name = "ToggleDiscountServlet", urlPatterns = {"/ToggleDiscountServlet"})
+public class ToggleDiscountServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            CustomerDAO cDAO = new CustomerDAO();
-            CustomerDTO cDTO = cDAO.GetCustomerByPhone(request.getParameter("phone_no"));
+            HttpSession session = request.getSession();
+            BillObj bill = (BillObj) session.getAttribute("BILL");
+            
+            boolean use_point = request.getParameter("use_point").equals("True");
+            bill.setUse_point(use_point);
+            session.setAttribute("BILL", bill);
+            
             Gson gson = new Gson();
-            String customerJSONString = gson.toJson(cDTO);
-            out.print(customerJSONString);
+            String billJSONString = gson.toJson(bill);
+            out.print(billJSONString);
             out.flush();
-        } catch (SQLException e) {
-            log("SQLException " + e.getMessage());
-        } catch (NamingException e) {
-            log("NamingException " + e.getMessage());
         }
     }
 

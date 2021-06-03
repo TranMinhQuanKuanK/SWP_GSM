@@ -10,8 +10,6 @@ h5 {
     margin: auto 0;
 }
 
-
-
 span {
     margin: auto 0;
 }
@@ -21,7 +19,7 @@ span {
 }
 
 .product-width {
-    min-width: 500px; 
+    min-width: 500px;
 }
 
 .scroll-list {
@@ -34,14 +32,16 @@ span {
 }
 
 .bill {
-    height: 75vh;
+    height: 70%;
 }
 
 .product-info-button {
     margin: auto 0;
 }
 
+
 /* TABLE BILL */
+
 th.number {
     width: 5%;
 }
@@ -58,7 +58,7 @@ th.quantity {
     width: 15%;
 }
 
-td > input {
+td>input {
     max-width: 70px;
 }
 

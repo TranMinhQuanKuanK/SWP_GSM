@@ -32,8 +32,10 @@ public class AddProducToBillServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            System.out.println("I went to product_to_bill servlet");
             HttpSession session = request.getSession();
             Integer product_id = Integer.parseInt(request.getParameter("product_id"));
+            System.out.println("product id toi nhan la: "+product_id);
             BillObj bill = (BillObj) session.getAttribute("BILL");
             ProductDAO pDAO = new ProductDAO();
             ProductDTO pDTO = pDAO.GetProductByID(product_id);
@@ -65,11 +67,11 @@ public class AddProducToBillServlet extends HttpServlet {
 
                 session.setAttribute("BILL", bill);
 
-                Gson gson = new Gson();
-                String billJSONString = gson.toJson(bill);
-                out.print(billJSONString);
-                out.flush();
             }
+            Gson gson = new Gson();
+            String billJSONString = gson.toJson(bill);
+            out.print(billJSONString);
+            out.flush();
         } catch (SQLException e) {
             log("SQLException " + e.getMessage());
         } catch (NamingException e) {

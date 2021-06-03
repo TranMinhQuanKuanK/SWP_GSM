@@ -7,34 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POS Tạp Hóa</title>
     <!-- Add CDN for Bootstrap & Jquery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
 
     <!-- Custom fonts for this template -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom JS & CSS -->
     <link rel="stylesheet" href="../css/cashierDashboard.css">
 </head>
 
-<body class="overflow-hidden">
+<body class="overflow-auto">
+    <div class="container-fluid">
 
-
-    <!--    
+        <!--    
         HEADER CỦA CASHIER DASHBOARD:
     -->
-    <header class="bg-warning p-2 header-height">
-        <div class="container-fluid d-flex justify-content-between">
-            <div class="input-group search-product-bar">
-                <button type="button" class="btn btn-secondary">
+        <header class="bg-warning p-2 header-height">
+            <div class="container-fluid d-flex justify-content-between">
+                <div class="input-group search-product-bar">
+                    <button type="button" class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-search" viewBox="0 0 16 16">
                         <path
@@ -42,18 +36,16 @@
                     </svg>
                 </button>
 
-                <!-- Thanh Search Hàng Hóa -->
-                <input oninput="SearchProduct(this)" type="text" class="form-control" placeholder="Tìm kiếm món hàng"
-                    aria-label="Tìm kiếm món hàng" aria-describedby="search-product-bar">
-            </div>
+                    <!-- Thanh Search Hàng Hóa -->
+                    <input oninput="SearchProduct(this)" type="text" class="form-control" placeholder="Tìm kiếm món hàng" aria-label="Tìm kiếm món hàng" aria-describedby="search-product-bar">
+                </div>
 
 
-            <!-- Welcome text and Setting button -->
-            <div class="d-flex justify-content-between">
-                <p class="h5 text-muted mr-3 my-auto">Chào, Thành</p>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                <!-- Welcome text and Setting button -->
+                <div class="d-flex justify-content-between">
+                    <p class="h5 text-muted mr-3 my-auto">Chào, Thành</p>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                             class="bi bi-gear" viewBox="0 0 16 16">
                             <path
@@ -62,88 +54,87 @@
                                 d="M9.796 1.343c-.527-1.79-3.065-1.79-3.592 0l-.094.319a.873.873 0 0 1-1.255.52l-.292-.16c-1.64-.892-3.433.902-2.54 2.541l.159.292a.873.873 0 0 1-.52 1.255l-.319.094c-1.79.527-1.79 3.065 0 3.592l.319.094a.873.873 0 0 1 .52 1.255l-.16.292c-.892 1.64.901 3.434 2.541 2.54l.292-.159a.873.873 0 0 1 1.255.52l.094.319c.527 1.79 3.065 1.79 3.592 0l.094-.319a.873.873 0 0 1 1.255-.52l.292.16c1.64.893 3.434-.902 2.54-2.541l-.159-.292a.873.873 0 0 1 .52-1.255l.319-.094c1.79-.527 1.79-3.065 0-3.592l-.319-.094a.873.873 0 0 1-.52-1.255l.16-.292c.893-1.64-.902-3.433-2.541-2.54l-.292.159a.873.873 0 0 1-1.255-.52l-.094-.319zm-2.633.283c.246-.835 1.428-.835 1.674 0l.094.319a1.873 1.873 0 0 0 2.693 1.115l.291-.16c.764-.415 1.6.42 1.184 1.185l-.159.292a1.873 1.873 0 0 0 1.116 2.692l.318.094c.835.246.835 1.428 0 1.674l-.319.094a1.873 1.873 0 0 0-1.115 2.693l.16.291c.415.764-.42 1.6-1.185 1.184l-.291-.159a1.873 1.873 0 0 0-2.693 1.116l-.094.318c-.246.835-1.428.835-1.674 0l-.094-.319a1.873 1.873 0 0 0-2.692-1.115l-.292.16c-.764.415-1.6-.42-1.184-1.185l.159-.291A1.873 1.873 0 0 0 1.945 8.93l-.319-.094c-.835-.246-.835-1.428 0-1.674l.319-.094A1.873 1.873 0 0 0 3.06 4.377l-.16-.292c-.415-.764.42-1.6 1.185-1.184l.292.159a1.873 1.873 0 0 0 2.692-1.115l.094-.319z" />
                         </svg>
                     </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Đổi mật khẩu..</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Đăng xuất</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!--    
-        BODY CỦA DASHBOARD
-    -->
-    <div class="container-fluid ">
-        <div class="row">
-            <div class="col-4 col-xl-6 d-flex pr-2 body-height">
-                <!-- Table nhóm hàng + hàng hóa -->
-                <div class="col-4 col-xl-2 border p-0 bg-light shadow-sm">
-                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
-                        <span class="text-muted font-weight-light">Nhóm hàng</span>
-                    </p>
-                    <ul id="category-list" class="scroll-list nav">
-                        <!-- JSON content here -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Tương ớt</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="col-8 col-xl-10 border p-0 d-flex flex-column shadow-sm">
-                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2 text-muted">
-                        <span>Hàng hóa</span>
-                    </p>
-
-                    <div id="product-list" class="overflow-auto list-group">
-                        <!-- JSON content here -->
-                    </div>
-
-                    <!-- Pagination -->
-                    <div id="page-selection" class="m-auto"></div>
-
-                    <!-- Show additional info of products -->
-                    <div id="product-info" class="scroll-list d-none mt-auto">
-                        <div class="product-width d-flex flex-row card card-body border-warning justify-content-between">
-                            <div class="w-50">
-                                <h5 id="product-info-name" class="card-title"></h5>
-                                <h6 id="product-info-price"></h6>
-                            </div>
-                            <div>
-                                <p>Số lượng còn lại: <span id="product-info-quantity"></span></p>
-                                <p>Vị trí: <span id="product-info-location"></span></p>
-                            </div>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#">Đổi mật khẩu..</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Đăng xuất</a>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
-            <div class="col-8 col-xl-6 body-height">
-                <!-- Table bill -->
-                <div class="bill">
-                    <table class="table table-striped border shadow-sm">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="text-muted font-weight-light number">#</th>
-                                <th scope="col" class="text-muted font-weight-light name">Sản phẩm</th>
-                                <th scope="col" class="text-muted font-weight-light text-right price">Đơn giá</th>
-                                <th scope="col" class="text-muted font-weight-light text-right quantity">Số lượng</th>
-                                <th scope="col" class="text-muted font-weight-light text-right remove"></th>
-                                <th scope="col" class="text-muted font-weight-light text-right total-price">Thành tiền</th>
-                            </tr>
-                        </thead>
-                        <tbody class="scroll-list">
-                            <tr>
-                                <th scope="row">1</td>
-                                <td>Tương ớt</td>
-                                <td class="text-right"><sup>đ</sup>10000</td>
-                                <td ><input class="text-right float-right" type="number" value="3"
-                                        min="1">
-                                </td>
-                                <td class="text-right">
-                                    <button class="btn btn-outline-danger btn-sm">
+        </header>
+
+        <!--    
+        BODY CỦA DASHBOARD
+    -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-4 col-xl-6 d-flex pr-2 body-height">
+                    <!-- Table nhóm hàng + hàng hóa -->
+                    <div class="col-4 col-xl-2 border p-0 bg-light shadow-sm">
+                        <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
+                            <span class="text-muted font-weight-light">Nhóm hàng</span>
+                        </p>
+                        <ul id="category-list" class="scroll-list nav">
+                            <!-- JSON content here -->
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Tương ớt</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-8 col-xl-10 border p-0 d-flex flex-column shadow-sm">
+                        <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2 text-muted">
+                            <span>Hàng hóa</span>
+                        </p>
+
+                        <div id="product-list" class="overflow-auto list-group">
+                            <!-- JSON content here -->
+                        </div>
+
+                        <!-- Pagination -->
+                        <div id="page-selection" class="m-auto"></div>
+
+                        <!-- Show additional info of products -->
+                        <div id="product-info" class="scroll-list d-none mt-auto">
+                            <div class="product-width d-flex flex-row card card-body border-warning justify-content-between">
+                                <div class="w-50">
+                                    <h5 id="product-info-name" class="card-title"></h5>
+                                    <h6 id="product-info-price"></h6>
+                                </div>
+                                <div>
+                                    <p>Số lượng còn lại: <span id="product-info-quantity"></span></p>
+                                    <p>Vị trí: <span id="product-info-location"></span></p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-8 col-xl-6 body-height">
+                    <!-- Table bill -->
+                    <div class="bill">
+                        <table class="table table-striped border shadow-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="text-muted font-weight-light number">#</th>
+                                    <th scope="col" class="text-muted font-weight-light name">Sản phẩm</th>
+                                    <th scope="col" class="text-muted font-weight-light text-right price">Đơn giá</th>
+                                    <th scope="col" class="text-muted font-weight-light text-right quantity">Số lượng</th>
+                                    <th scope="col" class="text-muted font-weight-light text-right remove"></th>
+                                    <th scope="col" class="text-muted font-weight-light text-right total-price">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody class="scroll-list">
+                                <tr>
+                                    <th scope="row">1</td>
+                                        <td>Tương ớt</td>
+                                        <td class="text-right"><sup>đ</sup>10000</td>
+                                        <td><input class="text-right float-right" type="number" value="3" min="1">
+                                        </td>
+                                        <td class="text-right">
+                                            <button class="btn btn-outline-danger btn-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                             <path
@@ -151,10 +142,10 @@
                                             </path>
                                         </svg>
                                     </button>
-                                </td>
-                                <td class="text-right"><sup>đ</sup>30000</td>
-                            </tr>
-                            <!-- <tr>
+                                        </td>
+                                        <td class="text-right"><sup>đ</sup>30000</td>
+                                </tr>
+                                <!-- <tr>
                                 <td>Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L</td>
                                 <td class="text-right"><sup>đ</sup>20000</td>
                                 <td><input style="width: 50px;" class="text-right float-right" type="number" value="2"
@@ -172,15 +163,14 @@
                                 </td>
                                 <td class="text-right"><sup>đ</sup>40000</td>
                             </tr> -->
-                            <tr>
-                                <th scope="row">2</td>
-                                <td>Bánh mì</td>
-                                <td class="text-right"><sup>đ</sup>5000</td>
-                                <td><input class="text-right float-right" type="number" value="1"
-                                        min="1">
-                                </td>
-                                <td class="text-right float-right">
-                                    <button class="btn btn-outline-danger btn-sm ">
+                                <tr>
+                                    <th scope="row">2</td>
+                                        <td>Bánh mì</td>
+                                        <td class="text-right"><sup>đ</sup>5000</td>
+                                        <td><input class="text-right float-right" type="number" value="1" min="1">
+                                        </td>
+                                        <td class="text-right float-right">
+                                            <button class="btn btn-outline-danger btn-sm ">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                             <path
@@ -188,17 +178,17 @@
                                             </path>
                                         </svg>
                                     </button>
-                                </td>
-                                <td class="text-right"><sup>đ</sup>5000</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="row border shadow-sm pt-2">
-                    <div class="col-4 shadow-sm">
-                        <!-- Table khách hàng + Search Customer -->
-                        <div class="input-group">
-                            <button type="button" class="btn btn-secondary">
+                                        </td>
+                                        <td class="text-right"><sup>đ</sup>5000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row border shadow-sm pt-2">
+                        <div class="col-4 shadow-sm">
+                            <!-- Table khách hàng + Search Customer -->
+                            <div class="input-group">
+                                <button type="button" class="btn btn-secondary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-search" viewBox="0 0 16 16">
                                     <path
@@ -206,12 +196,11 @@
                                 </svg>
                             </button>
 
-                            <!-- Thanh Search Khách hàng -->
-                            <input type="text" class="form-control" placeholder="Nhập SĐT" aria-label="Nhập SĐT"
-                                aria-describedby="search-customer-bar">
+                                <!-- Thanh Search Khách hàng -->
+                                <input type="text" class="form-control" placeholder="Nhập SĐT" aria-label="Nhập SĐT" aria-describedby="search-customer-bar">
 
-                            <!-- Button register customer -->
-                            <button type="button" class="btn btn-outline-secondary">
+                                <!-- Button register customer -->
+                                <button type="button" class="btn btn-outline-secondary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                     class="bi bi-person-plus" viewBox="0 0 16 16">
                                     <path
@@ -220,96 +209,95 @@
                                         d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z" />
                                 </svg>
                             </button>
-                        </div> <!-- Kết thúc của Thanh Search Khách và Register Button-->
+                            </div>
+                            <!-- Kết thúc của Thanh Search Khách và Register Button-->
 
-                        <div class="customer-list">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="scroll-list">
-                                    <tr>
-                                        <td>Nguyễn Phạm Minh Quân</td>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="Discount">
-                                                <label class="form-check-label" for="Discount">
+                            <div class="customer-list">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="scroll-list">
+                                        <tr>
+                                            <td>Nguyễn Phạm Minh Quân</td>
+                                            <td>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="Discount">
+                                                    <label class="form-check-label" for="Discount">
                                                     Giảm giá
                                                 </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-8">
-                        <!-- Thanh toán Checkout -->
-                        <ul class="list-unstyled text-right p-2">
-                            <li class="mb-2">
-                                <span>Tiền hàng</span>
-                                <span class="pl-5"><sup>đ</sup>75000</span>
-                            </li>
-                            <li class="mb-2">
-                                <span>Giảm giá</span>
-                                <span class="pl-5"><del><sup>đ</sup>10000</del></span>
-                            </li>
-                            <li class="mb-4">
-                                <span>Tổng cộng</span>
-                                <span style="color: #ffc12d; font-size: 1.375rem;"
-                                    class="pl-4"><strong><sup>đ</sup>65000</strong></span>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-success btn-lg" data-toggle="modal"
-                                    data-target="#createFeedback">
+                        <div class="col-8">
+                            <!-- Thanh toán Checkout -->
+                            <ul class="list-unstyled text-right p-2">
+                                <li class="mb-2">
+                                    <span>Tiền hàng</span>
+                                    <span class="pl-5"><sup>đ</sup>75000</span>
+                                </li>
+                                <li class="mb-2">
+                                    <span>Giảm giá</span>
+                                    <span class="pl-5"><del><sup>đ</sup>10000</del></span>
+                                </li>
+                                <li class="mb-4">
+                                    <span>Tổng cộng</span>
+                                    <span style="color: #ffc12d; font-size: 1.375rem;" class="pl-4"><strong><sup>đ</sup>65000</strong></span>
+                                </li>
+                                <li>
+                                    <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#createFeedback">
                                     Feedback
                                 </button>
-                                <button class="btn btn-warning btn-lg w-50">Thanh toán</button>
-                            </li>
-                        </ul>
+                                    <button class="btn btn-warning btn-lg w-50">Thanh toán</button>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
+
                 </div>
-
-            </div> <!-- Kết thúc hàng của Customer và Chẹckout -->
+                <!-- Kết thúc hàng của Customer và Chẹckout -->
+            </div>
         </div>
-    </div> <!-- Kết thúc hàng của Category/Product list và Bill -->
+        <!-- Kết thúc hàng của Category/Product list và Bill -->
 
 
-    <!-- MODAL -->
-    <!-- Create Feedback Modal -->
-    <div class="modal fade" id="createFeedback" tabindex="-1" aria-labelledby="createFeedbackLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="createFeedbackLabel">Tạo Feedback</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <!-- MODAL -->
+        <!-- Create Feedback Modal -->
+        <div class="modal fade" id="createFeedback" tabindex="-1" aria-labelledby="createFeedbackLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createFeedbackLabel">Tạo Feedback</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="feedback" class="col-form-label">Nội dung:</label>
-                            <textarea class="form-control" id="feedback"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Gửi Feedback</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="feedback" class="col-form-label">Nội dung:</label>
+                                <textarea class="form-control" id="feedback"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success">Gửi Feedback</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                    </div>
                 </div>
             </div>
         </div>
+        <footer>
+            <!-- Hiện tại ko có -->
+        </footer>
     </div>
-    <footer>
-        <!-- Hiện tại ko có -->
-    </footer>
-
-
-
     <script src="../js/cashierDashboard.js"></script>
 </body>
 

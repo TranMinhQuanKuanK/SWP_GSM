@@ -5,6 +5,7 @@
  */
 package controllers.cashier.dashboard;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -35,14 +36,35 @@ public class RemoveProductFromBillServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             Integer product_id = Integer.parseInt(request.getParameter("product_id"));
             BillObj bill = (BillObj) session.getAttribute("BILL");
             ArrayList<BillItemObject> details = bill.getBill_Detail();
-            //chưa xong
-            
+            System.out.println("Toi den RemoveProductFromBillServlet va chuan bi remove" + product_id);
+
+            int result = -1;
+            for (int i = 0; i < details.size(); i++) {
+                if (details.get(i).getProduct().getProduct_ID() == product_id) {
+                    result = i;
+                }
+            }
+            if (result >= 0) {
+                BillItemObject selected_for_remove_Product = details.get(result);
+                int price_lost = selected_for_remove_Product.getProduct().getSelling_price()
+                        *selected_for_remove_Product.getQuantity();
+                details.remove(result);
+                bill.setTotal_cost(bill.getTotal_cost() - price_lost);
+                bill.setBill_Detail(details);
+                session.setAttribute("BILL", bill);
+            } else {
+                log("Invalid product_id");
+            }
+            Gson gson = new Gson();
+            String billJSONString = gson.toJson(bill);
+            out.print(billJSONString);
+            out.flush();
         }
     }
 

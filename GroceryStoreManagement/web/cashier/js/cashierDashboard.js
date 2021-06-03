@@ -1,5 +1,8 @@
 var previousProductInfo = "";
 var ProductInfoDuration;
+var category_id = null;
+var productList;
+var currentCustomer;
 
 function SearchForProduct(id) {
     for (i = 0; i < productList.length; i++) {
@@ -45,20 +48,12 @@ function ShowProductInfo(id) {
 
 }
 
-//KuanK đã sửa - render product list
-function RenderProduct() {
-    // Load products
-    var htmlList = document.getElementById("product-list");
-    htmlList.innerHTML = "";
-    for (i = 0; i < productList.length; i++) {
-        htmlList.appendChild(createHTMLForEachProduct(productList[i]));
-    }
-}
+
 
 function createHTMLForEachProduct(product) {
     var a = document.createElement("a");
-    a.setAttribute("href", "#");
     a.setAttribute("class", "list-group-item list-group-item-action");
+    a.setAttribute("onclick", "AddProductToBill(" + product.product_ID + ")");
 
     var div1 = document.createElement("div");
     div1.setAttribute("class", "d-flex w-100 justify-content-between");
@@ -125,7 +120,7 @@ function sendFeedback() {
     $('#createFeedback').modal('hide');
 }
 
-// KuanK's function - get cashier name from server
+// KuanK's function - get cashier name from server and render ít
 function getCashierName() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "GetCurrentName", true);
@@ -135,7 +130,7 @@ function getCashierName() {
     xhttp.send();
 }
 
-//KuanK function - get bill from server
+//KuanK function - get bill from server and render it
 function getBill() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "GetBill", true);
@@ -145,6 +140,7 @@ function getBill() {
     xhttp.send();
 }
 
+
 //KuanK function - render bill
 function printBill(billObject) {
     document.getElementById('bill-area').innerHTML = "";
@@ -152,33 +148,44 @@ function printBill(billObject) {
         var detail = billObject.Bill_Detail[i]
         var tr = document.createElement("tr");
 
+        var th_index = document.createElement("th");
+        th_index.setAttribute("scope", "row");
+        th_index.innerHTML = i + 1;
+
         var td_name = document.createElement("td");
-        td_name.innerHTML = billObject.Bill_Detail[i].product.name;
+        td_name.innerHTML = detail.product.name;
 
         var td_selling_price = document.createElement("td");
-        td_selling_price.setAttribute("class", "text-right pr-5 mr-5");
+        td_selling_price.setAttribute("class", "text-right");
         td_selling_price.innerHTML = "<sup>đ</sup>" + detail.product.selling_price;
 
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
-        input_quantity.setAttribute("style", "width: 50px");
-        input_quantity.setAttribute("class", "text-center");
+        input_quantity.setAttribute("class", "text-right float-right");
         input_quantity.setAttribute("type", "number");
         input_quantity.setAttribute("value", detail.quantity);
         input_quantity.setAttribute("min", "1");
         td_quantity.appendChild(input_quantity);
 
+
         var td_delete = document.createElement("td");
-        td_delete.setAttribute("class", "text-center");
+        td_delete.setAttribute("class", "text-right");
         var delete_button = document.createElement("button");
         delete_button.setAttribute("class", "btn btn-outline-danger btn-sm");
-        delete_button.innerHTML = "XÓA";
+        delete_button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"' +
+            'fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">' +
+            '<path ' +
+            'd="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">' +
+            '</path>' +
+            '</svg>';
+        delete_button.setAttribute("onclick", "RemoveProductFromBill(" + detail.product.product_ID + ")");
         td_delete.appendChild(delete_button);
 
         var td_total = document.createElement("td");
         td_total.setAttribute("class", "text-right");
         td_total.innerHTML = "<sup>đ</sup>" + detail.quantity * detail.product.selling_price;
 
+        tr.appendChild(th_index);
         tr.appendChild(td_name);
         tr.appendChild(td_selling_price);
         tr.appendChild(td_quantity);
@@ -187,28 +194,42 @@ function printBill(billObject) {
 
         document.getElementById('bill-area').appendChild(tr);
     }
+    document.getElementById('total-after-discount').innerHTML = "<strong><sup>đ</sup>" + billObject.total_cost + "</strong>";
+    document.getElementById('total').innerHTML = "<sup>đ</sup>" + billObject.total_cost; //sẽ thay đổi sau
     /* <tr>
-<td>Bánh mì</td>s
-<td class="text-right pr-5 mr-5"><sup>đ</sup>5000</td>
-<td><input style="width: 50px;" class="text-center" type="number" value="1" min="1">
-</td>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right"><sup>đ</sup>10000</td>
+                                    <td ><input class="text-right float-right" type="number" value="3"
+                                            min="1">
+                                    </td>
 
-<td class="text-center"><button class="btn btn-outline-danger btn-sm">Xóa</button></td>
-<td class="text-right"><sup>đ</sup>5000</td>
-</tr> */
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    
+                                    <td class="text-right"><sup>đ</sup>30000</td>
+                                </tr> */
+
 }
 
-var category_id = null;
-var productList;
 
+
+//KuanK - search and render product results
 function SearchProduct() {
     var name = document.getElementById("product-search-bar").value;
     url = "GetProductList?search_value=" + name;
     if (category_id != null) url += "&category_id=" + category_id;
-    if (name == "") {
+    if (name == "" && category_id == null) {
         productList = [];
         RenderProduct();
-        console.log("name is empty!!!");
     } else {
         var xhttp = new XMLHttpRequest();
         xhttp.open("GET", url, true);
@@ -220,7 +241,16 @@ function SearchProduct() {
         xhttp.send();
     }
 }
-
+//KuanK đã sửa - render product list
+function RenderProduct() {
+    // Load products
+    var htmlList = document.getElementById("product-list");
+    htmlList.innerHTML = "";
+    for (i = 0; i < productList.length; i++) {
+        htmlList.appendChild(createHTMLForEachProduct(productList[i]));
+    }
+}
+//KuanK - get and render category
 function getCategory() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "GetCategoryList", true);
@@ -229,13 +259,25 @@ function getCategory() {
     };
     xhttp.send();
 }
-
+//render category
 function renderCategory(categoryListObject) {
     document.getElementById('category-list').innerHTML = "";
+    //create "All" category
+    var li = document.createElement("li");
+    li.setAttribute("class", "nav-item");
+    li.setAttribute("onclick", "setCategoryAndSearch(" + null + ")");
+    var a = document.createElement("a");
+    a.setAttribute("class", "nav-link");
+    a.setAttribute("href", "#");
+    a.innerHTML = "(Tất cả)";
+    li.appendChild(a);
+    document.getElementById('category-list').appendChild(li);
+    //for loop create all
     for (i = 0; i < categoryListObject.length; i++) {
 
         var li = document.createElement("li");
         li.setAttribute("class", "nav-item");
+        li.setAttribute("onclick", "setCategoryAndSearch(" + categoryListObject[i].category_ID + ")");
         var a = document.createElement("a");
         a.setAttribute("class", "nav-link");
         a.setAttribute("href", "#");
@@ -243,11 +285,65 @@ function renderCategory(categoryListObject) {
         li.appendChild(a);
         document.getElementById('category-list').appendChild(li);
     }
-    //     <li class="nav-item">
+    //     <li class="nav-item" onclick="setCategory(id)">
     //     <a href="#" class="nav-link">Tương ớt</a>
     // </li>
 }
 
+function setCategoryAndSearch(id) {
+    category_id = id;
+    SearchProduct();
+}
+
+function searchCustomerByPhone() {
+    var xhttp = new XMLHttpRequest();
+    var phone_no = document.getElementById("phone-no-input").value;
+    xhttp.open("GET", "GetCustomerByPhone?phone_no=" + phone_no, true);
+    xhttp.onload = function() {
+        currentCustomer = JSON.parse(this.responseText);
+        renderCustomer(currentCustomer);
+    };
+    xhttp.send();
+}
+
+function renderCustomer(customerObject) {
+    document.getElementById("customer-name").innerHTML = " " + customerObject.name + " và có sẵn: " + customerObject.point + " điểm";
+}
+
+function AddProductToBill(product_ID) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "AddProductToBill?product_id=" + product_ID, true);
+    xhttp.onload = function() {
+        console.log(this.responseText); //debug
+        printBill(JSON.parse(this.responseText));
+    };
+    xhttp.send();
+}
+
+function RemoveProductFromBill(product_ID) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "RemoveProductFromBill?product_id=" + product_ID, true);
+    xhttp.onload = function() {
+        console.log(this.responseText); //debug
+        printBill(JSON.parse(this.responseText));
+    };
+    xhttp.send();
+}
+
+function usePointToggle() {
+    var use_point;
+    if (document.getElementById("discount-checkbox").checked == true) {
+        use_point = "true";
+    } else use_point = "false";
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "wtf?use_point=" + use_point, true);
+    xhttp.onload = function() {
+        console.log(this.responseText); //debug
+        printBill(JSON.parse(this.responseText));
+    };
+    xhttp.send();
+}
 // KuanK's function
 function pageLoadKuanK() {
     getCashierName();

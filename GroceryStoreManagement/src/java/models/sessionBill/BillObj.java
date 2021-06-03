@@ -22,6 +22,7 @@ public class BillObj implements Serializable {
     private int total_cost;
     private int point_used;
     private int cash;
+    boolean use_point;
 
     public BillObj() {
         this.Bill_Detail = new ArrayList<>();
@@ -31,6 +32,15 @@ public class BillObj implements Serializable {
         this.total_cost = 0;
         this.point_used = 0;
         this.cash = 0;
+        this.use_point = false;
+    }
+
+    public boolean isUse_point() {
+        return use_point;
+    }
+
+    public void setUse_point(boolean use_point) {
+        this.use_point = use_point;
     }
 
     public ArrayList<BillItemObject> getBill_Detail() {
@@ -88,5 +98,5 @@ public class BillObj implements Serializable {
     public void setCash(int cash) {
         this.cash = cash;
     }
-    
+
 }
