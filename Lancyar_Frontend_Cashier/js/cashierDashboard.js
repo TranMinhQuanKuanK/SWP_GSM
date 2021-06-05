@@ -194,6 +194,258 @@ const productList = [
         price: "30000",
         quantity: 20,
         location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
     }
 ]
 const productList_element = document.getElementById("product-list");
@@ -201,43 +453,6 @@ const pagination_element = document.getElementById("page-selection");
 
 
 function createHTMLForEachProduct(product) {
-    // let parentDiv = document.createElement("div");
-    // parentDiv.setAttribute("class", "list-group-item d-flex");
-
-    // let a = document.createElement("a");
-    // a.setAttribute("href", "#");
-    // a.setAttribute("class", "w-50 list-group-item-action product-width");
-
-    // let div1 = document.createElement("div");
-    // div1.setAttribute("class", "w-50 d-flex justify-content-between");
-
-    // let p1 = document.createElement("p");
-    // p1.setAttribute("class", "w-50 my-auto");
-    // p1.innerHTML = product.name;
-
-    // let p2 = document.createElement("p");
-    // p2.setAttribute("class", "text-muted my-auto");
-    // p2.innerHTML = "<sup>đ</sup>" + product.price;
-
-    // let div2 = document.createElement("div");
-    // div2.setAttribute("class", "col product-info-button");
-
-    // let button = document.createElement("button");
-    // button.setAttribute("id", product.id);
-    // button.setAttribute("onclick", "DisplayProductInfo(" + product.id + ")");
-    // button.setAttribute("class", "btn btn-outline-secondary rounded-circle");
-    // button.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"\n" +
-    //     "                                            fill=\"currentColor\" class=\"bi bi-three-dots\" viewBox=\"0 0 16 16\">\n" +
-    //     "                                            <path\n" +
-    //     "                                                d=\"M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z\" />\n" +
-    //     "                                        </svg>";
-
-    // div2.appendChild(button);
-    // div1.appendChild(p1);
-    // div1.appendChild(p2);
-    // a.appendChild(div1);
-    // parentDiv.appendChild(a);
-    // parentDiv.appendChild(div2);
     let tr_el = document.createElement("tr");
     let td_el_left = document.createElement("td");
     let td_el_right = document.createElement("td");
@@ -257,6 +472,12 @@ function createHTMLForEachProduct(product) {
     btn_el.setAttribute("id", product.id);
     btn_el.setAttribute("onclick", "DisplayProductInfo(" + product.id + ")");
     btn_el.setAttribute("class", "btn btn-outline-secondary rounded-circle");
+
+    // Cái này style tooltip cho button, hover là thấy hint á
+    btn_el.setAttribute("data-toggle", "tooltip");
+    btn_el.setAttribute("data-placement", "top");
+    btn_el.setAttribute("title", "Chi tiết sản phẩm");
+
     btn_el.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"\n" +
         "                                            fill=\"currentColor\" class=\"bi bi-three-dots\" viewBox=\"0 0 16 16\">\n" +
         "                                            <path\n" +
@@ -273,6 +494,7 @@ function createHTMLForEachProduct(product) {
     tr_el.appendChild(td_el_right);
 
     return tr_el;
+
 //     `<tr>
 //     <td class="w-75 align-middle">
 //             <a href="#" class="d-flex justify-content-between">
@@ -394,3 +616,13 @@ function PaginationButton(page, products) {
 
 DisplayProductList(productList,rows_per_page,productList_element,current_page);
 SetupPagination(productList, pagination_element, rows_per_page);
+
+
+/* 
+    MAKE EACH ROW OF TABLE CATEGORY ACTIVE
+*/
+
+$('#category-list tr td').click(function() {
+    $('#category-list tr td').removeClass('bg-secondary');
+    $(this).addClass('bg-secondary');
+});
