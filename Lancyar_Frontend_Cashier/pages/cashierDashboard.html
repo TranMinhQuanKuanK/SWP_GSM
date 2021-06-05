@@ -25,14 +25,14 @@
     <link rel="stylesheet" href="../css/cashierDashboard.css">
 </head>
 
-<body class="overflow-hidden">
+<body>
 
 
     <!--    
         HEADER CỦA CASHIER DASHBOARD:
     -->
-    <header class="bg-warning p-2 header-height">
-        <div class="container-fluid d-flex justify-content-between">
+    <div class="container-fluid heading bg-warning">
+        <div class="d-flex justify-content-between">
             <div class="input-group search-product-bar">
                 <button type="button" class="btn btn-secondary">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -70,42 +70,61 @@
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+
 
     <!--    
         BODY CỦA DASHBOARD
     -->
-    <div class="container-fluid ">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-4 col-xl-6 d-flex pr-2 body-height">
+            <div class="col-4 col-xl-5 d-flex shadow-sm content">
                 <!-- Table nhóm hàng + hàng hóa -->
-                <div class="col-4 col-xl-2 border p-0 bg-light shadow-sm">
-                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2">
-                        <span class="text-muted font-weight-light">Nhóm hàng</span>
-                    </p>
-                    <ul id="category-list" class="scroll-list nav">
-                        <!-- JSON content here -->
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Tương ớt</a>
-                        </li>
-                    </ul>
+                <div class="col-4 col-xl-2 d-flex flex-column border bg-light p-0">
+                    <table class="table table-striped table-borderless overflow-auto">
+                        <thead class="content-title border-bottom shadow-sm">
+                            <tr>
+                                <th scope="col" class="text-muted font-weight-light align-middle">
+                                    Nhóm hàng
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="category-list">
+                            <!-- content here -->
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="col-8 col-xl-10 border p-0 d-flex flex-column shadow-sm">
-                    <p style="height: 60px;" class="border-bottom shadow-sm pt-2 pl-2 text-muted">
-                        <span>Hàng hóa</span>
-                    </p>
+                <div class="col-8 col-xl-10 d-flex flex-column p-0 overflow-auto">
 
-                    <div id="product-list" class="overflow-auto list-group">
-                        <!-- JSON content here -->
-                    </div>
+                    <table class="table table-striped table-borderless overflow-auto">
+                        <thead class="content-title border-bottom shadow-sm">
+                            <tr>
+                                <th scope="col" class="text-muted font-weight-light align-middle product-list-name">
+                                    Hàng hóa
+                                </th>
+                                <th scope="col" class="text-muted font-weight-light align-middle text-right product-list-price">
+                                    Đơn giá
+                                </th>
+                                <th scope="col" class="text-muted font-weight-light align-middle text-right">
+                                    <!-- Pagination -->
+                                    <div class="d-flex align-items-end flex-column">
+                                        <div id="page-selection" class="d-flex"></div>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="product-list">
+                            <!-- content here -->
 
-                    <!-- Pagination -->
-                    <div id="page-selection" class="m-auto"></div>
+                        </tbody>
+                    </table>
+
 
                     <!-- Show additional info of products -->
-                    <div id="product-info" class="scroll-list d-none mt-auto">
-                        <div class="product-width d-flex flex-row card card-body border-warning justify-content-between">
+                    <div id="product-info" class="d-none mt-auto overflow-auto">
+                        <div
+                            class="product-width d-flex flex-row card card-body border-warning justify-content-between">
                             <div class="w-50">
                                 <h5 id="product-info-name" class="card-title"></h5>
                                 <h6 id="product-info-price"></h6>
@@ -116,31 +135,29 @@
                             </div>
                         </div>
                     </div>
-
-                    
                 </div>
             </div>
-            <div class="col-8 col-xl-6 body-height">
+            <div class="col-8 col-xl-7 d-flex flex-column content">
                 <!-- Table bill -->
-                <div class="bill">
+                <div class="h-75 overflow-auto">
                     <table class="table table-striped border shadow-sm">
-                        <thead>
+                        <thead class="content-title">
                             <tr>
-                                <th scope="col" class="text-muted font-weight-light number">#</th>
-                                <th scope="col" class="text-muted font-weight-light name">Sản phẩm</th>
-                                <th scope="col" class="text-muted font-weight-light text-right price">Đơn giá</th>
-                                <th scope="col" class="text-muted font-weight-light text-right quantity">Số lượng</th>
-                                <th scope="col" class="text-muted font-weight-light text-right remove"></th>
-                                <th scope="col" class="text-muted font-weight-light text-right total-price">Thành tiền</th>
+                                <th scope="col" class="text-muted font-weight-light align-middle bill-number">#</th>
+                                <th scope="col" class="text-muted font-weight-light align-middle bill-name">Sản phẩm</th>
+                                <th scope="col" class="text-muted font-weight-light align-middle text-right bill-price">Đơn giá</th>
+                                <th scope="col" class="text-muted font-weight-light align-middle text-right bill-quantity">Số lượng</th>
+                                <th scope="col" class="text-muted font-weight-light align-middle text-right bill-remove"></th>
+                                <th scope="col" class="text-muted font-weight-light align-middle text-right bill-total-price">Thành tiền
+                                </th>
                             </tr>
                         </thead>
-                        <tbody class="scroll-list">
+                        <tbody>
                             <tr>
                                 <th scope="row">1</td>
                                 <td>Tương ớt</td>
-                                <td class="text-right"><sup>đ</sup>10000</td>
-                                <td ><input class="text-right float-right" type="number" value="3"
-                                        min="1">
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
                                 </td>
                                 <td class="text-right">
                                     <button class="btn btn-outline-danger btn-sm">
@@ -152,35 +169,16 @@
                                         </svg>
                                     </button>
                                 </td>
-                                <td class="text-right"><sup>đ</sup>30000</td>
+                                <td class="text-right">30000</td>
                             </tr>
-                            <!-- <tr>
-                                <td>Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L</td>
-                                <td class="text-right"><sup>đ</sup>20000</td>
-                                <td><input style="width: 50px;" class="text-right float-right" type="number" value="2"
-                                        max="5" min="1">
-                                </td>
-                                <td class="text-right">
-                                    <button class="btn btn-outline-danger btn-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
-                                            </path>
-                                        </svg>
-                                    </button>
-                                </td>
-                                <td class="text-right"><sup>đ</sup>40000</td>
-                            </tr> -->
                             <tr>
-                                <th scope="row">2</td>
-                                <td>Bánh mì</td>
-                                <td class="text-right"><sup>đ</sup>5000</td>
-                                <td><input class="text-right float-right" type="number" value="1"
-                                        min="1">
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
                                 </td>
-                                <td class="text-right float-right">
-                                    <button class="btn btn-outline-danger btn-sm ">
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                             <path
@@ -189,20 +187,201 @@
                                         </svg>
                                     </button>
                                 </td>
-                                <td class="text-right"><sup>đ</sup>5000</td>
+                                <td class="text-right">30000</td>
                             </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">1</td>
+                                <td>Tương ớt</td>
+                                <td class="text-right">10000</td>
+                                <td><input class="text-right float-right" type="number" value="3" min="1">
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-outline-danger btn-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                            <path
+                                                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </td>
+                                <td class="text-right">30000</td>
+                            </tr>
+
                         </tbody>
                     </table>
                 </div>
-                <div class="row border shadow-sm pt-2">
-                    <div class="col-4 shadow-sm">
+                <div class="mt-auto d-flex shadow-sm">
+                    <div class="col-5 shadow-sm">
                         <!-- Table khách hàng + Search Customer -->
                         <div class="input-group">
                             <button type="button" class="btn btn-secondary">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-search" viewBox="0 0 16 16">
+                                    class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                                     <path
-                                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1h-4zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1h-2z" />
                                 </svg>
                             </button>
 
@@ -222,31 +401,29 @@
                             </button>
                         </div> <!-- Kết thúc của Thanh Search Khách và Register Button-->
 
-                        <div class="customer-list">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody class="scroll-list">
-                                    <tr>
-                                        <td>Nguyễn Phạm Minh Quân</td>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="Discount">
-                                                <label class="form-check-label" for="Discount">
-                                                    Giảm giá
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="scroll-list">
+                                <tr>
+                                    <td>Nguyễn Phạm Minh Quân</td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="Discount">
+                                            <label class="form-check-label" for="Discount">
+                                                Giảm giá
+                                            </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-8">
+                    <div class="col-7">
                         <!-- Thanh toán Checkout -->
                         <ul class="list-unstyled text-right p-2">
                             <li class="mb-2">
@@ -304,9 +481,6 @@
             </div>
         </div>
     </div>
-    <footer>
-        <!-- Hiện tại ko có -->
-    </footer>
 
 
 

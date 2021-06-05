@@ -117,6 +117,83 @@ const productList = [
         price: "30000",
         quantity: 20,
         location: "B"
+    },
+    {
+        id: 18,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 19,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 20,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 21,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 22,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 23,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 24,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 25,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 26,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 27,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
+    },
+    {
+        id: 28,
+        name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
+        price: "30000",
+        quantity: 20,
+        location: "B"
     }
 ]
 const productList_element = document.getElementById("product-list");
@@ -124,41 +201,90 @@ const pagination_element = document.getElementById("page-selection");
 
 
 function createHTMLForEachProduct(product) {
-    let a = document.createElement("a");
-    a.setAttribute("href", "#");
-    a.setAttribute("class", "list-group-item list-group-item-action product-width");
+    // let parentDiv = document.createElement("div");
+    // parentDiv.setAttribute("class", "list-group-item d-flex");
 
-    let div1 = document.createElement("div");
-    div1.setAttribute("class", "d-flex w-100 justify-content-between");
+    // let a = document.createElement("a");
+    // a.setAttribute("href", "#");
+    // a.setAttribute("class", "w-50 list-group-item-action product-width");
 
-    let p = document.createElement("p");
-    p.setAttribute("class", "w-50 my-auto");
-    p.innerHTML = product.name;
+    // let div1 = document.createElement("div");
+    // div1.setAttribute("class", "w-50 d-flex justify-content-between");
 
-    let h5 = document.createElement("h5");
-    h5.setAttribute("class", "text-muted");
-    h5.innerHTML = "<sup>đ</sup>" + product.price;
+    // let p1 = document.createElement("p");
+    // p1.setAttribute("class", "w-50 my-auto");
+    // p1.innerHTML = product.name;
 
-    let div2 = document.createElement("div");
-    div2.setAttribute("class", "product-info-button");
+    // let p2 = document.createElement("p");
+    // p2.setAttribute("class", "text-muted my-auto");
+    // p2.innerHTML = "<sup>đ</sup>" + product.price;
 
-    let button = document.createElement("button");
-    button.setAttribute("id", product.id);
-    button.setAttribute("onclick", "DisplayProductInfo(" + product.id + ")");
-    button.setAttribute("class", "btn btn-outline-secondary rounded-circle");
-    button.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"\n" +
+    // let div2 = document.createElement("div");
+    // div2.setAttribute("class", "col product-info-button");
+
+    // let button = document.createElement("button");
+    // button.setAttribute("id", product.id);
+    // button.setAttribute("onclick", "DisplayProductInfo(" + product.id + ")");
+    // button.setAttribute("class", "btn btn-outline-secondary rounded-circle");
+    // button.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"\n" +
+    //     "                                            fill=\"currentColor\" class=\"bi bi-three-dots\" viewBox=\"0 0 16 16\">\n" +
+    //     "                                            <path\n" +
+    //     "                                                d=\"M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z\" />\n" +
+    //     "                                        </svg>";
+
+    // div2.appendChild(button);
+    // div1.appendChild(p1);
+    // div1.appendChild(p2);
+    // a.appendChild(div1);
+    // parentDiv.appendChild(a);
+    // parentDiv.appendChild(div2);
+    let tr_el = document.createElement("tr");
+    let td_el_left = document.createElement("td");
+    let td_el_right = document.createElement("td");
+    let a_el = document.createElement("a");
+    let span_el_name = document.createElement("span");
+    let span_el_price = document.createElement("span");
+    let btn_el = document.createElement("button");
+
+    td_el_left.setAttribute("class", "w-75 align-middle");
+    td_el_left.setAttribute("colspan", "2");
+    a_el.setAttribute("class", "d-flex justify-content-between");
+    a_el.setAttribute("href", "#");
+    span_el_name.textContent = product.name;
+    span_el_price.textContent = product.price;
+
+    td_el_right.setAttribute("class", "w-25 text-right");
+    btn_el.setAttribute("id", product.id);
+    btn_el.setAttribute("onclick", "DisplayProductInfo(" + product.id + ")");
+    btn_el.setAttribute("class", "btn btn-outline-secondary rounded-circle");
+    btn_el.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"\n" +
         "                                            fill=\"currentColor\" class=\"bi bi-three-dots\" viewBox=\"0 0 16 16\">\n" +
         "                                            <path\n" +
         "                                                d=\"M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z\" />\n" +
         "                                        </svg>";
 
-    div2.appendChild(button);
-    div1.appendChild(p);
-    div1.appendChild(h5);
-    div1.appendChild(div2);
-    a.appendChild(div1);
+    td_el_right.appendChild(btn_el);
 
-    return a;
+    a_el.appendChild(span_el_name);
+    a_el.appendChild(span_el_price);
+    td_el_left.appendChild(a_el);
+
+    tr_el.appendChild(td_el_left);
+    tr_el.appendChild(td_el_right);
+
+    return tr_el;
+//     `<tr>
+//     <td class="w-75 align-middle">
+//             <a href="#" class="d-flex justify-content-between">
+//                 <span>Name</span>
+//                 <span>Price</span>
+//             </a>
+//     </td>
+        
+//     <td class="w-25 text-right">
+//         <button class="btn btn-primary">dot dot</button>
+//     </td>
+// </tr>`;
 }
 
 /* ===========================================================
@@ -213,7 +339,6 @@ function DisplayProductInfo(id) {
     document.getElementById("product-info-quantity").innerHTML = product.quantity;
     document.getElementById("product-info-price").innerHTML = "<sup>đ</sup>" + product.price;
     document.getElementById("product-info-location").innerHTML = product.location;
-
 }
 
 

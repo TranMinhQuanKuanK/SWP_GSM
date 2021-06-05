@@ -10,10 +10,32 @@ h5 {
     margin: auto 0;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+/* =======================
+        LAYOUT
+    ====================
+ */
 
+ .heading {
+    padding: 1vmin 1rem;
+ }
 
-span {
-    margin: auto 0;
+.content {
+    height: 92vh;
+    padding: 0vmin;
+}
+
+.content-title {
+    height: 70px;
+}
+
+.content-title th {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
 }
 
 .search-product-bar {
@@ -24,48 +46,42 @@ span {
     min-width: 500px; 
 }
 
-.scroll-list {
-    overflow: auto;
-    max-height: 90%;
+/* TABLE PRODUCT LIST */
+th.product-list-name {
+    width: 60%;
 }
 
-.body-height {
-    height: 94vh;
-}
-
-.bill {
-    height: 75vh;
-}
-
-.product-info-button {
-    margin: auto 0;
-}
-
-/* TABLE BILL */
-th.number {
-    width: 5%;
-}
-
-th.name {
-    width: 40%;
-}
-
-th.price {
+th.product-list-price {
     width: 15%;
 }
 
-th.quantity {
+
+/* TABLE BILL */
+
+th.bill-number {
+    width: 5%;
+}
+
+th.bill-name {
+    width: 40%;
+}
+
+th.bill-price {
+    width: 15%;
+}
+
+th.bill-quantity {
     width: 15%;
 }
 
 td > input {
-    max-width: 70px;
+    max-width: 50px;
 }
 
-th.remove {
+th.bill-remove {
     width: 10%;
 }
 
-th.total-price {
+th.bill-total-price {
     width: 15%;
 }
