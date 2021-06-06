@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    <div class="d-flex flex-column">
+    <div class="container-fluid p-0">
 
         <!--    
         HEADER CỦA CASHIER DASHBOARD:
@@ -68,7 +68,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-4 col-xl-6 d-flex flex-column shadow-sm pr-1">
-                    <div class="input-group mb-1 shadow-sm">
+                    <div class="input-group shadow-sm">
                         <button type="button" class="btn btn-secondary">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
@@ -86,8 +86,8 @@
                         <!-- Table nhóm hàng + hàng hóa -->
                         <div class="col-4 col-xl-2 d-flex flex-column border bg-light p-0">
                             <div class="overflow-auto">
-                                <table class="table table-borderless">
-                                    <thead class="content-title border-bottom shadow-sm">
+                                <table class="table table-borderless table-category-list">
+                                    <thead class="content-title border shadow-sm">
                                         <tr>
                                             <th scope="col" class="text-muted font-weight-light align-middle">
                                                 Nhóm hàng
@@ -111,10 +111,10 @@
 
                         </div>
 
-                        <div style="height: 650px;" class="col-8 col-xl-10 d-flex flex-column p-0">
+                        <div style="height: 620px;" class="col-8 col-xl-10 d-flex flex-column p-0">
                             <div class="overflow-auto">
-                                <table class="table table-sm table-striped table-borderless table-product-list">
-                                    <thead class="content-title border-bottom shadow-sm">
+                                <table class="table table-striped table-borderless table-product-list">
+                                    <thead class="content-title border shadow-sm">
                                         <tr>
                                             <th scope="col"
                                                 class="text-muted font-weight-light align-middle product-list-name">
@@ -454,7 +454,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-7 mt-auto shadow-sm">
+                        <div class="col-7 mt-auto shadow-sm p-1">
                             <!-- Thanh toán Checkout -->
                             <table class="table table-borderless table-sm table-checkout">
                                 <thead class="d-none">
@@ -503,138 +503,140 @@
 
 
         <!-- MODAL -->
-        <!-- Create Feedback Modal -->
-        <div class="modal fade" id="createFeedback" tabindex="-1" aria-labelledby="createFeedbackLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="createFeedbackLabel">Tạo Feedback</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="feedback" class="col-form-label">Nội dung:</label>
-                                <textarea class="form-control" id="feedback"></textarea>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-success me-2">Gửi Feedback</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Change Pasword Modal -->
-        <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="changePasswordLabel">Đổi mật khẩu</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="currentPassword">Mật khẩu hiện tại</label>
-                                <input type="password" class="form-control" id="currentPassword"
-                                    aria-describedby="currentPassword">
-                            </div>
-                            <div class="form-group">
-                                <label for="newPassword">Mật khẩu mới</label>
-                                <input type="password" class="form-control" id="newPassword"
-                                    aria-describedby="newPassword">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
-                                <input type="password" class="form-control" id="confirmNewPassword"
-                                    aria-describedby="confirmNewPassword">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info me-2">Đổi mật khẩu</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+        <div class="modal">
+            <!-- Create Feedback Modal -->
+            <div class="modal fade" id="createFeedback" tabindex="-1" aria-labelledby="createFeedbackLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="createFeedbackLabel">Tạo Feedback</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="feedback" class="col-form-label">Nội dung:</label>
+                                    <textarea class="form-control" id="feedback"></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success me-2">Gửi Feedback</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Logout Modal -->
-        <div class="modal fade" id="logOut" tabindex="-1" aria-labelledby="logOutLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="logOutLabel">Bạn chắc chưa?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form class="text-center">
-                            <button type="submit" class="btn btn-secondary me-2">Đăng xuất</button>
-                            <button typ e="button" class="btn btn-light" data-dismiss="modal">Hủy</button>
-                        </form>
+            <!-- Change Pasword Modal -->
+            <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="changePasswordLabel">Đổi mật khẩu</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="currentPassword">Mật khẩu hiện tại</label>
+                                    <input type="password" class="form-control" id="currentPassword"
+                                        aria-describedby="currentPassword">
+                                </div>
+                                <div class="form-group">
+                                    <label for="newPassword">Mật khẩu mới</label>
+                                    <input type="password" class="form-control" id="newPassword"
+                                        aria-describedby="newPassword">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
+                                    <input type="password" class="form-control" id="confirmNewPassword"
+                                        aria-describedby="confirmNewPassword">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info me-2">Đổi mật khẩu</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Register Customer Modal -->
-        <div class="modal fade" id="registerCustomer" tabindex="-1" aria-labelledby="registerCustomerLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="registerCustomerLabel">Đăng ký khách hàng</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="customerName">Tên khách hàng</label>
-                                <input type="text" class="form-control" id="customerName"
-                                    aria-describedby="customerName">
-                            </div>
-                            <div class="form-group">
-                                <label for="customerPhoneNo">Số điện thoại</label>
-                                <input type="text" class="form-control" id="customerPhoneNo"
-                                    aria-describedby="customerPhoneNo">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-info me-2">Đăng ký</button>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+            <!-- Logout Modal -->
+            <div class="modal fade" id="logOut" tabindex="-1" aria-labelledby="logOutLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="logOutLabel">Bạn chắc chưa?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="text-center">
+                                <button type="submit" class="btn btn-secondary me-2">Đăng xuất</button>
+                                <button typ e="button" class="btn btn-light" data-dismiss="modal">Hủy</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Checkout Modal -->
-        <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="checkoutLabel">Bạn chắc chưa?</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <!-- Register Customer Modal -->
+            <div class="modal fade" id="registerCustomer" tabindex="-1" aria-labelledby="registerCustomerLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="registerCustomerLabel">Đăng ký khách hàng</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="customerName">Tên khách hàng</label>
+                                    <input type="text" class="form-control" id="customerName"
+                                        aria-describedby="customerName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerPhoneNo">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="customerPhoneNo"
+                                        aria-describedby="customerPhoneNo">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-info me-2">Đăng ký</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                        <form class="text-center">
-                            <button type="submit" class="btn btn-success me-2">Xác nhận</button>
-                            <button typ e="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                        </form>
+                </div>
+            </div>
+
+            <!-- Checkout Modal -->
+            <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="checkoutLabel">Bạn chắc chưa?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="text-center">
+                                <button type="submit" class="btn btn-success me-2">Xác nhận</button>
+                                <button typ e="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
