@@ -4482,7 +4482,7 @@ input[type="button"].btn-block {
   border-top: 0;
 }
 
-.card-body {
+.card-body, .card-footer {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
@@ -11271,4 +11271,18 @@ body.sidebar-toggled footer.sticky-footer {
   display:none;
 }
 
+.btn-col {
+  width: 10%;
+}
 
+#btn-checkbox-inventory, #btn-checkbox-product-list {
+  text-align: center;
+}
+
+.icon-black{
+  color: black;
+}
+
+.header-center {
+  text-align: center;
+}
