@@ -129,11 +129,20 @@ public class AuthAndDispatcherFilter implements Filter {
 
             if (uri.contains(".")) { 
                 String fileType = uri.substring(uri.lastIndexOf(".") + 1);
-                if (fileType.equals("css")
+                if  (
+                           fileType.equals("css")
                         || fileType.equals("js")
                         || fileType.equals("png")
                         || fileType.equals("jpeg")
-                        || fileType.equals("jpg")) {
+                        || fileType.equals("jpg")                                                               
+                        || fileType.equals("ico")                         
+                        || fileType.equals("ttf")
+                        || fileType.equals("woff")
+                        || fileType.equals("woff2")
+                        || fileType.equals("map")
+                        || fileType.equals("scss")
+                        
+                        ) {
                     chain.doFilter(request, response);
                 }
             } 

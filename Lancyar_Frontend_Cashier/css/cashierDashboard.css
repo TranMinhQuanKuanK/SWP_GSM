@@ -1,3 +1,7 @@
+* {
+    font-family: 'Nunito', sans-serif;
+}
+
 li {
     width: 100%;
 }
@@ -14,8 +18,12 @@ span {
     max-width: 31%;
 }
 
+.product-width {
+    min-width: 500px;
+}
+
 .scroll-list {
-    overflow-y: auto;
+    overflow: auto;
     max-height: 90%;
 }
 
@@ -24,9 +32,40 @@ span {
 }
 
 .bill {
-    height: 75vh;
+    height: 70%;
 }
 
 .product-info-button {
     margin: auto 0;
+}
+
+
+/* TABLE BILL */
+
+th.number {
+    width: 5%;
+}
+
+th.name {
+    width: 40%;
+}
+
+th.price {
+    width: 15%;
+}
+
+th.quantity {
+    width: 15%;
+}
+
+td>input {
+    max-width: 70px;
+}
+
+th.remove {
+    width: 10%;
+}
+
+th.total-price {
+    width: 15%;
 }
