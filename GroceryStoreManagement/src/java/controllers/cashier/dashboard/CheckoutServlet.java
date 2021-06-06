@@ -55,13 +55,14 @@ public class CheckoutServlet extends HttpServlet {
 //    CustomerDTO customer_dto; //thêm
 //            String phone_no, Timestamp buy_date, String cashier_username,
 //            Integer total_cost, Integer point_used, Integer cash, Integer profit
-            String phone_no = billObj.getPhone_no();
-            Timestamp buy_date = billObj.getBuy_date();
-            String cashier_username = billObj.getCashier_username();
-            Integer total_cost = billObj.getTotal_cost();
-            Integer point_used = Math.min((int) Math.ceil(billObj.getTotal_cost() / 1000), billObj.getCustomer_dto().getPoint()); //???
-            Integer cash = Integer.parseInt(request.getParameter("cash"));
-
+            
+                String phone_no = billObj.getPhone_no();
+                Timestamp buy_date = billObj.getBuy_date();
+                String cashier_username = billObj.getCashier_username();
+                Integer total_cost = billObj.getTotal_cost();
+                Integer point_used = Math.min((int) Math.ceil(billObj.getTotal_cost() / 1000), billObj.getCustomer_dto().getPoint()); //???
+                Integer cash = Integer.parseInt(request.getParameter("cash"));
+            
             ArrayList<BillItemObject> Bill_Detail = billObj.getBill_Detail();
             Integer profit = 0;
             for (BillItemObject detail : Bill_Detail) {
