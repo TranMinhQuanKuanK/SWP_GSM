@@ -34,6 +34,9 @@ public class StartupServlet extends HttpServlet {
     private final String LOGIN_PAGE = "Login.html";
     private final String STOREOWNER_DASHBOARD = "storeowner/StoreownerDashboard.html";
     private final String CASHIER_DASHBOARD = "cashier/CashierDashboard.html";
+    
+    private final String TESTPAGE = "storeowner/Inventory.html";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -44,6 +47,7 @@ public class StartupServlet extends HttpServlet {
             if (userType != null) {
                 if (userType == 1) {
                     url = STOREOWNER_DASHBOARD;
+                    url = TESTPAGE;
                 } else if (userType == 2) {
                     url = CASHIER_DASHBOARD;
                 }
