@@ -63,7 +63,7 @@ function createHTMLForEachProduct(product) {
 
     var h5 = document.createElement("h5");
     h5.setAttribute("class", "text-muted");
-    h5.innerHTML = "<sup>đ</sup>" + product.selling_price + "/" + product.unit_label;
+    h5.innerHTML = "<sup>đ</sup>" + formatNumber(product.selling_price) + "/" + product.unit_label;
 
     var div2 = document.createElement("div");
     div2.setAttribute("class", "product-info-button");
@@ -156,7 +156,7 @@ function printBill(billObject) {
 
         var td_selling_price = document.createElement("td");
         td_selling_price.setAttribute("class", "text-right");
-        td_selling_price.innerHTML = "<sup>đ</sup>" + detail.product.selling_price;
+        td_selling_price.innerHTML = "<sup>đ</sup>" + formatNumber(detail.product.selling_price);
 
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
@@ -184,7 +184,7 @@ function printBill(billObject) {
 
         var td_total = document.createElement("td");
         td_total.setAttribute("class", "text-right");
-        td_total.innerHTML = "<sup>đ</sup>" + detail.quantity * detail.product.selling_price;
+        td_total.innerHTML = "<sup>đ</sup>" + formatNumber(detail.quantity * detail.product.selling_price);
 
         tr.appendChild(th_index);
         tr.appendChild(td_name);
@@ -209,9 +209,9 @@ function printBill(billObject) {
 
     var total_cost_after_discount = Math.max(0, billObject.total_cost - discount);
 
-    document.getElementById('total').innerHTML = "<sup>đ</sup>" + billObject.total_cost;
-    document.getElementById('discount').innerHTML = "<del><sup>đ</sup>" + discount + "</del>";
-    document.getElementById('total-after-discount').innerHTML = "<strong><sup>đ</sup>" + total_cost_after_discount + "</strong>";
+    document.getElementById('total').innerHTML = "<sup>đ</sup>" + formatNumber(billObject.total_cost);
+    document.getElementById('discount').innerHTML = "<del><sup>đ</sup>" + formatNumber(discount) + "</del>";
+    document.getElementById('total-after-discount').innerHTML = "<strong><sup>đ</sup>" + formatNumber(total_cost_after_discount) + "</strong>";
 
     renderCustomer();
 
@@ -399,6 +399,10 @@ function EditQuantityBill(product_id) {
         printBill(currentBill);
     };
     xhttp.send();
+}
+
+function formatNumber(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 // KuanK's function
 function pageLoadKuanK() {
