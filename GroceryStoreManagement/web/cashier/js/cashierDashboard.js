@@ -325,6 +325,9 @@ function searchCustomerByPhone() {
         if (result_dto != null) {
             currentBill.customer_dto = result_dto;
             printBill(currentBill);
+
+        } else if (result_dto == null) {
+            alert("Không tìm thấy khách hàng tương ứng!");
         }
     };
     xhttp.send();

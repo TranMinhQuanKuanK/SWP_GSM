@@ -114,17 +114,15 @@ public class AuthAndDispatcherFilter implements Filter {
 
         Throwable problem = null;
         try {
-            // nếu là những trang trong list bình thường thì gửi đi, nếu trong
-            // list của user thì gửi qua filter user, nếu không thì gửi qua filter
-            // admin, nếu không nữa thì gửi về trang oops
+ 
             ServletContext context = request.getServletContext();
             HttpServletRequest rq = (HttpServletRequest) request;
             Integer userType = (Integer) rq.getSession().getAttribute("LOGIN_STATUS");
-            System.out.println("Loai cua may hien la: " + userType);
+            System.out.println("User are currently: " + userType);
             String uri = rq.getRequestURI();
         
             String resource = uri.substring(uri.lastIndexOf("/") + 1);
-            System.out.println("resource dang la: "+resource);
+            System.out.println("Resource name: "+resource);
             String convertedURI = ERROR_PAGE;
 
             if (uri.contains(".")) { 
@@ -155,8 +153,7 @@ public class AuthAndDispatcherFilter implements Filter {
             } else if (userType == 1) {
                 HashMap<String, String> storeownerSites = (HashMap<String, String>) 
                         context.getAttribute("StoreownerSitemap");
-                System.out.println("???");
-                System.out.println("resource vo đay bien thanh:ss "+ storeownerSites.get(resource));
+                System.out.println("Resource sau khi bien doi: "+ storeownerSites.get(resource));
                 if (storeownerSites.containsKey(resource)) {
                     convertedURI = storeownerSites.get(resource);
                 } 
