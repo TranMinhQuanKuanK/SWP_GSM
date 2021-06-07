@@ -3,7 +3,7 @@ const productList = [
         id: 1,
         name: "Tương ớt chinsu 850gr",
         price: "20000",
-        quantity: 10,
+        quantity: 1,
         location: "A"
     },
     {
@@ -17,7 +17,7 @@ const productList = [
         id: 3,
         name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
         price: "30000",
-        quantity: 20,
+        quantity: 1,
         location: "B"
     },
     {
@@ -45,7 +45,7 @@ const productList = [
         id: 7,
         name: "Nước rửa chén Sunlight Extra chanh và bạc hà 3.48L",
         price: "30000",
-        quantity: 20,
+        quantity: 1,
         location: "B"
     },
     {
@@ -454,21 +454,18 @@ const pagination_element = document.getElementById("page-selection");
 
 function createHTMLForEachProduct(product) {
     let tr_el = document.createElement("tr");
-    let td_el_left = document.createElement("td");
-    let td_el_right = document.createElement("td");
-    let a_el = document.createElement("a");
-    let span_el_name = document.createElement("span");
-    let span_el_price = document.createElement("span");
+    let td_el_name = document.createElement("td");
+    let td_el_price = document.createElement("td");
+    let td_el_info = document.createElement("td");
     let btn_el = document.createElement("button");
 
-    td_el_left.setAttribute("class", "w-75 align-middle");
-    td_el_left.setAttribute("colspan", "2");
-    a_el.setAttribute("class", "d-flex justify-content-between");
-    a_el.setAttribute("href", "#");
-    span_el_name.textContent = product.name;
-    span_el_price.textContent = product.price;
+    td_el_name.setAttribute("class", "product-detail align-middle");
+    td_el_price.setAttribute("class", "product-detail align-middle");
 
-    td_el_right.setAttribute("class", "w-25 text-right");
+    td_el_name.textContent = product.name;
+    td_el_price.textContent = product.price;
+
+    td_el_info.setAttribute("class", "text-right");
     btn_el.setAttribute("id", product.id);
     btn_el.setAttribute("onclick", "DisplayProductInfo(" + product.id + ")");
     btn_el.setAttribute("class", "btn btn-outline-secondary rounded-circle");
@@ -477,36 +474,37 @@ function createHTMLForEachProduct(product) {
     btn_el.setAttribute("data-toggle", "tooltip");
     btn_el.setAttribute("data-placement", "top");
     btn_el.setAttribute("title", "Chi tiết sản phẩm");
-
+    
     btn_el.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"\n" +
         "                                            fill=\"currentColor\" class=\"bi bi-three-dots\" viewBox=\"0 0 16 16\">\n" +
         "                                            <path\n" +
         "                                                d=\"M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z\" />\n" +
         "                                        </svg>";
 
-    td_el_right.appendChild(btn_el);
+        if (product.quantity <= 1) {
+            tr_el.setAttribute("class", "bg-danger text-white");
+            btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
+        }
 
-    a_el.appendChild(span_el_name);
-    a_el.appendChild(span_el_price);
-    td_el_left.appendChild(a_el);
+    td_el_info.appendChild(btn_el);
+    tr_el.appendChild(td_el_name);
+    tr_el.appendChild(td_el_price);
+    tr_el.appendChild(td_el_info);
 
-    tr_el.appendChild(td_el_left);
-    tr_el.appendChild(td_el_right);
 
     return tr_el;
 
-//     `<tr>
-//     <td class="w-75 align-middle">
-//             <a href="#" class="d-flex justify-content-between">
-//                 <span>Name</span>
-//                 <span>Price</span>
-//             </a>
-//     </td>
-        
-//     <td class="w-25 text-right">
-//         <button class="btn btn-primary">dot dot</button>
-//     </td>
-// </tr>`;
+    //     `<tr>
+    //     <td class="product-detail align-middle">
+    //                 Name
+    //     </td>
+    //      <td class="product-detail align-middle">
+    //                 Price
+    //     </td>
+    //     <td class="text-right">
+    //         <button class="btn btn-primary">dot dot</button>
+    //     </td>
+    // </tr>`;
 }
 
 /* ===========================================================
@@ -577,8 +575,8 @@ function DisplayProductList(products, rows_per_page, wrapper, page) {
 
     let start = rows_per_page * page;
     let end = start + rows_per_page;
-    let paginatedProducts = products.slice(start,end);
-    
+    let paginatedProducts = products.slice(start, end);
+
     for (let i = 0; i < paginatedProducts.length; i++) {
         let product = paginatedProducts[i];
 
@@ -602,7 +600,7 @@ function PaginationButton(page, products) {
     button.innerText = page;
 
     if (current_page == page) button.classList.add("active");
-    button.addEventListener("click", function() {
+    button.addEventListener("click", function () {
         current_page = page;
         DisplayProductList(products, rows_per_page, productList_element, current_page);
 
@@ -614,7 +612,7 @@ function PaginationButton(page, products) {
     return button;
 }
 
-DisplayProductList(productList,rows_per_page,productList_element,current_page);
+DisplayProductList(productList, rows_per_page, productList_element, current_page);
 SetupPagination(productList, pagination_element, rows_per_page);
 
 
@@ -622,7 +620,12 @@ SetupPagination(productList, pagination_element, rows_per_page);
     MAKE EACH ROW OF TABLE CATEGORY ACTIVE
 */
 
-$('#category-list tr td').click(function() {
+$('#category-list tr td').click(function () {
     $('#category-list tr td').removeClass('bg-secondary');
     $(this).addClass('bg-secondary');
 });
+
+// $('#product-list tr td.product-detail').click(function() {
+//     $('#product-list tr').removeClass('bg-success');
+//     $(this).parent().addClass('bg-success');
+// });

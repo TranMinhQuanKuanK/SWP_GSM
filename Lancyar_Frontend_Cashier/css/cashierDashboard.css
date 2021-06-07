@@ -46,12 +46,15 @@ a:focus {
 
 /* TABLE PRODUCT LIST */
 th.product-list-name {
-    width: 60%;
+    width: 59%;
 }
 
-
-th.product-list-pagination {
+th.product-list-price {
     width: 40%;
+}
+
+th.product-list-info {
+    width: 10%;
 }
 
 .table-product-list {
