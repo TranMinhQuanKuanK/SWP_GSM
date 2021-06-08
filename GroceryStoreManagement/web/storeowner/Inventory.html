@@ -186,7 +186,7 @@
                                             </h6>
                                             <div class="input-group mb-3 col-3 pt-1">
                                                 <select class="custom-select" id="inputGroupSelect01">
-                                                    <option selected>Mặt hàng</option>
+                                                    <option selected value="all">(*)</option>
                                                     <option value="2">Đường</option>
                                                     <option value="3">Muối</option>
                                                     <option value="4">Sữa</option>
@@ -203,22 +203,27 @@
 
                                         <div class="row justify-content-start">
                                             <h6 class="ml-2 font-weight-bold text-primary pt-2 pr-0 col-1">Name: &nbsp;</h6>
-                                            <form class="form-inline col-5">
                                                 <input class="form-control mr-2" type="search" placeholder="Search"
-                                                       aria-label="Search" id="inputSearchVal">
+                                                       aria-label="Search">
                                                 <button class="btn btn-outline-success my-2 my-sm-0"
-                                                        type="submit" onclick="getProduct()">Search</button>
-                                            </form>
+                                                        type="button">Search</button>
                                         </div>
-
+                                        
+                                        
+                                        <input type="text" name="Searchbar" value="" id="inputSearchVal"/>
+                                            <input type="button" value="Get" onclick="getProduct()" />
+                                            
+                                            
+                                            
+                                            
                                         <div class="input-group col-5 mt-3 mb-1">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <input type="checkbox" name="only_noos_items">
+                                                    <input type="checkbox" name="only_noos_items" checked>
                                                 </div>
                                             </div>
                                             <input id="btn-checkbox-inventory" type="text" class="form-control" readonly=""
-                                                   onfocus="this.blur()" placeholder="Display only nearly out-of-stock items">
+                                                   onfocus="this.blur()" placeholder="Display only nearly out-of-stock items" >
                                         </div>
 
 
@@ -302,7 +307,7 @@
                                                         <th>location</th>        
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="tableContent">
 
                                                 </tbody>
                                             </table>
@@ -357,6 +362,7 @@
         <!-- Custom scripts for all pages-->
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/inventory-storeowner.js"></script>
 
     </body>
 

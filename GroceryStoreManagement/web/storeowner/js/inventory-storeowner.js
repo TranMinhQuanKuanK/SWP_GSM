@@ -1,7 +1,7 @@
 function getProduct() {
     var xhttp = new XMLHttpRequest();
-    let cat_ID = document.getElementById("inputGroupSelect01");
-    let search_val = document.getElementById("inputSearchVal");
+    var cat_ID = document.getElementById("inputGroupSelect01").value;
+    var search_val = document.getElementById("inputSearchVal").value;
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
@@ -9,14 +9,24 @@ function getProduct() {
             processProduct(productObject);
         }
     };
-    let url = "GetProductList?search_value="+search_val+"&category_id="+cat_ID
-    //xhttp.open("GET", "GetProductList?search_value=sua  tuoi", true);
+    if (cat_ID == "all"){
+        var url = "GetProductList?search_value="+search_val;
+    } 
+    else{
+        var url = "GetProductList?search_value="+search_val+"&category_id="+cat_ID;
+    }
     xhttp.open("GET",url, true);
     xhttp.send();
+    
 }
+
+
 function processProduct(data) {
+    var productTable = document.getElementById("productTable");
+    while(productTable.rows.length > 1) {
+            productTable.deleteRow(1);
+        } // clear old table
     for (i = 0; i < data.length; i++) {
-        var productTable = document.getElementById("productTable");
         var row = productTable.insertRow(-1);//append thay vì insert đúng vào vị trí trong index
         var cell1 = row.insertCell(0);
         var cell2 = row.insertCell(1);
