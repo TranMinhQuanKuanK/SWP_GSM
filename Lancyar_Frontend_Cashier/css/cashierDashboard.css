@@ -105,3 +105,12 @@ th.bill-total-price {
 .table-checkout td:first-child {
     width: 65%;
 }
+
+/* Custom colors for product list */
+.product-low-quantity {
+    background: #ff9c88 !important;
+}
+
+.product-bestseller {
+    background: #3678db !important;
+}
