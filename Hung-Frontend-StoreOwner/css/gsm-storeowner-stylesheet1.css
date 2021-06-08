@@ -11286,3 +11286,19 @@ body.sidebar-toggled footer.sticky-footer {
 .header-center {
   text-align: center;
 }
+
+.statistics-tab-heading{
+  display: block;
+  font-size: 1.5rem;
+  color: black !important;
+}
+
+/*feedback storeowner table*/
+.my-custom-scrollbar {
+position: relative;
+height: 200px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}

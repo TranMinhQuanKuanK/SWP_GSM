@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blank Page</title>
+    <title>Previous Bills Page</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -32,29 +32,40 @@
         <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <div class="sidebar-brand align-items-center justify-content-center">
-                <div class="sidebar-brand-icon mb-2">
-                    <i class="fas fa-user-circle"></i>
+            <li>
+                <div class="sidebar-brand align-items-center justify-content-center">
+                    <div class="sidebar-brand-icon mb-2">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
                 </div>
-                <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
-            </div>
+            </li>
 
             <!-- Nav Item - Dashboard -->
-            <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                    data-toggle="modal" data-target="#logoutModal">
-                    <span class="logout-group">Logout &nbsp;</span>
-                    <i class="fas fa-sign-out-alt logout-group"></i>
-                </a>
-            </div>
+            <li>
+                <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
+                        data-toggle="modal" data-target="#logoutModal">
+                        <span class="logout-group">Logout &nbsp;</span>
+                        <i class="fas fa-sign-out-alt logout-group"></i>
+                    </a>
+                </div>
+            </li>
+
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <li>
+                <hr class="sidebar-divider">
+            </li>
+
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                List of pages
-            </div>
+            <li>
+                <div class="sidebar-heading">
+                    List of pages
+                </div>
+            </li>
+
 
             <!-- Nav Item - Inventory Collapse Menu -->
             <li class="nav-item">
@@ -63,7 +74,7 @@
                     <i class="fas fa-boxes"></i>
                     <span>&nbsp; Inventory</span>
                 </a>
-                <div id="collapseInventory" class="collapse" aria-labelledby="headingInventory"
+                <div id="collapseInventory" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -81,7 +92,7 @@
                     <i class="fas fa-truck-moving"></i>
                     <span>&nbsp; Import Goods</span>
                 </a>
-                <div id="collapseImportGoods" class="collapse" aria-labelledby="headingImportGoods"
+                <div id="collapseImportGoods" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -97,7 +108,7 @@
                     <i class="fas fa-clipboard-list"></i>
                     <span>&nbsp; Product List</span>
                 </a>
-                <div id="collapseProductList" class="collapse" aria-labelledby="headingProductList"
+                <div id="collapseProductList" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -139,7 +150,9 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
 
         </ul>
         <!-- End of Sidebar -->
@@ -167,11 +180,10 @@
                     <hr class="sidebar-divider mb-4">
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row container-fluid">
 
+                        <!-- Look up Table -->
                         <div class="col-xl-5 col-lg-7">
-
-                            <!-- Area Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h3 class="m-0 font-weight-bold text-primary header-center">LOOK UP</h3>
@@ -179,33 +191,35 @@
 
                                 <div class="card-body">
                                     <div class="container-fluid justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-1 ml-2">Phone number: &nbsp;</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary pt-1 ml-2 d-flex">Phone number:
+                                            &nbsp;</h6>
                                         <div class="form-group mr-2">
                                             <div class="pt-2">
                                                 <input type="text">
                                             </div>
                                         </div>
 
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2">Name: &nbsp;</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Name: &nbsp;</h6>
                                         <div class="form-group mr-2">
                                             <div class="pt-2">
                                                 <input type="text">
                                             </div>
                                         </div>
-                                        
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2">Date from: &nbsp;</h6>
+
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Date from: &nbsp;
+                                        </h6>
                                         <div class="form-group mr-2">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
 
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2">To: &nbsp;</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;</h6>
                                         <div class="form-group mr-2">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
 
@@ -215,7 +229,7 @@
                                             value="Search" />
                                     </div>
 
-                                    <!--table-->
+                                    <!-- Look up Table Content -->
                                     <div class="text-center small">
                                         <table class="table table-striped">
                                             <thead>
@@ -264,80 +278,78 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    <!--/ End of Look up Table Content -->
 
                                 </div>
                             </div>
 
                         </div>
+                        <!--/ End of Look up Table -->
 
-                        <!-- Donut Chart -->
+                        <!-- Bill Information Table -->
                         <div class="col-xl-7 col-lg-5">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3">
                                     <h3 class="m-0 font-weight-bold text-primary header-center">BILL INFORMATION</h3>
                                 </div>
-                                <!-- Card Body -->
+
+                                <!-- Bill Information Table Content -->
                                 <div class="card-body">
-
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="">
-
-                                        </div>
-                                        <div class="text-center small">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">First</th>
-                                                        <th scope="col">Last</th>
-                                                        <th scope="col">Handle</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td colspan="2">Larry the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td colspan="2">Larry the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                    <div class="text-center small">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">First</th>
+                                                    <th scope="col">Last</th>
+                                                    <th scope="col">Handle</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td colspan="2">Larry the Bird</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>Mark</td>
+                                                    <td>Otto</td>
+                                                    <td>@mdo</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>Jacob</td>
+                                                    <td>Thornton</td>
+                                                    <td>@fat</td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td colspan="2">Larry the Bird</td>
+                                                    <td>@twitter</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
                                     </div>
-
                                 </div>
+                                <!--/ End of Bill Information Table Content -->
+
                             </div>
                         </div>
+                        <!--/ End of Bill Information Table -->
+
                     </div>
 
 

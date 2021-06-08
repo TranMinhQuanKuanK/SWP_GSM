@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blank Page</title>
+    <title>Import Goods Page</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="page-top">
+<body>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -32,29 +32,41 @@
         <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <div class="sidebar-brand align-items-center justify-content-center">
-                <div class="sidebar-brand-icon mb-2">
-                    <i class="fas fa-user-circle"></i>
+            <li>
+                <div class="sidebar-brand align-items-center justify-content-center">
+                    <div class="sidebar-brand-icon mb-2">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
                 </div>
-                <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
-            </div>
+            </li>
+            
 
             <!-- Nav Item - Dashboard -->
-            <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                    data-toggle="modal" data-target="#logoutModal">
-                    <span class="logout-group">Logout &nbsp;</span>
-                    <i class="fas fa-sign-out-alt logout-group"></i>
-                </a>
-            </div>
+            <li>
+                <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
+                        data-toggle="modal" data-target="#logoutModal">
+                        <span class="logout-group">Logout &nbsp;</span>
+                        <i class="fas fa-sign-out-alt logout-group"></i>
+                    </a>
+                </div>
+            </li>
+            
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <li>
+                <hr class="sidebar-divider">
+            </li>
+            
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                List of pages
-            </div>
+            <li>
+                <div class="sidebar-heading">
+                    List of pages
+                </div>
+            </li>
+            
 
             <!-- Nav Item - Inventory Collapse Menu -->
             <li class="nav-item">
@@ -63,7 +75,7 @@
                     <i class="fas fa-boxes"></i>
                     <span>&nbsp; Inventory</span>
                 </a>
-                <div id="collapseInventory" class="collapse" aria-labelledby="headingInventory"
+                <div id="collapseInventory" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -81,7 +93,7 @@
                     <i class="fas fa-truck-moving"></i>
                     <span>&nbsp; Import Goods</span>
                 </a>
-                <div id="collapseImportGoods" class="collapse" aria-labelledby="headingImportGoods"
+                <div id="collapseImportGoods" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -97,7 +109,7 @@
                     <i class="fas fa-clipboard-list"></i>
                     <span>&nbsp; Product List</span>
                 </a>
-                <div id="collapseProductList" class="collapse" aria-labelledby="headingProductList"
+                <div id="collapseProductList" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -139,8 +151,10 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
+            
         </ul>
         <!-- End of Sidebar -->
 
@@ -168,10 +182,9 @@
 
                     <!-- Content Row -->
                     <div class="row">
-
+                        
+                        <!-- Receipt Table -->
                         <div class="col-xl-7 col-lg-7">
-
-                            <!-- Area Chart -->
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h3 class="m-0 font-weight-bold text-primary header-center">RECEIPT</h3>
@@ -179,7 +192,7 @@
 
                                 <div class="card-body">
                                     <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3">Date: &nbsp;</h6>
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Date: &nbsp;</h6>
                                         <div class="form-group mr-2">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
@@ -192,7 +205,7 @@
                                             value="Hiển thị" />
                                     </div>
 
-                                    <!--table-->
+                                    <!--Receipt Table Content-->
                                     <div class="text-center small">
                                         <table class="table table-striped">
                                             <thead>
@@ -241,44 +254,40 @@
                                             </tbody>
                                         </table>
                                     </div>
-
+                                    <!--/ End of Receipt Table Content-->    
                                     <hr>
 
                                     <div class="d-flex justify-content-center">
                                         <button class="btn d-sm-inline-block shadow-sm bg-secondary">
                                             <i class="fas fa-dolly-flatbed darks icon-black"></i>&nbsp;
-                                            <span class="button-back-text">Import</span></a>
+                                            <span class="button-back-text">Import</span>
                                         </button>
                                     </div>
-
 
                                 </div>
                             </div>
 
                         </div>
+                        <!--/ End of Receipt Table-->
 
-                        <!-- Donut Chart -->
+                        <!-- To-import list Table -->
                         <div class="col-xl-5 col-lg-5">
                             <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
                                 <div class="card-header py-3">
                                     <h5 class="m-0 font-weight-bold text-primary header-center">TO-IMPORT LIST</h5>
                                 </div>
-                                <!-- Card Body -->
+
                                 <div class="card-body">
                                     <div class="d-flex justify-content-center">
                                         <a href="javascript:void(0)" class="btn d-sm-inline-block shadow-sm bg-secondary">
                                             <i class="fas fa-box-open darks icon-black"></i>&nbsp;
-                                            <span class="button-back-text">Add some more products</span></a>
+                                            <span class="button-back-text">Add some more products</span>
                                         </a>
                                     </div>
                                     <hr>
 
-                                    <!-- Card Body -->
+                                    <!-- To-import list Table Content -->
                                     <div class="card-body">
-                                        <div class="">
-
-                                        </div>
                                         <div class="text-center small">
                                             <table class="table table-striped">
                                                 <thead>
@@ -370,10 +379,11 @@
                                             </table>
                                         </div>
                                     </div>
-
+                                    <!--/ End of To-import list Table Content-->    
                                 </div>
                             </div>
                         </div>
+                        <!--/ End of To-import list Table-->
                     </div>
 
 

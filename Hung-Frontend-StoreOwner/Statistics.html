@@ -22,7 +22,7 @@
     <link href="css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
 </head>
 
-<body id="page-top">
+<body>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -31,30 +31,40 @@
         <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <div class="sidebar-brand align-items-center justify-content-center">
-                <div class="sidebar-brand-icon mb-2">
-                    <i class="fas fa-user-circle"></i>
+            <li>
+                <div class="sidebar-brand align-items-center justify-content-center">
+                    <div class="sidebar-brand-icon mb-2">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
                 </div>
-                <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
-            </div>
+            </li>
+            
 
             <!-- Nav Item - Dashboard -->
-            <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                    data-toggle="modal" data-target="#logoutModal">
-                    <span class="logout-group">Logout &nbsp;</span>
-                    <i class="fas fa-sign-out-alt logout-group"></i>
-                </a>
-            </div>
-
+            <li>
+                <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
+                        data-toggle="modal" data-target="#logoutModal">
+                        <span class="logout-group">Logout &nbsp;</span>
+                        <i class="fas fa-sign-out-alt logout-group"></i>
+                    </a>
+                </div>    
+            </li>
+           
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <li>
+                <hr class="sidebar-divider">
+            </li>
+            
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                List of pages
-            </div>
-
+            <li>
+                <div class="sidebar-heading">
+                    List of pages
+                </div>
+            </li>
+            
             <!-- Nav Item - Inventory Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventory"
@@ -62,7 +72,7 @@
                     <i class="fas fa-boxes"></i>
                     <span>&nbsp; Inventory</span>
                 </a>
-                <div id="collapseInventory" class="collapse" aria-labelledby="headingInventory"
+                <div id="collapseInventory" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -80,7 +90,7 @@
                     <i class="fas fa-truck-moving"></i>
                     <span>&nbsp; Import Goods</span>
                 </a>
-                <div id="collapseImportGoods" class="collapse" aria-labelledby="headingImportGoods"
+                <div id="collapseImportGoods" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -96,7 +106,7 @@
                     <i class="fas fa-clipboard-list"></i>
                     <span>&nbsp; Product List</span>
                 </a>
-                <div id="collapseProductList" class="collapse" aria-labelledby="headingProductList"
+                <div id="collapseProductList" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -138,8 +148,10 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
+            
         </ul>
         <!-- End of Sidebar -->
 
@@ -167,21 +179,21 @@
                     <!-- Table Tab Row -->
                     <ul class="nav nav-tabs nav-fill align-items-center">
                         <li id="defaultOpen" class="nav-item border-left-primary justify-content-center shadow h-100 tablink" onclick="openPage('Product',this,'Product-btn')">
-                            <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn" href="#">
+                            <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                 <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
-                                <h5>Product Statistic</h5>
+                                <span class="statistics-tab-heading">Product Statistic</span>
                             </button>
                         </li>
                         <li class="nav-item border-left-success shadow h-100 tablink" onclick="openPage('Customer',this,'Customer-btn')">
-                            <button id="Customer-btn" class="nav-link rounded-0 border-top w-100 tablink-btn" href="#">
+                            <button id="Customer-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                 <i class="fas fa-dollar-sign fa-2x text-gray-500 my-2"></i>
-                                <h5>Customer Statistic</h5>
+                                <span class="statistics-tab-heading">Customer Statistic</span>
                             </button>
                         </li>
                         <li class="nav-item border-left-info shadow h-100 tablink" onclick="openPage('Financial',this,'Financial-btn')">
-                            <button id="Financial-btn" class="nav-link rounded-0 border-top w-100 tablink-btn" href="#">
+                            <button id="Financial-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                 <i class="fas fa-clipboard-list fa-2x text-gray-500 my-2"></i>
-                                <h5>Fianancial Statistic</h5>
+                                <span class="statistics-tab-heading">Fianancial Statistic</span>
                             </button>
                         </li>
                     </ul>
@@ -189,30 +201,30 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Table Chart 1 -->
+                        <!-- Table -->
                         <div class="col-12 tab-content" id="Product">
                             <div class="card shadow mb-4">
-                                <!-- Card Header -->
+                                <!-- Table Header -->
                                 <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-center">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3">From &nbsp;</h6>
-                                        <div class="form-group">
+                                    <div class="row justify-content-start">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
+                                        <div class="form-group d-flex">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3">&nbsp; To &nbsp;</h6>
-                                        <div class="form-group">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
+                                        <div class="form-group d-flex">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row justify-content-center">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 col-2">Sort by: &nbsp;</h6>
-                                        <div class="input-group mb-3 col-7 pt-1">
+                                    <div class="row justify-content-start">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Sort by: &nbsp;</h6>
+                                        <div class="input-group mb-3 pt-1 col-5">
                                             <select class="custom-select" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
                                                 <option value="1">One</option>
@@ -227,11 +239,8 @@
                                     </div>
 
                                 </div>
-                                <!-- Card Body -->
+                                <!-- Table Content -->
                                 <div class="card-body">
-                                    <div class="">
-
-                                    </div>
                                     <div class="text-center small">
                                         <table class="table table-striped">
                                             <thead>
@@ -281,33 +290,35 @@
                                         </table>
                                     </div>
                                 </div>
+                                <!--/ End of Table Content -->
                             </div>
                         </div>
+                        <!--/ End of Table -->
 
-                        <!-- Table Chart 2 -->
+                        <!-- Table 2 -->
                         <div class="col-12 tab-content" id="Customer">
                             <div class="card shadow mb-4">
-                                <!-- Card Header -->
+                                <!-- Table Header -->
                                 <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-center">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3">From &nbsp;</h6>
-                                        <div class="form-group">
+                                    <div class="row justify-content-start">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
+                                        <div class="form-group d-flex">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3">&nbsp; To &nbsp;</h6>
-                                        <div class="form-group">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
+                                        <div class="form-group d-flex">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row justify-content-center">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 col-2">Sort by: &nbsp;</h6>
-                                        <div class="input-group mb-3 col-7 pt-1">
+                                    <div class="row justify-content-start">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Sort by: &nbsp;</h6>
+                                        <div class="input-group mb-3 pt-1 col-5">
                                             <select class="custom-select" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
                                                 <option value="1">One</option>
@@ -322,11 +333,8 @@
                                     </div>
 
                                 </div>
-                                <!-- Card Body -->
+                                <!-- Table 2 Content -->
                                 <div class="card-body">
-                                    <div class="">
-
-                                    </div>
                                     <div class="text-center small">
                                         <table class="table table-striped">
                                             <thead>
@@ -359,33 +367,35 @@
                                         </table>
                                     </div>
                                 </div>
+                                <!--/ End of Table 2 Content -->
                             </div>
                         </div>
+                        <!--/ End of Table 2 -->
 
-                        <!-- Table Chart 3 -->
+                        <!-- Table 3 -->
                         <div class="col-12 tab-content" id="Financial">
                             <div class="card shadow mb-4">
-                                <!-- Card Header -->
+                                <!-- Table Header -->
                                 <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-center">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3">From &nbsp;</h6>
-                                        <div class="form-group">
+                                    <div class="row justify-content-start">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
+                                        <div class="form-group d-flex">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3">&nbsp; To &nbsp;</h6>
-                                        <div class="form-group">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
+                                        <div class="form-group d-flex">
                                             <div class="pt-2">
                                                 <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00" id="example-datetime-local-input">
+                                                    value="2021-05-26T23:00:00">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row justify-content-center">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 col-2">Sort by: &nbsp;</h6>
-                                        <div class="input-group mb-3 col-7 pt-1">
+                                    <div class="row justify-content-start">
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Sort by: &nbsp;</h6>
+                                        <div class="input-group mb-3 pt-1 col-5">
                                             <select class="custom-select" id="inputGroupSelect01">
                                                 <option selected>Choose...</option>
                                                 <option value="1">One</option>
@@ -400,11 +410,8 @@
                                     </div>
 
                                 </div>
-                                <!-- Card Body -->
+                                <!-- Table 3 Content -->
                                 <div class="card-body">
-                                    <div class="">
-
-                                    </div>
                                     <div class="text-center small">
                                         <table class="table table-striped">
                                             <thead>
@@ -473,8 +480,10 @@
                                         </table>
                                     </div>
                                 </div>
+                                <!--/End of Table 3 Content -->
                             </div>
                         </div>
+                        <!--/ End of Table 3 -->
 
                     </div>
                     <!--End of table row-->
