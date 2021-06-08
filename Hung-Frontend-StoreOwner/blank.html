@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="page-top">
+<body>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -32,29 +32,41 @@
         <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <div class="sidebar-brand align-items-center justify-content-center">
-                <div class="sidebar-brand-icon mb-2">
-                    <i class="fas fa-user-circle"></i>
+            <li>
+                <div class="sidebar-brand align-items-center justify-content-center">
+                    <div class="sidebar-brand-icon mb-2">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
                 </div>
-                <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
-            </div>
+            </li>
+            
 
             <!-- Nav Item - Dashboard -->
-            <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                    data-toggle="modal" data-target="#logoutModal">
-                    <span class="logout-group">Logout &nbsp;</span>
-                    <i class="fas fa-sign-out-alt logout-group"></i>
-                </a>
-            </div>
+            <li>
+                <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
+                        data-toggle="modal" data-target="#logoutModal">
+                        <span class="logout-group">Logout &nbsp;</span>
+                        <i class="fas fa-sign-out-alt logout-group"></i>
+                    </a>
+                </div>
+            </li>
+            
 
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <li>
+                <hr class="sidebar-divider">
+            </li>
+            
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                List of pages
-            </div>
+            <li>
+                <div class="sidebar-heading">
+                    List of pages
+                </div>
+            </li>
+            
 
             <!-- Nav Item - Inventory Collapse Menu -->
             <li class="nav-item">
@@ -63,7 +75,7 @@
                     <i class="fas fa-boxes"></i>
                     <span>&nbsp; Inventory</span>
                 </a>
-                <div id="collapseInventory" class="collapse" aria-labelledby="headingInventory"
+                <div id="collapseInventory" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -81,7 +93,7 @@
                     <i class="fas fa-truck-moving"></i>
                     <span>&nbsp; Import Goods</span>
                 </a>
-                <div id="collapseImportGoods" class="collapse" aria-labelledby="headingImportGoods"
+                <div id="collapseImportGoods" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -97,7 +109,7 @@
                     <i class="fas fa-clipboard-list"></i>
                     <span>&nbsp; Product List</span>
                 </a>
-                <div id="collapseProductList" class="collapse" aria-labelledby="headingProductList"
+                <div id="collapseProductList" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -139,7 +151,10 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
+            
 
         </ul>
         <!-- End of Sidebar -->
