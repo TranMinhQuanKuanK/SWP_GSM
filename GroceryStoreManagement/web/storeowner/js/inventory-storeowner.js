@@ -9,7 +9,7 @@ function getProduct() {
             processProduct(productObject);
         }
     };
-    if (cat_ID == "all"){
+    if (cat_ID === "all"){
         var url = "GetProductList?search_value="+search_val;
     } 
     else{
