@@ -1,9 +1,11 @@
 var previousProductInfo = "";
 var ProductInfoDuration;
 var category_id = null; //selected category
-var productList; //story list ProductDTO
+var productList = null; //story list ProductDTO
 //var currentCustomer; //store current CustomerDTO biến này được gắn vào billObj
 var currentBill; //store current billObj
+const productList_element = document.getElementById("product-list"); //biến của thành
+const pagination_element = document.getElementById("page-selection");
 
 function SearchForProduct(id) {
   for (i = 0; i < productList.length; i++) {
@@ -14,7 +16,7 @@ function SearchForProduct(id) {
 
 function ToggleProductInfoState(id) {
   if (previousProductInfo != id) {
-    $("#showProductInfo")
+    $("#product-info")
       .removeClass("d-none")
       .hide() // hides it first, or style it with 'display: none;' instead
       .fadeIn(300);
@@ -22,8 +24,8 @@ function ToggleProductInfoState(id) {
 
   if (previousProductInfo == id && previousProductInfo != "") {
     previousProductInfo = "";
-    $("#showProductInfo").fadeOut(300, function () {
-      $("#showProductInfo").addClass("d-none");
+    $("#product-info").fadeOut(300, function () {
+      $("#product-info").addClass("d-none");
     });
   } else {
     previousProductInfo = id;
@@ -33,83 +35,74 @@ function ToggleProductInfoState(id) {
   }
 }
 
-function ShowProductInfo(id) {
+function DisplayProductInfo(id) {
   if (ProductInfoDuration) {
     clearTimeout(ProductInfoDuration);
     ProductInfoDuration = 0;
   }
   ToggleProductInfoState(id);
 
-  var product = SearchForProduct(id);
+  let product = SearchForProduct(id);
   if (product == -1) console.log("error! Can't find product");
   document.getElementById("product-info-name").innerHTML = product.name;
   document.getElementById("product-info-quantity").innerHTML = product.quantity;
   document.getElementById("product-info-price").innerHTML =
-    "<sup>đ</sup>" + product.selling_price + "/" + product.unit_label;
+    product.selling_price;
   document.getElementById("product-info-location").innerHTML = product.location;
 }
 
 function createHTMLForEachProduct(product) {
-  var a = document.createElement("a");
-  a.setAttribute("class", "list-group-item list-group-item-action");
-  a.setAttribute("onclick", "AddProductToBill(" + product.product_ID + ")");
+  let tr_el = document.createElement("tr");
+  let td_el_name = document.createElement("td");
+  let td_el_price = document.createElement("td");
+  let td_el_info = document.createElement("td");
+  let btn_el = document.createElement("button");
 
-  var div1 = document.createElement("div");
-  div1.setAttribute("class", "d-flex w-100 justify-content-between");
+  td_el_name.setAttribute("class", "product-detail align-middle");
+  td_el_name.setAttribute(
+    "onclick",
+    "AddProductToBill(" + product.product_ID + ")"
+  );
+  td_el_price.setAttribute("class", "product-detail align-middle");
+  td_el_price.setAttribute(
+    "onclick",
+    "AddProductToBill(" + product.product_ID + ")"
+  );
+  td_el_name.textContent = product.name;
+  td_el_price.textContent =
+    formatNumber(product.selling_price) + "/" + product.unit_label;
 
-  var p = document.createElement("p");
-  p.setAttribute("class", "w-50 my-auto");
-  p.innerHTML = product.name;
+  td_el_info.setAttribute("class", "text-right");
+  btn_el.setAttribute("id", product.product_ID);
+  btn_el.setAttribute(
+    "onclick",
+    "DisplayProductInfo(" + product.product_ID + ")"
+  );
+  btn_el.setAttribute("class", "btn btn-outline-secondary rounded-circle");
 
-  var h5 = document.createElement("h5");
-  h5.setAttribute("class", "text-muted");
-  h5.innerHTML =
-    "<sup>đ</sup>" +
-    formatNumber(product.selling_price) +
-    "/" +
-    product.unit_label;
+  // Cái này style tooltip cho button, hover là thấy hint á
+  btn_el.setAttribute("data-toggle", "tooltip");
+  btn_el.setAttribute("data-placement", "top");
+  btn_el.setAttribute("title", "Chi tiết sản phẩm");
 
-  var div2 = document.createElement("div");
-  div2.setAttribute("class", "product-info-button");
-
-  var button = document.createElement("button");
-  button.setAttribute("id", product.product_ID);
-  button.setAttribute("onclick", "ShowProductInfo(" + product.product_ID + ")");
-  button.setAttribute("class", "btn btn-outline-secondary rounded-circle");
-  button.innerHTML =
+  btn_el.innerHTML =
     '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"\n' +
     '                                            fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">\n' +
     "                                            <path\n" +
     '                                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />\n' +
     "                                        </svg>";
 
-  div2.appendChild(button);
-  div1.appendChild(p);
-  div1.appendChild(h5);
-  div1.appendChild(div2);
-  a.appendChild(div1);
+  if (product.quantity <= product.lower_threshold) {
+    tr_el.setAttribute("class", "product-low-quantity text-white");
+    btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
+  }
 
-  return a;
+  td_el_info.appendChild(btn_el);
+  tr_el.appendChild(td_el_name);
+  tr_el.appendChild(td_el_price);
+  tr_el.appendChild(td_el_info);
 
-  /*
-     <a href="#" class="list-group-item list-group-item-action">
-                            <div class="d-flex w-100 justify-content-between ">
-                                <p class="w-50 my-auto">Tương ớt chinsu 850gr</p>
-                                <h5 class="text-muted"><sup>đ</sup>30000</h5>
-                                <div class="product-info-button">
-                                    <button onclick="ShowProductInfo(1)" class="btn btn-outline-secondary rounded-circle" data-toggle="collapse"
-                                        data-target="#showProductInfo" aria-expanded="false"
-                                        aria-controls="showProductInfo">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-three-dots" viewBox="0 0 16 16">
-                                            <path
-                                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </a>
-    */
+  return tr_el;
 }
 
 // KuanK's function - send feedback to server
@@ -151,6 +144,7 @@ function getBill() {
 
 //KuanK function - render bill
 function printBill(billObject) {
+  //in danh sách bill
   document.getElementById("bill-area").innerHTML = "";
   for (i = 0; i < billObject.Bill_Detail.length; i++) {
     var detail = billObject.Bill_Detail[i];
@@ -165,8 +159,7 @@ function printBill(billObject) {
 
     var td_selling_price = document.createElement("td");
     td_selling_price.setAttribute("class", "text-right");
-    td_selling_price.innerHTML =
-      "<sup>đ</sup>" + formatNumber(detail.product.selling_price);
+    td_selling_price.innerHTML = formatNumber(detail.product.selling_price);
 
     var td_quantity = document.createElement("td");
     var input_quantity = document.createElement("input");
@@ -203,9 +196,9 @@ function printBill(billObject) {
 
     var td_total = document.createElement("td");
     td_total.setAttribute("class", "text-right");
-    td_total.innerHTML =
-      "<sup>đ</sup>" +
-      formatNumber(detail.quantity * detail.product.selling_price);
+    td_total.innerHTML = formatNumber(
+      detail.quantity * detail.product.selling_price
+    );
 
     tr.appendChild(th_index);
     tr.appendChild(td_name);
@@ -229,48 +222,39 @@ function printBill(billObject) {
   } else discount = 0;
 
   var total_cost_after_discount = Math.max(0, billObject.total_cost - discount);
-
-  document.getElementById("total").innerHTML =
-    "<sup>đ</sup>" + formatNumber(billObject.total_cost);
+  //in ra discount/ đơn giá/
+  document.getElementById("total").innerHTML = formatNumber(
+    billObject.total_cost
+  );
   document.getElementById("discount").innerHTML =
-    "<del><sup>đ</sup>" + formatNumber(discount) + "</del>";
+    "<del>" + formatNumber(discount) + "</del>";
   document.getElementById("total-after-discount").innerHTML =
-    "<strong><sup>đ</sup>" +
-    formatNumber(total_cost_after_discount) +
-    "</strong>";
-
+    "<strong>" + formatNumber(total_cost_after_discount) + "</strong>";
+  //in ra tên customer
   renderCustomer();
 
-  /* <tr>
-                                    <th scope="row">1</td>
-                                    <td>Tương ớt</td>
-                                    <td class="text-right"><sup>đ</sup>10000</td>
-                                    <td ><input class="text-right float-right" type="number" value="3"
-                                            min="1">
-                                    </td>
-
-                                    <td class="text-right">
-                                        <button class="btn btn-outline-danger btn-sm">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                <path
-                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </td>
-                                    
-                                    <td class="text-right"><sup>đ</sup>30000</td>
-                                </tr> */
+  //thông báo lỗi
+  if (currentBill.err_obj.hasError) display_Bill_ErrorMessage();
 }
-
+function display_Bill_ErrorMessage() {
+  errorObj = currentBill.err_obj;
+  //clear error area
+  document.getElementById("bill-error-element").innerHTML = "";
+  for (i = 0; i < errorObj.error_list.length; i++) {
+    var li = document.createElement("li");
+    li.innerHTML = errorObj.error_list[i];
+    document.getElementById("bill-error-element").appendChild(li);
+  }
+  $("#bill-error-modal").modal("show");
+}
 //KuanK - search and render product results
 function SearchProduct() {
   //lấy tên từ thanh search gán vào name
   var name = document.getElementById("product-search-bar").value;
   url = "GetProductList?search_value=" + name;
-
+  //nếu category khác null thì thêm vào query string
   if (category_id != null) url += "&category_id=" + category_id;
+  //nếu không có tên và category_id = tất cả (null) thì cho productList là rỗng
   if (name == "" && category_id == null) {
     productList = [];
     RenderProduct();
@@ -289,11 +273,19 @@ function SearchProduct() {
 //KuanK đã sửa - render product list
 function RenderProduct() {
   // Load products
-  var htmlList = document.getElementById("product-list");
-  htmlList.innerHTML = "";
-  for (i = 0; i < productList.length; i++) {
-    htmlList.appendChild(createHTMLForEachProduct(productList[i]));
-  }
+  // var ProducthtmlList = document.getElementById("product-list");
+  // ProducthtmlList.innerHTML = "";
+  // for (i = 0; i < productList.length; i++) {
+  //   ProducthtmlList.appendChild(createHTMLForEachProduct(productList[i]));
+  // }
+
+  DisplayProductList(
+    productList,
+    rows_per_page,
+    productList_element,
+    current_page
+  );
+  SetupPagination(productList, pagination_element, rows_per_page);
 }
 //KuanK - get and render category
 function getCategory() {
@@ -309,10 +301,10 @@ function renderCategory(categoryListObject) {
   document.getElementById("category-list").innerHTML = "";
   //create "All" category
   var tr = document.createElement("tr");
-  tr.setAttribute("onclick", "setCategoryAndSearch(" + null + ")");
-  tr.setAttribute("class", "bg-secondary");
+  tr.setAttribute("onclick", "setCategoryAndSearch(event," + null + ")");
   var td = document.createElement("td");
   td.innerHTML = "(Tất cả)";
+  td.setAttribute("class", "bg-secondary");
   tr.appendChild(td);
   document.getElementById("category-list").appendChild(tr);
 
@@ -321,7 +313,7 @@ function renderCategory(categoryListObject) {
     var tr = document.createElement("tr");
     tr.setAttribute(
       "onclick",
-      "setCategoryAndSearch(" + categoryListObject[i].category_ID + ")"
+      "setCategoryAndSearch(event," + categoryListObject[i].category_ID + ")"
     );
     var td = document.createElement("td");
     td.innerHTML = categoryListObject[i].name;
@@ -334,7 +326,10 @@ function renderCategory(categoryListObject) {
   //                                         </tr>
 }
 
-function setCategoryAndSearch(id) {
+function setCategoryAndSearch(event, id) {
+  //In đậm các category được click
+  $("#category-list tr td").removeClass("bg-secondary");
+  event.target.setAttribute("class", "bg-secondary");
   category_id = id;
   SearchProduct();
 }
@@ -360,8 +355,10 @@ function renderCustomer() {
   currentCustomer = currentBill.customer_dto;
   // console.log(currentBill.customer_dto);
   if (currentCustomer != null) {
-    document.getElementById("customer-name").innerHTML =
-      " " + currentCustomer.name + ", điểm: " + currentCustomer.point + " điểm";
+    document.getElementById("customer-name").innerHTML = currentCustomer.name;
+
+    document.getElementById("point-of-customer").innerHTML =
+      currentCustomer.point;
     //set attribute cho ô giảm giá
     document.getElementById("discount-checkbox").checked =
       currentBill.use_point == true;
@@ -439,21 +436,15 @@ function formatNumber(x) {
 }
 // KuanK's function
 function pageLoadKuanK() {
-  //getCashierName();
-  //getBill();
+  getCashierName();
+  getBill();
   getCategory();
 }
-
-$("#category-list tr td").click(function () {
-  $("#category-list tr td").removeClass("bg-secondary");
-  $(this).addClass("bg-secondary");
-});
 
 /* ====================================
     DISPLAY PAGINATED LIST OF PRODUCTS 
     ===================================
  */
-const pagination_element = document.getElementById("page-selection");
 
 let current_page = 1;
 let rows_per_page = 10;
@@ -524,6 +515,7 @@ function PaginationButton(page, products) {
 
   return button;
 }
+
 function DisplayPagination() {
   // Get the list of buttons to handle
   let buttons = pagination_element.querySelectorAll(
@@ -546,22 +538,24 @@ function DisplayPagination() {
     buttons[0].classList.remove("d-none");
     buttons[buttons.length - 1].classList.remove("d-none");
   }
-
-  if (buttons[1].classList.contains("d-none")) {
-    disabled_btns[0].classList.remove("d-none");
-  } else disabled_btns[0].classList.add("d-none");
-  if (buttons[buttons.length - 2].classList.contains("d-none")) {
-    disabled_btns[1].classList.remove("d-none");
-  } else disabled_btns[1].classList.add("d-none");
+  if (buttons.length > 2) {
+    if (buttons[1].classList.contains("d-none")) {
+      disabled_btns[0].classList.remove("d-none");
+    } else disabled_btns[0].classList.add("d-none");
+    if (buttons[buttons.length - 2].classList.contains("d-none")) {
+      disabled_btns[1].classList.remove("d-none");
+    } else disabled_btns[1].classList.add("d-none");
+  }
 }
 
-DisplayProductList(
-  productList,
-  rows_per_page,
-  productList_element,
-  current_page
-);
-SetupPagination(productList, pagination_element, rows_per_page);
+// DisplayProductList(
+//   productList,
+//   rows_per_page,
+//   productList_element,
+//   current_page
+// );
+
+//SetupPagination(productList, pagination_element, rows_per_page);
 
 /* 
     MAKE EACH ROW OF TABLE CATEGORY ACTIVE

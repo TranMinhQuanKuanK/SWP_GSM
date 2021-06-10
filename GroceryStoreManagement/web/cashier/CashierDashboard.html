@@ -20,7 +20,7 @@
         rel="stylesheet">
     <!-- Custom JS & CSS -->
     <link rel="stylesheet" href="/GroceryStoreManagement/cashier/css/cashierDashboard.css">
-    <script src="/GroceryStoreManagement/cashier/js/cashierDashboard.js"></script>
+    <!-- <script src="/GroceryStoreManagement/cashier/js/cashierDashboard.js"></script> -->
 </head>
 
 <body onload="pageLoadKuanK()">
@@ -185,7 +185,7 @@
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="bill-area">
                                 <tr>
                                     <th scope="row">1</td>
                                     <td>Tương ớt</td>
@@ -647,7 +647,7 @@
                             <!-- Thanh search khách hàng -->
                             <div class="input-group">
                                 <button type="button" class="btn btn-secondary" data-toggle="tooltip"
-                                    data-placement="top" title="Tìm khách hàng">
+                                    data-placement="top" title="Tìm khách hàng" onclick="searchCustomerByPhone()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                         class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                                         <path
@@ -656,7 +656,7 @@
                                 </button>
                                 <!-- Thanh Search Khách hàng -->
                                 <input type="text" class="form-control" placeholder="Nhập SĐT" aria-label="Nhập SĐT"
-                                    aria-describedby="search-customer-bar">
+                                    aria-describedby="search-customer-bar" id="phone-no-input">
 
                                 <!-- Button register customer -->
                                 <a data-toggle="tooltip" data-placement="top" title="Đăng ký khách hàng">
@@ -676,17 +676,20 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col" colspan="2" class="text-center">Nguyễn Phạm Minh Quân</th>
+                                        <th scope="col" colspan="2" class="text-center" id="customer-name">Khách hàng
+                                            vãng lai</th>
                                     </tr>
                                 </thead>
                                 <tbody class="scroll-list">
                                     <tr>
-                                        <td>Điểm hiện có: 20</td>
+                                        <td>Điểm: <span style='color:red; font-weight: bold;'
+                                                id="point-of-customer">...</span></td>
                                         <td>
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="Discount">
-                                                <label class="form-check-label" for="Discount">
-                                                    Giảm giá
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="discount-checkbox" onchange="usePointToggle()">
+                                                <label class="form-check-label" for="discount-checkbox">
+                                                    Áp dụng điểm
                                                 </label>
                                             </div>
                                         </td>
@@ -707,16 +710,17 @@
                                 <tbody>
                                     <tr class="text-right">
                                         <td>Tiền hàng</td>
-                                        <td>75000</td>
+                                        <td id="total">75000</td>
                                     </tr>
                                     <tr class="text-right">
                                         <td>Giảm giá</td>
-                                        <td><del>10000</del></td>
+                                        <td id="discount"><del>10000</del></td>
                                     </tr>
                                     <tr class="text-right">
                                         <td>Tổng cộng</td>
                                         <td>
-                                            <span style="color: #ffc12d; font-size: 1.25rem;">65000</span>
+                                            <span style="color: #ff0000; font-size: 1.25rem;"
+                                                id="total-after-discount">65000</span>
                                         </td>
                                     </tr>
                                     <tr class="text-right">
@@ -820,8 +824,9 @@
                     </div>
                     <div class="modal-body">
                         <form class="text-center">
-                            <button type="submit" class="btn btn-secondary me-2">Đăng xuất</button>
-                            <button typ e="button" class="btn btn-light" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-secondary me-2" onclick="location.href='Logout';">Đăng
+                                xuất</button>
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Hủy</button>
                         </form>
                     </div>
                 </div>
@@ -873,14 +878,44 @@
                     <div class="modal-body">
                         <form class="text-center">
                             <button type="submit" class="btn btn-success me-2">Xác nhận</button>
-                            <button typ e="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Bill error Modal -->
+        <div class="modal fade" id="bill-error-modal" tabindex="-1" aria-labelledby="createFeedbackLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createFeedbackLabel">Thông báo</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <ul id="bill-error-element">
+                                    <li>Thông báo lỗi số 1: xxxxxxxxxxxxxxxxxxxxx</li>
+                                    <li>Thông báo lỗi số 2: xxxxxxxxxxxxxxxxxxxxx</li>
+                                    <li>Thông báo lỗi số 3: xxxxxxxxxxxxxxxxxxxxx</li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <form class="text-center">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đã hiểu</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    <script src="/GroceryStoreManagement/cashier/js/cashierDashboard.js"></script>
 </body>
 
 <!-- Challenge session:

@@ -106,9 +106,5 @@ th.bill-total-price {
 
 /* Custom colors for product list */
 .product-low-quantity {
-  background: #ff9c88 !important;
-}
-
-.product-bestseller {
-  background: #3678db !important;
+  background: #d12721e3 !important;
 }

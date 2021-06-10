@@ -37,10 +37,8 @@ public class ToggleDiscountServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            BillObj bill = (BillObj) session.getAttribute("BILL");
-            
+            BillObj bill = (BillObj) session.getAttribute("BILL"); 
             boolean use_point = request.getParameter("use_point").equals("true");
-            System.out.println("toi set use_point thanh "+use_point);
             bill.setUse_point(use_point);
             session.setAttribute("BILL", bill);
             
