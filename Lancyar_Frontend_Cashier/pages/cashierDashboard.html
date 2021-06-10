@@ -14,13 +14,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-
-
     <!-- Custom fonts for this template -->
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
     <!-- Custom JS & CSS -->
     <link rel="stylesheet" href="../css/cashierDashboard.css">
 </head>
@@ -40,8 +37,8 @@
                 <div class="d-flex justify-content-between">
                     <p class="h5 mr-3 my-auto">Chào, Thành</p>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-warning btn-sm" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                 class="bi bi-gear" viewBox="0 0 16 16">
                                 <path
@@ -85,7 +82,7 @@
                     <div class="d-flex">
                         <!-- Table nhóm hàng + hàng hóa -->
                         <div class="col-4 col-xl-2 d-flex flex-column border bg-light p-0">
-                            <div class="overflow-auto">
+                            <div style="height: 620px;" class="overflow-auto">
                                 <table class="table table-borderless table-category-list">
                                     <thead class="content-title border shadow-sm">
                                         <tr>
@@ -124,12 +121,12 @@
                                             <th scope="col" colspan="3" class="align-middle">
                                                 <div class="d-flex justify-content-between ">
                                                     <span class="text-muted font-weight-light my-auto">Hàng hóa</span>
-                                                <!-- Pagination -->
-                                                <div class="d-flex flex-column my-auto">
-                                                    <div id="page-selection" class="d-flex"></div>
+                                                    <!-- Pagination -->
+                                                    <div class="d-flex flex-column my-auto">
+                                                        <div id="page-selection" class="d-flex"></div>
+                                                    </div>
                                                 </div>
-                                                </div>
-                                                
+
                                             </th>
                                             <!-- <th scope="col" 
                                                 class="text-muted font-weight-light align-middle text-right product-list-pagination">
@@ -163,7 +160,7 @@
                     </div>
 
                 </div>
-                <div class="col-8 col-xl-6 d-flex flex-column">
+                <div style="height: 655px;" class="col-8 col-xl-6 d-flex flex-column">
                     <!-- Table bill -->
                     <div class="h-75 overflow-auto">
                         <table class="table table-striped border shadow-sm table-bill">
@@ -190,6 +187,240 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">1</td>
+                                    <td>Tương ớt</td>
+                                    <td class="text-right">10000</td>
+                                    <td><input class="text-right float-right" type="number" value="3" min="1">
+                                    </td>
+                                    <td class="text-right">
+                                        <button class="btn btn-outline-danger btn-sm">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                                <path
+                                                    d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </td>
+                                    <td class="text-right">30000</td>
+                                </tr>
                                 <tr>
                                     <th scope="row">1</td>
                                     <td>Tương ớt</td>
@@ -509,142 +740,142 @@
         </div> <!-- Kết thúc hàng của Category/Product list và Bill -->
 
         <!-- MODAL -->
-            <!-- Create Feedback Modal -->
-            <div class="modal fade" id="createFeedback" tabindex="-1" aria-labelledby="createFeedbackLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="createFeedbackLabel">Tạo Feedback</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="feedback" class="col-form-label">Nội dung:</label>
-                                    <textarea class="form-control" id="feedback"></textarea>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-success me-2">Gửi Feedback</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                        </div>
+        <!-- Create Feedback Modal -->
+        <div class="modal fade" id="createFeedback" tabindex="-1" aria-labelledby="createFeedbackLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createFeedbackLabel">Tạo Feedback</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="feedback" class="col-form-label">Nội dung:</label>
+                                <textarea class="form-control" id="feedback"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-success me-2">Gửi Feedback</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Change Pasword Modal -->
-            <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="changePasswordLabel">Đổi mật khẩu</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="currentPassword">Mật khẩu hiện tại</label>
-                                    <input type="password" class="form-control" id="currentPassword"
-                                        aria-describedby="currentPassword">
-                                </div>
-                                <div class="form-group">
-                                    <label for="newPassword">Mật khẩu mới</label>
-                                    <input type="password" class="form-control" id="newPassword"
-                                        aria-describedby="newPassword">
-                                </div>
-                                <div class="form-group">
-                                    <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
-                                    <input type="password" class="form-control" id="confirmNewPassword"
-                                        aria-describedby="confirmNewPassword">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info me-2">Đổi mật khẩu</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                        </div>
+        <!-- Change Pasword Modal -->
+        <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="changePasswordLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordLabel">Đổi mật khẩu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="currentPassword">Mật khẩu hiện tại</label>
+                                <input type="password" class="form-control" id="currentPassword"
+                                    aria-describedby="currentPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Mật khẩu mới</label>
+                                <input type="password" class="form-control" id="newPassword"
+                                    aria-describedby="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
+                                <input type="password" class="form-control" id="confirmNewPassword"
+                                    aria-describedby="confirmNewPassword">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info me-2">Đổi mật khẩu</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Logout Modal -->
-            <div class="modal fade" id="logOut" tabindex="-1" aria-labelledby="logOutLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="logOutLabel">Bạn chắc chưa?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="text-center">
-                                <button type="submit" class="btn btn-secondary me-2">Đăng xuất</button>
-                                <button typ e="button" class="btn btn-light" data-dismiss="modal">Hủy</button>
-                            </form>
-                        </div>
+        <!-- Logout Modal -->
+        <div class="modal fade" id="logOut" tabindex="-1" aria-labelledby="logOutLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="logOutLabel">Bạn chắc chưa?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-center">
+                            <button type="submit" class="btn btn-secondary me-2">Đăng xuất</button>
+                            <button typ e="button" class="btn btn-light" data-dismiss="modal">Hủy</button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Register Customer Modal -->
-            <div class="modal fade" id="registerCustomer" tabindex="-1" aria-labelledby="registerCustomerLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="registerCustomerLabel">Đăng ký khách hàng</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="form-group">
-                                    <label for="customerName">Tên khách hàng</label>
-                                    <input type="text" class="form-control" id="customerName"
-                                        aria-describedby="customerName">
-                                </div>
-                                <div class="form-group">
-                                    <label for="customerPhoneNo">Số điện thoại</label>
-                                    <input type="text" class="form-control" id="customerPhoneNo"
-                                        aria-describedby="customerPhoneNo">
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info me-2">Đăng ký</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
-                        </div>
+        <!-- Register Customer Modal -->
+        <div class="modal fade" id="registerCustomer" tabindex="-1" aria-labelledby="registerCustomerLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerCustomerLabel">Đăng ký khách hàng</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="customerName">Tên khách hàng</label>
+                                <input type="text" class="form-control" id="customerName"
+                                    aria-describedby="customerName">
+                            </div>
+                            <div class="form-group">
+                                <label for="customerPhoneNo">Số điện thoại</label>
+                                <input type="text" class="form-control" id="customerPhoneNo"
+                                    aria-describedby="customerPhoneNo">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info me-2">Đăng ký</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Checkout Modal -->
-            <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="checkoutLabel">Bạn chắc chưa?</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <form class="text-center">
-                                <button type="submit" class="btn btn-success me-2">Xác nhận</button>
-                                <button typ e="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                            </form>
-                        </div>
+        <!-- Checkout Modal -->
+        <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="checkoutLabel">Bạn chắc chưa?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="text-center">
+                            <button type="submit" class="btn btn-success me-2">Xác nhận</button>
+                            <button typ e="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
     <script src="../js/cashierDashboard.js"></script>
 </body>

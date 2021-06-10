@@ -449,7 +449,6 @@ const productList = [
     }
 ]
 const productList_element = document.getElementById("product-list");
-const pagination_element = document.getElementById("page-selection");
 
 
 function createHTMLForEachProduct(product) {
@@ -504,6 +503,8 @@ function createHTMLForEachProduct(product) {
     DISPLAY PRODUCT INFO WHEN CLICKING THE 'THREE DOTS' 
     ===========================================================
  */
+
+
 let previousProductInfo = "";
 let ProductInfoDuration;
 
@@ -559,6 +560,8 @@ function DisplayProductInfo(id) {
     DISPLAY PAGINATED LIST OF PRODUCTS 
     ===================================
  */
+const pagination_element = document.getElementById("page-selection");
+
 let current_page = 1;
 let rows_per_page = 10;
 let buttons_per_page = 3;
