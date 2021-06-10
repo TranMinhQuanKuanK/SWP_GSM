@@ -8,13 +8,18 @@ package controllers.cashier.dashboard;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.product.ProductDAO;
+import models.product.ProductDTO;
+import models.sessionBill.BillErrObj;
 import models.sessionBill.BillItemObject;
 import models.sessionBill.BillObj;
 
@@ -40,18 +45,39 @@ public class EditQuantityBillServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
             Integer product_id = Integer.parseInt(request.getParameter("product_id"));
-            Integer quantity = Integer.parseInt(request.getParameter("quantity"));
+            Integer new_quantity = Integer.parseInt(request.getParameter("quantity"));
             BillObj bill = (BillObj) session.getAttribute("BILL");
             ArrayList<BillItemObject> details = bill.getBill_Detail();
+            ProductDAO pDAO = new ProductDAO();
+            ProductDTO pDTO = pDAO.GetProductByID(product_id);
 
             for (int i = 0; i < details.size(); i++) {
                 if (details.get(i).getProduct().getProduct_ID() == product_id) {
-                    if (quantity >= 1) {
-                        Integer quantity_difference = quantity - bill.getBill_Detail().get(i).getQuantity();
-                        Integer currentPrice = bill.getBill_Detail().get(i).getProduct().getSelling_price();
-                        bill.setTotal_cost(bill.getTotal_cost() + quantity_difference * currentPrice);
-
-                        details.get(i).setQuantity(quantity);
+                    if (new_quantity >= 1) {
+                        if (new_quantity <= pDTO.getQuantity()) {
+                            //sửa Giá total cost 
+                            Integer quantity_difference = new_quantity - bill.getBill_Detail().get(i).getQuantity();
+                            Integer currentPrice = bill.getBill_Detail().get(i).getProduct().getSelling_price();
+                            bill.setTotal_cost(bill.getTotal_cost() + quantity_difference * currentPrice);
+                            //sửa quantity trong details
+                            details.get(i).setQuantity(new_quantity);
+                            //set lại lỗi
+                            bill.setErr_obj(new BillErrObj());
+                        } else {
+                            //Set lỗi
+                            BillErrObj bill_error = new BillErrObj();
+                            bill_error.appendError("\"" + pDTO.getName() + "\" chỉ còn " + pDTO.getQuantity() + " sản phẩm trong kho");
+                            bill_error.setHasError(true);
+                            bill.setErr_obj(bill_error);
+                            //set lại số lượng = quantity
+                            new_quantity = pDTO.getQuantity();
+                            //sửa giá total cost
+                            Integer quantity_difference = new_quantity - bill.getBill_Detail().get(i).getQuantity();
+                            Integer currentPrice = bill.getBill_Detail().get(i).getProduct().getSelling_price();
+                            bill.setTotal_cost(bill.getTotal_cost() + quantity_difference * currentPrice);
+                            //sửa quantity trong details
+                            details.get(i).setQuantity(new_quantity);
+                        }
                     }
                 }
             }
@@ -61,6 +87,10 @@ public class EditQuantityBillServlet extends HttpServlet {
             String billJSONString = gson.toJson(bill);
             out.print(billJSONString);
             out.flush();
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 
