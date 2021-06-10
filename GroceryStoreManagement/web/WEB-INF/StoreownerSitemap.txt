@@ -6,3 +6,7 @@ TestEverythingPage.html = TestEverythingPage.html
 GetCategoryList = GetCategoryListServlet
 GetProductList = GetProductListServlet
 ProductListPage = storeowner/ProductList.html
+StatisticsPage = storeowner/Statistics.html
+GetProductStatistic = GetProductStatisticServlet
+GetCustomerStatistic = GetCustomerStatisticServlet
+GetFinancialStatistic = GetFinancialStatisticServlet
