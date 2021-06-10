@@ -26,6 +26,7 @@ function processProduct(data) {
     while(productTable.rows.length > 1) {
             productTable.deleteRow(1);
         } // clear old table
+    var count = 0;
     for (i = 0; i < data.length; i++) {
         var row = productTable.insertRow(-1);//append thay vì insert đúng vào vị trí trong index
         var cell1 = row.insertCell(0);
@@ -36,16 +37,30 @@ function processProduct(data) {
         var cell6 = row.insertCell(5);
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
-        var cell9 = row.insertCell(8);
-        cell1.innerHTML = data[i].name;
-        cell2.innerHTML = data[i].quantity;
-        cell3.innerHTML = data[i].cost_price;
-        cell4.innerHTML = data[i].selling_price;
-        cell5.innerHTML = data[i].lower_threshold;
-        cell6.innerHTML = data[i].category.name;
-        cell7.innerHTML = data[i].unit_label;
-        cell8.innerHTML = data[i].is_selling;
-        cell9.innerHTML = data[i].location;
+        
+//        var cell8 = row.insertCell(7);
+//        var cell9 = row.insertCell(8);
+        count += 1;
+        cell1.innerHTML = count;
+        cell2.innerHTML = data[i].name;
+        cell3.innerHTML = data[i].category.name;
+        cell4.innerHTML = data[i].unit_label;
+        cell5.innerHTML = data[i].is_selling;
+        cell6.innerHTML = data[i].lower_threshold;
+        cell7.innerHTML = data[i].quantity;
+        cell8.innerHTML = "<input type='button' value='Add to to-import list'>";
+        if (cell5.innerHTML === "false"){
+            row.style.backgroundColor = '#ff8989';
+            row.style.color='black';
+        }
+//        cell2.innerHTML = data[i].quantity;
+//        cell3.innerHTML = data[i].cost_price;
+//        cell4.innerHTML = data[i].selling_price;
+//        cell5.innerHTML = data[i].lower_threshold;
+//        cell6.innerHTML = data[i].category.name;
+//        cell7.innerHTML = data[i].unit_label;
+//        cell8.innerHTML = data[i].is_selling;
+//        cell9.innerHTML = data[i].location;
 
     }
 }
