@@ -69,6 +69,14 @@ public class EditQuantityBillServlet extends HttpServlet {
                             bill_error.appendError("\"" + pDTO.getName() + "\" chỉ còn " + pDTO.getQuantity() + " sản phẩm trong kho");
                             bill_error.setHasError(true);
                             bill.setErr_obj(bill_error);
+                            //set lại số lượng = quantity
+                            new_quantity = pDTO.getQuantity();
+                            //sửa giá total cost
+                            Integer quantity_difference = new_quantity - bill.getBill_Detail().get(i).getQuantity();
+                            Integer currentPrice = bill.getBill_Detail().get(i).getProduct().getSelling_price();
+                            bill.setTotal_cost(bill.getTotal_cost() + quantity_difference * currentPrice);
+                            //sửa quantity trong details
+                            details.get(i).setQuantity(new_quantity);
                         }
                     }
                 }

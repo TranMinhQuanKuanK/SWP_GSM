@@ -246,6 +246,7 @@ function display_Bill_ErrorMessage() {
     document.getElementById("bill-error-element").appendChild(li);
   }
   $("#bill-error-modal").modal("show");
+  currentBill.err_obj = null;
 }
 //KuanK - search and render product results
 function SearchProduct() {
