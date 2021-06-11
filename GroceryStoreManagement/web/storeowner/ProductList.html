@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vn">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blank Page</title>
+    <title>Product List Page</title>
 
     <!-- Custom fonts for this template-->
     <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -18,12 +18,13 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
+    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet" type="text/css">
+    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
 
 </head>
 
-<body id="page-top">
+<body>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -32,38 +33,48 @@
         <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <div class="sidebar-brand align-items-center justify-content-center">
-                <div class="sidebar-brand-icon mb-2">
-                    <i class="fas fa-user-circle"></i>
+            <li>
+                <div class="sidebar-brand align-items-center justify-content-center">
+                    <div class="sidebar-brand-icon mb-2">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div id="name" class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
                 </div>
-                <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
-            </div>
-
+            </li>
+            
             <!-- Nav Item - Dashboard -->
-            <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                    data-toggle="modal" data-target="#logoutModal">
-                    <span class="logout-group">Logout &nbsp;</span>
-                    <i class="fas fa-sign-out-alt logout-group"></i>
-                </a>
-            </div>
-
+            <li>
+                <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
+                        data-toggle="modal" data-target="#logoutModal">
+                        <span class="logout-group">Đăng xuất &nbsp;</span>
+                        <i class="fas fa-sign-out-alt logout-group"></i>
+                    </a>
+                </div>
+            </li>
+            
             <!-- Divider -->
-            <hr class="sidebar-divider">
+            <li>
+                <hr class="sidebar-divider">
+            </li>
+            
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                List of pages
-            </div>
+            <li>
+                <div class="sidebar-heading">
+                    Menu
+                </div>
+            </li>
+            
 
             <!-- Nav Item - Inventory Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventory"
                     aria-expanded="true" aria-controls="collapseInventory">
                     <i class="fas fa-boxes"></i>
-                    <span>&nbsp; Inventory</span>
+                    <span>&nbsp; Kho hàng</span>
                 </a>
-                <div id="collapseInventory" class="collapse" aria-labelledby="headingInventory"
+                <div id="collapseInventory" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -79,9 +90,9 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImportGoods"
                     aria-expanded="true" aria-controls="collapseImportGoods">
                     <i class="fas fa-truck-moving"></i>
-                    <span>&nbsp; Import Goods</span>
+                    <span>&nbsp; Nhập Hàng</span>
                 </a>
-                <div id="collapseImportGoods" class="collapse" aria-labelledby="headingImportGoods"
+                <div id="collapseImportGoods" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
@@ -95,16 +106,16 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductList"
                     aria-expanded="true" aria-controls="collapseProductList">
                     <i class="fas fa-clipboard-list"></i>
-                    <span>&nbsp; Product List</span>
+                    <span>&nbsp; Danh sách mặt hàng</span>
                 </a>
-                <div id="collapseProductList" class="collapse" aria-labelledby="headingProductList"
+                <div id="collapseProductList" class="collapse"
                     data-parent="#accordionSidebar">
                     <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
                         <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
                     </div>
                 </div>
-            </li>
+            </li>   
 
             <!-- Nav Item - Previous Receipt -->
             <li class="nav-item">
@@ -139,8 +150,10 @@
             </li>
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
+            
         </ul>
         <!-- End of Sidebar -->
 
@@ -176,10 +189,10 @@
 
                     <div class="row">
 
-                        <!-- Table Chart 1 -->
+                        <!-- Table -->
                         <div class="col-12">
                             <div class="card shadow mb-4">
-                                <!-- Card Header -->
+                                <!-- Table Header -->
                                 <div class="card-header py-3 align-items-center">
                                     <div class="row justify-content-start">
                                         <h6 class="ml-2 font-weight-bold text-primary pt-3 pr-0 col-1">Category: &nbsp;
@@ -221,24 +234,27 @@
 
 
                                 </div>
-                                <!-- Card Body -->
+                                <!-- Table Body -->
                                 <div class="card-body">
-                                    <div class="">
-
-                                    </div>
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
+                                    <div class="text-center">
+                                        <table id="product-list" class="table table-striped">
                                             <thead>
-                                                <tr>
+                                                <tr id="list-header">
                                                     <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                    <th></th>
+                                                    <th scope="col">Tên</th>
+                                                    <th scope="col">Số lượng</th>
+                                                    <th scope="col">Giá mua</th>
+                                                    <th scope="col">Giá bán</th>
+                                                    <th scope="col">Ngưỡng</th>
+                                                    <th scope="col">Nhóm hàng</th>
+                                                    <th scope="col">Nhãn</th>
+                                                    <th scope="col">Đang bán</th>
+                                                    <th scope="col">Vị trí</th>
+                                                    <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+<!--                                                <tr>
                                                     <th scope="row">1</th>
                                                     <td>Mark</td>
                                                     <td>Otto</td>
@@ -248,45 +264,8 @@
                                                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                                             data-target="#editModal">Edit</button>
                                                     </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
+                                                </tr>-->
+                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -402,7 +381,9 @@
     <!-- Custom scripts for all pages-->
     <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
     <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
-
+    
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/js/productList/productList.js" type="text/javascript"></script>
 </body>
 
 </html>
