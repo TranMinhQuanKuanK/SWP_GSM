@@ -5,6 +5,7 @@
  */
 package controllers.storeowner.statistics;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.statistic.ProductStatisticDAO;
+import models.statistic.StatisticErrorObj;
 import models.statistic.StatisticObj;
 
 /**
@@ -40,9 +42,10 @@ public class GetProductStatisticServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
 
         boolean foundErr = false;
+        StatisticErrorObj errors = new StatisticErrorObj();
         String dateFrom;// = request.getParameter("date-from").replace('T', ' ');
         String dateTo;// = request.getParameter("date-to").replace('T', ' ');
         String sortBy;// = request.getParameter("sort-by");
@@ -55,10 +58,12 @@ public class GetProductStatisticServlet extends HttpServlet {
             //1. Check error
             if (dateFrom.compareTo(dateTo) > 0) {
                 foundErr = true;
+                errors.setDateError("End date must be greater than start date");
             }
 
             if (foundErr) {
                 //2.1 Caching errors, forward to error page
+                request.setAttribute("PRODUCT_STATISTIC_ERROR", errors);
             } else {
                 //2.2 Call DAO
                 ProductStatisticDAO dao = new ProductStatisticDAO();
@@ -85,6 +90,11 @@ public class GetProductStatisticServlet extends HttpServlet {
                             + ", quantity: " + listElement.getQuantity()
                             + ", total amount: " + listElement.getTotal());
                 }
+                
+                Gson gson = new Gson();
+                String billJSONString = gson.toJson(bill);
+                out.print(billJSONString);
+                out.flush();
             }
         } catch (SQLException ex) {
             log("GetProductStatisticServlet _ SQL: " + ex.getMessage());
