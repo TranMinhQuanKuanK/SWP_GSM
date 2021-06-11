@@ -34,10 +34,15 @@ public class GetCustomerByPhoneServlet extends HttpServlet {
             HttpSession session = request.getSession();
             BillObj bill = (BillObj) session.getAttribute("BILL");
             if (cDTO != null) {
-                bill.setCustomer_dto(cDTO);
-                bill.setPhone_no(cDTO.getPhone_no());
+                if (bill == null) {
+                    session.setAttribute("BILL", new BillObj());
+                } else {
+                    bill.setCustomer_dto(cDTO);
+                    bill.setPhone_no(cDTO.getPhone_no());
+                     session.setAttribute("BILL", bill);
+                }
             }
-            session.setAttribute("BILL", bill);
+           
 
             Gson gson = new Gson();
             String customerJSONString = gson.toJson(cDTO);

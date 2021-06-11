@@ -1,71 +1,110 @@
 * {
-    font-family: 'Nunito', sans-serif;
-}
-
-li {
-    width: 100%;
+  font-family: "Nunito", sans-serif;
 }
 
 h5 {
-    margin: auto 0;
+  margin: auto 0;
 }
 
-span {
-    margin: auto 0;
+a,
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #000;
+}
+/* =======================
+        LAYOUT
+    ====================
+ */
+
+.heading {
+  padding: 1vmin;
 }
 
-.search-product-bar {
-    max-width: 31%;
+.content-title {
+  height: 70px;
 }
 
-.product-width {
-    min-width: 500px;
+.content-title th {
+  background-color: #fff;
+  position: sticky;
+  top: 0;
 }
 
-.scroll-list {
-    overflow: auto;
-    max-height: 90%;
+/* TABLE CATEGORY LIST */
+
+#category-list td:hover,
+td:focus {
+  cursor: pointer;
 }
 
-.body-height {
-    height: 94vh;
+.table-category-list {
+  min-width: 110px;
 }
 
-.bill {
-    height: 70%;
+/* TABLE PRODUCT LIST */
+th.product-list-name {
+  width: 59%;
 }
 
-.product-info-button {
-    margin: auto 0;
+th.product-list-price {
+  width: 40%;
 }
 
+th.product-list-info {
+  width: 10%;
+}
+
+.table-product-list {
+  min-width: 500px;
+}
+
+.product-info {
+  min-width: 500px;
+  min-height: 150px;
+}
 
 /* TABLE BILL */
 
-th.number {
-    width: 5%;
+th.bill-number {
+  width: 5%;
 }
 
-th.name {
-    width: 40%;
+th.bill-name {
+  width: 35%;
 }
 
-th.price {
-    width: 15%;
+th.bill-price {
+  width: 15%;
 }
 
-th.quantity {
-    width: 15%;
+th.bill-quantity {
+  width: 15%;
 }
 
-td>input {
-    max-width: 70px;
+.table-bill input {
+  max-width: 50px;
 }
 
-th.remove {
-    width: 10%;
+th.bill-remove {
+  width: 10%;
 }
 
-th.total-price {
-    width: 15%;
+th.bill-total-price {
+  width: 20%;
+}
+
+/* TABLE CHECKOUT */
+
+.table-checkout input {
+  max-width: 100px;
+}
+
+.table-checkout td:first-child {
+  width: 65%;
+}
+
+/* Custom colors for product list */
+.product-low-quantity {
+  background: #d12721e3 !important;
 }

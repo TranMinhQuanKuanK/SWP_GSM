@@ -25,6 +25,7 @@ public class BillObj implements Serializable {
     private int cash;
     boolean use_point; //thêm
     CustomerDTO customer_dto; //thêm
+    BillErrObj err_obj;//thêm 10/6
 
     public BillObj() {
         this.Bill_Detail = new ArrayList<>();
@@ -36,7 +37,17 @@ public class BillObj implements Serializable {
         this.cash = 0;
         this.use_point = false;
         this.customer_dto = null;
+        this.err_obj = new BillErrObj();
     }
+
+    public BillErrObj getErr_obj() {
+        return err_obj;
+    }
+
+    public void setErr_obj(BillErrObj err_obj) {
+        this.err_obj = err_obj;
+    }
+    
 
     public CustomerDTO getCustomer_dto() {
         return customer_dto;

@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.sessionBill.BillErrObj;
 import models.sessionBill.BillItemObject;
 import models.sessionBill.BillObj;
 
@@ -43,20 +44,23 @@ public class RemoveProductFromBillServlet extends HttpServlet {
             BillObj bill = (BillObj) session.getAttribute("BILL");
             ArrayList<BillItemObject> details = bill.getBill_Detail();
             System.out.println("Toi den RemoveProductFromBillServlet va chuan bi remove" + product_id);
-
+            //lấy vị trí
             int result = -1;
             for (int i = 0; i < details.size(); i++) {
                 if (details.get(i).getProduct().getProduct_ID() == product_id) {
                     result = i;
                 }
             }
+            //xóa
             if (result >= 0) {
                 BillItemObject selected_for_remove_Product = details.get(result);
                 int price_lost = selected_for_remove_Product.getProduct().getSelling_price()
-                        *selected_for_remove_Product.getQuantity();
+                        * selected_for_remove_Product.getQuantity();
                 details.remove(result);
                 bill.setTotal_cost(bill.getTotal_cost() - price_lost);
                 bill.setBill_Detail(details);
+                //set lại lỗi
+                bill.setErr_obj(new BillErrObj());
                 session.setAttribute("BILL", bill);
             } else {
                 log("Invalid product_id");
