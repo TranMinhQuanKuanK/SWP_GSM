@@ -114,54 +114,56 @@ public class AuthAndDispatcherFilter implements Filter {
 
         Throwable problem = null;
         try {
-            // nếu là những trang trong list bình thường thì gửi đi, nếu trong
-            // list của user thì gửi qua filter user, nếu không thì gửi qua filter
-            // admin, nếu không nữa thì gửi về trang oops
+
             ServletContext context = request.getServletContext();
             HttpServletRequest rq = (HttpServletRequest) request;
             Integer userType = (Integer) rq.getSession().getAttribute("LOGIN_STATUS");
-            System.out.println("Loai cua may hien la: " + userType);
+            System.out.println("User are currently: " + userType);
             String uri = rq.getRequestURI();
-        
+            boolean isAllowed = false;
             String resource = uri.substring(uri.lastIndexOf("/") + 1);
-            System.out.println("resource dang la: "+resource);
+            System.out.println("Resource name: " + resource);
             String convertedURI = ERROR_PAGE;
 
-            if (uri.contains(".")) { 
+            if (uri.contains(".")) {
                 String fileType = uri.substring(uri.lastIndexOf(".") + 1);
                 if (fileType.equals("css")
                         || fileType.equals("js")
                         || fileType.equals("png")
                         || fileType.equals("jpeg")
-                        || fileType.equals("jpg")) {
+                        || fileType.equals("jpg")
+                        || fileType.equals("ico")
+                        || fileType.equals("ttf")
+                        || fileType.equals("woff")
+                        || fileType.equals("woff2")
+                        || fileType.equals("map")
+                        || fileType.equals("scss")) {
                     chain.doFilter(request, response);
-                }
-            } 
-            if (userType == null) {
-                if (resource.equals("LoginServlet") || resource.equals("Login.html")) {
-                    convertedURI = resource;
-                } else {
-                    convertedURI = LOGIN_PAGE;
-                }
-            } else if (userType == 1) {
-                HashMap<String, String> storeownerSites = (HashMap<String, String>) 
-                        context.getAttribute("StoreownerSitemap");
-                System.out.println("???");
-                System.out.println("resource vo đay bien thanh:ss "+ storeownerSites.get(resource));
-                if (storeownerSites.containsKey(resource)) {
-                    convertedURI = storeownerSites.get(resource);
-                } 
-                    
-            } else if (userType == 2) {
-                HashMap<String, String> cashierSites = (HashMap<String, String>) 
-                        context.getAttribute("CashierSitemap");
-                if (cashierSites.containsKey(resource)) {
-                    convertedURI = cashierSites.get(resource);
+                    isAllowed = true;
                 }
             }
-            RequestDispatcher rd = rq.getRequestDispatcher(convertedURI);
-            rd.forward(request, response);
-
+            if (!isAllowed) {
+                if (userType == null) {
+                    if (resource.equals("LoginServlet") || resource.equals("Login.html")) {
+                        convertedURI = resource;
+                    } else {
+                        convertedURI = LOGIN_PAGE;
+                    }
+                } else if (userType == 1) {
+                    HashMap<String, String> storeownerSites = (HashMap<String, String>) context.getAttribute("StoreownerSitemap");
+                    System.out.println("Resource sau khi bien doi: " + storeownerSites.get(resource));
+                    if (storeownerSites.containsKey(resource)) {
+                        convertedURI = storeownerSites.get(resource);
+                    }
+                } else if (userType == 2) {
+                    HashMap<String, String> cashierSites = (HashMap<String, String>) context.getAttribute("CashierSitemap");
+                    if (cashierSites.containsKey(resource)) {
+                        convertedURI = cashierSites.get(resource);
+                    }
+                }
+                RequestDispatcher rd = rq.getRequestDispatcher(convertedURI);
+                rd.forward(request, response);
+            }
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,
             // we still want to execute our after processing, and then
