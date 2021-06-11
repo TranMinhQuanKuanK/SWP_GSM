@@ -3,26 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.cashier.dashboard;
+package controllers.common;
 
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.sessionBill.BillErrObj;
-import models.sessionBill.BillObj;
+import models.product.ProductDAO;
+import models.product.ProductDTO;
 
 /**
  *
- * @author Tran Minh Quan
+ * @author quan6
  */
-@WebServlet(name = "ToggleDiscountServlet", urlPatterns = {"/ToggleDiscountServlet"})
-public class ToggleDiscountServlet extends HttpServlet {
+@WebServlet(name = "GetProductListForCashierServlet", urlPatterns = {"/GetProductListForCashierServlet"})
+public class GetProductListForCashierServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,19 +38,29 @@ public class ToggleDiscountServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            BillObj bill = (BillObj) session.getAttribute("BILL"); 
-            boolean use_point = request.getParameter("use_point").equals("true");
-            bill.setUse_point(use_point);
-            
-            bill.setErr_obj(new BillErrObj());
-            session.setAttribute("BILL", bill);
-            
+         try (PrintWriter out = response.getWriter()) {
+            Integer category_id;
+            if (request.getParameter("category_id") == null) {
+                category_id = null;
+            } else {
+                category_id = Integer.parseInt(request.getParameter("category_id"));
+            }
+            String search_value = request.getParameter("search_value");
+            System.out.println("Dang tim kiem "+search_value);
+            boolean only_noos_items = (request.getParameter("only_noos_items") != null);
+
+            ProductDAO pDAO = new ProductDAO();
+            ArrayList<ProductDTO> productList
+                    = pDAO.GetProductListForCashier(category_id, search_value, only_noos_items);
+           
             Gson gson = new Gson();
-            String billJSONString = gson.toJson(bill);
-            out.print(billJSONString);
+            String productJSONString = gson.toJson(productList);
+            out.print(productJSONString);
             out.flush();
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 

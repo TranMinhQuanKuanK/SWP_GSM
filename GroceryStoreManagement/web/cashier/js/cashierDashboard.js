@@ -63,7 +63,10 @@ function createHTMLForEachProduct(product) {
     "onclick",
     "AddProductToBill(" + product.product_ID + ")"
   );
+  td_el_name.setAttribute("style", "cursor:pointer;");
+
   td_el_price.setAttribute("class", "product-detail align-middle");
+  td_el_price.setAttribute("style", "cursor:pointer;");
   td_el_price.setAttribute(
     "onclick",
     "AddProductToBill(" + product.product_ID + ")"
@@ -234,7 +237,71 @@ function printBill(billObject) {
   renderCustomer();
 
   //thông báo lỗi
-  if (currentBill.err_obj.hasError) display_Bill_ErrorMessage();
+  if (currentBill.err_obj.hasError == true) display_Bill_ErrorMessage();
+}
+
+function printPreviewBill(billObject) {
+  //in tên và điểm
+  document.getElementById(
+    "bill-preview-customer-name"
+  ).innerHTML = document.getElementById("customer-name").innerHTML;
+
+  document.getElementById(
+    "bill-preview-customer-point"
+  ).innerHTML = document.getElementById("point-of-customer").innerHTML;
+  //in bảng bill
+  document.getElementById("bill-preview-area").innerHTML = "";
+  for (i = 0; i < billObject.Bill_Detail.length; i++) {
+    var detail = billObject.Bill_Detail[i];
+    var tr = document.createElement("tr");
+
+    var th_index = document.createElement("th");
+    th_index.setAttribute("scope", "row");
+    th_index.innerHTML = i + 1;
+
+    var td_name = document.createElement("td");
+    td_name.innerHTML = detail.product.name;
+
+    var td_selling_price = document.createElement("td");
+    td_selling_price.setAttribute("class", "text-right");
+    td_selling_price.innerHTML = formatNumber(detail.product.selling_price);
+
+    var td_quantity = document.createElement("td");
+    td_quantity.setAttribute("class", "text-right");
+    td_quantity.innerHTML = detail.quantity;
+
+    var td_total = document.createElement("td");
+    td_total.setAttribute("class", "text-right");
+    td_total.innerHTML = formatNumber(
+      detail.quantity * detail.product.selling_price
+    );
+
+    tr.appendChild(th_index);
+    tr.appendChild(td_name);
+    tr.appendChild(td_selling_price);
+    tr.appendChild(td_quantity);
+    tr.appendChild(td_total);
+
+    document.getElementById("bill-preview-area").appendChild(tr);
+  }
+  //in phần thành tiền/giảm giá/tổng tiền/khách đưa:
+  document.getElementById(
+    "bill-preview-total"
+  ).innerHTML = document.getElementById("total").innerHTML;
+
+  document.getElementById(
+    "bill-preview-discount"
+  ).innerHTML = document.getElementById("discount").innerHTML;
+
+  document.getElementById(
+    "bill-preview-total-after-discount"
+  ).innerHTML = document.getElementById("total-after-discount").innerHTML;
+
+  document.getElementById("bill-preview-cash").innerHTML =
+    document.getElementById("cash").value == ""
+      ? "...Chưa nhập..."
+      : formatNumber(document.getElementById("cash").value);
+  $("#bill-preview-modal").modal("show");
 }
 function display_Bill_ErrorMessage() {
   errorObj = currentBill.err_obj;
@@ -246,7 +313,7 @@ function display_Bill_ErrorMessage() {
     document.getElementById("bill-error-element").appendChild(li);
   }
   $("#bill-error-modal").modal("show");
-  currentBill.err_obj = null;
+  currentBill.err_obj.hasError = false;
 }
 //KuanK - search and render product results
 function SearchProduct() {
@@ -390,19 +457,23 @@ function RemoveProductFromBill(product_ID) {
 
 function usePointToggle() {
   //set use_point state
-  var use_point;
-  if (document.getElementById("discount-checkbox").checked == true) {
-    use_point = "true";
-  } else use_point = "false";
+  var customer_dto = currentBill.customer_dto;
+  if (customer_dto != null) {
+    var use_point;
+    if (document.getElementById("discount-checkbox").checked == true) {
+      use_point = "true";
+    } else use_point = "false";
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "ToggleDiscount?use_point=" + use_point, true);
-  xhttp.onload = function () {
-    console.log(this.responseText); //debug
-    currentBill = JSON.parse(this.responseText);
-    printBill(currentBill);
-  };
-  xhttp.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "ToggleDiscount?use_point=" + use_point, true);
+    xhttp.onload = function () {
+      console.log(this.responseText); //debug
+      currentBill = JSON.parse(this.responseText);
+
+      printBill(currentBill);
+    };
+    xhttp.send();
+  }
 }
 
 function calculateDiscount() {
@@ -434,6 +505,56 @@ function EditQuantityBill(product_id) {
 
 function formatNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+function passwordChange() {
+  function clearAllError() {
+    document.getElementById("current-password-error").innerHTML = "";
+    document.getElementById("new-password-error").innerHTML = "";
+    document.getElementById("confirm-password-error").innerHTML = "";
+  }
+  function clearAllInput() {
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmNewPassword").value = "";
+  }
+  var currentPassword = document.getElementById("currentPassword").value;
+  var newPassword = document.getElementById("newPassword").value;
+  var confirmNewPassword = document.getElementById("confirmNewPassword").value;
+  if (confirmNewPassword != newPassword) {
+    document.getElementById("current-password-error").innerHTML = "";
+    document.getElementById("new-password-error").innerHTML = "";
+    document.getElementById("confirm-password-error").innerHTML =
+      "Mật khẩu xác nhận không trùng khớp";
+  } else {
+    //gửi request về nhận về object lỗi
+    var xhttp = new XMLHttpRequest();
+    var accountErrObj;
+    content =
+      "currentPassword=" +
+      encodeURIComponent(document.getElementById("currentPassword").value) +
+      "&newPassword=" +
+      encodeURIComponent(document.getElementById("newPassword").value);
+
+    xhttp.open("POST", "ChangePasswordCashier", true);
+    xhttp.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded;charset=UTF-8"
+    );
+    xhttp.onload = function () {
+      accountErrObj = JSON.parse(this.responseText);
+    };
+    xhttp.send(content);
+    // xem in ra lỗi hay đóng modal
+    if (accountErrObj.hasError == true) {
+      clearAllError();
+      console.log(accountErrObj); //debug
+    } else {
+      //đóng modal
+      clearAllError();
+      clearAllInput();
+      $("#changePassword").modal("hide");
+    }
+  }
 }
 // KuanK's function
 function pageLoadKuanK() {
@@ -558,7 +679,7 @@ function DisplayPagination() {
 
 //SetupPagination(productList, pagination_element, rows_per_page);
 
-/* 
+/*
     MAKE EACH ROW OF TABLE CATEGORY ACTIVE
 */
 

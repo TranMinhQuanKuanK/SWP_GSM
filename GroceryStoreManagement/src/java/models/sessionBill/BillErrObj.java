@@ -23,6 +23,7 @@ public class BillErrObj implements Serializable {
 
     public void appendError(String error) {
         this.error_list.add(error);
+        this.hasError = true;
     }
     public boolean isHasError() {
         return hasError;

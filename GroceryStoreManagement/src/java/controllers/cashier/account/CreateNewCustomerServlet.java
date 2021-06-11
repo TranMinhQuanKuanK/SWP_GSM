@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.cashier.dashboard;
+package controllers.cashier.account;
 
-import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,16 +12,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.sessionBill.BillErrObj;
-import models.sessionBill.BillObj;
 
 /**
  *
- * @author Tran Minh Quan
+ * @author quan6
  */
-@WebServlet(name = "ToggleDiscountServlet", urlPatterns = {"/ToggleDiscountServlet"})
-public class ToggleDiscountServlet extends HttpServlet {
+@WebServlet(name = "CreateNewCustomerServlet", urlPatterns = {"/CreateNewCustomerServlet"})
+public class CreateNewCustomerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,20 +31,18 @@ public class ToggleDiscountServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            BillObj bill = (BillObj) session.getAttribute("BILL"); 
-            boolean use_point = request.getParameter("use_point").equals("true");
-            bill.setUse_point(use_point);
-            
-            bill.setErr_obj(new BillErrObj());
-            session.setAttribute("BILL", bill);
-            
-            Gson gson = new Gson();
-            String billJSONString = gson.toJson(bill);
-            out.print(billJSONString);
-            out.flush();
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet CreateNewCustomerServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet CreateNewCustomerServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

@@ -3,26 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.cashier.dashboard;
+package controllers.cashier.account;
 
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.sessionBill.BillErrObj;
-import models.sessionBill.BillObj;
+import models.account.AccountDAO;
+import models.account.AccountDTO;
+import models.account.AccountErrObj;
 
 /**
  *
- * @author Tran Minh Quan
+ * @author quan6
  */
-@WebServlet(name = "ToggleDiscountServlet", urlPatterns = {"/ToggleDiscountServlet"})
-public class ToggleDiscountServlet extends HttpServlet {
+@WebServlet(name = "ChangePasswordCashierServlet", urlPatterns = {"/ChangePasswordCashierServlet"})
+public class ChangePasswordCashierServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,20 +37,39 @@ public class ToggleDiscountServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("application/json;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            BillObj bill = (BillObj) session.getAttribute("BILL"); 
-            boolean use_point = request.getParameter("use_point").equals("true");
-            bill.setUse_point(use_point);
-            
-            bill.setErr_obj(new BillErrObj());
-            session.setAttribute("BILL", bill);
-            
-            Gson gson = new Gson();
-            String billJSONString = gson.toJson(bill);
-            out.print(billJSONString);
-            out.flush();
+            String currentPassword = request.getParameter("currentPassword");
+            String newPassword = request.getParameter("newPassword");
+            String username = (String) request.getSession().getAttribute("USERNAME");
+            AccountErrObj accError = new AccountErrObj();
+            if (username != null) {
+                AccountDAO aDAO = new AccountDAO();
+                AccountDTO aDTO = aDAO.CheckLogin(username, currentPassword);
+                if (aDTO == null) {
+                    //thông báo mật khẩu không đúng
+                    accError.setCurrentPasswordError("Mật khẩu hiện tại không đúng");
+                    accError.setHasError(true);
+
+                } else {
+                    //kiểm tra password mới 6 kí tự 
+                    if (newPassword.length() < 6) {
+                        accError.setNewPasswordError("Mật khẩu mới phải từ 6 kí tự trở lến");
+                        accError.setHasError(true);
+                    } else {
+                        aDAO.ChangePassword(username, newPassword);
+                    }
+                }
+                Gson gson = new Gson();
+                String billJSONString = gson.toJson(accError);
+                out.print(billJSONString);
+                out.flush();
+            }
+
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 
