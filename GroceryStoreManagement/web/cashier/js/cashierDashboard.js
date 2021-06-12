@@ -6,6 +6,8 @@ var productList = null; //story list ProductDTO
 var currentBill; //store current billObj
 const productList_element = document.getElementById("product-list"); //biến của thành
 const pagination_element = document.getElementById("page-selection");
+var accountErrObj;
+var customerErrObj;
 
 function SearchForProduct(id) {
   for (i = 0; i < productList.length; i++) {
@@ -131,6 +133,8 @@ function getCashierName() {
   xhttp.onload = function () {
     document.getElementById("cashier-name").innerHTML += this.responseText;
   };
+
+  //gửi request
   xhttp.send();
 }
 
@@ -506,6 +510,7 @@ function EditQuantityBill(product_id) {
 function formatNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
 function passwordChange() {
   function clearAllError() {
     document.getElementById("current-password-error").innerHTML = "";
@@ -517,45 +522,121 @@ function passwordChange() {
     document.getElementById("newPassword").value = "";
     document.getElementById("confirmNewPassword").value = "";
   }
+  clearAllError();
+
   var currentPassword = document.getElementById("currentPassword").value;
   var newPassword = document.getElementById("newPassword").value;
   var confirmNewPassword = document.getElementById("confirmNewPassword").value;
-  if (confirmNewPassword != newPassword) {
-    document.getElementById("current-password-error").innerHTML = "";
-    document.getElementById("new-password-error").innerHTML = "";
-    document.getElementById("confirm-password-error").innerHTML =
-      "Mật khẩu xác nhận không trùng khớp";
-  } else {
-    //gửi request về nhận về object lỗi
-    var xhttp = new XMLHttpRequest();
-    var accountErrObj;
-    content =
-      "currentPassword=" +
-      encodeURIComponent(document.getElementById("currentPassword").value) +
-      "&newPassword=" +
-      encodeURIComponent(document.getElementById("newPassword").value);
+  if (currentPassword.length > 1) {
+    if (confirmNewPassword != newPassword) {
+      document.getElementById("confirm-password-error").innerHTML =
+        "Mật khẩu xác nhận không trùng khớp";
+    } else {
+      //gửi request về nhận về object lỗi
+      var xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", "ChangePasswordCashier", true);
+      content =
+        "currentPassword=" +
+        encodeURIComponent(document.getElementById("currentPassword").value) +
+        "&newPassword=" +
+        encodeURIComponent(document.getElementById("newPassword").value);
+
+      xhttp.open("POST", "ChangePasswordCashier", true);
+      xhttp.setRequestHeader(
+        "Content-Type",
+        "application/x-www-form-urlencoded;charset=UTF-8"
+      );
+      xhttp.onload = function () {
+        accountErrObj = JSON.parse(this.responseText);
+        processError();
+      };
+      xhttp.send(content);
+      console.log(accountErrObj); //debug
+      // xem in ra lỗi hay đóng modal
+      function processError() {
+        if (accountErrObj.hasError == true) {
+          clearAllError();
+          if (accountErrObj.currentPasswordError.length > 2) {
+            document.getElementById("current-password-error").innerHTML =
+              accountErrObj.currentPasswordError;
+          }
+          if (accountErrObj.newPasswordError.length > 2) {
+            document.getElementById("new-password-error").innerHTML =
+              accountErrObj.newPasswordError;
+          }
+        } else {
+          //đóng modal
+          clearAllError();
+          clearAllInput();
+          $("#changePassword").modal("hide");
+        }
+      }
+    }
+  }
+}
+
+function RegisterCustomer() {
+  function clearAllError() {
+    document.getElementById("customer-name-error").innerHTML = "";
+    document.getElementById("phone-no-error").innerHTML = "";
+  }
+  function clearAllInput() {
+    document.getElementById("customerName").value = "";
+    document.getElementById("customerPhoneNo").value = "";
+  }
+  var customerName = document.getElementById("customerName").value;
+  var customerPhoneNo = document.getElementById("customerPhoneNo").value;
+  if (customerName.length == 0) {
+    document.getElementById("customer-name-error").innerHTML =
+      "Tên không được bỏ trống";
+  } else {
+    var xhttp = new XMLHttpRequest();
+
+    content =
+      "phone_no=" +
+      encodeURIComponent(customerPhoneNo) +
+      "&name=" +
+      encodeURIComponent(customerName);
+
+    xhttp.open("POST", "CreateNewCustomer", true);
     xhttp.setRequestHeader(
       "Content-Type",
       "application/x-www-form-urlencoded;charset=UTF-8"
     );
     xhttp.onload = function () {
-      accountErrObj = JSON.parse(this.responseText);
+      customerErrObj = JSON.parse(this.responseText);
+      processError();
     };
     xhttp.send(content);
-    // xem in ra lỗi hay đóng modal
-    if (accountErrObj.hasError == true) {
-      clearAllError();
-      console.log(accountErrObj); //debug
-    } else {
-      //đóng modal
-      clearAllError();
-      clearAllInput();
-      $("#changePassword").modal("hide");
+    function processError() {
+      if (customerErrObj.has_Error == true) {
+        clearAllError();
+        if (customerErrObj.phone_noError.length > 2) {
+          document.getElementById("phone-no-error").innerHTML =
+            customerErrObj.phone_noError;
+        }
+      } else {
+        //đóng modal
+        clearAllError();
+        clearAllInput();
+        $("#registerCustomer").modal("hide");
+      }
     }
   }
 }
+
+function Checkout() {
+  var cash = document.getElementById("cash").value;
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.open("GET", "Checkout?cash=" + cash, true);
+  xhttp.onload = function () {
+    customerErrObj = JSON.parse(this.responseText);
+    processError();
+  };
+  xhttp.send();
+}
+
 // KuanK's function
 function pageLoadKuanK() {
   getCashierName();

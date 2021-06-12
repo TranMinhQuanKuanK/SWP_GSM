@@ -94,7 +94,7 @@ public class ProductDAO implements Serializable {
         return null;
     }
 
-        public ArrayList<ProductDTO> GetProductListForCashier(Integer category_id,
+    public ArrayList<ProductDTO> GetProductListForCashier(Integer category_id,
             String search_value, boolean only_noos_items)
             throws SQLException, NamingException {
 
@@ -162,7 +162,7 @@ public class ProductDAO implements Serializable {
 
         return null;
     }
-    
+
     //chưa test
     public ProductDTO GetProductByID(int id)
             throws SQLException, NamingException {
@@ -182,7 +182,7 @@ public class ProductDAO implements Serializable {
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, id);
                 rs = stm.executeQuery();
-   
+
                 if (rs.next()) {
                     int product_ID = rs.getInt("product_ID");
                     String name = rs.getString("name");
@@ -203,7 +203,7 @@ public class ProductDAO implements Serializable {
                             unit_label, is_selling, location);
                     return pDTO;
                 }
-              
+
             }
 
         } finally {
@@ -219,5 +219,57 @@ public class ProductDAO implements Serializable {
         }
 
         return null;
+    }
+    
+    //thêm số lượng vào db, trả vè true nếu món đó dưới ngưỡng, false nếu ko
+    public boolean AddQuantityToProduct(int ProductID, int quantity) throws SQLException, NamingException  {
+           Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+                Integer currentQuantity = 0;
+                Integer lower_threshold = 0;
+
+                String sql = "SELECT quantity "
+                        + " FROM product WHERE product_ID = ?";
+
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, ProductID);
+                rs = stm.executeQuery();
+
+                
+                if (rs.next()) {
+                    currentQuantity = rs.getInt("quantity");
+                    lower_threshold = rs.getInt("lower_threshold");              
+                }
+                 sql = "UPDATE product "
+                        + "SET quantity = ?"
+                        + " WHERE product_ID = ? ";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, currentQuantity + quantity);
+                stm.setInt(2, ProductID);
+                int rowAffect = stm.executeUpdate();
+                //return
+                if (currentQuantity+quantity <= lower_threshold ) {
+                    return true;
+                } else return false;
+
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return false;
     }
 }

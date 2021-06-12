@@ -37,7 +37,7 @@ public class ChangePasswordCashierServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String currentPassword = request.getParameter("currentPassword");
             String newPassword = request.getParameter("newPassword");
@@ -56,13 +56,16 @@ public class ChangePasswordCashierServlet extends HttpServlet {
                     if (newPassword.length() < 6) {
                         accError.setNewPasswordError("Mật khẩu mới phải từ 6 kí tự trở lến");
                         accError.setHasError(true);
+                    } else if (newPassword.equals(currentPassword)) {
+                        accError.setNewPasswordError("Mật khẩu mới phải khác mật khẩu cũ");
+                        accError.setHasError(true);
                     } else {
                         aDAO.ChangePassword(username, newPassword);
                     }
                 }
                 Gson gson = new Gson();
-                String billJSONString = gson.toJson(accError);
-                out.print(billJSONString);
+                String JSONString = gson.toJson(accError);
+                out.print(JSONString);
                 out.flush();
             }
 

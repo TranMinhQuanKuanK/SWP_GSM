@@ -13,3 +13,5 @@ RemoveProductFromBill = RemoveProductFromBillServlet
 ToggleDiscount = ToggleDiscountServlet
 EditQuantityBill = EditQuantityBillServlet
 ChangePasswordCashier = ChangePasswordCashierServlet
+CreateNewCustomer = CreateNewCustomerServlet
+Checkout = CheckoutServlet

@@ -5,13 +5,19 @@
  */
 package controllers.cashier.account;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.customer.CustomerDAO;
+import models.customer.CustomerDTO;
+import models.customer.CustomerErrObj;
 
 /**
  *
@@ -31,18 +37,33 @@ public class CreateNewCustomerServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CreateNewCustomerServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CreateNewCustomerServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String phone_no = request.getParameter("phone_no");
+            String name = request.getParameter("name");
+            CustomerErrObj err_obj = new CustomerErrObj();
+            if (phone_no.matches("[0-9]+") == false) {
+                err_obj.setHas_Error(true);
+                err_obj.setPhone_noError("Số điện thoại không được chứa kí tự đặc biệt");
+            } else {
+                CustomerDAO cDAO = new CustomerDAO();
+                CustomerDTO cDTO = cDAO.GetCustomerByPhone(phone_no);
+
+                if (cDTO == null) {
+                    cDAO.CreateNewCustomer(phone_no, name);
+                } else {
+                    err_obj.setHas_Error(true);
+                    err_obj.setPhone_noError("Số điện thoại đã tồn tại!");
+                }
+            }
+            Gson gson = new Gson();
+            String JSONString = gson.toJson(err_obj);
+            out.print(JSONString);
+            out.flush();
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 
