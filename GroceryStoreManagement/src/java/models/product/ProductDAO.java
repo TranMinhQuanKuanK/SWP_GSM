@@ -232,7 +232,7 @@ public class ProductDAO implements Serializable {
                 Integer currentQuantity = 0;
                 Integer lower_threshold = 0;
 
-                String sql = "SELECT quantity "
+                String sql = "SELECT quantity, lower_threshold "
                         + " FROM product WHERE product_ID = ?";
 
                 stm = con.prepareStatement(sql);

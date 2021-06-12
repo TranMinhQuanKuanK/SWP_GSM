@@ -97,8 +97,11 @@ function createHTMLForEachProduct(product) {
     '                                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />\n' +
     "                                        </svg>";
 
-  if (product.quantity <= product.lower_threshold) {
-    tr_el.setAttribute("class", "product-low-quantity text-white");
+  if (product.quantity <= product.lower_threshold && product.quantity > 0) {
+    tr_el.setAttribute("class", "product-low-quantity text-black");
+    btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
+  } else if (product.quantity == 0) {
+    tr_el.setAttribute("class", "product-out-of-stock text-white");
     btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
   }
 

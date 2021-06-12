@@ -5,6 +5,7 @@
  */
 package controllers.cashier.dashboard;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,7 +18,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.customer.CustomerDAO;
 import models.customer.CustomerDTO;
+import models.pendingItem.PendingItemDAO;
+import models.pendingItem.PendingItemDTO;
+import models.product.ProductDAO;
 import models.sessionBill.BillDAO;
 import models.sessionBill.BillItemObject;
 import models.sessionBill.BillObj;
@@ -65,10 +70,10 @@ public class CheckoutServlet extends HttpServlet {
             Integer profit = 0;
             for (BillItemObject detail : Bill_Detail) {
                 System.out.println("Món :" + detail.getProduct().getName() + " có gia ban: " + detail.getProduct().getSelling_price() + " va gia goc: " + detail.getProduct().getCost_price());
-                profit += (detail.getProduct().getSelling_price() - detail.getProduct().getCost_price())*detail.getQuantity();
+                profit += (detail.getProduct().getSelling_price() - detail.getProduct().getCost_price()) * detail.getQuantity();
             }
             profit -= point_used * 1000;
-            
+
             System.out.println("---------------------------");
             System.out.println("Bill detail: cashier:" + cashier_username);
             System.out.println("phone no: " + phone_no);
@@ -77,16 +82,56 @@ public class CheckoutServlet extends HttpServlet {
             System.out.println("cash: " + cash);
             System.out.println("profit: " + profit);
             System.out.println("point_used: " + point_used);
+            System.out.println("---------------------------");
             
-//            BillDAO bDAO = new BillDAO();
-//            Integer Bill_ID = bDAO.CreateBill(phone_no, buy_date, cashier_username, total_cost, point_used, cash, profit);
-//            for (BillItemObject detail : Bill_Detail) {
-//                Integer product_id = detail.getProduct().getProduct_ID();
-//                Integer quantity = detail.getQuantity();
-//                Integer cost = detail.getProduct().getSelling_price();
-//                Integer total = cost * quantity;
-//                bDAO.CreateBillDetail(Bill_ID, product_id, quantity, cost, total);
-//            }
+               
+            BillDAO bDAO = new BillDAO();
+            //ghi bill xuống database
+            Integer Bill_ID = bDAO.CreateBill(phone_no, buy_date,
+                    cashier_username, total_cost, point_used, cash, profit);
+           PendingItemDAO ppDAO = new PendingItemDAO();
+            ArrayList<PendingItemDTO> pendingList = ppDAO.GetPendingList();
+            ProductDAO pDAO = new ProductDAO();
+           
+            CustomerDAO cDAO = new CustomerDAO();
+            cDAO.AddPointCustomer(phone_no, 
+                    (int) Math.floor(total_cost/20000) - point_used);
+            
+            for (BillItemObject detail : Bill_Detail) {
+                
+                Integer product_id = detail.getProduct().getProduct_ID();
+                Integer quantity = detail.getQuantity();
+                Integer cost = detail.getProduct().getSelling_price();
+                Integer total = cost * quantity;
+                 //ghi bill detail xuống db
+                bDAO.CreateBillDetail(Bill_ID, product_id, quantity, cost, total);
+                
+                //tìm xem đã có trong danh sách pending chưa
+                boolean is_lower_than_threshold = pDAO.AddQuantityToProduct(product_id, (-1)*quantity );
+                boolean already_in_pending = false;
+                if (is_lower_than_threshold) {
+                    for (int i = 0; i < pendingList.size(); i++) {
+                        if (pendingList.get(i).getProduct_ID().equals(product_id)) {
+                            already_in_pending = true;
+                        }
+                    }
+                }
+                //ghi vào pending
+                if (already_in_pending == false) { 
+                    PendingItemDAO pendingDAO = new PendingItemDAO();
+                    pendingDAO.CreatePendingList(product_id, buy_date, "Hết hàng - được thêm tự động");                
+                }
+            }
+            request.getSession().setAttribute("BILL",null);
+            
+            Gson gson = new Gson();
+            String billJSONString = gson.toJson(null);
+            out.print(billJSONString);
+            out.flush();
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
 //        catch (SQLException e) {
 //            log("SQLException " + e.getMessage());

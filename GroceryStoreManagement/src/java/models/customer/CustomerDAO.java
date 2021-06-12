@@ -109,15 +109,20 @@ public class CustomerDAO implements Serializable {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, phone_no);
                 rs = stm.executeQuery();
+                System.out.println("sdt " + phone_no);
+                Integer current_point = 0;
+                if (rs.next()) {
+                    current_point = rs.getInt("point");
+                }
 
-                Integer current_point = rs.getInt(1);
-
+                System.out.println("WTF!!");
                 //--------------------------------
                 sql = "UPDATE customer "
                         + "SET point = ?"
                         + " WHERE phone_no = ? ";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, current_point + point);
+                stm.setString(2, phone_no);
                 int rowAffect = stm.executeUpdate();
                 if (rowAffect > 0) {
                     return true;

@@ -39,9 +39,10 @@ public class PendingItemDAO implements Serializable {
 
                 String sql = "SELECT pending_ID, product_ID, pending_date"
                         + ",is_resolved,note "
-                        + " FROM pending_product_noti WHERE is_resolved=false";
+                        + " FROM pending_product_noti WHERE is_resolved = ?";
 
                 stm = con.prepareStatement(sql);
+                stm.setBoolean(1, false);
                 rs = stm.executeQuery();
                 StringNormalizer norm = new StringNormalizer();
                 while (rs.next()) {
@@ -51,8 +52,7 @@ public class PendingItemDAO implements Serializable {
                     Timestamp pending_date = rs.getTimestamp("pending_date");
                     String note = rs.getString("note");
 
-
-                    PendingItemDTO pDTO = new PendingItemDTO(pending_ID, 
+                    PendingItemDTO pDTO = new PendingItemDTO(pending_ID,
                             product_ID, pending_date, false, note);
                     listPendingNoti.add(pDTO);
 
@@ -74,9 +74,9 @@ public class PendingItemDAO implements Serializable {
 
         return null;
     }
-    
-    public boolean CreatePendingList(Integer productID, Timestamp pending_date,String note)  throws SQLException, NamingException {
-         Connection con = null;
+
+    public boolean CreatePendingList(Integer productID, Timestamp pending_date, String note) throws SQLException, NamingException {
+        Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
@@ -92,7 +92,7 @@ public class PendingItemDAO implements Serializable {
                 stm.setTimestamp(2, pending_date);
                 stm.setBoolean(3, false);
                 stm.setString(4, note);
-                
+
                 int rowAffect = stm.executeUpdate();
                 if (rowAffect > 0) {
                     return true;
