@@ -38,11 +38,11 @@ public class ProductStatisticDAO {
 
             if (con != null) {
                 //2. Create SQL string
-                String sql = "SELECT product_ID, quantity, total "
-                        + "FROM customer_bill_detail JOIN customer_bill "
-                        + "ON customer_bill_detail.bill_ID = customer_bill.bill_ID "
+                String sql = "SELECT customer_bill_detail.product_ID, customer_bill_detail.quantity, total, product.name "
+                        + "FROM customer_bill_detail "
+                        + "JOIN customer_bill ON customer_bill_detail.bill_ID = customer_bill.bill_ID "
+                        + "JOIN product ON customer_bill_detail.product_ID = product.product_ID "
                         + "WHERE ? <= buy_date AND buy_date <= ?";
-
                 //3. Create statement and assign parameter value if any
                 stm = con.prepareStatement(sql);
                 stm.setString(1, dateFrom);
@@ -50,12 +50,12 @@ public class ProductStatisticDAO {
 
                 //4. Execute query
                 rs = stm.executeQuery();
-
                 //5. Process result
                 while (rs.next()) {
                     int productID = rs.getInt("product_ID");
                     int quantity = rs.getInt("quantity");
                     int total = rs.getInt("total");
+                    String productName = rs.getString("name");
 
                     if (this.productStatisticMap == null) {
                         this.productStatisticMap = new HashMap<>();
@@ -65,8 +65,8 @@ public class ProductStatisticDAO {
                         quantity += this.productStatisticMap.get(productID).getQuantity();
                         total += this.productStatisticMap.get(productID).getTotal();
                     }
-
-                    this.productStatisticMap.put(productID, new StatisticObj(productID, quantity, total));
+                    
+                    this.productStatisticMap.put(productID, new StatisticObj(productName, quantity, total));
                 }
             }
         } finally {

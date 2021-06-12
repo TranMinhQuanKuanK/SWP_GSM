@@ -16,8 +16,8 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-        <link href="css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
+        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
+        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
     </head>
 
     <body>
@@ -223,8 +223,7 @@
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Sort by: &nbsp;</h6>
                                             <div class="input-group mb-3 pt-1 col-5">
                                                 <select class="custom-select" id="sort-by">
-                                                    <option selected>None</option>
-                                                    <option value="1">Ascending order of quantity sold</option>
+                                                    <option value="1" selected>Ascending order of quantity sold</option>
                                                     <option value="2">Descending order of quantity sold</option>
                                                     <option value="3">Ascending order of total amount sold</option>
                                                     <option value="4">Descending order of total amount sold</option>
@@ -232,7 +231,7 @@
                                             </div>
                                             <input type="button" onclick="showProductStatistic()"
                                                    class="nav-item active align-items-center justify-content-center mt-2 mb-4"
-                                                   value="Hiển thị" />
+                                                   value="Hiển thị">
                                         </div>
                                     </div>
                                     <!-- Table Content -->
@@ -242,46 +241,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">First</th>
-                                                        <th scope="col">Last</th>
-                                                        <th scope="col">Handle</th>
+                                                        <th scope="col">Tên sản phẩm</th>
+                                                        <th scope="col">Số lượng đã bán</th>
+                                                        <th scope="col">Tổng doanh thu</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Huu</td>
-                                                        <td>Quoc</td>
-                                                        <td>@mash</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td colspan="2">Larry the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td colspan="2">Larry the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
+                                                <tbody id="product-stat-area">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -508,9 +473,9 @@
         <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
-        <script src="js/gsm-storeowner-1.js"></script>
-        <script src="js/gsm-storeowner-2.js"></script>
-        <script src="js/statistic-storeowner.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/statistic-storeowner.js"></script>
     </body>
 
 </html>

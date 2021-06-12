@@ -46,13 +46,12 @@ public class GetProductStatisticServlet extends HttpServlet {
 
         boolean foundErr = false;
         StatisticErrorObj errors = new StatisticErrorObj();
-        String dateFrom;// = request.getParameter("date-from").replace('T', ' ');
-        String dateTo;// = request.getParameter("date-to").replace('T', ' ');
-        String sortBy;// = request.getParameter("sort-by");
+        String dateFrom = request.getParameter("date-from").replace('T', ' ');
+        String dateTo = request.getParameter("date-to").replace('T', ' ');
+        String sortBy = request.getParameter("sort-by");
 
         dateFrom = "2012-06-09 00:00:00.000";
         dateTo = "2012-07-08 00:00:00.000";
-        sortBy = "Ascending order of total amount sold";
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
@@ -72,23 +71,17 @@ public class GetProductStatisticServlet extends HttpServlet {
                 Map<Integer, StatisticObj> resultMap = dao.getProductStatisticMap();
                 List<StatisticObj> resultList = new ArrayList<>(resultMap.values());
                 
-                if (sortBy.equals("Ascending order of quantity sold")) {
+                if (sortBy.equals("1")) { //Ascending order of quantity sold
                     Collections.sort(resultList, Comparator.comparing(StatisticObj::getQuantity));
                 }
-                if (sortBy.equals("Descending order of quantity sold")) {
+                if (sortBy.equals("2")) { //Descending order of quantity sold
                     Collections.sort(resultList, Comparator.comparing(StatisticObj::getQuantity).reversed());
                 }
-                if (sortBy.equals("Ascending order of total amount sold")) {
+                if (sortBy.equals("3")) { //Ascending order of total amount sold
                     Collections.sort(resultList, Comparator.comparing(StatisticObj::getTotal));
                 }
-                if (sortBy.equals("Descending order of total amount sold")) {
+                if (sortBy.equals("4")) { //Descending order of total amount sold
                     Collections.sort(resultList, Comparator.comparing(StatisticObj::getTotal).reversed());
-                }
-                
-                for (StatisticObj listElement : resultList) {
-                    System.out.println("ProductID: " + listElement.getProductID()
-                            + ", quantity: " + listElement.getQuantity()
-                            + ", total amount: " + listElement.getTotal());
                 }
                 
                 Gson gson = new Gson();

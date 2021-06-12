@@ -11,17 +11,11 @@ package models.statistic;
  */
 public class StatisticObj {
 
-    int productID, quantity, total;
-    String phoneNum;
+    int quantity, total;
+    String phoneNum, customerName, productName;
 
-    public StatisticObj(int productID, int quantity, int total) {
-        this.productID = productID;
-        this.quantity = quantity;
-        this.total = total;
-    }
-
-    public StatisticObj(String phoneNum, int quantity, int total) {
-        this.phoneNum = phoneNum;
+    public StatisticObj(String productName, int quantity, int total) {
+        this.productName = productName;
         this.quantity = quantity;
         this.total = total;
     }
@@ -42,19 +36,27 @@ public class StatisticObj {
         this.total = total;
     }
 
-    public int getProductID() {
-        return productID;
-    }
-
-    public void setProductID(int productID) {
-        this.productID = productID;
-    }
-
     public String getPhoneNum() {
         return phoneNum;
     }
 
     public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 }
