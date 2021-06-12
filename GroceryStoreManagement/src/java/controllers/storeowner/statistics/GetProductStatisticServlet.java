@@ -92,8 +92,8 @@ public class GetProductStatisticServlet extends HttpServlet {
                 }
                 
                 Gson gson = new Gson();
-                String billJSONString = gson.toJson(bill);
-                out.print(billJSONString);
+                String productStatisticJSONS = gson.toJson(resultList);
+                out.print(productStatisticJSONS);
                 out.flush();
             }
         } catch (SQLException ex) {
