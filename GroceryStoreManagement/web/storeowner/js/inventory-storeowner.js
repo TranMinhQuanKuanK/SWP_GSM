@@ -10,7 +10,7 @@ function getProduct() {
             processProduct(productObject);
         }
     };
-    if (noos.checked == true) {
+    if (noos.checked === true) {
         if (cat_ID === "all") {
             var url = "GetProductList?search_value=" + search_val + "&only_noos_items=" + noos;
         } else {
@@ -57,7 +57,7 @@ function processProduct(data) {
         cell5.innerHTML = data[i].is_selling;
         cell6.innerHTML = data[i].lower_threshold;
         cell7.innerHTML = data[i].quantity;
-        cell8.innerHTML = "<input type='button' value='Add to to-import list'>";
+        cell8.innerHTML = "<input type='button' value='Add to to-import list' onclick=''>";
         if (cell5.innerHTML === "false") {
             row.style.backgroundColor = '#ff8989';
             row.style.color = 'black';
