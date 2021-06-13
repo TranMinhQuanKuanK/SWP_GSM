@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <title>Login Page</title>
-    <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/login-page.css" />
-  </head>
-  <body>
-    <form action="javascript:void(0);" class="login" autocomplete="off">
-      <h1 class="login-heading">Login</h1>
 
-      <div class="login-field">
-        <i class="fa fa-envelope login-icon"></i>
-        <input type="text" class="login-input" placeholder="Username" required>
-      </div>
-      <div class="login-field">
-        <i class="fa fa-lock login-icon"></i>
-        <input type="password" class="login-input" placeholder="Password" required>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <title>Login Page</title>
+  <link rel="stylesheet" href="css/reset.css" />
+  <link rel="stylesheet" href="css/login-page.css" />
+</head>
 
-      <a href="#" class="login-forgot-password">Forgot password?</a>
-      <button class="login-submit" type="submit">Login</button>
-      
-    </form>
-  </body>
+<body>
+
+  <form action="javascript:void(0);" class="login" autocomplete="off">
+    <h1 class="login-heading">Login</h1>
+
+    <!--Input field-->
+    <div class="login-field">
+      <i class="fa fa-user-circle-o login-icon"></i>
+      <input type="text" class="login-input" placeholder="Username" required>
+    </div>
+    <div class="login-field">
+      <i class="fa fa-lock login-icon"></i>
+      <input type="password" class="login-input" placeholder="Password" required>
+    </div>
+    <!--/ End of input field-->
+
+    <!--Error field-->
+    <div class="error-field" style="display:none;">
+      <i class="fa fa-exclamation-triangle error-icon"></i>
+      <p class="error-message" readonly onfocus="this.blur()">Đây là dòng thông báo lỗi</p>
+    </div>
+    <!--/ End of error field-->
+
+    <button class="login-submit" type="submit">Login</button>
+
+  </form>
+</body>
+
 </html>
