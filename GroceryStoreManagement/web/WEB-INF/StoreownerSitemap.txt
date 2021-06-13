@@ -7,4 +7,4 @@ GetCategoryList = GetCategoryListServlet
 GetProductList = GetProductListServlet
 ProductListPage = storeowner/ProductList.html
 inventorypage = storeowner/Inventory.html
-AddToSug
+AddToSuggestion = AddToSuggestionServlet
