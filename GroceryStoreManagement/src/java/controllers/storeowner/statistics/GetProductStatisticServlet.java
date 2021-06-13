@@ -21,8 +21,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.statistic.ProductStatisticDAO;
+import models.statistic.ProductStatisticDTO;
 import models.statistic.StatisticErrorObj;
-import models.statistic.StatisticObj;
+import utils.StringNormalizer;
 
 /**
  *
@@ -43,15 +44,12 @@ public class GetProductStatisticServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-
+        
         boolean foundErr = false;
         StatisticErrorObj errors = new StatisticErrorObj();
         String dateFrom = request.getParameter("date-from").replace('T', ' ');
         String dateTo = request.getParameter("date-to").replace('T', ' ');
         String sortBy = request.getParameter("sort-by");
-
-        dateFrom = "2012-06-09 00:00:00.000";
-        dateTo = "2012-07-08 00:00:00.000";
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
@@ -67,23 +65,31 @@ public class GetProductStatisticServlet extends HttpServlet {
                 //2.2 Call DAO
                 ProductStatisticDAO dao = new ProductStatisticDAO();
                 dao.searchProductStatistic(dateFrom, dateTo);
+
+                Map<Integer, ProductStatisticDTO> resultMap = dao.getProductStatisticMap();
+                List<ProductStatisticDTO> resultList = new ArrayList<>();
                 
-                Map<Integer, StatisticObj> resultMap = dao.getProductStatisticMap();
-                List<StatisticObj> resultList = new ArrayList<>(resultMap.values());
-                
-                if (sortBy.equals("1")) { //Ascending order of quantity sold
-                    Collections.sort(resultList, Comparator.comparing(StatisticObj::getQuantity));
+                if (resultMap != null) {
+                    resultList = new ArrayList<>(resultMap.values());
+
+                    if (sortBy.equals("1")) { //Ascending order of quantity sold
+                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getQuantity));
+                    }
+                    if (sortBy.equals("2")) { //Descending order of quantity sold
+                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getQuantity).reversed());
+                    }
+                    if (sortBy.equals("3")) { //Ascending order of total amount sold
+                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getTotal));
+                    }
+                    if (sortBy.equals("4")) { //Descending order of total amount sold
+                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getTotal).reversed());
+                    }
+                    
+                    for (ProductStatisticDTO dto : resultList) {
+                        dto.setTotal(StringNormalizer.moneyNormalize(dto.getTotal()));
+                    }
                 }
-                if (sortBy.equals("2")) { //Descending order of quantity sold
-                    Collections.sort(resultList, Comparator.comparing(StatisticObj::getQuantity).reversed());
-                }
-                if (sortBy.equals("3")) { //Ascending order of total amount sold
-                    Collections.sort(resultList, Comparator.comparing(StatisticObj::getTotal));
-                }
-                if (sortBy.equals("4")) { //Descending order of total amount sold
-                    Collections.sort(resultList, Comparator.comparing(StatisticObj::getTotal).reversed());
-                }
-                
+
                 Gson gson = new Gson();
                 String productStatisticJSONS = gson.toJson(resultList);
                 out.print(productStatisticJSONS);

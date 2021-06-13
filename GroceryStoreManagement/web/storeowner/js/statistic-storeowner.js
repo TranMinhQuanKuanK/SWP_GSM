@@ -15,8 +15,9 @@ function showProductStatistic() {
 }
 
 function renderProductStatistic(productStatistic) {
-    //console.log(productStatistic);
     var table = document.getElementById("product-stat-area");
+    table.innerHTML = "";
+    
     for (i = 0; i < productStatistic.length; i++) {
         var row = table.insertRow(-1);
         

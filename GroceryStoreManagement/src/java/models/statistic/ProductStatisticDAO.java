@@ -20,9 +20,9 @@ import utils.DBHelpers;
  */
 public class ProductStatisticDAO {
 
-    private Map<Integer, StatisticObj> productStatisticMap;
+    private Map<Integer, ProductStatisticDTO> productStatisticMap;
 
-    public Map<Integer, StatisticObj> getProductStatisticMap() {
+    public Map<Integer, ProductStatisticDTO> getProductStatisticMap() {
         return productStatisticMap;
     }
 
@@ -63,10 +63,11 @@ public class ProductStatisticDAO {
 
                     if (this.productStatisticMap.containsKey(productID)) {
                         quantity += this.productStatisticMap.get(productID).getQuantity();
-                        total += this.productStatisticMap.get(productID).getTotal();
+                        total += Integer.parseInt(this.productStatisticMap.get(productID).getTotal());
                     }
                     
-                    this.productStatisticMap.put(productID, new StatisticObj(productName, quantity, total));
+                    this.productStatisticMap.put(productID, 
+                            new ProductStatisticDTO(productName, quantity, Integer.toString(total)));
                 }
             }
         } finally {
