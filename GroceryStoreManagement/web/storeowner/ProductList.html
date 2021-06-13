@@ -22,6 +22,7 @@
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
 
+        <link href="/GroceryStoreManagement/storeowner/css/productList/productList.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
@@ -182,10 +183,9 @@
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h3 class="mb-0">Quản lí mặt hàng</h3>
 
-                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary" data-toggle="modal" id="addBtn" data-target="#addProductModal">
+                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-warning" data-toggle="modal" id="addBtn" data-target="#addProductModal">
                                 <i class="fas fa-box-open darks icon-black"></i>&nbsp;
                                 <span class="button-back-text">Thêm Mặt Hàng</span></button>
-
                         </div>
 
                         <div class="row">
@@ -196,27 +196,35 @@
                                     <!-- Table Header -->
                                     <div class="card-header py-3 align-items-center">
                                         <div class="row justify-content-start">
-                                            <h6 class="ml-2 font-weight-bold text-primary pt-3 pr-0 col-1">Nhóm hàng: &nbsp;
+                                            <h6 class="ml-2 font-weight-bold text-primary text-right pt-3 pr-2 col-1">Nhóm: &nbsp;
                                             </h6>
-                                            <div class="input-group mb-3 col-2 pt-1">
+                                            <div class="input-group mb-2 col-2 pt-1">
                                                 <select class="custom-select" id="category-list">
-                                                    <option selected>Chọn...</option>
+                                                    <option value="all" selected>Chọn...</option>
                                                 </select>
                                             </div>
-<!--
-                                            <input type="button"
-                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-4"
-                                                   value="Hiển thị" />-->
+                                            <h6 class="ml-2 font-weight-bold text-primary text-right pt-3 pr-2 col-1">Tên hàng: &nbsp;
+                                            </h6>
+                                            <div class="input-group mb-2 col-2 pt-1">
+                                                <input type="text" class="form-control" id="txtSearchProductName">
+                                            </div>
+                                            <div class="my-auto col-3">
+                                                <form>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="outOfStock" id="outOfStockItems">
+                                                        <label class="form-check-label" for="outOfStockItems">
+                                                            Xem những mặt hàng dưới ngưỡng
+                                                        </label>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <!--
+                                                                                        <input type="button"
+                                                                                               class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                                                                               value="Hiển thị" />-->
                                         </div>
 
-                                        <form>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="outOfStock" id="outOfStockItems">
-                                                <label class="form-check-label" for="outOfStockItems">
-                                                    Xem những mặt hàng dưới ngưỡng
-                                                </label>
-                                            </div>
-                                        </form>
 
 
                                     </div>
@@ -226,11 +234,11 @@
                                             <table id="product-list" class="table table-striped">
                                                 <thead>
                                                     <tr id="list-header">
-                                                        <th scope="col">ID</th>
+                                                        <th scope="col"></th>
                                                         <th scope="col">Tên</th>
-                                                        <th scope="col">Số lượng</th>
                                                         <th scope="col">Giá mua</th>
                                                         <th scope="col">Giá bán</th>
+                                                        <th scope="col">Số lượng</th>
                                                         <th scope="col">Ngưỡng</th>
                                                         <th scope="col">Nhóm hàng</th>
                                                         <th scope="col">Nhãn</th>
@@ -304,7 +312,7 @@
 
         <!-- Edit Modal-->
         <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Thông tin hàng hóa mới</h5>
@@ -314,44 +322,65 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="form-group">
-                                <label for="product-name" class="col-form-label">Tên(*):</label>
-                                <input type="text" class="form-control" id="product-name">
-                            </div>
-                            <div class="form-group">
-                                <label for="cost-price" class="col-form-label">Giá mua(*):</label>
-                                <input type="text" class="form-control" id="cost-price">
-                            </div>
-                            <div class="form-group">
-                                <label for="selling-price" class="col-form-label">Giá bán(*):</label>
-                                <input type="text" class="form-control" id="selling-price">
-                            </div>
-                            <div class="form-group">
-                                <label for="lower-threshold" class="col-form-label">Ngưỡng(*):</label>
-                                <input type="text" class="form-control" id="lower-threshold">
-                            </div>
-                            <div class="form-group">
-                                <label for="unit-label" class="col-form-label">Nhãn:</label>
-                                <input type="text" class="form-control" id="unit-label">
-                            </div>
-                            <div class="form-group">
-                                <label for="location" class="col-form-label">Vị trí:</label>
-                                <input type="text" class="form-control" id="location">
-                            </div>
-                            <div class="input-group w-50">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">
-                                        <input type="checkbox">
-                                    </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="product-name" class="col-form-label">Tên(*):</label>
+                                    <input type="text" class="form-control" id="product-name" required>
                                 </div>
-                                <input id="btn-checkbox-product-list" type="text" class="form-control" readonly=""
-                                       onfocus="this.blur()" placeholder="Selling">
+                                <div class="form-group col-md-4">
+                                    <label for="product-name" class="col-form-label">Nhóm(*):</label>
+                                    <input type="text" class="form-control" id="category-name" required>
+                                </div>
                             </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="quantity" class="col-form-label">Số lượng(*):</label>
+                                    <input type="number" class="form-control" id="quantity" min="1" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lower-threshold" class="col-form-label required">Ngưỡng:</label>
+
+                                    <input type="number" class="form-control" id="lower-threshold" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cost-price" class="col-form-label">Giá mua(*):</label>
+                                    <input type="number" class="form-control" id="cost-price" min="1000" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="selling-price" class="col-form-label">Giá bán(*):</label>
+                                    <input type="number" class="form-control" id="selling-price" min="1000" required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="unit-label" class="col-form-label">Nhãn:</label>
+                                    <input type="text" class="form-control" id="unit-label">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="location" class="col-form-label">Vị trí:</label>
+                                    <input type="text" class="form-control" id="location">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="addIsSelling" id="addIsSelling">
+                                    <label class="form-check-label" for="addIsSelling">
+                                        Đang bán
+                                    </label>
+                                </div>
+                            </div>
+
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-warning">Thêm mới</button>
                     </div>
                 </div>
             </div>

@@ -12,16 +12,25 @@ function getProductList() {
                 data: data,
                 columns: [
                     {data: 'product_ID'},
-                    {data: 'name'},
+                    {data: 'name', render: function (data, type, row) {
+                            return data.normalize();
+                        }},
+                    {data: 'cost_price', render: $.fn.dataTable.render.number(',', '.', 0, '', 'đ')},
+                    {data: 'selling_price', render: $.fn.dataTable.render.number(',', '.', 0, '', 'đ')},
                     {data: 'quantity'},
-                    {data: 'cost_price', render: $.fn.dataTable.render.number( ',', '.', 0, '','đ' )},
-                    {data: 'selling_price', render: $.fn.dataTable.render.number( ',', '.', 0, '','đ' )},
                     {data: 'lower_threshold'},
                     {data: 'category.name'},
                     {data: 'unit_label'},
                     {data: 'is_selling'},
                     {data: 'location'}
                 ],
+                "columnDefs": [{
+                        "searchable": false,
+                        "orderable": false,
+                        "targets": 0
+                    }],
+                "order": [[1, 'asc']],
+//                "searching": false,
                 "language": {
                     "lengthMenu": "Xem _MENU_ hàng hóa mỗi trang",
                     "zeroRecords": "Không tìm thấy hàng hóa",
@@ -35,12 +44,18 @@ function getProductList() {
                         "previous": "Trước"
                     },
                     "search": "Tìm kiếm: "
-                }
+                },
+                "dom": 'lrtip'
             });
-            productList.columns('.name').search().draw();
+            productList.on('order.dt search.dt', function () {
+                productList.column(0, {order: 'applied', search: 'applied'}).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
         }
     });
 }
+
 
 function getCategoryList() {
     $.ajax({
@@ -51,7 +66,7 @@ function getCategoryList() {
             for (var i in data) {
                 var json = data[i];
                 var option_el = document.createElement(("option"));
-                option_el.value = json.name;
+                option_el.value = json.category_ID;
                 option_el.textContent = json.name;
                 console.log(option_el);
                 select_el.appendChild(option_el);
@@ -66,35 +81,32 @@ $(document).ready(function () {
     getProductList();
 });
 
-
 $("#outOfStockItems").on('change', function () {
-    if ($(this).is(':checked')) {
-        $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                    return parseInt(data[2]) <= parseInt(data[5]);
-                }
-        );
-    } else {
-        $.fn.dataTable.ext.search.pop();
-    }
+    $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var isOutOfStockSelected = $("#outOfStockItems").is(':checked');
+                if (!isOutOfStockSelected)
+                    return true;
+                var isOutOfStock = parseInt(data[4]) <= parseInt(data[5]);
+                return isOutOfStock;
+            }
+    );
     productList.draw();
 });
 
 $("#category-list").on('change', function () {
-    var selected = $("#category-list option:selected").text().normalize('NFD');
-    $.fn.dataTable.ext.search.pop();
-
-    if (selected !== "Chọn...".normalize('NFD')) {
-        $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                    console.log(data[6].normalize('NFD'));
-                    console.log(selected);
-                    return data[6].normalize('NFD') === selected;
-                }
-        );
+    var selected = $("#category-list option:selected").text().normalize();
+    if (selected !== "Chọn...".normalize()) {
+        productList.column(6).search(selected).draw();
     } else {
-        $.fn.dataTable.ext.search.pop();
+        productList.column(6).search("").draw();
     }
-    productList.draw();
 });
+
+$('#txtSearchProductName').keyup(function () {
+    /* Custom filtering function which will search data in column four between two values */
+    var txtSearch = $(this).val().normalize();
+    productList.column(1).search(txtSearch).draw();
+});
+
 
