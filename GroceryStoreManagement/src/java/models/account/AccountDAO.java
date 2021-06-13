@@ -13,13 +13,13 @@ import utils.DBHelpers;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Tran Minh Quan
  */
 public class AccountDAO implements Serializable {
-      public AccountDTO CheckLogin(String username, String password) throws SQLException, NamingException {
+
+    public AccountDTO CheckLogin(String username, String password) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -36,7 +36,7 @@ public class AccountDAO implements Serializable {
                 stm.setString(2, password);
 
                 rs = stm.executeQuery();
-                
+
                 if (rs.next()) {
                     String name = rs.getString("name");
                     boolean is_owner = rs.getBoolean("is_owner");
@@ -60,5 +60,43 @@ public class AccountDAO implements Serializable {
         }
 
         return null;
+    }
+
+    public boolean ChangePassword(String username,String password) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+
+                String sql = "UPDATE account "
+                        + "SET password_acc = ?"
+                        + " WHERE username = ? ";
+
+                stm = con.prepareStatement(sql);
+                stm.setString(1, password);
+                stm.setString(2, username);
+
+                int rowAffect = stm.executeUpdate();
+                if (rowAffect > 0) {
+                    return true;
+                }
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return false;
+
     }
 }

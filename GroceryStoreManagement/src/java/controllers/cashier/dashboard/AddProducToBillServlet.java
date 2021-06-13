@@ -67,31 +67,29 @@ public class AddProducToBillServlet extends HttpServlet {
                     int currentQuantityOnBill = details.get(found_index).getQuantity();
                     if ((currentQuantityOnBill + 1) <= pDTO.getQuantity()) {
                         details.get(found_index).setQuantity(currentQuantityOnBill + 1);
+                        bill.setTotal_cost(bill.getTotal_cost() + pDTO.getSelling_price());
                         //set lại error lỗi là không có lỗi;
                         bill.setErr_obj(new BillErrObj());
                     } else {
                         //Set lỗi
                         BillErrObj bill_error = new BillErrObj();
                         bill_error.appendError("\"" + pDTO.getName() + "\" chỉ còn " + pDTO.getQuantity() + " sản phẩm trong kho");
-                        bill_error.setHasError(true);
                         bill.setErr_obj(bill_error);
                     };
-                }
-                //Nếu không tồn tại trong detail thì xét nếu db còn <2 sản phẩm thì lỗi
-                if (!found) {
+                } else {
                     if (pDTO.getQuantity() > 0) {
                         BillItemObject billItem = new BillItemObject(pDTO, 1);
                         bill.getBill_Detail().add(billItem);
+                        bill.setTotal_cost(bill.getTotal_cost() + pDTO.getSelling_price());
+                        //làm trống lỗi
                         bill.setErr_obj(new BillErrObj());
-                    } else  {
+                    } else {
                         //Set lỗi
                         BillErrObj bill_error = new BillErrObj();
                         bill_error.appendError("\"" + pDTO.getName() + "\" chỉ còn " + pDTO.getQuantity() + " sản phẩm trong kho");
-                        bill_error.setHasError(true);
                         bill.setErr_obj(bill_error);
                     };
                 }
-                bill.setTotal_cost(bill.getTotal_cost() + pDTO.getSelling_price());
 
                 session.setAttribute("BILL", bill);
 

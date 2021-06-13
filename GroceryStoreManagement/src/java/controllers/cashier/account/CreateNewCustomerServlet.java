@@ -3,26 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.cashier.dashboard;
+package controllers.cashier.account;
 
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import models.sessionBill.BillErrObj;
-import models.sessionBill.BillObj;
+import models.customer.CustomerDAO;
+import models.customer.CustomerDTO;
+import models.customer.CustomerErrObj;
 
 /**
  *
- * @author Tran Minh Quan
+ * @author quan6
  */
-@WebServlet(name = "ToggleDiscountServlet", urlPatterns = {"/ToggleDiscountServlet"})
-public class ToggleDiscountServlet extends HttpServlet {
+@WebServlet(name = "CreateNewCustomerServlet", urlPatterns = {"/CreateNewCustomerServlet"})
+public class CreateNewCustomerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,18 +39,31 @@ public class ToggleDiscountServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            BillObj bill = (BillObj) session.getAttribute("BILL"); 
-            boolean use_point = request.getParameter("use_point").equals("true");
-            bill.setUse_point(use_point);
-            
-            bill.setErr_obj(new BillErrObj());
-            session.setAttribute("BILL", bill);
-            
+            String phone_no = request.getParameter("phone_no");
+            String name = request.getParameter("name");
+            CustomerErrObj err_obj = new CustomerErrObj();
+            if (phone_no.matches("[0-9]+") == false) {
+                err_obj.setHas_Error(true);
+                err_obj.setPhone_noError("Số điện thoại không được chứa kí tự đặc biệt");
+            } else {
+                CustomerDAO cDAO = new CustomerDAO();
+                CustomerDTO cDTO = cDAO.GetCustomerByPhone(phone_no);
+
+                if (cDTO == null) {
+                    cDAO.CreateNewCustomer(phone_no, name);
+                } else {
+                    err_obj.setHas_Error(true);
+                    err_obj.setPhone_noError("Số điện thoại đã tồn tại!");
+                }
+            }
             Gson gson = new Gson();
-            String billJSONString = gson.toJson(bill);
-            out.print(billJSONString);
+            String JSONString = gson.toJson(err_obj);
+            out.print(JSONString);
             out.flush();
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 
