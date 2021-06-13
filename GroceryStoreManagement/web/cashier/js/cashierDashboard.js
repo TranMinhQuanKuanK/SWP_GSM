@@ -225,7 +225,7 @@ function printBill(billObject) {
 
   var discount;
   if (currentBill.use_point == true) {
-    console.log("Current bill use point: " + currentBill.use_point);
+    //console.log("Current bill use point: " + currentBill.use_point);
     if (Math.ceil(currentBill.total_cost / 1000) < currentCustomer.point)
       discount = Math.ceil(currentBill.total_cost / 1000) * 1000;
     else discount = currentCustomer.point * 1000;
@@ -437,6 +437,14 @@ function renderCustomer() {
     //set attribute cho ô giảm giá
     document.getElementById("discount-checkbox").checked =
       currentBill.use_point == true;
+
+    document.getElementById("phone-no-input").value = "";
+  } else if (currentCustomer == null) {
+    document.getElementById("customer-name").innerHTML = "Khách hàng vãng lai";
+    document.getElementById("point-of-customer").innerHTML = "...";
+    document.getElementById("discount-checkbox").checked =
+      currentBill.use_point == false;
+    document.getElementById("phone-no-input").value = "";
   }
 }
 
@@ -474,7 +482,7 @@ function usePointToggle() {
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "ToggleDiscount?use_point=" + use_point, true);
     xhttp.onload = function () {
-      console.log(this.responseText); //debug
+      //console.log(this.responseText); //debug
       currentBill = JSON.parse(this.responseText);
 
       printBill(currentBill);
@@ -503,7 +511,7 @@ function EditQuantityBill(product_id) {
     true
   );
   xhttp.onload = function () {
-    console.log(this.responseText); //debug
+    //console.log(this.responseText); //debug
     currentBill = JSON.parse(this.responseText);
     printBill(currentBill);
   };
@@ -554,7 +562,7 @@ function passwordChange() {
         processError();
       };
       xhttp.send(content);
-      console.log(accountErrObj); //debug
+      //console.log(accountErrObj); //debug
       // xem in ra lỗi hay đóng modal
       function processError() {
         if (accountErrObj.hasError == true) {
@@ -629,15 +637,26 @@ function RegisterCustomer() {
 }
 
 function Checkout() {
-  var cash = document.getElementById("cash").value;
-  var xhttp = new XMLHttpRequest();
+  if (currentBill.total_cost == 0) {
+    alert("Chưa mua gì mà bấm thanh toán????? Bị khùng hả?");
+  } else {
+    var cash = document.getElementById("cash").value;
+    var xhttp = new XMLHttpRequest();
 
-  xhttp.open("GET", "Checkout?cash=" + cash, true);
-  xhttp.onload = function () {
-    customerErrObj = JSON.parse(this.responseText);
-    processError();
-  };
-  xhttp.send();
+    xhttp.open("GET", "Checkout?cash=" + cash, true);
+    xhttp.onload = function () {
+      // customerErrObj = JSON.parse(this.responseText);
+      clearBill();
+      getBill();
+      document.getElementById("cash").value = "";
+      $("#bill-preview-modal").modal("hide");
+    };
+    xhttp.send();
+    //clear bill, đóng modal
+    function clearBill() {
+      // printBill(customerErrObj);
+    }
+  }
 }
 
 // KuanK's function
@@ -736,7 +755,7 @@ function DisplayPagination() {
 
   for (let i = 0; i < buttons.length; i++) {
     let btn = buttons[i];
-    console.log(parseInt(btn.textContent));
+    //console.log(parseInt(btn.textContent));
     if (i >= current_btn.textContent - 2 && i <= current_btn.textContent) {
       btn.classList.remove("d-none");
     } else btn.classList.add("d-none");
@@ -771,3 +790,11 @@ function DisplayPagination() {
 //     $('#product-list tr').removeClass('bg-success');
 //     $(this).parent().addClass('bg-success');
 // });
+//
+//
+//
+//
+//
+//
+//
+//
