@@ -1,408 +1,404 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vn">
 
-<head>
+    <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>Blank Page</title>
+        <title>Product List Page</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
+        <!-- Custom styles for this template-->
+        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet" type="text/css">
+        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
 
-</head>
+        <link href="/GroceryStoreManagement/storeowner/css/productList/productList.css" rel="stylesheet" type="text/css">
+    </head>
 
-<body id="page-top">
+    <body>
 
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
+            <!-- Sidebar -->
+            <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <div class="sidebar-brand align-items-center justify-content-center">
-                <div class="sidebar-brand-icon mb-2">
-                    <i class="fas fa-user-circle"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
-            </div>
-
-            <!-- Nav Item - Dashboard -->
-            <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                    data-toggle="modal" data-target="#logoutModal">
-                    <span class="logout-group">Logout &nbsp;</span>
-                    <i class="fas fa-sign-out-alt logout-group"></i>
-                </a>
-            </div>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                List of pages
-            </div>
-
-            <!-- Nav Item - Inventory Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventory"
-                    aria-expanded="true" aria-controls="collapseInventory">
-                    <i class="fas fa-boxes"></i>
-                    <span>&nbsp; Inventory</span>
-                </a>
-                <div id="collapseInventory" class="collapse" aria-labelledby="headingInventory"
-                    data-parent="#accordionSidebar">
-                    <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 3</span></a>
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 4</span></a>
+                <!-- Sidebar - Brand -->
+                <li>
+                    <div class="sidebar-brand align-items-center justify-content-center">
+                        <div class="sidebar-brand-icon mb-2">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div id="name" class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <!-- Nav Item - Import Goods Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImportGoods"
-                    aria-expanded="true" aria-controls="collapseImportGoods">
-                    <i class="fas fa-truck-moving"></i>
-                    <span>&nbsp; Import Goods</span>
-                </a>
-                <div id="collapseImportGoods" class="collapse" aria-labelledby="headingImportGoods"
-                    data-parent="#accordionSidebar">
-                    <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
+                <!-- Nav Item - Dashboard -->
+                <li>
+                    <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
+                        <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
+                           data-toggle="modal" data-target="#logoutModal">
+                            <span class="logout-group">Đăng xuất &nbsp;</span>
+                            <i class="fas fa-sign-out-alt logout-group"></i>
+                        </a>
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <!-- Nav Item - Product List Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductList"
-                    aria-expanded="true" aria-controls="collapseProductList">
-                    <i class="fas fa-clipboard-list"></i>
-                    <span>&nbsp; Product List</span>
-                </a>
-                <div id="collapseProductList" class="collapse" aria-labelledby="headingProductList"
-                    data-parent="#accordionSidebar">
-                    <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
-                        <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
+                <!-- Divider -->
+                <li>
+                    <hr class="sidebar-divider">
+                </li>
+
+
+                <!-- Heading -->
+                <li>
+                    <div class="sidebar-heading">
+                        Menu
                     </div>
-                </div>
-            </li>
+                </li>
 
-            <!-- Nav Item - Previous Receipt -->
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                    <i class="fas fa-receipt"></i>
-                    <span>&nbsp; Previous Receipt</span>
-                </a>
-            </li>
 
-            <!-- Nav Item - Previous Customer Bill -->
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <span>&nbsp; Previous Customer Bill</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Statistic -->
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                    <i class="far fa-chart-bar"></i>
-                    <span>&nbsp; Statistic</span>
-                </a>
-            </li>
-
-            <!-- Nav Item - Cashier Password Change -->
-            <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0)">
-                    <i class="fas fa-key"></i>
-                    <span>&nbsp; Cashier Password Change</span>
-                </a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-        </ul>
-        <!-- End of Sidebar -->
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                        <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                        <a href="javascript:void(0)"
-                            class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                class="button-back-text">Store Owner Dashboard</span></a>
+                <!-- Nav Item - Inventory Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventory"
+                       aria-expanded="true" aria-controls="collapseInventory">
+                        <i class="fas fa-boxes"></i>
+                        <span>&nbsp; Kho hàng</span>
+                    </a>
+                    <div id="collapseInventory" class="collapse"
+                         data-parent="#accordionSidebar">
+                        <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 3</span></a>
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 4</span></a>
+                        </div>
                     </div>
+                </li>
 
-                    <!-- Divider -->
-                    <hr class="sidebar-divider mb-4">
-
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h3 class="mb-0">Product list in your store / Quản lí mặt hàng</h3>
-
-                        <a href="javascript:void(0)" class="d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary">
-                            <i class="fas fa-box-open darks icon-black"></i>&nbsp;
-                            <span class="button-back-text">Add new product</span></a>
+                <!-- Nav Item - Import Goods Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImportGoods"
+                       aria-expanded="true" aria-controls="collapseImportGoods">
+                        <i class="fas fa-truck-moving"></i>
+                        <span>&nbsp; Nhập Hàng</span>
+                    </a>
+                    <div id="collapseImportGoods" class="collapse"
+                         data-parent="#accordionSidebar">
+                        <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
+                        </div>
                     </div>
+                </li>
 
-                    <div class="row">
+                <!-- Nav Item - Product List Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductList"
+                       aria-expanded="true" aria-controls="collapseProductList">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>&nbsp; Danh sách mặt hàng</span>
+                    </a>
+                    <div id="collapseProductList" class="collapse"
+                         data-parent="#accordionSidebar">
+                        <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
+                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
+                        </div>
+                    </div>
+                </li>   
 
-                        <!-- Table Chart 1 -->
-                        <div class="col-12">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header -->
-                                <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-start">
-                                        <h6 class="ml-2 font-weight-bold text-primary pt-3 pr-0 col-1">Category: &nbsp;
-                                        </h6>
-                                        <div class="input-group mb-3 col-3 pt-1">
-                                            <select class="custom-select" id="inputGroupSelect01">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
-                                        </div>
+                <!-- Nav Item - Previous Receipt -->
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">
+                        <i class="fas fa-receipt"></i>
+                        <span>&nbsp; Previous Receipt</span>
+                    </a>
+                </li>
 
-                                        <input type="button"
-                                            class="nav-item active align-items-center justify-content-center mt-2 mb-4"
-                                            value="Hiển thị" />
-                                    </div>
+                <!-- Nav Item - Previous Customer Bill -->
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <span>&nbsp; Previous Customer Bill</span>
+                    </a>
+                </li>
 
-                                    <div class="row justify-content-start">
-                                        <h6 class="ml-2 font-weight-bold text-primary pt-2 pr-0 col-1">Name: &nbsp;</h6>
-                                        <form class="form-inline col-5">
-                                            <input class="form-control mr-2" type="search" placeholder="Search"
-                                                aria-label="Search">
-                                            <button class="btn btn-outline-success my-2 my-sm-0"
-                                                type="submit">Search</button>
-                                        </form>
-                                    </div>
+                <!-- Nav Item - Statistic -->
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">
+                        <i class="far fa-chart-bar"></i>
+                        <span>&nbsp; Statistic</span>
+                    </a>
+                </li>
 
-                                    <div class="input-group col-5 mt-3 mb-1">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input type="checkbox">
+                <!-- Nav Item - Cashier Password Change -->
+                <li class="nav-item">
+                    <a class="nav-link" href="javascript:void(0)">
+                        <i class="fas fa-key"></i>
+                        <span>&nbsp; Cashier Password Change</span>
+                    </a>
+                </li>
+
+                <!-- Divider -->
+                <li>
+                    <hr class="sidebar-divider d-none d-md-block">
+                </li>
+
+            </ul>
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
+                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
+
+                            <a href="javascript:void(0)"
+                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
+                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
+                                    class="button-back-text">Store Owner Dashboard</span></a>
+                        </div>
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider mb-4">
+
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h3 class="mb-0">Quản lí mặt hàng</h3>
+
+                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-warning" data-toggle="modal" id="addBtn" data-target="#addProductModal">
+                                <i class="fas fa-box-open darks icon-black"></i>&nbsp;
+                                <span class="button-back-text">Thêm Mặt Hàng</span></button>
+                        </div>
+
+                        <div class="row">
+
+                            <!-- Table -->
+                            <div class="col-12">
+                                <div class="card shadow mb-4">
+                                    <!-- Table Header -->
+                                    <div class="card-header py-3 align-items-center">
+                                        <div class="row justify-content-start">
+                                            <h6 class="ml-2 font-weight-bold text-primary text-right pt-3 pr-2 col-1">Nhóm: &nbsp;
+                                            </h6>
+                                            <div class="input-group mb-2 col-2 pt-1">
+                                                <select class="custom-select" id="category-list">
+                                                    <option value="all" selected>Chọn...</option>
+                                                </select>
                                             </div>
+                                            <h6 class="ml-2 font-weight-bold text-primary text-right pt-3 pr-2 col-1">Tên hàng: &nbsp;
+                                            </h6>
+                                            <div class="input-group mb-2 col-2 pt-1">
+                                                <input type="text" class="form-control" id="txtSearchProductName">
+                                            </div>
+                                            <div class="my-auto col-3">
+                                                <form>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="outOfStock" id="outOfStockItems">
+                                                        <label class="form-check-label" for="outOfStockItems">
+                                                            Xem những mặt hàng dưới ngưỡng
+                                                        </label>
+                                                    </div>
+                                                </form>
+                                            </div>
+
+                                            <!--
+                                                                                        <input type="button"
+                                                                                               class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                                                                               value="Hiển thị" />-->
                                         </div>
-                                        <input id="btn-checkbox-inventory" type="text" class="form-control" readonly=""
-                                            onfocus="this.blur()" placeholder="Display only nearly out-of-stock items">
-                                    </div>
 
 
-
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="">
 
                                     </div>
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                    <th></th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td class="btn-col">
-                                                        <input type="button" value="Add to to-import list">
-                                                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                            data-target="#editModal">Edit</button>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                    <td class="btn-col"><input type="button"
-                                                            value="Add to to-import list"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <!-- Table Body -->
+                                    <div class="card-body">
+                                        <div class="text-center">
+                                            <table id="product-list" class="table table-striped">
+                                                <thead>
+                                                    <tr id="list-header">
+                                                        <th scope="col"></th>
+                                                        <th scope="col">Tên</th>
+                                                        <th scope="col">Giá mua</th>
+                                                        <th scope="col">Giá bán</th>
+                                                        <th scope="col">Số lượng</th>
+                                                        <th scope="col">Ngưỡng</th>
+                                                        <th scope="col">Nhóm hàng</th>
+                                                        <th scope="col">Nhãn</th>
+                                                        <th scope="col">Đang bán</th>
+                                                        <th scope="col">Vị trí</th>
+                                                        <th scope="col"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <!--                                                <tr>
+                                                                                                        <th scope="row">1</th>
+                                                                                                        <td>Mark</td>
+                                                                                                        <td>Otto</td>
+                                                                                                        <td>@mdo</td>
+                                                                                                        <td class="btn-col">
+                                                                                                            <input type="button" value="Add to to-import list">
+                                                                                                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                                                                                data-target="#editModal">Edit</button>
+                                                                                                        </td>
+                                                                                                    </tr>-->
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
+
+
+
+
 
                     </div>
-
-
-
-
+                    <!-- /.container-fluid -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Main Content -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="login.html">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Edit Modal-->
-    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Edit product</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="product-name" class="col-form-label">Name(*):</label>
-                            <input type="text" class="form-control" id="product-name">
-                        </div>
-                        <div class="form-group">
-                            <label for="cost-price" class="col-form-label">Cost price(*):</label>
-                            <input type="text" class="form-control" id="cost-price">
-                        </div>
-                        <div class="form-group">
-                            <label for="selling-price" class="col-form-label">Selling price(*):</label>
-                            <input type="text" class="form-control" id="selling-price">
-                        </div>
-                        <div class="form-group">
-                            <label for="lower-threshold" class="col-form-label">Lower threshold(*):</label>
-                            <input type="text" class="form-control" id="lower-threshold">
-                        </div>
-                        <div class="form-group">
-                            <label for="unit-label" class="col-form-label">Unit label:</label>
-                            <input type="text" class="form-control" id="unit-label">
-                        </div>
-                        <div class="form-group">
-                            <label for="location" class="col-form-label">Location:</label>
-                            <input type="text" class="form-control" id="location">
-                        </div>
-                        <div class="input-group w-50">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input type="checkbox">
+        <!-- Edit Modal-->
+        <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thông tin hàng hóa mới</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="product-name" class="col-form-label">Tên(*):</label>
+                                    <input type="text" class="form-control" id="product-name" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="product-name" class="col-form-label">Nhóm(*):</label>
+                                    <input type="text" class="form-control" id="category-name" required>
                                 </div>
                             </div>
-                            <input id="btn-checkbox-product-list" type="text" class="form-control" readonly=""
-                                onfocus="this.blur()" placeholder="Selling">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="quantity" class="col-form-label">Số lượng(*):</label>
+                                    <input type="number" class="form-control" id="quantity" min="1" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lower-threshold" class="col-form-label required">Ngưỡng:</label>
+
+                                    <input type="number" class="form-control" id="lower-threshold" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cost-price" class="col-form-label">Giá mua(*):</label>
+                                    <input type="number" class="form-control" id="cost-price" min="1000" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="selling-price" class="col-form-label">Giá bán(*):</label>
+                                    <input type="number" class="form-control" id="selling-price" min="1000" required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="unit-label" class="col-form-label">Nhãn:</label>
+                                    <input type="text" class="form-control" id="unit-label">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="location" class="col-form-label">Vị trí:</label>
+                                    <input type="text" class="form-control" id="location">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="addIsSelling" id="addIsSelling">
+                                    <label class="form-check-label" for="addIsSelling">
+                                        Đang bán
+                                    </label>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-warning">Thêm mới</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
 
-</body>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/productList/productList.js" type="text/javascript"></script>
+    </body>
 
 </html>
