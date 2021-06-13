@@ -9,6 +9,14 @@ package models.previousBill;
  *
  * @author Huu Quoc
  */
-public class PreBillDetailDTO {
-    
+public class PreBillErrorObj {
+    private String dateError;
+
+    public String getDateError() {
+        return dateError;
+    }
+
+    public void setDateError(String dateError) {
+        this.dateError = dateError;
+    }
 }
