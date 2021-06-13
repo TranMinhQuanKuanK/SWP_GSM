@@ -43,13 +43,12 @@ public class ProductDAO implements Serializable {
 
                 stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
-                StringNormalizer norm = new StringNormalizer();
                 while (rs.next()) {
                     boolean isRightRecord = true;
                     if (category_id != null && !(rs.getInt("category_ID") == category_id)) {
                         isRightRecord = false;
                     }
-                    if (search_value != null && !norm.normalize(rs.getString("name")).contains(norm.normalize(search_value))) {
+                    if (search_value != null && !StringNormalizer.normalize(rs.getString("name")).contains(StringNormalizer.normalize(search_value))) {
                         isRightRecord = false;
                     }
                     if (only_noos_items && rs.getInt("quantity") > rs.getInt("lower_threshold")) {
