@@ -1,0 +1,23 @@
+version: "3"
+networks:
+        my_network:
+                driver: bridge
+services:
+        server:
+                build: .
+                image: 385873380/grocerystoremanagement:latest
+                networks:
+                        - my_network
+                ports:
+                        - 1000:8080
+        db:
+                image: mcr.microsoft.com/mssql/server:2019-latest
+                environment:
+                        - ACCEPT_EULA=Y
+                        - SA_PASSWORD=123456
+                volumes:
+                        - ./data:/data
+                ports:
+                        - 1533:1433
+                networks:
+                        - my_network
