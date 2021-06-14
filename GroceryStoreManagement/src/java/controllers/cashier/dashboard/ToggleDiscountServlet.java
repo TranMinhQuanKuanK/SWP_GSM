@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.sessionBill.BillErrObj;
 import models.sessionBill.BillObj;
 
 /**
@@ -40,6 +41,8 @@ public class ToggleDiscountServlet extends HttpServlet {
             BillObj bill = (BillObj) session.getAttribute("BILL"); 
             boolean use_point = request.getParameter("use_point").equals("true");
             bill.setUse_point(use_point);
+            
+            bill.setErr_obj(new BillErrObj());
             session.setAttribute("BILL", bill);
             
             Gson gson = new Gson();

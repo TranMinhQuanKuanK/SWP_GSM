@@ -7,7 +7,7 @@ package models.previousBill;
 
 /**
  *
- * @author Tran Minh Quan
+ * @author Huu Quoc
  */
 public class PreBillDetailDTO {
     

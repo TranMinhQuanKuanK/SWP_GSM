@@ -6,6 +6,8 @@ var productList = null; //story list ProductDTO
 var currentBill; //store current billObj
 const productList_element = document.getElementById("product-list"); //biến của thành
 const pagination_element = document.getElementById("page-selection");
+var accountErrObj;
+var customerErrObj;
 
 function SearchForProduct(id) {
   for (i = 0; i < productList.length; i++) {
@@ -63,7 +65,10 @@ function createHTMLForEachProduct(product) {
     "onclick",
     "AddProductToBill(" + product.product_ID + ")"
   );
+  td_el_name.setAttribute("style", "cursor:pointer;");
+
   td_el_price.setAttribute("class", "product-detail align-middle");
+  td_el_price.setAttribute("style", "cursor:pointer;");
   td_el_price.setAttribute(
     "onclick",
     "AddProductToBill(" + product.product_ID + ")"
@@ -92,8 +97,11 @@ function createHTMLForEachProduct(product) {
     '                                                d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z" />\n' +
     "                                        </svg>";
 
-  if (product.quantity <= product.lower_threshold) {
-    tr_el.setAttribute("class", "product-low-quantity text-white");
+  if (product.quantity <= product.lower_threshold && product.quantity > 0) {
+    tr_el.setAttribute("class", "product-low-quantity text-black");
+    btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
+  } else if (product.quantity == 0) {
+    tr_el.setAttribute("class", "product-out-of-stock text-white");
     btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
   }
 
@@ -128,6 +136,8 @@ function getCashierName() {
   xhttp.onload = function () {
     document.getElementById("cashier-name").innerHTML += this.responseText;
   };
+
+  //gửi request
   xhttp.send();
 }
 
@@ -215,7 +225,7 @@ function printBill(billObject) {
 
   var discount;
   if (currentBill.use_point == true) {
-    console.log("Current bill use point: " + currentBill.use_point);
+    //console.log("Current bill use point: " + currentBill.use_point);
     if (Math.ceil(currentBill.total_cost / 1000) < currentCustomer.point)
       discount = Math.ceil(currentBill.total_cost / 1000) * 1000;
     else discount = currentCustomer.point * 1000;
@@ -234,7 +244,71 @@ function printBill(billObject) {
   renderCustomer();
 
   //thông báo lỗi
-  if (currentBill.err_obj.hasError) display_Bill_ErrorMessage();
+  if (currentBill.err_obj.hasError == true) display_Bill_ErrorMessage();
+}
+
+function printPreviewBill(billObject) {
+  //in tên và điểm
+  document.getElementById(
+    "bill-preview-customer-name"
+  ).innerHTML = document.getElementById("customer-name").innerHTML;
+
+  document.getElementById(
+    "bill-preview-customer-point"
+  ).innerHTML = document.getElementById("point-of-customer").innerHTML;
+  //in bảng bill
+  document.getElementById("bill-preview-area").innerHTML = "";
+  for (i = 0; i < billObject.Bill_Detail.length; i++) {
+    var detail = billObject.Bill_Detail[i];
+    var tr = document.createElement("tr");
+
+    var th_index = document.createElement("th");
+    th_index.setAttribute("scope", "row");
+    th_index.innerHTML = i + 1;
+
+    var td_name = document.createElement("td");
+    td_name.innerHTML = detail.product.name;
+
+    var td_selling_price = document.createElement("td");
+    td_selling_price.setAttribute("class", "text-right");
+    td_selling_price.innerHTML = formatNumber(detail.product.selling_price);
+
+    var td_quantity = document.createElement("td");
+    td_quantity.setAttribute("class", "text-right");
+    td_quantity.innerHTML = detail.quantity;
+
+    var td_total = document.createElement("td");
+    td_total.setAttribute("class", "text-right");
+    td_total.innerHTML = formatNumber(
+      detail.quantity * detail.product.selling_price
+    );
+
+    tr.appendChild(th_index);
+    tr.appendChild(td_name);
+    tr.appendChild(td_selling_price);
+    tr.appendChild(td_quantity);
+    tr.appendChild(td_total);
+
+    document.getElementById("bill-preview-area").appendChild(tr);
+  }
+  //in phần thành tiền/giảm giá/tổng tiền/khách đưa:
+  document.getElementById(
+    "bill-preview-total"
+  ).innerHTML = document.getElementById("total").innerHTML;
+
+  document.getElementById(
+    "bill-preview-discount"
+  ).innerHTML = document.getElementById("discount").innerHTML;
+
+  document.getElementById(
+    "bill-preview-total-after-discount"
+  ).innerHTML = document.getElementById("total-after-discount").innerHTML;
+
+  document.getElementById("bill-preview-cash").innerHTML =
+    document.getElementById("cash").value == ""
+      ? "...Chưa nhập..."
+      : formatNumber(document.getElementById("cash").value);
+  $("#bill-preview-modal").modal("show");
 }
 function display_Bill_ErrorMessage() {
   errorObj = currentBill.err_obj;
@@ -246,7 +320,7 @@ function display_Bill_ErrorMessage() {
     document.getElementById("bill-error-element").appendChild(li);
   }
   $("#bill-error-modal").modal("show");
-  currentBill.err_obj = null;
+  currentBill.err_obj.hasError = false;
 }
 //KuanK - search and render product results
 function SearchProduct() {
@@ -363,6 +437,14 @@ function renderCustomer() {
     //set attribute cho ô giảm giá
     document.getElementById("discount-checkbox").checked =
       currentBill.use_point == true;
+
+    document.getElementById("phone-no-input").value = "";
+  } else if (currentCustomer == null) {
+    document.getElementById("customer-name").innerHTML = "Khách hàng vãng lai";
+    document.getElementById("point-of-customer").innerHTML = "...";
+    document.getElementById("discount-checkbox").checked =
+      currentBill.use_point == false;
+    document.getElementById("phone-no-input").value = "";
   }
 }
 
@@ -390,19 +472,23 @@ function RemoveProductFromBill(product_ID) {
 
 function usePointToggle() {
   //set use_point state
-  var use_point;
-  if (document.getElementById("discount-checkbox").checked == true) {
-    use_point = "true";
-  } else use_point = "false";
+  var customer_dto = currentBill.customer_dto;
+  if (customer_dto != null) {
+    var use_point;
+    if (document.getElementById("discount-checkbox").checked == true) {
+      use_point = "true";
+    } else use_point = "false";
 
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "ToggleDiscount?use_point=" + use_point, true);
-  xhttp.onload = function () {
-    console.log(this.responseText); //debug
-    currentBill = JSON.parse(this.responseText);
-    printBill(currentBill);
-  };
-  xhttp.send();
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "ToggleDiscount?use_point=" + use_point, true);
+    xhttp.onload = function () {
+      //console.log(this.responseText); //debug
+      currentBill = JSON.parse(this.responseText);
+
+      printBill(currentBill);
+    };
+    xhttp.send();
+  }
 }
 
 function calculateDiscount() {
@@ -425,7 +511,7 @@ function EditQuantityBill(product_id) {
     true
   );
   xhttp.onload = function () {
-    console.log(this.responseText); //debug
+    //console.log(this.responseText); //debug
     currentBill = JSON.parse(this.responseText);
     printBill(currentBill);
   };
@@ -435,6 +521,144 @@ function EditQuantityBill(product_id) {
 function formatNumber(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+function passwordChange() {
+  function clearAllError() {
+    document.getElementById("current-password-error").innerHTML = "";
+    document.getElementById("new-password-error").innerHTML = "";
+    document.getElementById("confirm-password-error").innerHTML = "";
+  }
+  function clearAllInput() {
+    document.getElementById("currentPassword").value = "";
+    document.getElementById("newPassword").value = "";
+    document.getElementById("confirmNewPassword").value = "";
+  }
+  clearAllError();
+
+  var currentPassword = document.getElementById("currentPassword").value;
+  var newPassword = document.getElementById("newPassword").value;
+  var confirmNewPassword = document.getElementById("confirmNewPassword").value;
+  if (currentPassword.length > 1) {
+    if (confirmNewPassword != newPassword) {
+      document.getElementById("confirm-password-error").innerHTML =
+        "Mật khẩu xác nhận không trùng khớp";
+    } else {
+      //gửi request về nhận về object lỗi
+      var xhttp = new XMLHttpRequest();
+
+      content =
+        "currentPassword=" +
+        encodeURIComponent(document.getElementById("currentPassword").value) +
+        "&newPassword=" +
+        encodeURIComponent(document.getElementById("newPassword").value);
+
+      xhttp.open("POST", "ChangePasswordCashier", true);
+      xhttp.setRequestHeader(
+        "Content-Type",
+        "application/x-www-form-urlencoded;charset=UTF-8"
+      );
+      xhttp.onload = function () {
+        accountErrObj = JSON.parse(this.responseText);
+        processError();
+      };
+      xhttp.send(content);
+      //console.log(accountErrObj); //debug
+      // xem in ra lỗi hay đóng modal
+      function processError() {
+        if (accountErrObj.hasError == true) {
+          clearAllError();
+          if (accountErrObj.currentPasswordError.length > 2) {
+            document.getElementById("current-password-error").innerHTML =
+              accountErrObj.currentPasswordError;
+          }
+          if (accountErrObj.newPasswordError.length > 2) {
+            document.getElementById("new-password-error").innerHTML =
+              accountErrObj.newPasswordError;
+          }
+        } else {
+          //đóng modal
+          clearAllError();
+          clearAllInput();
+          $("#changePassword").modal("hide");
+        }
+      }
+    }
+  }
+}
+
+function RegisterCustomer() {
+  function clearAllError() {
+    document.getElementById("customer-name-error").innerHTML = "";
+    document.getElementById("phone-no-error").innerHTML = "";
+  }
+  function clearAllInput() {
+    document.getElementById("customerName").value = "";
+    document.getElementById("customerPhoneNo").value = "";
+  }
+  var customerName = document.getElementById("customerName").value;
+  var customerPhoneNo = document.getElementById("customerPhoneNo").value;
+  if (customerName.length == 0) {
+    document.getElementById("customer-name-error").innerHTML =
+      "Tên không được bỏ trống";
+  } else {
+    var xhttp = new XMLHttpRequest();
+
+    content =
+      "phone_no=" +
+      encodeURIComponent(customerPhoneNo) +
+      "&name=" +
+      encodeURIComponent(customerName);
+
+    xhttp.open("POST", "CreateNewCustomer", true);
+    xhttp.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded;charset=UTF-8"
+    );
+    xhttp.onload = function () {
+      customerErrObj = JSON.parse(this.responseText);
+      processError();
+    };
+    xhttp.send(content);
+    function processError() {
+      if (customerErrObj.has_Error == true) {
+        clearAllError();
+        if (customerErrObj.phone_noError.length > 2) {
+          document.getElementById("phone-no-error").innerHTML =
+            customerErrObj.phone_noError;
+        }
+      } else {
+        //đóng modal
+        clearAllError();
+        clearAllInput();
+        $("#registerCustomer").modal("hide");
+      }
+    }
+  }
+}
+
+function Checkout() {
+  if (currentBill.total_cost == 0) {
+    alert("Chưa mua gì mà bấm thanh toán????? Bị khùng hả?");
+  } else {
+    var cash = document.getElementById("cash").value;
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.open("GET", "Checkout?cash=" + cash, true);
+    xhttp.onload = function () {
+      // customerErrObj = JSON.parse(this.responseText);
+      clearBill();
+      getBill();
+      document.getElementById("cash").value = "";
+      $("#bill-preview-modal").modal("hide");
+    };
+    xhttp.send();
+    //clear bill, đóng modal
+    function clearBill() {
+      // printBill(customerErrObj);
+    }
+  }
+}
+
 // KuanK's function
 function pageLoadKuanK() {
   getCashierName();
@@ -531,7 +755,7 @@ function DisplayPagination() {
 
   for (let i = 0; i < buttons.length; i++) {
     let btn = buttons[i];
-    console.log(parseInt(btn.textContent));
+    //console.log(parseInt(btn.textContent));
     if (i >= current_btn.textContent - 2 && i <= current_btn.textContent) {
       btn.classList.remove("d-none");
     } else btn.classList.add("d-none");
@@ -558,7 +782,7 @@ function DisplayPagination() {
 
 //SetupPagination(productList, pagination_element, rows_per_page);
 
-/* 
+/*
     MAKE EACH ROW OF TABLE CATEGORY ACTIVE
 */
 
@@ -566,3 +790,11 @@ function DisplayPagination() {
 //     $('#product-list tr').removeClass('bg-success');
 //     $(this).parent().addClass('bg-success');
 // });
+//
+//
+//
+//
+//
+//
+//
+//
