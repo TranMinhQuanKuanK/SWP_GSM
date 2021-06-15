@@ -25,6 +25,9 @@ var productList = $('#product-list').DataTable({
                 return (data) ? "Bán" : "Không bán";
             }}
     ],
+    createdRow: function( row, data, dataIndex, cells ) {        
+      $(row).attr("id", $(cells[0]).text());
+    },
     columnDefs: [{
             "searchable": false,
             "orderable": false,
@@ -85,14 +88,28 @@ $(document).ready(function () {
     });
 });
 
-
+var clickedProductID;
 // Handle edit product
 $('#product-list tbody').on('click', 'tr', function () {
-
-    $(this).addClass('selected');
+    clickedProductID = ($(this).closest('tr').attr("id"));
     $('#editProductModal').modal("show");
 });
 
 $('#editProductModal').on('hide.bs.modal', function (e) {
     productList.$('tr.selected').removeClass('selected');
+});
+
+$('#editProductModal').on('shown.bs.modal', function (e) {
+    console.log(clickedProductID);
+    $.ajax({
+    url: "GetProductInfo",
+    type: "GET",
+    dataType: "json",
+    data: {
+        "clickedProductID": clickedProductID
+    },
+    success: function (data) {
+        console.log(data);
+        }
+    });
 });
