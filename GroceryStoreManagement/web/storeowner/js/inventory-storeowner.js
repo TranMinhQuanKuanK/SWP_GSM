@@ -12,7 +12,8 @@ function getProduct() {
     };
     if (noos.checked == true) {
         if (cat_ID === "all") {
-            var url = "GetProductList?search_value=" + search_val + "&only_noos_items=1";
+            //var url = "GetProductList?search_value=" + search_val + "&only_noos_items=1";
+            var url = "Hello?search_value=" + search_val + "&only_noos_items=1";
         } else {
             var url = "GetProductList?search_value=" + search_val + "&category_id=" + cat_ID + "&only_noos_items=1";
         }
