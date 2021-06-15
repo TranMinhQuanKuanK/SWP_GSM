@@ -14,7 +14,7 @@ services:
                 image: mcr.microsoft.com/mssql/server:2019-latest
                 environment:
                         - ACCEPT_EULA=Y
-                        - SA_PASSWORD=123456
+                        - SA_PASSWORD=SWPP@ssword123
                 volumes:
                         - ./data:/data
                 ports:
