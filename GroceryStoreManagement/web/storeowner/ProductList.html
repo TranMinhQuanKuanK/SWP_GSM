@@ -236,30 +236,13 @@
                                                     <tr id="list-header">
                                                         <th scope="col">STT</th>
                                                         <th scope="col">Tên</th>
-                                                        <th scope="col">Giá mua</th>
                                                         <th scope="col">Giá bán</th>
-                                                        <th scope="col">Số lượng</th>
-                                                        <th scope="col">Ngưỡng</th>
                                                         <th scope="col">Nhóm hàng</th>
                                                         <th scope="col">Nhãn</th>
                                                         <th scope="col">Đang bán</th>
-                                                        <th scope="col">Vị trí</th>
-                                                        <th scope="col"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <!--                                                <tr>
-                                                                                                        <th scope="row">1</th>
-                                                                                                        <td>Mark</td>
-                                                                                                        <td>Otto</td>
-                                                                                                        <td>@mdo</td>
-                                                                                                        <td class="btn-col">
-                                                                                                            <input type="button" value="Add to to-import list">
-                                                                                                            <button type="button" class="btn btn-primary" data-toggle="modal"
-                                                                                                                data-target="#editModal">Edit</button>
-                                                                                                        </td>
-                                                                                                    </tr>-->
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -310,7 +293,7 @@
             </div>
         </div>
 
-        <!-- Edit Modal-->
+        <!-- Add Modal-->
         <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -386,6 +369,83 @@
             </div>
         </div>
 
+        <!-- Edit Modal-->
+        <div class="modal fade" id="editProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thông tin</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-8">
+                                    <label for="product-name" class="col-form-label">Tên:</label>
+                                    <input type="text" class="form-control" id="edit-product-name" required>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="product-name" class="col-form-label">Nhóm:</label>
+                                    <input type="text" class="form-control" id="edit-category-name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="quantity" class="col-form-label">Số lượng:</label>
+                                    <input type="number" class="form-control" id="edit-quantity" min="1" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="lower-threshold" class="col-form-label required">Ngưỡng:</label>
+
+                                    <input type="number" class="form-control" id="edit-lower-threshold" required>
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="cost-price" class="col-form-label">Giá mua:</label>
+                                    <input type="number" class="form-control" id="edit-cost-price" min="1000" required>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="selling-price" class="col-form-label">Giá bán:</label>
+                                    <input type="number" class="form-control" id="edit-selling-price" min="1000" required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="unit-label" class="col-form-label">Nhãn:</label>
+                                    <input type="text" class="form-control" id="edit-unit-label">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="location" class="col-form-label">Vị trí:</label>
+                                    <input type="text" class="form-control" id="edit-location">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="addIsSelling" id="edit-is-selling">
+                                    <label class="form-check-label" for="edit-is-selling">
+                                        Đang bán
+                                    </label>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-warning">Thêm mới</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
         <!-- Bootstrap core JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

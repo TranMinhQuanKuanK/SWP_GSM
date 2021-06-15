@@ -12,22 +12,18 @@ var productList = $('#product-list').DataTable({
                         "search_value": $("#txtSearchProductName").val(),
                         "only_noos_items": $("#outOfStockItems").is(':checked')
                     });
-                }},                
+                }},
     columns: [
         {data: 'product_ID'},
         {data: 'name', render: function (data, type, row) {
                 return data.normalize();
             }},
-        {data: 'cost_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
         {data: 'selling_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
-        {data: 'quantity'},
-        {data: 'lower_threshold'},
         {data: 'category.name'},
         {data: 'unit_label'},
         {data: 'is_selling', render: function (data) {
-                return (data) ? "Bán" : "Không bán"
-            }},
-        {data: 'location'}
+                return (data) ? "Bán" : "Không bán";
+            }}
     ],
     columnDefs: [{
             "searchable": false,
@@ -83,10 +79,20 @@ $(document).ready(function () {
     $("#category-list, #outOfStockItems").on('change', function () {
         productList.ajax.reload();
     });
-    
-    $("#txtSearchProductName").keyup(function() {
+
+    $("#txtSearchProductName").keyup(function () {
         productList.ajax.reload();
     });
 });
 
 
+// Handle edit product
+$('#product-list tbody').on('click', 'tr', function () {
+
+    $(this).addClass('selected');
+    $('#editProductModal').modal("show");
+});
+
+$('#editProductModal').on('hide.bs.modal', function (e) {
+    productList.$('tr.selected').removeClass('selected');
+});
