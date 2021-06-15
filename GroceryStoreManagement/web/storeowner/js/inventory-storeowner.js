@@ -10,7 +10,7 @@ function getProduct() {
             processProduct(productObject);
         }
     };
-    if (noos.checked === true) {
+    if (noos.checked == true) {
         if (cat_ID === "all") {
             var url = "GetProductList?search_value=" + search_val + "&only_noos_items=" + noos;
         } else {
