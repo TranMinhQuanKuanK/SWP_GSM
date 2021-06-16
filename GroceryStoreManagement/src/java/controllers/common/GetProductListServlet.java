@@ -27,14 +27,14 @@ public class GetProductListServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             Integer category_id;
-            if (request.getParameter("category_id").equals("") || request.getParameter("category_id") == null) {
+            if (request.getParameter("category_id") == null) {
                 category_id = null;
             } else {
                 category_id = Integer.parseInt(request.getParameter("category_id"));
             }
             String search_value = request.getParameter("search_value");
             System.out.println("Dang tim kiem " + search_value);
-            boolean only_noos_items = request.getParameter("only_noos_items").equals("true");
+            boolean only_noos_items = request.getParameter("only_noos_items")!=null;
 
             ProductDAO pDAO = new ProductDAO();
             ArrayList<ProductDTO> productList
