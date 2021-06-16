@@ -1,28 +1,48 @@
 <!DOCTYPE html>
-<!--
-not main branch
--->
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
     <title>Login Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cashier/css/reset.css" />
+    <link rel="stylesheet" href="cashier/css/login-page.css" />
 </head>
 
 <body>
-    <h1>Đây là trang login</h1>
-    <form action="LoginServlet" method="POST">
-        Username <input type="text" id="txtUsername" value="" /><br> Password <input type="password" id="txtPassword" value="" /><br>
-        <div id="ErrorMessage"></div>
-        <input type="button" value="Login" name="btAction" onclick="checkLogin()" />
-        
+    <form action="javascript:void(0);" class="login" autocomplete="off">
+        <h1 class="login-heading">Login</h1>
+
+        <!--Input field-->
+        <div class="login-field">
+            <i class="fa fa-user-circle-o login-icon"></i>
+            <input id="txtUsername" type="text" class="login-input" placeholder="Username" required>
+        </div>
+        <div class="login-field">
+            <i class="fa fa-lock login-icon"></i>
+            <input id="txtPassword" type="password" class="login-input" placeholder="Password" required>
+        </div>
+        <!--/ End of input field-->
+
+        <!--Error field-->
+        <div class="error-field" style="display:none;" id='ErrorMessage'>
+            <i class="fa fa-exclamation-triangle error-icon"></i>
+            <p class="error-message" readonly onfocus="this.blur()">Lỗi server!!!</p>
+        </div>
+        <!--/ End of error field-->
+
+        <button class="login-submit" type="submit" onclick="checkLogin()">Login</button>
 
     </form>
     <script>
         function checkLogin() {
             var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
+            xhttp.onreadystatechange = function () {
                 if (this.readyState >= 4 && this.status <= 200) {
                     var loginErrorObject = JSON.parse(this.responseText);
                     processLoginResponse(loginErrorObject);
@@ -44,6 +64,7 @@ not main branch
         function processLoginResponse(data) {
             if (data.has_Error) {
                 document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
+                document.getElementById("ErrorMessage").setAttribute("style", "display:none");
             } else {
                 //window.location.href = "TestSuccessLogin.html";
 
