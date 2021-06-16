@@ -75,7 +75,10 @@ function printProductList(data) {
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = data[i].quantity;
-        ;
+        
+        if (data[i].lower_threshold > data[i].quantity){
+            tr.className = "red-row";
+        }
 
         var td_button = document.createElement("td");
         var Add_bt = document.createElement("input");
@@ -94,7 +97,7 @@ function printProductList(data) {
         tr.appendChild(td_threshold);
         tr.appendChild(td_quantity);
         tr.appendChild(td_button);
-
+        
         document.getElementById("tableContent").appendChild(tr);
     }// finish printing a product detail row
 }
