@@ -197,17 +197,7 @@
                                     </h6>
                                     <div class="input-group mb-3 col-3 pt-1">
                                         <select class="custom-select" id="inputGroupSelect01">
-                                                    <option selected value="all">(*)</option>
-                                                    <option value="2">Đường</option>
-                                                    <option value="3">Muối</option>
-                                                    <option value="4">Sữa</option>
-                                                    <option value="5">Bánh hộp</option>
-                                                    <option value="6">Dầu ăn</option>
-                                                    <option value="7">Mắm</option>
-                                                    <option value="8">Nước tương</option>
-                                                    <option value="9">Dầu hào</option>
-                                                    <option value="10">Nước rửa chén</option>
-                                                    <option value="11">Nước lau sàn</option>
+                                                    
                                         </select>
                                     </div>
                                 </div>
@@ -223,7 +213,7 @@
                                 <div class="input-group row mt-3 mb-1 w-50 d-flex">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
-                                            <input type="checkbox">
+                                            <input type="checkbox" id="noos_check">
                                         </div>
                                     </div>
                                     <input id="btn-checkbox-inventory" type="text" class="form-control" readonly=""
@@ -248,7 +238,7 @@
                                                 <th scope="col">Hành động</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="tableContent">
                                             
                                         </tbody>
                                     </table>
@@ -296,7 +286,6 @@
             </div>
         </div>
     </div>
-
 
     <!-- Bootstrap core JavaScript-->
     <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>

@@ -6,8 +6,8 @@
 **/nbproject/Package-*.bash
 build/
 nbbuild/
-dist/
 nbdist/
 .nb-gradle/
 # End of https://www.toptal.com/developers/gitignore/api/netbeans
 GroceryStoreManagement/web/META-INF/context.xml
+/GroceryStoreManagement/dist/

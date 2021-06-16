@@ -39,7 +39,7 @@ jobs:
                                   file: ./Dockerfile
                                   builder: ${{steps.buildx.outputs.name}}
                                   push: true
-                                  tags: heaty566/hotel-server:latest
+                                  tags: 385873380/grocerystoremanagement:latest
                         - name: Verify
                           run: |
                                   echo ${{steps.docker_build_server.outputs.digest}}
