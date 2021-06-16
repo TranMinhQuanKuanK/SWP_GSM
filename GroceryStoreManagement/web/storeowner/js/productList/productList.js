@@ -7,10 +7,28 @@ var productList = $('#product-list').DataTable({
         dataSrc: "",
         data:
                 function (d) {
+                    if ($("#outOfStockItems").is(':checked'))
+                    {
+                        if ($("#category-list option:selected").val() !== "")
+                            return $.extend(d, {
+                                "category_id": $("#category-list option:selected").val(),
+                                "search_value": $("#txtSearchProductName").val(),
+                                "only_noos_items": $("#outOfStockItems").is(':checked')
+                            });
+
+                        return $.extend(d, {
+                            "search_value": $("#txtSearchProductName").val(),
+                            "only_noos_items": $("#outOfStockItems").is(':checked')
+                        });
+                    }
+                    if ($("#category-list option:selected").val() !== "")
+                        return $.extend(d, {
+                            "category_id": $("#category-list option:selected").val(),
+                            "search_value": $("#txtSearchProductName").val()
+                        });
+
                     return $.extend(d, {
-                        "category_id": $("#category-list option:selected").val(),
-                        "search_value": $("#txtSearchProductName").val(),
-                        "only_noos_items": $("#outOfStockItems").is(':checked')
+                        "search_value": $("#txtSearchProductName").val()
                     });
                 }},
     columns: [
@@ -156,6 +174,7 @@ $('#edit-product-save-btn').on("click", function () {
 
     } else {
         $('#editProductModal').modal("hide");
+
         toggleDisabledForProductInfo();
     }
 });
