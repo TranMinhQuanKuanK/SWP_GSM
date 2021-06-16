@@ -40,7 +40,18 @@ public class GetFeedbackListServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()){
             FeedbackDAO fDAO = new FeedbackDAO();
-            ArrayList<FeedbackDTO> FeedbackList = fDAO.getFeedbackList();
+            
+            // Change is_seen to 1 if we receive feedback_ID
+            Integer feedback_ID;
+            if (request.getParameter("feedback_ID") == null) {
+                feedback_ID = null;
+            } else {
+                feedback_ID = Integer.parseInt(request.getParameter("feedback_ID"));
+                fDAO.ChangeFeedbackToIsSeen(feedback_ID);
+            }
+            
+            ArrayList<FeedbackDTO> FeedbackList = fDAO.getAllFeedbackList();
+            
             Gson gson = new Gson();
             String feedbackJSONString = gson.toJson(FeedbackList);
             out.print(feedbackJSONString);

@@ -11275,7 +11275,7 @@ body.sidebar-toggled footer.sticky-footer {
   width: 10%;
 }
 
-#btn-checkbox-inventory, #btn-checkbox-product-list {
+#btn-checkbox-inventory, #btn-checkbox-product-list, #btn-checkbox-feedback {
   text-align: center;
 }
 
@@ -11285,4 +11285,8 @@ body.sidebar-toggled footer.sticky-footer {
 
 .header-center {
   text-align: center;
+}
+
+.seen-feedback{
+    background-color: #cecece;
 }

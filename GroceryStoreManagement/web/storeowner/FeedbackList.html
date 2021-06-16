@@ -23,7 +23,7 @@
 
     </head>
 
-    <body id="page-top" onload="GetFeedbackList()">
+    <body id="page-top" onload="GetAllFeedbackList()">  
 
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -172,20 +172,31 @@
                             <a href="javascript:void(0)"
                                class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
                                     class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                        class="button-back-text">Store Owner Dashboard</span></a>
+                                    class="button-back-text">Store Owner Dashboard</span></a>
                         </div>
 
                         <!-- Divider -->
                         <hr class="sidebar-divider mb-4">
+                        
+                        <div class="input-group row mt-2 mb-4 w-50 d-flex">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" onchange="displayFeedback(this)">
+                                        </div>
+                                    </div>
+                                    <input id="btn-checkbox-feedback" type="text" class="form-control" readonly=""
+                                        onfocus="this.blur()" placeholder="Display Seen Feedback Only">
+                        </div>
+                        
                         <div class="table-wrapper-scroll-y my-custom-scrollbar">
                             <table class="table table-bordered table-striped mb-0" id="feedbackTable">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Content</th>
-                                        <th scope="col">Cashier Username</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Số thứ tự</th>
+                                        <th scope="col">Thời gian</th>
+                                        <th scope="col">Nội dung</th>
+                                        <th scope="col">Tên thu ngân</th>
+                                        <th scope="col">Hành động</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -17,3 +17,4 @@ GetFinancialStatistic = GetFinancialStatisticServlet
 inventorypage = storeowner/Inventory.html
 FeedbackListPage = storeowner/FeedbackList.html
 GetFeedbackList = GetFeedbackListServlet
+SeenFeedback = SeenFeedbackServlet
