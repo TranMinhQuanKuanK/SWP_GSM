@@ -25,8 +25,8 @@ var productList = $('#product-list').DataTable({
                 return (data) ? "Bán" : "Không bán";
             }}
     ],
-    createdRow: function( row, data, dataIndex, cells ) {        
-      $(row).attr("id", $(cells[0]).text());
+    createdRow: function (row, data, dataIndex, cells) {
+        $(row).attr("id", $(cells[0]).text());
     },
     columnDefs: [{
             "searchable": false,
@@ -86,30 +86,94 @@ $(document).ready(function () {
     $("#txtSearchProductName").keyup(function () {
         productList.ajax.reload();
     });
+
+
 });
 
 var clickedProductID;
 // Handle edit product
+
 $('#product-list tbody').on('click', 'tr', function () {
     clickedProductID = ($(this).closest('tr').attr("id"));
     $('#editProductModal').modal("show");
 });
 
+$("#product-list tbody").css("cursor", "pointer");
+
+
 $('#editProductModal').on('hide.bs.modal', function (e) {
     productList.$('tr.selected').removeClass('selected');
 });
 
-$('#editProductModal').on('shown.bs.modal', function (e) {
+$('#editProductModal').on('show.bs.modal', function (e) {
     console.log(clickedProductID);
     $.ajax({
-    url: "GetProductInfo",
-    type: "GET",
-    dataType: "json",
-    data: {
-        "clickedProductID": clickedProductID
-    },
-    success: function (data) {
-        console.log(data);
+        url: "GetProductInfo",
+        type: "GET",
+        dataType: "json",
+        data: {
+            "clickedProductID": clickedProductID
+        },
+        success: function (data) {
+            console.log(data);
+            $("#edit-product-name").val(data.name);
+            $("#edit-category-name").val(data.category.name);
+            $("#edit-lower-threshold").val(data.lower_threshold);
+            $("#edit-cost-price").val(eVietnam(data.cost_price));
+            $("#edit-selling-price").val(eVietnam(data.selling_price));
+            $("#edit-unit-label").val(data.unit_label);
+            $("#edit-location").val(data.location);
+            $("#edit-is-selling").prop("checked", data.is_selling);
         }
     });
 });
+
+function eVietnam(num) {
+    console.log(num.toLocaleString('vi'));
+    return num.toLocaleString('vi');
+}
+
+$('#edit-product-btn').on("click", function () {
+    $(this).prop("disabled", true);
+
+    toggleDisabledForProductInfo();
+});
+
+
+$('#edit-product-close-btn').on("click", function () {
+    toggleDisabledForProductInfo();
+});
+
+
+$('#edit-product-save-btn').on("click", function () {
+    if ($("#edit-product-name").val() === "" || $("#edit-category-name").val() === ""
+            || $("#edit-lower-threshold").val() === "" || $("#edit-cost-price").val() === ""
+            || $("#edit-selling-price").val() === "" || $("#edit-unit-label").val() === "") {
+        $('#fail-to-save-toast').toast({
+            delay: 2000
+        });
+        $('#fail-to-save-toast').toast('show');
+
+    } else {
+        $('#editProductModal').modal("hide");
+        toggleDisabledForProductInfo();
+    }
+});
+
+function toggleDisabledForProductInfo() {
+    var isNotDisabled = !$('#edit-product-name').is(":disabled");
+
+    $("#edit-product-name").prop("disabled", isNotDisabled);
+    $("#edit-category-name").prop("disabled", isNotDisabled);
+    $("#edit-lower-threshold").prop("disabled", isNotDisabled);
+    $("#edit-cost-price").prop("disabled", isNotDisabled);
+    $("#edit-selling-price").prop("disabled", isNotDisabled);
+    $("#edit-unit-label").prop("disabled", isNotDisabled);
+    $("#edit-location").prop("disabled", isNotDisabled);
+    $("#edit-is-selling").prop("disabled", isNotDisabled);
+
+    $('#edit-product-save-btn').prop("disabled", isNotDisabled);
+    $('#edit-product-btn').prop("disabled", !isNotDisabled);
+}
+
+
