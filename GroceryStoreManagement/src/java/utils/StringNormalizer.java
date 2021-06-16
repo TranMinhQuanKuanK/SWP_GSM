@@ -32,18 +32,6 @@ public class StringNormalizer implements Serializable {
         normalizedDate += original.substring(0, 4) + ' ';
         normalizedDate += original.substring(11, 16) + ' ';
         
-        System.out.println(normalizedDate);
-        
         return normalizedDate;
-    }
-    
-    public static String moneyNormalize(String original) {
-        StringBuilder normalizedMoney = new StringBuilder(original);
-        
-        for (int i = normalizedMoney.length() - 3; i > 0; i -= 3) {
-            normalizedMoney.insert(i, ' ');
-        }
-        
-        return normalizedMoney.toString();
     }
 }

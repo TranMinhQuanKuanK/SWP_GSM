@@ -29,6 +29,6 @@ function renderProductStatistic(productStatistic) {
         cellNo.innerHTML = i + 1;
         cellProductName.innerHTML = productStatistic[i].productName;
         cellQuantity.innerHTML = productStatistic[i].quantity;
-        cellTotal.innerHTML = productStatistic[i].total;
+        cellTotal.innerHTML = formatNumber(productStatistic[i].total);
     }
 }

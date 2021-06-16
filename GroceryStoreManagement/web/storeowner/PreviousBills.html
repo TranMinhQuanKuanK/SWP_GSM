@@ -255,12 +255,13 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">First</th>
-                                                        <th scope="col">Last</th>
-                                                        <th scope="col">Handle</th>
+                                                        <th scope="col">Tên sản phẩm</th>
+                                                        <th scope="col">Số lượng</th>
+                                                        <th scope="col">Đơn giá</th>
+                                                        <th scope="col">Thành tiền</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="pre-bill-detail-area">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -271,8 +272,28 @@
                             </div>
                             <!--/ End of Bill Information Table -->
 
-                        </div>
+                            <!-- Bill Information Modal Table -->
+                            <div class="modal" id="bill-detail-modal" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="checkoutLabel">Bạn chắc chưa?</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form class="text-center">
+                                                <button type="submit" class="btn btn-success me-2">Xác nhận</button>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/ End of Bill Information Modal Table -->
 
+                        </div>
 
                     </div>
                     <!-- /.container-fluid -->

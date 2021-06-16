@@ -74,6 +74,8 @@ public class GetPreviousBillListServlet extends HttpServlet {
                 if (resultList == null) {
                     resultList = new ArrayList<>();
                 }
+                
+                System.out.println(resultList);
 
                 Gson gson = new Gson();
                 String productStatisticJSONS = gson.toJson(resultList);
