@@ -158,7 +158,7 @@ $('#edit-product-btn').on("click", function () {
 });
 
 
-$('#edit-product-close-btn').on("click", function () {
+$('.edit-product-close-btn').on("click", function () {
     toggleDisabledForProductInfo();
 });
 
