@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.common;
+package controllers.storeowner.product;
 
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,34 +20,39 @@ import javax.servlet.http.HttpServletResponse;
 import models.product.ProductDAO;
 import models.product.ProductDTO;
 
-@WebServlet(name = "GetProductListServlet", urlPatterns = {"/GetProductListServlet"})
-public class GetProductListServlet extends HttpServlet {
+/**
+ *
+ * @author Admin
+ */
+@WebServlet(name = "GetProductInfoServlet", urlPatterns = {"/GetProductInfoServlet"})
+public class GetProductInfoServlet extends HttpServlet {
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            Integer category_id;
-            if (request.getParameter("category_id").equals("") || request.getParameter("category_id") == null) {
-                category_id = null;
-            } else {
-                category_id = Integer.parseInt(request.getParameter("category_id"));
-            }
-            String search_value = request.getParameter("search_value");
-            System.out.println("Dang tim kiem " + search_value);
-            boolean only_noos_items = request.getParameter("only_noos_items").equals("true");
+            int clickedProductID = Integer.parseInt(request.getParameter("clickedProductID"));
 
-            ProductDAO pDAO = new ProductDAO();
-            ArrayList<ProductDTO> productList
-                    = pDAO.GetProductList(category_id, search_value, only_noos_items);
+            ProductDAO dao = new ProductDAO();
+            ProductDTO dto = dao.GetProductByID(clickedProductID);
+
             Gson gson = new Gson();
-            String productJSONString = gson.toJson(productList);
-            out.print(productJSONString);
+            String json = gson.toJson(dto);
+            out.print(json);
             out.flush();
-        } catch (SQLException e) {
-            log("SQLException " + e.getMessage());
-        } catch (NamingException e) {
-            log("NamingException " + e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(GetProductInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(GetProductInfoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
