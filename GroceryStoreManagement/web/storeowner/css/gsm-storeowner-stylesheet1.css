@@ -11286,3 +11286,8 @@ body.sidebar-toggled footer.sticky-footer {
 .header-center {
   text-align: center;
 }
+
+.red-row{
+	background-color: #ff8989 !important;
+	color: #000000;
+}
