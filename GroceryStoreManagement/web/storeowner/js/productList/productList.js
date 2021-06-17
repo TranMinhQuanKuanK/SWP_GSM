@@ -110,7 +110,6 @@ $(document).ready(function () {
 
 var clickedProductID;
 // Handle edit product
-
 $('#product-list tbody').on('click', 'tr', function () {
     clickedProductID = ($(this).closest('tr').attr("id"));
     $('#editProductModal').modal("show");
@@ -124,6 +123,8 @@ $('#editProductModal').on('hide.bs.modal', function (e) {
 });
 
 $('#editProductModal').on('show.bs.modal', function (e) {
+    $('#edit-category-name').html($('#category-list').clone().html());
+    $('#edit-category-name option').first().remove();
     console.log(clickedProductID);
     $.ajax({
         url: "GetProductInfo",
@@ -135,7 +136,7 @@ $('#editProductModal').on('show.bs.modal', function (e) {
         success: function (data) {
             console.log(data);
             $("#edit-product-name").val(data.name);
-            $("#edit-category-name").val(data.category.name);
+            $("#edit-category-name").val(data.category.category_ID).prop("selected", true);
             $("#edit-lower-threshold").val(data.lower_threshold);
             $("#edit-cost-price").val(eVietnam(data.cost_price));
             $("#edit-selling-price").val(eVietnam(data.selling_price));
@@ -153,34 +154,170 @@ function eVietnam(num) {
 
 $('#edit-product-btn').on("click", function () {
     $(this).prop("disabled", true);
-
-    toggleDisabledForProductInfo();
+    toggleDisabledForProductInfo(false);
 });
 
 
-$('.edit-product-close-btn').on("click", function () {
-    toggleDisabledForProductInfo();
+$('#editProductModal').on('hidden.bs.modal', function (e) {
+    $('#edit-product-name-warning').text("").addClass("d-none");
+    $('#edit-cost-price-warning').text("").addClass("d-none");
+    $('#edit-selling-price-warning').text("").addClass("d-none");
+    $('#edit-lower-threshold-warning').text("").addClass("d-none");
+    toggleDisabledForProductInfo(true);
 });
 
 
 $('#edit-product-save-btn').on("click", function () {
-    if ($("#edit-product-name").val() === "" || $("#edit-category-name").val() === ""
+    if ($("#edit-product-name").val() === ""
             || $("#edit-lower-threshold").val() === "" || $("#edit-cost-price").val() === ""
-            || $("#edit-selling-price").val() === "" || $("#edit-unit-label").val() === "") {
+            || $("#edit-selling-price").val() === "") {
         $('#fail-to-save-toast').toast({
             delay: 2000
         });
         $('#fail-to-save-toast').toast('show');
 
     } else {
-        $('#editProductModal').modal("hide");
+        console.log($("#edit-is-selling").prop("checked"));
+        $.ajax({
+            url: "EditProductInfo",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "productID": clickedProductID,
+                "productName": $("#edit-product-name").val().normalize(),
+                "productCategoryID": $("#edit-category-name option:selected").val(),
+                "productLowerThreshold": $("#edit-lower-threshold").val(),
+                "productCostPrice": $("#edit-cost-price").val().replaceAll('.', ''),
+                "productSellingPrice": $("#edit-selling-price").val().replaceAll('.', ''),
+                "productUnitLabel": $("#edit-unit-label").val().normalize(),
+                "productLocation": $("#edit-location").val().normalize(),
+                "productIsSelling": $("#edit-is-selling").prop("checked")
+            },
+            success: function (data) {
+                console.log(data);
+                if (isEmpty(data)) {
+                    console.log("running");
+                    $('#editProductModal').modal("hide");
+                    productList.ajax.reload();
+                    $('#success-to-save-toast').toast({
+                        delay: 2000
+                    });
+                    $('#success-to-save-toast').toast('show');
+                    toggleDisabledForProductInfo(true);
+                } else {
+                    $('#edit-product-name-warning').text(data.nameErr).removeClass("d-none");
+                    $('#edit-cost-price-warning').text(data.costPriceErr).removeClass("d-none");
+                    $('#edit-selling-price-warning').text(data.sellingPriceErr).removeClass("d-none");
+                    $('#edit-lower-threshold-warning').text(data.lowerThresholdErr).removeClass("d-none");
+                    toggleDisabledForProductInfo(false);
+                }
+            }
+        });
 
-        toggleDisabledForProductInfo();
     }
 });
 
-function toggleDisabledForProductInfo() {
-    var isNotDisabled = !$('#edit-product-name').is(":disabled");
+// Format user input for currency
+$("#add-cost-price, #add-selling-price, #edit-cost-price, #edit-selling-price").on("input", function () {
+    /*
+     * These additional lines prevent the function from running when the user 
+     makes a selection within the input
+     or presses the arrow keys on the keyboard
+     */
+    var selection = window.getSelection().toString();
+    if (selection !== '') {
+        return;
+    }
+    if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
+        return;
+    }
+    // End of additional checks
+
+    /*
+     *  Retrieve the value from the input.
+     Sanitize the value using RegEx by removing unnecessary characters such as spaces, underscores, dashes, and letters.
+     Deploy parseInt() function to make sure the value is an integer (a round number).
+     Add the thousand separator with the eVietnam() function, then pass the sanitised value back to the input element.
+     */
+    var input = $(this).val();
+    var input = input.replace(/[\D\s\._\-]+/g, "");
+    input = input ? parseInt(input, 10) : 0;
+    $(this).val(function () {
+        return (input === 0) ? "" : eVietnam(input);
+    });
+});
+
+// Add new product
+$('#addProductModal').on('show.bs.modal', function (e) {
+    $('#add-category-name').html($('#category-list').clone().html());
+    $('#add-category-name option').first().remove();
+});
+
+$('#addProductModal').on('hidden.bs.modal', function (e) {
+    $('#add-product-name-warning').text("").addClass("d-none");
+    $('#add-cost-price-warning').text("").addClass("d-none");
+    $('#add-selling-price-warning').text("").addClass("d-none");
+    $('#add-lower-threshold-warning').text("").addClass("d-none");
+});
+
+$('#add-product-save-btn').on("click", function () {
+    if ($("#add-product-name").val() === "" || $("#add-lower-threshold").val() === ""
+            || $("#add-cost-price").val() === "" || $("#add-selling-price").val() === "") {
+        $('#fail-to-save-toast').toast({
+            delay: 2000
+        });
+        $('#fail-to-save-toast').toast('show');
+
+    } else {
+        console.log($("#add-is-selling").prop("checked"));
+        $.ajax({
+            url: "AddNewProduct",
+            type: "POST",
+            dataType: "json",
+            data: {
+                "productName": $("#add-product-name").val().normalize(),
+                "productCategoryID": $("#add-category-name option:selected").val(),
+                "productLowerThreshold": $("#add-lower-threshold").val(),
+                "productCostPrice": $("#add-cost-price").val().replaceAll('.', ''),
+                "productSellingPrice": $("#add-selling-price").val().replaceAll('.', ''),
+                "productUnitLabel": $("#add-unit-label").val().normalize(),
+                "productLocation": $("#add-location").val().normalize(),
+                "productIsSelling": $("#add-is-selling").prop("checked")
+            },
+            success: function (data) {
+                console.log(data);
+                if (isEmpty(data)) {
+                    console.log("running");
+                    $('#addProductModal').modal("hide");
+                    productList.ajax.reload();
+                    $('#success-to-save-toast').toast({
+                        delay: 2000
+                    });
+                    $('#success-to-save-toast').toast('show');
+                    
+                    $("#add-product-name").val("");
+                    $("#add-category-name option:selected").val("");
+                    $("#add-lower-threshold").val("");
+                    $("#add-cost-price").val("");
+                    $("#add-selling-price").val("");
+                    $("#add-unit-label").val("");
+                    $("#add-location").val("");
+                    $("#add-is-selling").prop("checked", false);
+                } else {
+                    $('#add-product-name-warning').text(data.nameErr).removeClass("d-none");
+                    $('#add-cost-price-warning').text(data.costPriceErr).removeClass("d-none");
+                    $('#add-selling-price-warning').text(data.sellingPriceErr).removeClass("d-none");
+                    $('#add-lower-threshold-warning').text(data.lowerThresholdErr).removeClass("d-none");
+                }
+            }
+        });
+    }
+});
+
+
+
+function toggleDisabledForProductInfo(bool) {
+    var isNotDisabled = bool;
 
     $("#edit-product-name").prop("disabled", isNotDisabled);
     $("#edit-category-name").prop("disabled", isNotDisabled);
@@ -190,9 +327,15 @@ function toggleDisabledForProductInfo() {
     $("#edit-unit-label").prop("disabled", isNotDisabled);
     $("#edit-location").prop("disabled", isNotDisabled);
     $("#edit-is-selling").prop("disabled", isNotDisabled);
-
     $('#edit-product-save-btn').prop("disabled", isNotDisabled);
     $('#edit-product-btn').prop("disabled", !isNotDisabled);
 }
 
+
+function isEmpty(obj) {
+    for (var x in obj) {
+        return false;
+    }
+    return true;
+}
 

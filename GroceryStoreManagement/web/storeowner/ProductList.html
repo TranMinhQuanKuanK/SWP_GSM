@@ -298,7 +298,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Thông tin hàng hóa mới</h5>
+                        <h5 class="modal-title">Thông tin</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -306,54 +306,64 @@
                     <div class="modal-body">
                         <form>
                             <div class="form-row">
-                                <div class="form-group col-md-8">
-                                    <label for="product-name" class="col-form-label">Tên(*):</label>
-                                    <input type="text" class="form-control" id="product-name" required>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="product-name" class="col-form-label">Nhóm(*):</label>
-                                    <input type="text" class="form-control" id="category-name" required>
+                                <div class="form-group col-md-12">
+                                    <label for="edit-product-name" class="col-form-label">Tên:</label>
+                                    <input type="text" class="form-control" id="add-product-name" required>
                                 </div>
                             </div>
-
+                            <p class="text-danger d-none" id="add-product-name-warning"></p>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="quantity" class="col-form-label">Số lượng(*):</label>
-                                    <input type="number" class="form-control" id="quantity" min="1" required>
+                                    <label for="edit-category-name" class="col-form-label">Nhóm:</label>
+                                    <select class="form-control category-list-modal" id="add-category-name">
+                                        <option val="" selected></option>
+                                    </select>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="lower-threshold" class="col-form-label required">Ngưỡng:</label>
-
-                                    <input type="number" class="form-control" id="lower-threshold" required>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="cost-price" class="col-form-label">Giá mua(*):</label>
-                                    <input type="number" class="form-control" id="cost-price" min="1000" required>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label for="selling-price" class="col-form-label">Giá bán(*):</label>
-                                    <input type="number" class="form-control" id="selling-price" min="1000" required>
-                                </div>
-                            </div>
-
-
-                            <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="unit-label" class="col-form-label">Nhãn:</label>
-                                    <input type="text" class="form-control" id="unit-label">
+                                    <input type="text" class="form-control" id="add-unit-label">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="location" class="col-form-label">Vị trí:</label>
-                                    <input type="text" class="form-control" id="location">
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="add-cost-price" class="col-form-label">Giá mua:</label>
+                                    <div class="input-group">
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-cost-price" min="1000" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="add-selling-price" class="col-form-label">Giá bán:</label>
+                                    <div class="input-group">
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-selling-price" min="1000" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="add-lower-threshold" class="col-form-label required">Ngưỡng:</label>
+
+                                    <input type="number" class="form-control" id="add-lower-threshold" required>
+                                </div>
+                            </div>
+                            <p class="text-danger d-none" id="add-cost-price-warning"></p>
+                            <p class="text-danger d-none" id="add-selling-price-warning"></p>
+                            <p class="text-danger d-none" id="add-lower-threshold-warning"></p>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="add-location" class="col-form-label">Vị trí:</label>
+                                    <input type="text" class="form-control" id="add-location">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="addIsSelling" id="addIsSelling">
-                                    <label class="form-check-label" for="addIsSelling">
+                                    <input class="form-check-input" type="checkbox" value="addIsSelling" id="add-is-selling">
+                                    <label class="form-check-label" for="edit-is-selling">
                                         Đang bán
                                     </label>
                                 </div>
@@ -363,7 +373,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-warning">Thêm mới</button>
+                        <button id="add-product-save-btn" type="button" class="btn btn-warning">Thêm mới</button>
                     </div>
                 </div>
             </div>
@@ -391,55 +401,58 @@
                                     <input type="text" class="form-control" id="edit-product-name" required disabled>
                                 </div>
                             </div>
-
+                            <p class="text-danger d-none" id="edit-product-name-warning"></p>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="edit-category-name" class="col-form-label">Nhóm:</label>
-                                    <input type="text" class="form-control" id="edit-category-name" required disabled>
+                                    <select class="form-control category-list-modal" id="edit-category-name" disabled>
+                                        <option val="" selected></option>
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="unit-label" class="col-form-label">Nhãn:</label>
+                                    <label for="edit-unit-label" class="col-form-label">Nhãn:</label>
                                     <input type="text" class="form-control" id="edit-unit-label" disabled>
                                 </div>
                             </div>
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="cost-price" class="col-form-label">Giá mua:</label>
+                                    <label for="edit-cost-price" class="col-form-label">Giá mua:</label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control" id="edit-cost-price" min="1000" required disabled>
-                                        <div class="input-group-append">
-                                            <span class="input-group-text">đ</span>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="selling-price" class="col-form-label">Giá bán:</label>
-                                    <div class="input-group">
-                                        <input type="text" pattern="[0-9]*đ" class="form-control" id="edit-selling-price" min="1000" required disabled>
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="edit-cost-price" min="1000" required disabled>
                                         <div class="input-group-append">
                                             <span class="input-group-text">đ</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="lower-threshold" class="col-form-label required">Ngưỡng:</label>
+                                    <label for="edit-selling-price" class="col-form-label">Giá bán:</label>
+                                    <div class="input-group">
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="edit-selling-price" min="1000" required disabled>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="edit-lower-threshold" class="col-form-label required">Ngưỡng:</label>
 
                                     <input type="number" class="form-control" id="edit-lower-threshold" required disabled>
                                 </div>
                             </div>
-
+                            <p class="text-danger d-none" id="edit-cost-price-warning"></p>
+                            <p class="text-danger d-none" id="edit-selling-price-warning"></p>
+                            <p class="text-danger d-none" id="edit-lower-threshold-warning"></p>
 
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="location" class="col-form-label">Vị trí:</label>
+                                    <label for="edit-location" class="col-form-label">Vị trí:</label>
                                     <input type="text" class="form-control" id="edit-location" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="addIsSelling" id="edit-is-selling" disabled>
+                                    <input class="form-check-input" type="checkbox" value="editIsSelling" id="edit-is-selling" disabled>
                                     <label class="form-check-label" for="edit-is-selling">
                                         Đang bán
                                     </label>
@@ -458,7 +471,7 @@
 
 
 
-        <!-- Then put toasts within -->
+        <!-- Failed to edit product toast -->
         <div class="position-absolute bg-light" style="top: 10%; left: 40%; z-index: 7000;">
             <div id="fail-to-save-toast" class="toast hide" role="alert">
                 <div class="toast-header">
@@ -473,6 +486,23 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Successful to edit product toast -->
+        <div class="position-absolute bg-success" style="top: 10%; left: 40%; z-index: 8000;">
+            <div id="success-to-save-toast" class="toast hide" role="alert">
+                <div class="toast-header">
+                    <strong class="mr-auto text-success">Thay đổi thành công</strong>
+                    <small>Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body">
+                    Việc chỉnh sửa hàng hóa đã hoàn tất.
+                </div>
+            </div>
+        </div>
+        
         <!-- Bootstrap core JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

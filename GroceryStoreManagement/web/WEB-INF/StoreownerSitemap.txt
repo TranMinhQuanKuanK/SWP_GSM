@@ -16,3 +16,5 @@ inventorypage = storeowner/Inventory.html
 FeedbackListPage = storeowner/FeedbackList.html
 GetFeedbackList = GetFeedbackListServlet
 GetProductInfo = GetProductInfoServlet
+EditProductInfo = EditProductInfoServlet
+AddNewProduct = AddNewProductServlet

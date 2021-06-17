@@ -219,10 +219,10 @@ public class ProductDAO implements Serializable {
 
         return null;
     }
-    
+
     //thêm số lượng vào db, trả vè true nếu món đó dưới ngưỡng, false nếu ko
-    public boolean AddQuantityToProduct(int ProductID, int quantity) throws SQLException, NamingException  {
-           Connection con = null;
+    public boolean AddQuantityToProduct(int ProductID, int quantity) throws SQLException, NamingException {
+        Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
@@ -238,12 +238,11 @@ public class ProductDAO implements Serializable {
                 stm.setInt(1, ProductID);
                 rs = stm.executeQuery();
 
-                
                 if (rs.next()) {
                     currentQuantity = rs.getInt("quantity");
-                    lower_threshold = rs.getInt("lower_threshold");              
+                    lower_threshold = rs.getInt("lower_threshold");
                 }
-                 sql = "UPDATE product "
+                sql = "UPDATE product "
                         + "SET quantity = ?"
                         + " WHERE product_ID = ? ";
                 stm = con.prepareStatement(sql);
@@ -251,9 +250,11 @@ public class ProductDAO implements Serializable {
                 stm.setInt(2, ProductID);
                 int rowAffect = stm.executeUpdate();
                 //return
-                if (currentQuantity+quantity <= lower_threshold ) {
+                if (currentQuantity + quantity <= lower_threshold) {
                     return true;
-                } else return false;
+                } else {
+                    return false;
+                }
 
             }
 
@@ -261,6 +262,143 @@ public class ProductDAO implements Serializable {
             if (rs != null) {
                 rs.close();
             }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return false;
+    }
+
+    // kiểm tra hàng hóa đã có tên tương tự trong hệ thống chưa
+    // nếu trùng ID thì coi như false
+    public boolean ConfirmMatchedProduct(String productName, int productID)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+                String sql = "SELECT product_ID, name FROM product";
+
+                stm = con.prepareStatement(sql);
+                rs = stm.executeQuery();
+
+                productName = StringNormalizer.normalize(productName);
+                System.out.println(productName);
+                while (rs.next()) {
+                    boolean bool = StringNormalizer.normalize(rs.getString("name")).equals(productName);
+                    if (bool) {
+                        if (productID == 0) return bool;
+                        else {
+                            System.out.println(StringNormalizer.normalize(rs.getString("name")));
+                        System.out.println(rs.getInt("product_ID") == productID);
+                        return rs.getInt("product_ID") != productID;
+                        }
+                    }
+                }
+                return false;
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+        return false;
+    }
+
+    //thay đổi thông tin hàng hóa vào db, trả vè true nếu thay đổi thành công, false nếu ko
+    public boolean UpdateProductInfo(int ProductID, String productName, int categoryID, int threshold, int costPrice, int sellingPrice, String unitLabel, String location, boolean isSelling) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+
+//                String sql = "SELECT product_ID, name, cost_price, selling_price, lower_threshold, category_ID, unit_label, is_selling, location "
+//                        + " FROM product WHERE product_ID = ?";
+                String sql = "UPDATE product "
+                        + "SET name = ?,"
+                        + "cost_price = ?,"
+                        + "selling_price = ?,"
+                        + "lower_threshold = ?,"
+                        + "category_ID = ?,"
+                        + "unit_label = ?,"
+                        + "location = ?,"
+                        + "is_selling = ?"
+                        + " WHERE product_ID = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, productName);
+                stm.setInt(2, costPrice);
+                stm.setInt(3, sellingPrice);
+                stm.setInt(4, threshold);
+                stm.setInt(5, categoryID);
+                stm.setString(6, unitLabel);
+                stm.setString(7, location);
+                stm.setBoolean(8, isSelling);
+                stm.setInt(9, ProductID);
+
+                int rowAffect = stm.executeUpdate();
+                //return
+                return rowAffect > 0;
+
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return false;
+    }
+    
+     //Thêm hàng hóa mới vào DB, trả về false nếu insert không thành công
+    public boolean AddNewProduct( String productName, int categoryID, int threshold, int costPrice, int sellingPrice, String unitLabel, String location, boolean isSelling) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+
+
+                String sql = "INSERT INTO product(name, quantity, cost_price, selling_price, lower_threshold, category_ID, unit_label, location, is_selling) "
+                        + "VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?)"; 
+                
+                stm = con.prepareStatement(sql);
+                stm.setNString(1, productName);
+                stm.setInt(2, costPrice);
+                stm.setInt(3, sellingPrice);
+                stm.setInt(4, threshold);
+                stm.setInt(5, categoryID);
+                stm.setNString(6, unitLabel);
+                stm.setNString(7, location);
+                stm.setBoolean(8, isSelling);
+
+                int rowAffect = stm.executeUpdate();
+                
+                return rowAffect > 0;
+            }
+
+        } finally {
             if (stm != null) {
                 stm.close();
             }
