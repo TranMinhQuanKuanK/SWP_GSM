@@ -13,7 +13,7 @@ window.onload = function () {
 
 function processCategory(data) {
     var defaultOps = document.createElement("option");
-    defaultOps.setAttribute("value","all");
+    defaultOps.setAttribute("value", "all");
     defaultOps.innerHTML = "(*)";
     document.getElementById("inputGroupSelect01").appendChild(defaultOps);
     for (i = 0; i < data.length; i++) {
@@ -56,49 +56,53 @@ function getProduct() {
 
 function printProductList(data) {
     document.getElementById("tableContent").innerHTML = "";
+    var index = 0;
     for (i = 0; i < data.length; i++) {
-        var product = data[i];
-        var tr = document.createElement("tr");
+        if (data[i].is_selling !== false) {
+            index++;
+            var product = data[i];
+            var tr = document.createElement("tr");
 
-        var th_index = document.createElement("th");
-        th_index.setAttribute("scope", "row");
-        th_index.innerHTML = i + 1;
+            var th_index = document.createElement("th");
+            th_index.setAttribute("scope", "row");
+            th_index.innerHTML = index;
 
-        var td_name = document.createElement("td");
-        td_name.innerHTML = data[i].name;
+            var td_name = document.createElement("td");
+            td_name.innerHTML = data[i].name;
 
-        var td_category = document.createElement("td");
-        td_category.innerHTML = data[i].category.name;
+            var td_category = document.createElement("td");
+            td_category.innerHTML = data[i].category.name;
 
-        var td_threshold = document.createElement("td");
-        td_threshold.innerHTML = data[i].lower_threshold;
+            var td_threshold = document.createElement("td");
+            td_threshold.innerHTML = data[i].lower_threshold;
 
-        var td_quantity = document.createElement("td");
-        td_quantity.innerHTML = data[i].quantity;
-        
-        if (data[i].lower_threshold > data[i].quantity){
-            tr.className = "red-row";
+            var td_quantity = document.createElement("td");
+            td_quantity.innerHTML = data[i].quantity;
+
+            if (data[i].lower_threshold > data[i].quantity) {
+                tr.className = "red-row";
+            }
+
+            var td_button = document.createElement("td");
+            var Add_bt = document.createElement("input");
+            Add_bt.setAttribute("type", "button");
+            Add_bt.setAttribute("value", "Add to to-import list");
+            var Edit_bt = document.createElement("input");
+            Edit_bt.setAttribute("type", "button");
+            Edit_bt.setAttribute("value", "...");
+            td_button.setAttribute("class", "btn-col");
+            td_button.appendChild(Add_bt);
+            td_button.appendChild(Edit_bt);
+
+            tr.appendChild(th_index);
+            tr.appendChild(td_name);
+            tr.appendChild(td_category);
+            tr.appendChild(td_threshold);
+            tr.appendChild(td_quantity);
+            tr.appendChild(td_button);
+
+            document.getElementById("tableContent").appendChild(tr);
         }
-
-        var td_button = document.createElement("td");
-        var Add_bt = document.createElement("input");
-        Add_bt.setAttribute("type", "button");
-        Add_bt.setAttribute("value", "Add to to-import list");
-        var Edit_bt = document.createElement("input");
-        Edit_bt.setAttribute("type", "button");
-        Edit_bt.setAttribute("value", "...");
-        td_button.setAttribute("class", "btn-col");
-        td_button.appendChild(Add_bt);
-        td_button.appendChild(Edit_bt);
-
-        tr.appendChild(th_index);
-        tr.appendChild(td_name);
-        tr.appendChild(td_category);
-        tr.appendChild(td_threshold);
-        tr.appendChild(td_quantity);
-        tr.appendChild(td_button);
-        
-        document.getElementById("tableContent").appendChild(tr);
     }// finish printing a product detail row
 }
 
