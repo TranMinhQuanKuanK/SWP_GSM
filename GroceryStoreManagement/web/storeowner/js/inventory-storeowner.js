@@ -23,6 +23,8 @@ function processCategory(data) {
         document.getElementById("inputGroupSelect01").appendChild(selectOps);
     }
 }
+
+var productObject;
 function getProduct() {
     var xhttp = new XMLHttpRequest();
     var cat_ID = document.getElementById("inputGroupSelect01").value;
@@ -31,7 +33,7 @@ function getProduct() {
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
-            var productObject = JSON.parse(this.responseText);
+            productObject = JSON.parse(this.responseText);
             printProductList(productObject);
         }
     };
@@ -84,12 +86,16 @@ function printProductList(data) {
             }
 
             var td_button = document.createElement("td");
-            var Add_bt = document.createElement("input");
-            Add_bt.setAttribute("type", "button");
-            Add_bt.setAttribute("value", "Add to to-import list");
-            var Edit_bt = document.createElement("input");
-            Edit_bt.setAttribute("type", "button");
-            Edit_bt.setAttribute("value", "...");
+                var Add_bt = document.createElement("input");
+                    Add_bt.setAttribute("type", "button");
+                    Add_bt.setAttribute("value", "Add to to-import list");
+                var Edit_bt = document.createElement("input");
+                    Edit_bt.setAttribute("type", "button");
+                    Edit_bt.setAttribute("value", "...");
+                    Edit_bt.setAttribute("id", data[i].product_ID);
+                    Edit_bt.setAttribute("data-toggle", "modal");
+                    Edit_bt.setAttribute("data-target", "#editModal");
+                    Edit_bt.onclick = function(){setUpModal(this.getAttribute("id"));};
             td_button.setAttribute("class", "btn-col");
             td_button.appendChild(Add_bt);
             td_button.appendChild(Edit_bt);
@@ -106,4 +112,13 @@ function printProductList(data) {
     }// finish printing a product detail row
 }
 
+function setUpModal(productID){
+    for(i = 0; i<productObject.length; i++){
+        if (productObject[i].product_ID == productID){
+            document.getElementById("productname").setAttribute("value",productObject[i].name);
+            document.getElementById("product-oldquantity").setAttribute("value",productObject[i].quantity);
+            break;
+        }
+    }
+}
 
