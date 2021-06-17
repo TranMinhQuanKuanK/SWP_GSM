@@ -18,7 +18,7 @@ function processCategory(data) {
     document.getElementById("inputGroupSelect01").appendChild(defaultOps);
     for (i = 0; i < data.length; i++) {
         var selectOps = document.createElement("option");
-        selectOps.setAttribute("value", data[i].category_ID);
+        selectOps.setAttribute("value", i+2);
         selectOps.innerHTML = data[i].name;
         document.getElementById("inputGroupSelect01").appendChild(selectOps);
     }
@@ -70,15 +70,28 @@ function printProductList(data) {
         var td_category = document.createElement("td");
         td_category.innerHTML = data[i].category.name;
 
+        var td_unit = document.createElement("td");
+        td_unit.innerHTML = data[i].unit_label;
+
+        var td_status = document.createElement("td");
+        td_status.innerHTML = data[i].is_selling;
+
+        if (td_status.innerHTML === "false") {
+            tr.className = "red-row";
+        }
+        if (td_status.innerHTML === "true") {
+            td_status.innerHTML = "Đang bán";
+        }
+        if (td_status.innerHTML === "false") {
+            td_status.innerHTML = "Ngưng bán";
+        }
+
         var td_threshold = document.createElement("td");
         td_threshold.innerHTML = data[i].lower_threshold;
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = data[i].quantity;
-        
-        if (data[i].lower_threshold > data[i].quantity){
-            tr.className = "red-row";
-        }
+        ;
 
         var td_button = document.createElement("td");
         var Add_bt = document.createElement("input");
@@ -94,10 +107,12 @@ function printProductList(data) {
         tr.appendChild(th_index);
         tr.appendChild(td_name);
         tr.appendChild(td_category);
+        tr.appendChild(td_unit);
+        tr.appendChild(td_status);
         tr.appendChild(td_threshold);
         tr.appendChild(td_quantity);
         tr.appendChild(td_button);
-        
+
         document.getElementById("tableContent").appendChild(tr);
     }// finish printing a product detail row
 }
