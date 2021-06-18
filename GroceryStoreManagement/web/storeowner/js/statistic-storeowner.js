@@ -15,7 +15,15 @@ function showProductStatistic() {
 }
 
 function renderProductStatistic(productStatistic) {
-    var table = document.getElementById("product-stat-area");
+    
+//    var table2 = $('#product-stat-area').DataTable();
+// 
+////// Sort by column 1 and then re-draw
+//table2
+//    .order( [[ 3, "desc" ]] )
+//    .draw();
+    
+    var table = document.getElementById("product-stat-body");
     table.innerHTML = "";
     
     for (i = 0; i < productStatistic.length; i++) {

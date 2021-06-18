@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -53,7 +55,7 @@ public class GetPreviousBillListServlet extends HttpServlet {
         } else {
             searchValue = StringNormalizer.normalize(searchValue);
         }
-        
+
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
             if (dateFrom.compareTo(dateTo) > 0) {
@@ -68,14 +70,20 @@ public class GetPreviousBillListServlet extends HttpServlet {
                 //2.2 Call DAO
                 PreBillDAO dao = new PreBillDAO();
                 dao.searchPreviousBill(searchValue, dateFrom, dateTo);
+                if (searchValue.length() == 0) {
+                    dao.searchGuestPreviousBill(dateFrom, dateTo);
+                }
 
                 List<PreBillDTO> resultList = dao.getPreBillList();
 
                 if (resultList == null) {
                     resultList = new ArrayList<>();
+                } else {
+                    Collections.sort(resultList, Comparator.comparing(PreBillDTO::getBuyDate).reversed());
+                    for (PreBillDTO bill : resultList) {
+                        bill.setBuyDate(StringNormalizer.dateNormalize(bill.getBuyDate()));
+                    }
                 }
-                
-                System.out.println(resultList);
 
                 Gson gson = new Gson();
                 String productStatisticJSONS = gson.toJson(resultList);

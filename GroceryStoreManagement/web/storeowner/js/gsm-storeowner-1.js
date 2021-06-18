@@ -87,3 +87,36 @@ if (document.getElementById("defaultOpen") !== null) {
 function formatNumber(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
+
+function format(time) {
+    return (time < 10 ? '0' : '') + time;
+}
+
+function getTime() {
+    var now = new Date();
+
+    var year = format(new Date().getFullYear());
+    var month = format(now.getMonth() + 1);
+    var day = format(now.getDate());
+    var hour = format(now.getHours());
+    var minute = format(now.getMinutes());
+    var second = format(now.getSeconds());
+
+    var dateTime = [year, month, day].join('-') + 'T' + [hour, minute, second].join(':');
+    var dateTo = document.getElementsByClassName("datetime-date-to");
+    for (i = 0; i < dateTo.length; i++) {
+        dateTo[i].value = dateTime;
+    }
+
+    if (now.getMonth() === 0) {
+        month = 12;
+    } else {
+        month = format(now.getMonth());
+    }
+
+    var dateTime = [year, month, day].join('-') + 'T' + [hour, minute, second].join(':');
+    var dateFrom = document.getElementsByClassName("datetime-date-from");
+    for (i = 0; i < dateFrom.length; i++) {
+        dateFrom[i].value = dateTime;
+    }
+}

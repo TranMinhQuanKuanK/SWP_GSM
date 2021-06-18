@@ -20,7 +20,7 @@
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
     </head>
 
-    <body id="page-top">
+    <body id="page-top" onload="getTime()">
 
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -188,33 +188,31 @@
 
                                     <div class="card-body">
                                         <div class="container-fluid justify-content-start">
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Phone number or name: &nbsp;</h6>
-                                            <div class="form-group mr-2">
-                                                <div class="pt-2">
-                                                    <input type="text" id="search-value">
-                                                </div>
-                                            </div>
 
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Date from: &nbsp;
-                                            </h6>
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Date from: &nbsp;</h6>
                                             <div class="form-group mr-2">
                                                 <div class="pt-2">
-                                                    <input class="form-control" type="datetime-local" id="date-from"
-                                                           value="2012-06-09T00:00:00">
+                                                    <input class="form-control datetime-date-from" type="datetime-local" id="date-from">
                                                 </div>
                                             </div>
 
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;</h6>
                                             <div class="form-group mr-2">
                                                 <div class="pt-2">
-                                                    <input class="form-control" type="datetime-local" id="date-to"
-                                                           value="2012-07-08T00:00:00">
+                                                    <input class="form-control datetime-date-to" type="datetime-local" id="date-to">
                                                 </div>
                                             </div>
 
-                                            <input type="button" onclick="showPreBillList()"
-                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-3"
-                                                   value="Search" />
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Phone number or name: &nbsp;</h6>
+                                            <div class="form-group mr-2">
+                                                <div class="pt-2">
+                                                    <input type="text" id="search-value">
+                                                    &emsp; &emsp; &ensp;
+                                                    <input type="button" onclick="showPreBillList()"
+                                                           class="nav-item active align-items-center justify-content-center mt-2 mb-3"
+                                                           value="Search" />
+                                                </div>
+                                            </div>
                                         </div>
 
                                         <!-- Look up Table Content -->
@@ -226,12 +224,14 @@
                                                         <th scope="col">Tên khách hàng</th>
                                                         <th scope="col">SĐT</th>
                                                         <th scope="col">Tổng</th>
-                                                        <th scope="col">Ngày mua</th>
+                                                        <th scope="col">Ngày</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="pre-bill-area">
                                                 </tbody>
                                             </table>
+
+                                            <span id="not-found-label" style="display:none">Không tìm thấy hóa đơn</span>
                                         </div>
                                         <!--/ End of Look up Table Content -->
 
@@ -249,8 +249,28 @@
                                     </div>
 
                                     <!-- Bill Information Table Content -->
-                                    <div class="card-body">
-                                        <div class="text-center small">
+                                    <div class="card-body" style="display:none" id="bill-info">
+                                        <div class="container-fluid justify-content-start d-flex">
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Tên khách hàng: &nbsp;</span>
+                                            <span class="pt-1 ml-1" id="customer-name"></span>
+                                        </div>
+
+                                        <div class="container-fluid justify-content-start d-flex">
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Số điện thoại: &nbsp;</span>
+                                            <span class="pt-1 ml-1" id="customer-phone"></span>
+                                        </div>
+
+                                        <div class="container-fluid justify-content-start d-flex">
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Ngày: &nbsp;</span>
+                                            <span class="pt-1 ml-1" id="buy-date"></span>
+                                        </div>
+
+                                        <div class="container-fluid justify-content-start d-flex">
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Thu ngân: &nbsp;</span>
+                                            <span class="pt-1 ml-1" id="cashier-name"></span>
+                                        </div>
+
+                                        <div class="text-center small pt-3">
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
@@ -264,6 +284,8 @@
                                                 <tbody id="pre-bill-detail-area">
                                                 </tbody>
                                             </table>
+
+                                            <span id="empty-bill-label" style="display:none">Hóa đơn không có sản phẩm nào</span>
                                         </div>
                                     </div>
                                     <!--/ End of Bill Information Table Content -->
@@ -344,5 +366,4 @@
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/previous-bill-storeowner.js"></script>
     </body>
-
 </html>
