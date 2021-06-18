@@ -81,7 +81,7 @@ function printProductList(data) {
             var td_quantity = document.createElement("td");
             td_quantity.innerHTML = data[i].quantity;
 
-            if (data[i].lower_threshold > data[i].quantity) {
+            if (data[i].lower_threshold >= data[i].quantity) {
                 tr.className = "red-row";
             }
 
