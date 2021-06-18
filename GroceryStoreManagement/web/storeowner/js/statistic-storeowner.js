@@ -15,15 +15,7 @@ function showProductStatistic() {
 }
 
 function renderProductStatistic(productStatistic) {
-    
-//    var table2 = $('#product-stat-area').DataTable();
-// 
-////// Sort by column 1 and then re-draw
-//table2
-//    .order( [[ 3, "desc" ]] )
-//    .draw();
-    
-    var table = document.getElementById("product-stat-body");
+    var table = document.getElementById("product-stat-area");
     table.innerHTML = "";
     
     for (i = 0; i < productStatistic.length; i++) {
@@ -37,6 +29,6 @@ function renderProductStatistic(productStatistic) {
         cellNo.innerHTML = i + 1;
         cellProductName.innerHTML = productStatistic[i].productName;
         cellQuantity.innerHTML = productStatistic[i].quantity;
-        cellTotal.innerHTML = formatNumber(productStatistic[i].total);
+        cellTotal.innerHTML = productStatistic[i].total;
     }
 }

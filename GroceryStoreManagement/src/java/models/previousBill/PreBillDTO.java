@@ -5,27 +5,20 @@
  */
 package models.previousBill;
 
-import java.util.List;
-
 /**
  *
  * @author Huu Quoc
  */
 public class PreBillDTO {
-    int billID, totalCost, pointUsed, cash;
-    String name, phoneNo, buyDate, cashier;
-    List<PreBillDetailDTO> details;
+    int billID;
+    String name, phoneNo, buyDate, totalCost;
 
-    public PreBillDTO(int billID, int totalCost, int pointUsed, int cash, String name, String phoneNo, String buyDate, String cashier, List<PreBillDetailDTO> details) {
+    public PreBillDTO(int billID, String name, String phoneNo, String buyDate, String totalCost) {
         this.billID = billID;
-        this.totalCost = totalCost;
-        this.pointUsed = pointUsed;
-        this.cash = cash;
         this.name = name;
         this.phoneNo = phoneNo;
         this.buyDate = buyDate;
-        this.cashier = cashier;
-        this.details = details;
+        this.totalCost = totalCost;
     }
 
     public int getBillID() {
@@ -60,43 +53,11 @@ public class PreBillDTO {
         this.buyDate = buyDate;
     }
 
-    public int getTotalCost() {
+    public String getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(int totalCost) {
+    public void setTotalCost(String totalCost) {
         this.totalCost = totalCost;
-    }
-
-    public String getCashier() {
-        return cashier;
-    }
-
-    public void setCashier(String cashier) {
-        this.cashier = cashier;
-    }
-
-    public int getPointUsed() {
-        return pointUsed;
-    }
-
-    public void setPointUsed(int pointUsed) {
-        this.pointUsed = pointUsed;
-    }
-
-    public int getCash() {
-        return cash;
-    }
-
-    public void setCash(int cash) {
-        this.cash = cash;
-    }
-    
-    public List<PreBillDetailDTO> getDetails() {
-        return details;
-    }
-
-    public void setDetails(List<PreBillDetailDTO> details) {
-        this.details = details;
     }
 }

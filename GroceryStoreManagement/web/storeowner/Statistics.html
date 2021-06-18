@@ -20,7 +20,7 @@
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
     </head>
 
-    <body onload="getTime()">
+    <body>
 
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -175,8 +175,7 @@
 
                         <!-- Table Tab Row -->
                         <ul class="nav nav-tabs nav-fill align-items-center">
-                            <li id="defaultOpen" class="nav-item border-left-primary justify-content-center shadow h-100 tablink" 
-                                onclick="openPage('Product', this, 'Product-btn'); getTime();">
+                            <li id="defaultOpen" class="nav-item border-left-primary justify-content-center shadow h-100 tablink" onclick="openPage('Product', this, 'Product-btn')">
                                 <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Product Statistic</span>
@@ -208,13 +207,15 @@
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-from" type="datetime-local" id="date-from">
+                                                    <input class="form-control" type="datetime-local" id="date-from"
+                                                           value="2012-06-09T00:00:00">
                                                 </div>
                                             </div>
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-to" type="datetime-local" id="date-to">
+                                                    <input class="form-control" type="datetime-local" id="date-to"
+                                                           value="2012-07-08T00:00:00">
                                                 </div>
                                             </div>
                                         </div>
@@ -236,7 +237,7 @@
                                     <!-- Table Content -->
                                     <div class="card-body">
                                         <div class="text-center small">
-                                            <table class="table table-striped" id="product-stat-area">
+                                            <table class="table table-striped">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
@@ -245,7 +246,7 @@
                                                         <th scope="col">Tổng doanh thu</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody id="product-stat-body">
+                                                <tbody id="product-stat-area">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -264,13 +265,15 @@
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-from" type="datetime-local" id="date-from">
+                                                    <input class="form-control" type="datetime-local" id="date-from"
+                                                           value="2012-06-09T00:00:00">
                                                 </div>
                                             </div>
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-to" type="datetime-local" id="date-to">
+                                                    <input class="form-control" type="datetime-local" id="date-to"
+                                                           value="2012-07-08T00:00:00">
                                                 </div>
                                             </div>
                                         </div>
@@ -328,13 +331,15 @@
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-from" type="datetime-local" id="date-from">
+                                                    <input class="form-control" type="datetime-local" id="date-from"
+                                                           value="2012-06-09T00:00:00">
                                                 </div>
                                             </div>
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-to" type="datetime-local" id="date-to">
+                                                    <input class="form-control" type="datetime-local" id="date-to"
+                                                           value="2012-07-08T00:00:00">
                                                 </div>
                                             </div>
                                         </div>
@@ -413,7 +418,6 @@
 
         <!-- Core plugin JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
 
         <!-- Custom scripts for all pages-->
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>

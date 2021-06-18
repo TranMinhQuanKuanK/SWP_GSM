@@ -63,11 +63,11 @@ public class ProductStatisticDAO {
 
                     if (this.productStatisticMap.containsKey(productID)) {
                         quantity += this.productStatisticMap.get(productID).getQuantity();
-                        total += this.productStatisticMap.get(productID).getTotal();
+                        total += Integer.parseInt(this.productStatisticMap.get(productID).getTotal());
                     }
                     
                     this.productStatisticMap.put(productID, 
-                            new ProductStatisticDTO(productName, quantity, total));
+                            new ProductStatisticDTO(productName, quantity, Integer.toString(total)));
                 }
             }
         } finally {
