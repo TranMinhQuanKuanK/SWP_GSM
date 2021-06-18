@@ -86,16 +86,18 @@ function printProductList(data) {
             }
 
             var td_button = document.createElement("td");
-                var Add_bt = document.createElement("input");
-                    Add_bt.setAttribute("type", "button");
-                    Add_bt.setAttribute("value", "Add to to-import list");
-                var Edit_bt = document.createElement("input");
-                    Edit_bt.setAttribute("type", "button");
-                    Edit_bt.setAttribute("value", "...");
-                    Edit_bt.setAttribute("id", data[i].product_ID);
-                    Edit_bt.setAttribute("data-toggle", "modal");
-                    Edit_bt.setAttribute("data-target", "#editModal");
-                    Edit_bt.onclick = function(){setUpModal(this.getAttribute("id"));};
+            var Add_bt = document.createElement("input");
+            Add_bt.setAttribute("type", "button");
+            Add_bt.setAttribute("value", "Add to to-import list");
+            var Edit_bt = document.createElement("input");
+            Edit_bt.setAttribute("type", "button");
+            Edit_bt.setAttribute("value", "...");
+            Edit_bt.setAttribute("id", data[i].product_ID);
+            Edit_bt.setAttribute("data-toggle", "modal");
+            Edit_bt.setAttribute("data-target", "#editModal");
+            Edit_bt.onclick = function () {
+                setUpModal(this.getAttribute("id"));
+            };
             td_button.setAttribute("class", "btn-col");
             td_button.appendChild(Add_bt);
             td_button.appendChild(Edit_bt);
@@ -112,13 +114,32 @@ function printProductList(data) {
     }// finish printing a product detail row
 }
 
-function setUpModal(productID){
-    for(i = 0; i<productObject.length; i++){
-        if (productObject[i].product_ID == productID){
-            document.getElementById("productname").setAttribute("value",productObject[i].name);
-            document.getElementById("product-oldquantity").setAttribute("value",productObject[i].quantity);
+function setUpModal(productID) {
+    for (i = 0; i < productObject.length; i++) {
+        if (productObject[i].product_ID == productID) {
+            document.getElementById("productname").setAttribute("value", productObject[i].name);
+            document.getElementById("product-oldquantity").setAttribute("value", productObject[i].quantity);
+            document.getElementById("hiddenProductID").setAttribute("value", productObject[i].product_ID);
             break;
         }
     }
+}
+
+function updateQuantity() {
+    var xhttp = new XMLHttpRequest();
+    content =
+            "product_ID=" +
+            encodeURIComponent(document.getElementById("hiddenProductID").value) +
+            "&new_quantity=" +
+            encodeURIComponent(document.getElementById("product-newquantity").value) 
+    xhttp.open("POST", "UpdateQuantity", true);
+    xhttp.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded;charset=UTF-8"
+            );
+    xhttp.send(content);
+    document.getElementById("product-newquantity").value = "";
+    $("#editModal").modal("hide");
+    getProduct();
 }
 

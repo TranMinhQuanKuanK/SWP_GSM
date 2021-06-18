@@ -271,4 +271,41 @@ public class ProductDAO implements Serializable {
 
         return false;
     }
+    
+    public boolean changeQuantity(Integer productID, Integer quantity) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+
+                String sql = "UPDATE product\n"
+                        + "SET quantity = ?\n"
+                        + "WHERE product_ID = ?";
+
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, quantity);
+                stm.setInt(2, productID);
+                int rowAffect = stm.executeUpdate();
+                if (rowAffect > 0) {
+                    return true;
+                }
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return false;
+
+    }
 }
