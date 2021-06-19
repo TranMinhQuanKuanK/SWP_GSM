@@ -3,12 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.cashier.account;
+package controllers.storeowner.staff;
 
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,14 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.account.AccountDAO;
 import models.account.AccountDTO;
-import models.account.AccountErrObj;
 
 /**
  *
- * @author quan6
+ * @author Huu Quoc
  */
-@WebServlet(name = "ChangePasswordCashierServlet", urlPatterns = {"/ChangePasswordCashierServlet"})
-public class ChangePasswordCashierServlet extends HttpServlet {
+@WebServlet(name = "GetAccountListServlet", urlPatterns = {"/GetAccountListServlet"})
+public class GetAccountListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,41 +39,29 @@ public class ChangePasswordCashierServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            String currentPassword = request.getParameter("currentPassword");
-            String newPassword = request.getParameter("newPassword");
-            String username = (String) request.getSession().getAttribute("USERNAME");
-            AccountErrObj accError = new AccountErrObj();
-            if (username != null) {
-                AccountDAO aDAO = new AccountDAO();
-                AccountDTO aDTO = aDAO.CheckLogin(username, currentPassword);
-                if (aDTO == null) {
-                    //thông báo mật khẩu không đúng
-                    accError.setCurrentPasswordError("Mật khẩu hiện tại không đúng");
-                    accError.setHasError(true);
 
-                } else {
-                    //kiểm tra password mới 6 kí tự 
-                    if (newPassword.length() < 6) {
-                        accError.setNewPasswordError("Mật khẩu mới phải từ 6 kí tự trở lên");
-                        accError.setHasError(true);
-                    } else if (newPassword.equals(currentPassword)) {
-                        accError.setNewPasswordError("Mật khẩu mới phải khác mật khẩu cũ");
-                        accError.setHasError(true);
-                    } else {
-                        aDAO.ChangePassword(username, newPassword);
-                    }
-                }
-                Gson gson = new Gson();
-                String JSONString = gson.toJson(accError);
-                out.print(JSONString);
-                out.flush();
+        try (PrintWriter out = response.getWriter()) {
+            AccountDAO dao = new AccountDAO();
+            dao.fetchAccountList();
+
+            List<AccountDTO> resultList = dao.getAccountList();
+
+            if (resultList == null) {
+                resultList = new ArrayList<>();
+            }
+            
+            for (AccountDTO dto : resultList) {
+                System.out.println(dto);
             }
 
-        } catch (SQLException e) {
-            log("SQLException " + e.getMessage());
-        } catch (NamingException e) {
-            log("NamingException " + e.getMessage());
+            Gson gson = new Gson();
+            String productStatisticJSONS = gson.toJson(resultList);
+            out.print(productStatisticJSONS);
+            out.flush();
+        } catch (SQLException ex) {
+            log("GetAccountListServlet _ SQL: " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("GetAccountListServlet _ Naming: " + ex.getMessage());
         }
     }
 

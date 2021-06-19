@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import utils.DBHelpers;
 
@@ -15,10 +17,16 @@ import utils.DBHelpers;
  */
 /**
  *
- * @author Tran Minh Quan
+ * @author Tran Minh Quan + Huu Quoc
  */
 public class AccountDAO implements Serializable {
 
+    private List<AccountDTO> accountList;
+
+    public List<AccountDTO> getAccountList() {
+        return accountList;
+    }
+    
     public AccountDTO CheckLogin(String username, String password) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -62,7 +70,7 @@ public class AccountDAO implements Serializable {
         return null;
     }
 
-    public boolean ChangePassword(String username,String password) throws SQLException, NamingException {
+    public boolean ChangePassword(String username, String password) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -97,6 +105,119 @@ public class AccountDAO implements Serializable {
         }
 
         return false;
+    }
 
+    public void fetchAccountList() 
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            //1. Connect DB
+            con = DBHelpers.makeConnection();
+
+            if (con != null) {
+                //2. Create SQL string
+                String sql = "SELECT username, name, is_owner "
+                           + "FROM account";
+
+                //3. Create statement and assign parameter value if any
+                stm = con.prepareStatement(sql);
+
+                //4. Execute query
+                rs = stm.executeQuery();
+
+                //5. Process result
+                while (rs.next()) {
+                    String username = rs.getString("username");
+                    String name = rs.getString("name");
+                    boolean isOwner = rs.getBoolean("is_owner");
+
+                    if (this.accountList == null) {
+                        this.accountList = new ArrayList<>();
+                    }
+
+                    this.accountList.add(new AccountDTO(username, name, isOwner));
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+
+            if (stm != null) {
+                stm.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    public void resetAccount(String username) 
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+
+        try {
+            //1. Connect DB
+            con = DBHelpers.makeConnection();
+
+            if (con != null) {
+                //2. Create SQL string
+                String sql = "UPDATE account "
+                        + "SET password = '123456' "
+                        + "WHERE username = ?";
+
+                //3. Create statement and assign parameter value if any
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+
+                //4. Execute query
+                stm.executeUpdate();
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    public void deleteAccount(String username) 
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+
+        try {
+            //1. Connect DB
+            con = DBHelpers.makeConnection();
+
+            if (con != null) {
+                //2. Create SQL string
+                String sql = "DELETE FROM account "
+                        + "WHERE username = ?";
+
+                //3. Create statement and assign parameter value if any
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+
+                //4. Execute query
+                stm.executeUpdate();
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }
