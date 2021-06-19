@@ -156,7 +156,7 @@ public class AccountDAO implements Serializable {
         }
     }
     
-    public void resetAccount(String username) 
+    public boolean resetAccount(String username) 
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -168,15 +168,20 @@ public class AccountDAO implements Serializable {
             if (con != null) {
                 //2. Create SQL string
                 String sql = "UPDATE account "
-                        + "SET password = '123456' "
+                        + "SET password_acc = '123456' "
                         + "WHERE username = ?";
 
                 //3. Create statement and assign parameter value if any
                 stm = con.prepareStatement(sql);
                 stm.setString(1, username);
-
+                
                 //4. Execute query
-                stm.executeUpdate();
+                int rowEffect = stm.executeUpdate();
+                
+                //5. Process Result
+                if (rowEffect > 0) {
+                    return true;
+                }
             }
         } finally {
             if (stm != null) {
@@ -187,9 +192,11 @@ public class AccountDAO implements Serializable {
                 con.close();
             }
         }
+        
+        return false;
     }
     
-    public void deleteAccount(String username) 
+    public boolean deleteAccount(String username) 
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -208,7 +215,12 @@ public class AccountDAO implements Serializable {
                 stm.setString(1, username);
 
                 //4. Execute query
-                stm.executeUpdate();
+                int rowEffect = stm.executeUpdate();
+                
+                //5. Process Result
+                if (rowEffect > 0) {
+                    return true;
+                }
             }
         } finally {
             if (stm != null) {
@@ -219,5 +231,7 @@ public class AccountDAO implements Serializable {
                 con.close();
             }
         }
+        
+        return false;
     }
 }

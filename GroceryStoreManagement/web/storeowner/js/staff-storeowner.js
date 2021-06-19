@@ -17,16 +17,20 @@ function resetAccount(username) {
     var request = new XMLHttpRequest();
 
     var url = "ResetAccount";
-    url += "?username=" + username;
+    var content = "username=" + encodeURIComponent(username);
 
     //Hiện modal confirm reset password cho cashier
     //if confirmed 
     {
-        request.open('GET', url, true);
-        request.send();
-        //thông báo success
+        request.open('POST', url, true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+        request.onload = function () {
+            accountErr = JSON.parse(this.responseText);
+            //if accountErr != null, alert error
+            //else thông báo success
+        };
+        request.send(content);
     }
-    ;
     //else thông báo failure
 }
 
@@ -34,17 +38,23 @@ function deleteAccount(username) {
     var request = new XMLHttpRequest();
 
     var url = "DeleteAccount";
-    url += "?username=" + username;
+    var content = "username=" + encodeURIComponent(username);
 
     //Hiện modal delete cashier
-    //if confirmed
+    //if confirmed 
     {
-        request.open('GET', url, true);
+        request.open('POST', url, true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         request.onload = function () {
-            showAccountList();
+            accountErr = JSON.parse(this.responseText);
+            //if accountErr != null, alert error
+            //else 
+            {
+                //thông báo success
+                showAccountList();
+            }
         };
-        request.send();
-        //Thông báo success
+        request.send(content);
     }
     //else thông báo failure
 }
@@ -79,12 +89,12 @@ function renderAccountList() {
             buttonDelete.type = "button";
             buttonDelete.addEventListener('click', function () {
                 deleteAccount(accountList[i].username);
-            }); 
+            });
 
             cellResetButton.innerHTML = '<input type="button" onClick="resetAccount(\'' + accountList[i].username +
-                                        '\')" value="Icon refresh" />';
+                    '\')" value="Icon refresh" />';
             cellDeleteButton.innerHTML = '<input type="button" onClick="deleteAccount(\'' + accountList[i].username +
-                                        '\')" value="Icon dấu X" />';
+                    '\')" value="Icon dấu X" />';
         }
     }
 }

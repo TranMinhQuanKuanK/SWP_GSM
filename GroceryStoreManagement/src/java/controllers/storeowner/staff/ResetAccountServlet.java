@@ -16,12 +16,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.account.AccountDAO;
+import models.account.AccountErrObj;
 
 /**
  *
  * @author Huu Quoc
  */
-@WebServlet(name = "UpdateAccountServlet", urlPatterns = {"/UpdateAccountServlet"})
+@WebServlet(name = "ResetAccountServlet", urlPatterns = {"/ResetAccountServlet"})
 public class ResetAccountServlet extends HttpServlet {
 
     /**
@@ -35,16 +36,25 @@ public class ResetAccountServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         String username = request.getParameter("username");
         
         try (PrintWriter out = response.getWriter()) {
             AccountDAO dao = new AccountDAO();
-            dao.resetAccount(username);
+            AccountErrObj accountErr = new AccountErrObj();
+            
+            if (!dao.resetAccount(username)) {
+                accountErr.setResetPasswordError("Cannot reset password!");
+            }
+            
+            Gson gson = new Gson();
+            String JSONString = gson.toJson(accountErr);
+            out.print(JSONString);
+            out.flush();
         } catch (SQLException ex) {
-            log("GetAccountListServlet _ SQL: " + ex.getMessage());
+            log("ResetAccountListServlet _ SQL: " + ex.getMessage());
         } catch (NamingException ex) {
-            log("GetAccountListServlet _ Naming: " + ex.getMessage());
+            log("ResetAccountListServlet _ Naming: " + ex.getMessage());
         }
     }
 

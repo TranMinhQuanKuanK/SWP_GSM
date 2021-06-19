@@ -23,7 +23,6 @@ import javax.servlet.http.HttpServletResponse;
 import models.statistic.ProductStatisticDAO;
 import models.statistic.ProductStatisticDTO;
 import models.statistic.StatisticErrorObj;
-import utils.StringNormalizer;
 
 /**
  *

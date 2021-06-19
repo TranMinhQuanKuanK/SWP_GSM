@@ -5,13 +5,18 @@
  */
 package controllers.storeowner.staff;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.account.AccountDAO;
+import models.account.AccountErrObj;
 
 /**
  *
@@ -31,18 +36,25 @@ public class DeleteAccountServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
+        String username = request.getParameter("username");
+        
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet DeleteAccountServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet DeleteAccountServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            AccountDAO dao = new AccountDAO();
+            AccountErrObj accountErr = new AccountErrObj();
+            
+            if (!dao.deleteAccount(username)) {
+                accountErr.setResetPasswordError("Cannot delete account!");
+            }
+            
+            Gson gson = new Gson();
+            String JSONString = gson.toJson(accountErr);
+            out.print(JSONString);
+            out.flush();
+        } catch (SQLException ex) {
+            log("DeleteAccountListServlet _ SQL: " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("DeleteAccountListServlet _ Naming: " + ex.getMessage());
         }
     }
 

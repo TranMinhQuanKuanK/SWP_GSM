@@ -86,8 +86,8 @@ public class GetPreviousBillListServlet extends HttpServlet {
                 }
 
                 Gson gson = new Gson();
-                String productStatisticJSONS = gson.toJson(resultList);
-                out.print(productStatisticJSONS);
+                String previousBillJSONS = gson.toJson(resultList);
+                out.print(previousBillJSONS);
                 out.flush();
             }
         } catch (SQLException ex) {

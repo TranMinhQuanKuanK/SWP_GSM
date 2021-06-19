@@ -50,13 +50,9 @@ public class GetAccountListServlet extends HttpServlet {
                 resultList = new ArrayList<>();
             }
             
-            for (AccountDTO dto : resultList) {
-                System.out.println(dto);
-            }
-
             Gson gson = new Gson();
-            String productStatisticJSONS = gson.toJson(resultList);
-            out.print(productStatisticJSONS);
+            String JSONS = gson.toJson(resultList);
+            out.print(JSONS);
             out.flush();
         } catch (SQLException ex) {
             log("GetAccountListServlet _ SQL: " + ex.getMessage());
