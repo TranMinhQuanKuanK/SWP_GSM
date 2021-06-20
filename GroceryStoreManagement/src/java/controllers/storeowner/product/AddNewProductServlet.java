@@ -29,7 +29,7 @@ public class AddNewProductServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             boolean foundErr = false;
             ProductError err = new ProductError();
@@ -73,10 +73,9 @@ public class AddNewProductServlet extends HttpServlet {
             } else {
                 boolean result = dao.AddNewProduct(productName, productCategoryID, productLowerThreshold, productCostPrice, productSellingPrice, productUnitLabel, productLocation, productIsSelling);
                 if (result) {
-                    String json = gson.toJson("");
+                    String json = gson.toJson(null);
                     out.print(json);
-                }
-                else {
+                } else {
                     String json = gson.toJson("Something wrong");
                     out.print(json);
                 }
