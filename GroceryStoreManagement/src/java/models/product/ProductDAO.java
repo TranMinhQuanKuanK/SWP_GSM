@@ -372,8 +372,42 @@ public class ProductDAO implements Serializable {
         return false;
     }
     
-     //Thêm hàng hóa mới vào DB, trả về false nếu insert không thành công
-    public boolean AddNewProduct( String productName, int categoryID, int threshold, int costPrice, int sellingPrice, String unitLabel, String location, boolean isSelling) throws SQLException, NamingException {
+    public boolean changeQuantity(Integer productID, Integer quantity) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+
+                String sql = "UPDATE product\n"
+                        + "SET quantity = ?\n"
+                        + "WHERE product_ID = ?";
+
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, quantity);
+                stm.setInt(2, productID);
+                int rowAffect = stm.executeUpdate();
+                if (rowAffect > 0) {
+                    return true;
+                }
+            }
+
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+
+        return false;
+    }
+     public boolean AddNewProduct( String productName, int categoryID, int threshold, int costPrice, int sellingPrice, String unitLabel, String location, boolean isSelling) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         try {

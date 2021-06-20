@@ -21,3 +21,4 @@ SeenFeedback = SeenFeedbackServlet
 GetProductInfo = GetProductInfoServlet
 EditProductInfo = EditProductInfoServlet
 AddNewProduct = AddNewProductServlet
+UpdateQuantity = UpdateQuantityServlet
