@@ -1,112 +1,113 @@
-var productList = $('#product-list').DataTable({
-    processing: true,
-    responsive: true,
-    ajax: {
-        url: "GetProductList",
-        type: "GET",
-        dataSrc: "",
-        data:
-                function (d) {
-                    if ($("#outOfStockItems").is(':checked'))
-                    {
-                        if ($("#category-list option:selected").val() !== "")
-                            return $.extend(d, {
-                                "category_id": $("#category-list option:selected").val(),
-                                "search_value": $("#txtSearchProductName").val(),
-                                "only_noos_items": $("#outOfStockItems").is(':checked')
-                            });
-
-                        return $.extend(d, {
-                            "search_value": $("#txtSearchProductName").val(),
-                            "only_noos_items": $("#outOfStockItems").is(':checked')
-                        });
-                    }
-                    if ($("#category-list option:selected").val() !== "")
-                        return $.extend(d, {
-                            "category_id": $("#category-list option:selected").val(),
-                            "search_value": $("#txtSearchProductName").val()
-                        });
-
-                    return $.extend(d, {
-                        "search_value": $("#txtSearchProductName").val()
-                    });
-                }},
-    columns: [
-        {data: 'product_ID'},
-        {data: 'name', render: function (data, type, row) {
-                return data.normalize();
-            }},
-        {data: 'selling_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
-        {data: 'category.name'},
-        {data: 'unit_label'},
-        {data: 'is_selling', render: function (data) {
-                return (data) ? "Bán" : "Không bán";
-            }}
-    ],
-    createdRow: function (row, data, dataIndex, cells) {
-        $(row).attr("id", $(cells[0]).text());
-    },
-    columnDefs: [{
-            "searchable": false,
-            "orderable": false,
-            "targets": 0
-        }],
-    order: [[1, 'asc']],
-    language: {
-        "lengthMenu": "Xem _MENU_ hàng hóa mỗi trang",
-        "zeroRecords": "Không tìm thấy hàng hóa",
-        "info": "Đang xem trang thứ _PAGE_ trong _PAGES_ trang",
-        "infoEmpty": "Không có thông tin",
-        "infoFiltered": "(lọc từ _MAX_ lượng hàng hóa)",
-        "paginate": {
-            "first": "Đầu tiên",
-            "last": "Cuối",
-            "next": "Tiếp theo",
-            "previous": "Trước"
-        },
-        "search": "Tìm kiếm: "
-    },
-    dom: 'lrtip'
-});
-
-productList.on('order.dt search.dt', function () {
-    productList.column(0, {order: 'applied', search: 'applied'}).nodes().each(function (cell, i) {
-        cell.innerHTML = i + 1;
-    });
-});
-
-
+var productList = null;
 var select_el = document.getElementById("category-list");
-
-$.ajax({
-    url: "GetCategoryList",
-    type: "GET",
-    dataType: "json",
-    success: function (data) {
-        for (var i in data) {
-            var json = data[i];
-            var option_el = document.createElement(("option"));
-            option_el.value = json.category_ID;
-            option_el.textContent = json.name;
-            select_el.appendChild(option_el);
-        }
-    }
-});
 
 
 $(document).ready(function () {
-    productList.draw();
+    productList = $('#product-list').DataTable({
+        processing: true,
+        responsive: true,
+        ajax: {
+            url: "GetProductList",
+            type: "GET",
+            dataSrc: "",
+            data:
+                    function (d) {
+                        if ($("#outOfStockItems").is(':checked'))
+                        {
+                            if ($("#category-list option:selected").val() !== "")
+                                return $.extend(d, {
+                                    "category_id": $("#category-list option:selected").val(),
+                                    "search_value": $("#txtSearchProductName").val(),
+                                    "only_noos_items": $("#outOfStockItems").is(':checked')
+                                });
 
-    $("#category-list, #outOfStockItems").on('change', function () {
-        productList.ajax.reload();
+                            return $.extend(d, {
+                                "search_value": $("#txtSearchProductName").val(),
+                                "only_noos_items": $("#outOfStockItems").is(':checked')
+                            });
+                        }
+                        if ($("#category-list option:selected").val() !== "")
+                            return $.extend(d, {
+                                "category_id": $("#category-list option:selected").val(),
+                                "search_value": $("#txtSearchProductName").val()
+                            });
+
+                        return $.extend(d, {
+                            "search_value": $("#txtSearchProductName").val()
+                        });
+                    }},
+        columns: [
+            {data: 'product_ID'},
+            {data: 'name', render: function (data, type, row) {
+                    return data.normalize();
+                }},
+            {data: 'selling_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
+            {data: 'category.name'},
+            {data: 'unit_label'},
+            {data: 'is_selling', render: function (data) {
+                    return (data) ? "Bán" : "Không bán";
+                }}
+        ],
+        createdRow: function (row, data, dataIndex, cells) {
+            $(row).attr("id", $(cells[0]).text());
+        },
+        columnDefs: [{
+                "searchable": false,
+                "orderable": false,
+                "targets": 0
+            }],
+        order: [[1, 'asc']],
+        language: {
+            "lengthMenu": "Xem _MENU_ hàng hóa mỗi trang",
+            "zeroRecords": "Không tìm thấy hàng hóa",
+            "info": "Đang xem trang thứ _PAGE_ trong _PAGES_ trang",
+            "infoEmpty": "Không có thông tin",
+            "infoFiltered": "(lọc từ _MAX_ lượng hàng hóa)",
+            "paginate": {
+                "first": "Đầu tiên",
+                "last": "Cuối",
+                "next": "Tiếp theo",
+                "previous": "Trước"
+            },
+            "search": "Tìm kiếm: "
+        },
+        dom: 'lrtip'
     });
 
-    $("#txtSearchProductName").keyup(function () {
-        productList.ajax.reload();
+    productList.on('order.dt search.dt', function () {
+        productList.column(0, {order: 'applied', search: 'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
     });
 
-
+    $.ajax({
+        url: "GetCategoryList",
+        type: "GET",
+        dataType: "json",
+        success: function (data) {
+            for (var i in data) {
+                var json = data[i];
+                var option_el = document.createElement(("option"));
+                option_el.value = json.category_ID;
+                option_el.textContent = json.name;
+                select_el.appendChild(option_el);
+            }
+        }
+    });
 });
+
+$("#category-list, #outOfStockItems").on('change', function () {
+    setTimeout(function () {
+        productList.ajax.reload();
+    }, 500);
+});
+
+$("#txtSearchProductName").keyup(function () {
+    setTimeout(function () {
+        productList.ajax.reload();
+    }, 500);
+});
+
 
 var clickedProductID;
 // Handle edit product
@@ -177,7 +178,7 @@ $('#edit-product-save-btn').on("click", function () {
         $('#fail-to-save-toast').toast('show');
 
     } else {
-        console.log($("#edit-is-selling").prop("checked"));
+        console.log(clickedProductID);
         $.ajax({
             url: "EditProductInfo",
             type: "POST",
@@ -195,16 +196,21 @@ $('#edit-product-save-btn').on("click", function () {
             },
             success: function (data) {
                 console.log(data);
+                console.log("edit running");
                 if (isEmpty(data)) {
-                    console.log("running");
+                    console.log(" edit success running");
                     $('#editProductModal').modal("hide");
-                    productList.ajax.reload();
+                    setTimeout(function () {
+                        productList.ajax.reload();
+                    }, 500);
                     $('#success-to-save-toast').toast({
                         delay: 2000
                     });
                     $('#success-to-save-toast').toast('show');
                     toggleDisabledForProductInfo(true);
                 } else {
+                    console.log("edit error running");
+                    clearWarning("edit");
                     $('#edit-product-name-warning').text(data.nameErr).removeClass("d-none");
                     $('#edit-cost-price-warning').text(data.costPriceErr).removeClass("d-none");
                     $('#edit-selling-price-warning').text(data.sellingPriceErr).removeClass("d-none");
@@ -287,14 +293,16 @@ $('#add-product-save-btn').on("click", function () {
             success: function (data) {
                 console.log(data);
                 if (isEmpty(data)) {
-                    console.log("running");
+                    console.log("add running");
                     $('#addProductModal').modal("hide");
-                    productList.ajax.reload();
+                    setTimeout(function () {
+                        productList.ajax.reload();
+                    }, 500);
                     $('#success-to-save-toast').toast({
                         delay: 2000
                     });
                     $('#success-to-save-toast').toast('show');
-                    
+
                     $("#add-product-name").val("");
                     $("#add-category-name option:selected").val("");
                     $("#add-lower-threshold").val("");
@@ -304,6 +312,7 @@ $('#add-product-save-btn').on("click", function () {
                     $("#add-location").val("");
                     $("#add-is-selling").prop("checked", false);
                 } else {
+                    clearWarning("add");
                     $('#add-product-name-warning').text(data.nameErr).removeClass("d-none");
                     $('#add-cost-price-warning').text(data.costPriceErr).removeClass("d-none");
                     $('#add-selling-price-warning').text(data.sellingPriceErr).removeClass("d-none");
@@ -314,7 +323,12 @@ $('#add-product-save-btn').on("click", function () {
     }
 });
 
-
+function clearWarning(value) {
+    $(`#${value}-product-name-warning`).text("");
+    $(`#${value}-cost-price-warning`).text("");
+    $(`#${value}-selling-price-warning`).text("");
+    $(`#${value}-lower-threshold-warning`).text("");
+}
 
 function toggleDisabledForProductInfo(bool) {
     var isNotDisabled = bool;

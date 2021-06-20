@@ -297,7 +297,7 @@ public class ProductDAO implements Serializable {
                         if (productID == 0) return bool;
                         else {
                             System.out.println(StringNormalizer.normalize(rs.getString("name")));
-                        System.out.println(rs.getInt("product_ID") == productID);
+                        System.out.println(rs.getInt("product_ID") != productID);
                         return rs.getInt("product_ID") != productID;
                         }
                     }
@@ -311,8 +311,8 @@ public class ProductDAO implements Serializable {
             if (stm != null) {
                 stm.close();
             }
-            if (rs != null) {
-                rs.close();
+            if (con != null) {
+                con.close();
             }
         }
         return false;
@@ -352,6 +352,7 @@ public class ProductDAO implements Serializable {
 
                 int rowAffect = stm.executeUpdate();
                 //return
+                System.out.println(rowAffect > 0);
                 return rowAffect > 0;
 
             }
