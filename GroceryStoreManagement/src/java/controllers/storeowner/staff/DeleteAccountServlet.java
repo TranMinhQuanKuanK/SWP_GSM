@@ -3,31 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.storeowner.previousBills;
+package controllers.storeowner.staff;
 
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.previousBill.PreBillDAO;
-import models.previousBill.PreBillDTO;
-import models.previousBill.PreBillErrorObj;
-import utils.StringNormalizer;
+import models.account.AccountDAO;
+import models.account.AccountErrObj;
 
 /**
  *
  * @author Huu Quoc
  */
-@WebServlet(name = "GetPreviousBillListServlet", urlPatterns = {"/GetPreviousBillListServlet"})
-public class GetPreviousBillListServlet extends HttpServlet {
+@WebServlet(name = "DeleteAccountServlet", urlPatterns = {"/DeleteAccountServlet"})
+public class DeleteAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,49 +37,24 @@ public class GetPreviousBillListServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-
-        boolean foundErr = false;
-        PreBillErrorObj errors = new PreBillErrorObj();
-        String searchValue = request.getParameter("search-value");
-        String dateFrom = request.getParameter("date-from").replace('T', ' ');
-        String dateTo = request.getParameter("date-to").replace('T', ' ');
-
-        if (searchValue == null) {
-            searchValue = "";
-        } else {
-            searchValue = StringNormalizer.normalize(searchValue);
-        }
+        String username = request.getParameter("username");
         
         try (PrintWriter out = response.getWriter()) {
-            //1. Check error
-            if (dateFrom.compareTo(dateTo) > 0) {
-                foundErr = true;
-                errors.setDateError("End date must be greater than start date");
+            AccountDAO dao = new AccountDAO();
+            AccountErrObj accountErr = new AccountErrObj();
+            
+            if (!dao.deleteAccount(username)) {
+                accountErr.setResetPasswordError("Cannot delete account!");
             }
-
-            if (foundErr) {
-                //2.1 Caching errors, forward to error page
-                request.setAttribute("PREVIOUS_BILL_ERROR", errors);
-            } else {
-                //2.2 Call DAO
-                PreBillDAO dao = new PreBillDAO();
-                dao.searchPreviousBill(searchValue, dateFrom, dateTo);
-
-                List<PreBillDTO> resultList = dao.getPreBillList();
-
-                if (resultList == null) {
-                    resultList = new ArrayList<>();
-                }
-
-                Gson gson = new Gson();
-                String previousBillJSONS = gson.toJson(resultList);
-                out.print(previousBillJSONS);
-                out.flush();
-            }
+            
+            Gson gson = new Gson();
+            String JSONString = gson.toJson(accountErr);
+            out.print(JSONString);
+            out.flush();
         } catch (SQLException ex) {
-            log("GetPreviousBillListServlet _ SQL: " + ex.getMessage());
+            log("DeleteAccountListServlet _ SQL: " + ex.getMessage());
         } catch (NamingException ex) {
-            log("GetPreviousBillListServlet _ Naming: " + ex.getMessage());
+            log("DeleteAccountListServlet _ Naming: " + ex.getMessage());
         }
     }
 

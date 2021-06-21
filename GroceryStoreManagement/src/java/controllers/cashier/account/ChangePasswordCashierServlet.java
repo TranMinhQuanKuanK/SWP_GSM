@@ -54,7 +54,7 @@ public class ChangePasswordCashierServlet extends HttpServlet {
                 } else {
                     //kiểm tra password mới 6 kí tự 
                     if (newPassword.length() < 6) {
-                        accError.setNewPasswordError("Mật khẩu mới phải từ 6 kí tự trở lến");
+                        accError.setNewPasswordError("Mật khẩu mới phải từ 6 kí tự trở lên");
                         accError.setHasError(true);
                     } else if (newPassword.equals(currentPassword)) {
                         accError.setNewPasswordError("Mật khẩu mới phải khác mật khẩu cũ");

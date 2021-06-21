@@ -9,12 +9,14 @@ import java.io.Serializable;
 
 /**
  *
- * @author Tran Minh Quan
+ * @author Tran Minh Quan + Huu Quoc
  */
 public class AccountErrObj implements Serializable {
    private boolean hasError;
    private String currentPasswordError;
    private String newPasswordError;
+   private String resetPasswordError;
+   private String deleteAccountError;
 
     public AccountErrObj() {
         this.hasError = false;
@@ -45,7 +47,20 @@ public class AccountErrObj implements Serializable {
     public void setNewPasswordError(String newPasswordError) {
         this.newPasswordError = newPasswordError;
     }
-   
-    
-    
+
+    public String getResetPasswordError() {
+        return resetPasswordError;
+    }
+
+    public void setResetPasswordError(String resetPasswordError) {
+        this.resetPasswordError = resetPasswordError;
+    }
+
+    public String getDeleteAccountError() {
+        return deleteAccountError;
+    }
+
+    public void setDeleteAccountError(String deleteAccountError) {
+        this.deleteAccountError = deleteAccountError;
+    }
 }

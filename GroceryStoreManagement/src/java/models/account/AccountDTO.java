@@ -24,6 +24,12 @@ public class AccountDTO implements Serializable{
         this.is_owner = is_owner;
     }
 
+    public AccountDTO(String username, String name, boolean is_owner) {
+        this.username = username;
+        this.name = name;
+        this.is_owner = is_owner;
+    }
+    
     public String getUsername() {
         return username;
     }
