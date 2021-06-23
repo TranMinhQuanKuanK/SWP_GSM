@@ -12,7 +12,8 @@
     <title>Inventory Page</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
@@ -45,14 +46,13 @@
             <!-- Nav Item - Dashboard -->
             <li>
                 <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                    <a class="nav-link d-flex justify-content-center align-items-center" href="#"
-                        data-toggle="modal" data-target="#logoutModal">
+                    <a class="nav-link d-flex justify-content-center align-items-center" href="#" data-toggle="modal"
+                        data-target="#logoutModal">
                         <span class="logout-group">Logout &nbsp;</span>
                         <i class="fas fa-sign-out-alt logout-group"></i>
                     </a>
                 </div>
             </li>
-
 
             <!-- Divider -->
             <li>
@@ -197,17 +197,17 @@
                                     </h6>
                                     <div class="input-group mb-3 col-3 pt-1">
                                         <select class="custom-select" id="inputGroupSelect01">
-                                                    
+
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="row justify-content-start">
                                     <h6 class="ml-2 font-weight-bold text-primary pt-2 pr-0 d-flex">Name: &nbsp;</h6>
-                                        <input class="form-control mr-2" type="search" placeholder="Search"
-                                            aria-label="Search" id="inputSearchVal">
-                                        <button class="btn btn-outline-success my-2 my-sm-0"
-                                            type="button" onclick="getProduct()">Search</button>
+                                    <input class="form-control mr-2 col-5" type="search" placeholder="Search"
+                                        aria-label="Search" id="inputSearchVal">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="button"
+                                        onclick="getProduct()">Search</button>
                                 </div>
 
                                 <div class="input-group row mt-3 mb-1 w-50 d-flex">
@@ -237,7 +237,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tableContent">
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -265,6 +265,62 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
+    <!-- Edit quantity Modal-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Số lượng sản phẩm</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="productname-label" class="sr-only">Product name</label>
+                            <input type="text" readonly class="form-control-plaintext" id="productname-label"
+                                value="Product name:" disabled>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="productname" class="sr-only">Product name</label>
+                            <input type="text" class="form-control" id="productname" disabled>
+                        </div>
+                        <input type="hidden" id="hiddenProductID">
+                    </form>
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="product-oldquantity-label" class="sr-only">Product old quantity</label>
+                            <input type="text" readonly class="form-control-plaintext" id="product-oldquantity-label"
+                                value="Product old quantity:" disabled>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="product-oldquantity" class="sr-only">Product old quantity</label>
+                            <input type="number" class="form-control" id="product-oldquantity" disabled>
+                        </div>
+                    </form>
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="product-newquantity-label" class="sr-only">Product new quantity</label>
+                            <input type="text" readonly class="form-control-plaintext" id="product-newquantity-label"
+                                value="Product new quantity:" disabled>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="product-newquantity" class="sr-only">Product new quantity</label>
+                            <input type="number" class="form-control" id="product-newquantity">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#" onClick="updateQuantity();return false;">Save changes</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -296,7 +352,7 @@
     <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
     <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
     <script src="/GroceryStoreManagement/storeowner/js/inventory-storeowner.js"></script>
-    
+
 </body>
 
 </html>

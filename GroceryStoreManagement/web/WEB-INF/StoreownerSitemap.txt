@@ -19,3 +19,7 @@ FeedbackListPage = storeowner/FeedbackList.html
 GetFeedbackList = GetFeedbackListServlet
 SeenFeedback = SeenFeedbackServlet
 GetProductInfo = GetProductInfoServlet
+EditProductInfo = EditProductInfoServlet
+AddNewProduct = AddNewProductServlet
+UpdateQuantity = UpdateQuantityServlet
+UpdateSuggestion = UpdateSuggestionServlet

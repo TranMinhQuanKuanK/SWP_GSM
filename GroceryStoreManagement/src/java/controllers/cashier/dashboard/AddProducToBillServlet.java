@@ -46,12 +46,6 @@ public class AddProducToBillServlet extends HttpServlet {
             } else {
                 ArrayList<BillItemObject> details = bill.getBill_Detail();
 
-//                for (BillItemObject b : details) {
-//                    if (b.getProduct().getProduct_ID() == product_id) {
-//                        found = true;
-//                        b.setQuantity(b.getQuantity() + 1);
-//                    }
-//                }
                 //Tìm trong bill trên session xem sản phẩm đó đã có chưa
                 boolean found = false;
                 int found_index = -1;

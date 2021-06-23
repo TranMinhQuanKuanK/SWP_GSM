@@ -5,13 +5,19 @@
  */
 package controllers.storeowner.inventory;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.pendingItem.PendingItemDAO;
 
 /**
  *
@@ -33,7 +39,48 @@ public class AddToSuggestionServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
+            int productID = Integer.parseInt(request.getParameter("product_ID"));
+            String notiMessage = request.getParameter("noti_mess");
+            if (notiMessage.equals("owner")) {
+                notiMessage = "Được thêm bởi store owner";
+                Date date = new Date();
+                Timestamp noteday = new Timestamp(date.getTime());
+                PendingItemDAO DAO = new PendingItemDAO();
+                boolean isExisted = DAO.IsExistedInPendingList(productID);
+                Gson gson = new Gson();
+                if (!isExisted) { // chưa tồn tại trong Pending thì ghi xuống
+                    DAO.CreatePendingList(productID, noteday, notiMessage);
+                    String notiJSONString = gson.toJson("Thêm vào Pending List thành công");
+                    out.print(notiJSONString);
+                    out.flush();
+                } else {
+                    String notiJSONString = gson.toJson("Sản phẩm đã tồn tại trong Pending List!");
+                    out.print(notiJSONString);
+                    out.flush();
+                }
+            } else if (notiMessage.equals("auto")){
+                notiMessage = "Được thêm tự động";
+                Date date = new Date();
+                Timestamp noteday = new Timestamp(date.getTime());
+                PendingItemDAO DAO = new PendingItemDAO();
+                boolean isExisted = DAO.IsExistedInPendingList(productID);
+                Gson gson = new Gson();
+                if (!isExisted) { // chưa tồn tại trong Pending thì ghi xuống
+                    DAO.CreatePendingList(productID, noteday, notiMessage);
+                    String notiJSONString = gson.toJson("Đã tự dộng thêm vào Pending List do dưới ngưỡng!");
+                    out.print(notiJSONString);
+                    out.flush();
+                } else {
+                    String notiJSONString = gson.toJson("Đã tự dộng thêm vào Pending List do dưới ngưỡng!");
+                    out.print(notiJSONString);
+                    out.flush();
+                }
+            }
+
+        } catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 
