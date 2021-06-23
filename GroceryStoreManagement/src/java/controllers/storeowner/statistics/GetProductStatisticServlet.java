@@ -83,10 +83,6 @@ public class GetProductStatisticServlet extends HttpServlet {
                     if (sortBy.equals("4")) { //Descending order of total amount sold
                         Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getTotal).reversed());
                     }
-                    
-//                    for (ProductStatisticDTO dto : resultList) {
-//                        dto.setTotal(StringNormalizer.moneyNormalize(dto.getTotal()));
-//                    }
                 }
 
                 Gson gson = new Gson();
