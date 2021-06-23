@@ -22,3 +22,4 @@ GetProductInfo = GetProductInfoServlet
 EditProductInfo = EditProductInfoServlet
 AddNewProduct = AddNewProductServlet
 UpdateQuantity = UpdateQuantityServlet
+UpdateSuggestion = UpdateSuggestionServlet
