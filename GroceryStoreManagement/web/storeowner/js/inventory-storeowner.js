@@ -26,17 +26,17 @@ function processCategory(data) {
 
 var productObject;
 function getProduct() {
+  productObject = null;
   var xhttp = new XMLHttpRequest();
   var cat_ID = document.getElementById("inputGroupSelect01").value;
   var search_val = document.getElementById("inputSearchVal").value;
   var noos = document.getElementById("noos_check");
-  xhttp.onreadystatechange = function () {
-    if (this.readyState >= 4 && this.status <= 200) {
-      console.log(this.responseText);
+  xhttp.onload = function () {
+       console.log(JSON.parse(this.responseText));
       productObject = JSON.parse(this.responseText);
       printProductList(productObject);
-    }
   };
+  //onreadystate change no goi toi 2 lan, vi readystatebị đổi 2 lần trong 1 lần gọi, nên thường t để onload, để xem lại thử xem sao
   if (noos.checked == true) {
     if (cat_ID === "all") {
       var url =
@@ -58,8 +58,11 @@ function getProduct() {
     }
   }
 
-  xhttp.open("GET", url, true);
+  xhttp.open("GET", url, false);
   xhttp.send();
+      //if (xhttp.readyState >= 4 && xhttp.status <= 200) { 
+     
+    //}
 }
 
 function printProductList(data) {
@@ -68,8 +71,8 @@ function printProductList(data) {
   for (i = 0; i < data.length; i++) {
     if (data[i].is_selling !== false) {
       index++;
-      var product = data[i];
       var tr = document.createElement("tr");
+      tr.setAttribute("id", "rowOf"+ data[i].product_ID);
 
       var th_index = document.createElement("th");
       th_index.setAttribute("scope", "row");
@@ -153,4 +156,5 @@ function updateQuantity() {
   document.getElementById("product-newquantity").value = "";
   $("#editModal").modal("hide");
   getProduct();
+  //setTimeout(getProduct, 300);
 }
