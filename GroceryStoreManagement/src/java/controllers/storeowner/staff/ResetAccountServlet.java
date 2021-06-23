@@ -44,7 +44,8 @@ public class ResetAccountServlet extends HttpServlet {
             AccountErrObj accountErr = new AccountErrObj();
             
             if (!dao.resetAccount(username)) {
-                accountErr.setResetPasswordError("Cannot reset password!");
+                accountErr.setHasError(true);
+                accountErr.setResetPasswordError("Không thể đặt lại mật khẩu. Vui lòng tải lại trang!");
             }
             
             Gson gson = new Gson();

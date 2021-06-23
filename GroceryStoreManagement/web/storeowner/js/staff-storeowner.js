@@ -19,19 +19,21 @@ function resetAccount(username) {
     var url = "ResetAccount";
     var content = "username=" + encodeURIComponent(username);
 
-    //Hiện modal confirm reset password cho cashier
-    //if confirmed 
     {
         request.open('POST', url, true);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         request.onload = function () {
             accountErr = JSON.parse(this.responseText);
-            //if accountErr != null, alert error
-            //else thông báo success
+            if (accountErr.hasError) {
+                alert(accountErr.resetPasswordError);
+            } else {
+                alert("Đặt lại mật khẩu thành công");
+            }
         };
         request.send(content);
     }
-    //else thông báo failure
+    
+    $('#reset-password-modal').modal('hide');
 }
 
 function deleteAccount(username) {
@@ -40,23 +42,22 @@ function deleteAccount(username) {
     var url = "DeleteAccount";
     var content = "username=" + encodeURIComponent(username);
 
-    //Hiện modal delete cashier
-    //if confirmed 
     {
         request.open('POST', url, true);
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         request.onload = function () {
             accountErr = JSON.parse(this.responseText);
-            //if accountErr != null, alert error
-            //else 
-            {
-                //thông báo success
+            if (accountErr.hasError) {
+                alert(accountErr.deleteAccountError);
+            } else {
+                alert("Xóa tài khoản thành công");
                 showAccountList();
             }
         };
         request.send(content);
     }
-    //else thông báo failure
+    
+    $('#delete-account-modal').modal('hide');
 }
 
 function renderAccountList() {
@@ -91,10 +92,72 @@ function renderAccountList() {
                 deleteAccount(accountList[i].username);
             });
 
-            cellResetButton.innerHTML = '<input type="button" onClick="resetAccount(\'' + accountList[i].username +
-                    '\')" value="Icon refresh" />';
-            cellDeleteButton.innerHTML = '<input type="button" onClick="deleteAccount(\'' + accountList[i].username +
-                    '\')" value="Icon dấu X" />';
+            var resetButton = '<input type="button" value="Icon refresh" ';
+            resetButton += 'onclick="document.getElementById(\'reset-username\').innerHTML=';
+            resetButton += '\'' + accountList[i].username + '\'" ';
+            resetButton += 'data-toggle="modal" data-target="#reset-password-modal" />';
+            
+            var deleteButton = '<input type="button" value="Icon dấu X" ';
+            deleteButton += 'onclick="document.getElementById(\'delete-username\').innerHTML=';
+            deleteButton += '\'' + accountList[i].username + '\'" ';
+            deleteButton += 'data-toggle="modal" data-target="#delete-account-modal" />';
+
+            cellResetButton.innerHTML = resetButton;
+            cellDeleteButton.innerHTML = deleteButton;
         }
     }
+}
+
+function createNewAccount() {
+    var request = new XMLHttpRequest();
+
+    var url = "CreateAccount";
+    var content = "empty-parameter=";
+
+    if (document.getElementById("new-name").value !== "") {
+        content += "&new-name=" + document.getElementById("new-name").value;
+    }
+    if (document.getElementById("new-username").value !== "") {
+        content += "&new-username=" + document.getElementById("new-username").value;
+    }
+    if (document.getElementById("new-password").value !== "") {
+        content += "&new-password=" + document.getElementById("new-password").value;
+    }
+    if (document.getElementById("new-confirm").value !== "") {
+        content += "&new-confirm=" + document.getElementById("new-confirm").value;
+    }
+    if (document.getElementsByName('new-role')[0].checked) {
+        content += "&new-is-owner=true";
+    }
+    
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+    request.onload = function () {
+        accountErr = JSON.parse(this.responseText);
+        if (accountErr.hasError) {
+            document.getElementById("error-name").innerHTML = (accountErr.nameLengthError ? accountErr.nameLengthError : "");
+            document.getElementById("error-username").innerHTML = (accountErr.usernameLengthError ? accountErr.usernameLengthError : "");
+            document.getElementById("error-password").innerHTML = (accountErr.passwordLengthError ? accountErr.passwordLengthError : "");
+            document.getElementById("error-confirm").innerHTML = (accountErr.confirmNotMatch ? accountErr.confirmNotMatch : "");
+            document.getElementById("error-username-exist").innerHTML = (accountErr.usernameExist ? accountErr.usernameExist : "");
+            document.getElementById("new-password").value = "";
+            document.getElementById("new-confirm").value = "";
+        } else {
+            showAccountList();
+            alert("Đăng ký tài khoản thành công");
+            
+            document.getElementById("new-name").value = "";
+            document.getElementById("new-username").value = "";
+            document.getElementById("new-password").value = "";
+            document.getElementById("new-confirm").value = "";
+            document.getElementById("error-name").innerHTML = "";
+            document.getElementById("error-username").innerHTML = "";
+            document.getElementById("error-password").innerHTML = "";
+            document.getElementById("error-confirm").innerHTML = "";
+            document.getElementById("error-username-exist").innerHTML = "";
+            
+            $('#add-new-modal').modal('hide');
+        };
+    };
+    request.send(content);
 }
