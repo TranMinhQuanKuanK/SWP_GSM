@@ -26,7 +26,7 @@ public class AccountDAO implements Serializable {
     public List<AccountDTO> getAccountList() {
         return accountList;
     }
-    
+
     public AccountDTO CheckLogin(String username, String password) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -107,7 +107,7 @@ public class AccountDAO implements Serializable {
         return false;
     }
 
-    public void fetchAccountList() 
+    public void fetchAccountList()
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -120,7 +120,7 @@ public class AccountDAO implements Serializable {
             if (con != null) {
                 //2. Create SQL string
                 String sql = "SELECT username, name, is_owner "
-                           + "FROM account";
+                        + "FROM account";
 
                 //3. Create statement and assign parameter value if any
                 stm = con.prepareStatement(sql);
@@ -155,8 +155,8 @@ public class AccountDAO implements Serializable {
             }
         }
     }
-    
-    public boolean resetAccount(String username) 
+
+    public boolean resetAccount(String username)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -174,10 +174,10 @@ public class AccountDAO implements Serializable {
                 //3. Create statement and assign parameter value if any
                 stm = con.prepareStatement(sql);
                 stm.setString(1, username);
-                
+
                 //4. Execute query
                 int rowEffect = stm.executeUpdate();
-                
+
                 //5. Process Result
                 if (rowEffect > 0) {
                     return true;
@@ -192,11 +192,11 @@ public class AccountDAO implements Serializable {
                 con.close();
             }
         }
-        
+
         return false;
     }
-    
-    public boolean deleteAccount(String username) 
+
+    public boolean deleteAccount(String username)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -216,7 +216,7 @@ public class AccountDAO implements Serializable {
 
                 //4. Execute query
                 int rowEffect = stm.executeUpdate();
-                
+
                 //5. Process Result
                 if (rowEffect > 0) {
                     return true;
@@ -231,7 +231,93 @@ public class AccountDAO implements Serializable {
                 con.close();
             }
         }
-        
+
+        return false;
+    }
+
+    public boolean addAccount(String name, String username, String password, boolean isOwner)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            //1. Connect Database
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+                //2. Create SQL string
+                String sql = "INSERT INTO account (name, username, password_acc, is_owner) "
+                        + "VALUES (?, ?, ?, ?)";
+
+                //3. Create Statement and assign Parameter value if any
+                stm = con.prepareStatement(sql);
+                stm.setString(1, name);
+                stm.setString(2, username);
+                stm.setString(3, password);
+                stm.setBoolean(4, isOwner);
+
+                //4. Execute Query
+                int rowEffect = stm.executeUpdate();
+
+                //5. Process Result
+                if (rowEffect > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+
+        return false;
+    }
+
+    public boolean checkExist(String username)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            //1. Connect Database
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+                //2. Create SQL string
+                String sql = "SELECT username "
+                        + "FROM account "
+                        + "WHERE username = ?";
+
+                //3. Create Statement and assign Parameter value if any
+                stm = con.prepareStatement(sql);
+                stm.setString(1, username);
+
+                //4. Execute query
+                rs = stm.executeQuery();
+
+                //5. Process result
+                if (rs.next()) {
+                    return true;
+                }
+            }
+        } finally {
+            if (con != null) {
+                con.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (rs != null) {
+                rs.close();
+            }
+        }
+
         return false;
     }
 }

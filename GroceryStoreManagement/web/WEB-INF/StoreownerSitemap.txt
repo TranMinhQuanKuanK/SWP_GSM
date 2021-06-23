@@ -19,3 +19,4 @@ GetFeedbackList = GetFeedbackListServlet
 GetAccountList = GetAccountListServlet
 ResetAccount = ResetAccountServlet
 DeleteAccount = DeleteAccountServlet
+CreateAccount = CreateAccountServlet

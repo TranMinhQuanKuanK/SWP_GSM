@@ -184,9 +184,68 @@
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
                                         <h3 class="m-0 font-weight-bold text-primary header-center">DANH SÁCH TÀI KHOẢN</h3>
+
+                                        <button class="nav-link d-flex justify-content-center align-items-center d-sm-inline-block btn btn-sm button-back"
+                                                data-toggle="modal" data-target="#add-new-modal">
+                                            <span>Tạo tài khoản &nbsp;</span>
+                                            <i class="fas fa-plus-circle logout-group"></i>
+                                        </button>
                                     </div>
 
                                     <div class="card-body">
+
+                                        <!-- Add New Account Modal -->
+                                        <div class="modal fade" id="add-new-modal" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Đăng ký tài khoản</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <div class="container-fluid justify-content-start d-flex">
+                                                            <span class="m-0 text-primary pt-1 ml-1">Họ và tên</span>
+                                                            <input class="form-control" type="text" id="new-name">
+                                                            <p id="error-name"></p>
+                                                        </div>
+
+                                                        <div class="container-fluid justify-content-start d-flex">
+                                                            <span class="m-0 text-primary pt-1 ml-1">Tên đăng nhập</span>
+                                                            <input class="form-control" type="text" id="new-username">
+                                                            <p id="error-username"></p>
+                                                            <p id="error-username-exist"></p>
+                                                        </div>
+
+                                                        <div class="container-fluid justify-content-start d-flex">
+                                                            <span class="m-0 text-primary pt-1 ml-1">Mật khẩu</span>
+                                                            <input class="form-control" type="password" id="new-password">
+                                                            <p id="error-password"></p>
+                                                        </div>
+
+                                                        <div class="container-fluid justify-content-start d-flex">
+                                                            <span class="m-0 text-primary pt-1 ml-1">Xác nhận mật khẩu</span>
+                                                            <input class="form-control" type="password" id="new-confirm">
+                                                            <p id="error-confirm"></p>
+                                                        </div>
+
+                                                        <input type="radio" name="new-role" id="new-is-owner"/>
+                                                        <span class="m-0 text-primary pt-1 ml-1">&nbsp; Chủ tiệm</span><br>
+                                                        <input type="radio" name="new-role" id="new-is-cashier" checked="checked"/>
+                                                        <span class="m-0 text-primary pt-1 ml-1">&nbsp; Thu ngân</span>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                        <button class="btn btn-primary" onclick="createNewAccount()">Đăng ký</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End of Add New Account Modal -->
 
                                         <!-- Look up Table Content -->
                                         <div class="text-center small">
@@ -206,6 +265,62 @@
                                             </table>
                                         </div>
                                         <!--/ End of Look up Table Content -->
+                                        
+                                        <!-- Modal Confirm Reset Password -->
+                                        <div class="modal fade" id="reset-password-modal" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Xác nhận</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản</span>
+                                                        <span class="m-0 text-primary pt-1 ml-1" id="reset-username"></span>
+                                                        <span class="m-0 pt-1 ml-1">không?</span>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                        <button class="btn btn-primary" onclick="resetAccount(document.getElementById('reset-username').innerHTML)">Đồng ý</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End of Modal Confirm Reset Password -->
+                                        
+                                        <!-- Modal Confirm Delete Account -->
+                                        <div class="modal fade" id="delete-account-modal" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Xác nhận</h5>
+                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn xóa tài khoản</span>
+                                                        <span class="m-0 text-primary pt-1 ml-1" id="delete-username"></span>
+                                                        <span class="m-0 pt-1 ml-1">không?</span>
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                        <button class="btn btn-primary" onclick="deleteAccount(document.getElementById('delete-username').innerHTML)">Đồng ý</button>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- End of Modal Confirm Delete Account -->
 
                                     </div>
                                 </div>

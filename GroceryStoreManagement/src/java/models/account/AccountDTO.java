@@ -61,6 +61,4 @@ public class AccountDTO implements Serializable{
     public void setIs_owner(boolean is_owner) {
         this.is_owner = is_owner;
     }
-    
-     
 }

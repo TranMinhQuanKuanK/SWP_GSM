@@ -44,7 +44,8 @@ public class DeleteAccountServlet extends HttpServlet {
             AccountErrObj accountErr = new AccountErrObj();
             
             if (!dao.deleteAccount(username)) {
-                accountErr.setResetPasswordError("Cannot delete account!");
+                accountErr.setHasError(true);
+                accountErr.setDeleteAccountError("Không thể xóa tài khoản. Vui lòng tải lại trang!");
             }
             
             Gson gson = new Gson();
