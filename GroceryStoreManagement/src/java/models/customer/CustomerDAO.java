@@ -109,13 +109,11 @@ public class CustomerDAO implements Serializable {
                 stm = con.prepareStatement(sql);
                 stm.setString(1, phone_no);
                 rs = stm.executeQuery();
-                System.out.println("sdt " + phone_no);
                 Integer current_point = 0;
                 if (rs.next()) {
                     current_point = rs.getInt("point");
                 }
 
-                System.out.println("WTF!!");
                 //--------------------------------
                 sql = "UPDATE customer "
                         + "SET point = ?"

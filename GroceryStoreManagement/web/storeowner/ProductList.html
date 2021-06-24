@@ -19,143 +19,24 @@
 
         <!-- Custom styles for this template-->
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet" type="text/css">
-        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
 
         <link href="/GroceryStoreManagement/storeowner/css/productList/productList.css" rel="stylesheet" type="text/css">
+
+        <!-- Link jquery for sidebar -->
+
     </head>
 
-    <body>
+    <body id="page-top">
 
         <!-- Page Wrapper -->
         <div id="wrapper">
 
             <!-- Sidebar -->
-            <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
+            <div id="sidebar-placeholder">
+            
+            </div>
 
-                <!-- Sidebar - Brand -->
-                <li>
-                    <div class="sidebar-brand align-items-center justify-content-center">
-                        <div class="sidebar-brand-icon mb-2">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <div id="name" class="sidebar-brand-text mx-3 my-4"><span>Trần Minh Quân</span></div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - Dashboard -->
-                <li>
-                    <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
-                        <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                           data-toggle="modal" data-target="#logoutModal">
-                            <span class="logout-group">Đăng xuất &nbsp;</span>
-                            <i class="fas fa-sign-out-alt logout-group"></i>
-                        </a>
-                    </div>
-                </li>
-
-                <!-- Divider -->
-                <li>
-                    <hr class="sidebar-divider">
-                </li>
-
-
-                <!-- Heading -->
-                <li>
-                    <div class="sidebar-heading">
-                        Menu
-                    </div>
-                </li>
-
-
-                <!-- Nav Item - Inventory Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventory"
-                       aria-expanded="true" aria-controls="collapseInventory">
-                        <i class="fas fa-boxes"></i>
-                        <span>&nbsp; Kho hàng</span>
-                    </a>
-                    <div id="collapseInventory" class="collapse"
-                         data-parent="#accordionSidebar">
-                        <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 3</span></a>
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 4</span></a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - Import Goods Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImportGoods"
-                       aria-expanded="true" aria-controls="collapseImportGoods">
-                        <i class="fas fa-truck-moving"></i>
-                        <span>&nbsp; Nhập Hàng</span>
-                    </a>
-                    <div id="collapseImportGoods" class="collapse"
-                         data-parent="#accordionSidebar">
-                        <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
-                        </div>
-                    </div>
-                </li>
-
-                <!-- Nav Item - Product List Collapse Menu -->
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductList"
-                       aria-expanded="true" aria-controls="collapseProductList">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>&nbsp; Danh sách mặt hàng</span>
-                    </a>
-                    <div id="collapseProductList" class="collapse"
-                         data-parent="#accordionSidebar">
-                        <div class="collapse-section py-2 collapse-inner rounded bg-transparent">
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 1</span></a>
-                            <a class="collapse-item bg-transparent" href="javascript:void(0)"><span>Page 2</span></a>
-                        </div>
-                    </div>
-                </li>   
-
-                <!-- Nav Item - Previous Receipt -->
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">
-                        <i class="fas fa-receipt"></i>
-                        <span>&nbsp; Previous Receipt</span>
-                    </a>
-                </li>
-
-                <!-- Nav Item - Previous Customer Bill -->
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">
-                        <i class="fas fa-file-invoice-dollar"></i>
-                        <span>&nbsp; Previous Customer Bill</span>
-                    </a>
-                </li>
-
-                <!-- Nav Item - Statistic -->
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">
-                        <i class="far fa-chart-bar"></i>
-                        <span>&nbsp; Statistic</span>
-                    </a>
-                </li>
-
-                <!-- Nav Item - Cashier Password Change -->
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0)">
-                        <i class="fas fa-key"></i>
-                        <span>&nbsp; Cashier Password Change</span>
-                    </a>
-                </li>
-
-                <!-- Divider -->
-                <li>
-                    <hr class="sidebar-divider d-none d-md-block">
-                </li>
-
-            </ul>
             <!-- End of Sidebar -->
 
             <!-- Content Wrapper -->
@@ -486,7 +367,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Successful to edit product toast -->
         <div class="position-absolute bg-success" style="top: 10%; left: 40%; z-index: 8000;">
             <div id="success-to-save-toast" class="toast hide" role="alert">
@@ -502,13 +383,16 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Bootstrap core JavaScript-->
-        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+        <!-- Bootstrap core JavaScript-->
+
+        <!--        <script ></script>-->
+
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+        
         <!-- Core plugin JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Custom scripts for all pages-->
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
@@ -516,6 +400,7 @@
 
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/productList/productList.js" type="text/javascript"></script>
+
     </body>
 
 </html>
