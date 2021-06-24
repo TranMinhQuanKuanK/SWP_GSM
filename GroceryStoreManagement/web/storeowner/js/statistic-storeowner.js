@@ -22,6 +22,12 @@ function renderProductStatistic(productStatistic) {
 //table2
 //    .order( [[ 3, "desc" ]] )
 //    .draw();
+
+    if (productStatistic.length === 0) {
+        document.getElementById("not-found-label").style = "display:block";
+    } else {
+        document.getElementById("not-found-label").style = "display:none";
+    }
     
     var table = document.getElementById("product-stat-body");
     table.innerHTML = "";
