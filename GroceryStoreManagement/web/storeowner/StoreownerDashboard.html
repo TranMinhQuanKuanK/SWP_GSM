@@ -18,6 +18,11 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 
         <!-- Custom styles for this template-->
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet" type="text/css">
+        <style>
+            li:hover, li:focus {
+                background-color: #e0e0e0;
+            }
+        </style>
     </head>
 
     <body id="page-top">
@@ -35,26 +40,27 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                         <!-- Page Heading -->
                         <div class="row d-sm-flex align-items-center justify-content-between mb-4 mt-3">
                             <h1 class="mb-0" id="header-page">XXX TẠP HÓA KHÔNG HÙ NHAU</h1>
-                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-primary" onclick="window.location.href = 'ProductListPage';">
+                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary" onclick="window.location.href = 'ProductListPage';">
                                 <i class="fas fa-box-open" style="color: #fff;"></i>&nbsp;
                                 <span class="button-back-text text-light">Nhập Hàng</span></button>
                         </div>
 
                         <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                        <hr class="sidebar-divider mb-2">
 
                         <div class="row">
                             <div class="col-4">
-                                <div class="card border-left-primary shadow h-100">
+                                <div class="card bg-primary shadow h-100">
                                     <div class="card-body">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                    Doanh thu</div>
-                                                <div id="sales" class="h5 mb-0 font-weight-bold text-gray-800">id=sales</div>
+                                                <div class="text-xs font-weight-bold text-light text-uppercase mb-1">
+                                                    <h4 class="font-weight-bold">Doanh thu tháng</h4>
+                                                </div>
+                                                <div id="sales" class="h5 mb-0 font-weight-bold text-gray-100">id=sales</div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-piggy-bank fa-2x text-gray-300"></i>
+                                                <i class="fas fa-piggy-bank fa-2x text-gray-100"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -62,15 +68,16 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                             </div>
                             <div class="col-4">
                                 <div class="card border-left-success shadow h-100">
-                                    <div class="card-body">
+                                    <div class="card-body bg-success">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                    Lợi nhuận</div>
-                                                <div id="profit" class="h5 mb-0 font-weight-bold text-gray-800">id=profit</div>
+                                                <div class="text-xs font-weight-bold text-light text-uppercase mb-1">
+                                                    <h4 class="font-weight-bold">Lợi nhuận</h4>
+                                                </div>
+                                                <div id="profit" class="h5 mb-0 font-weight-bold text-gray-100">id=profit</div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                                <i class="fas fa-dollar-sign fa-2x text-gray-100"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -78,15 +85,16 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                             </div>
                             <div class="col-4">
                                 <div class="card border-left-warning shadow h-100">
-                                    <div class="card-body">
+                                    <div class="card-body bg-warning">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col mr-2">
-                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                    Tổng số bill</div>
-                                                <div id="totalBills" class="h5 mb-0 font-weight-bold text-gray-800">id=totalBills</div>
+                                                <div class="text-xs font-weight-bold text-light text-uppercase mb-1">
+                                                    <h4 class="font-weight-bold">Tổng số bill</h4>
+                                                </div>
+                                                <div id="totalBills" class="h5 mb-0 font-weight-bold text-gray-100">id=totalBills</div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+                                                <i class="fas fa-shopping-cart fa-2x text-gray-100"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -95,15 +103,15 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                         </div>
 
                         <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                        <hr class="sidebar-divider mb-3">
 
                         <div class="row">
 
                             <!-- ĐÂY LÀ CHỖ CỦA HÀNG SẮP HẾT -->
-                            <div class="col-4">
-                                <div style="color: #ed7468;" class=" border-left-danger">
+                            <div class="col-4" style="min-height: 545px;">
+                                <div  class="card border-left-danger p-2 shadow-sm">
                                     <div class="d-flex justify-content-between" >
-                                        <h5 class="pl-2" style="min-height: 60px;">HÀNG SẮP HẾT</h5>
+                                        <h5 class="pl-2 font-weight-bold"  style="min-height: 60px; color: #ed7468;">HÀNG SẮP HẾT</h5>
                                         <button style="max-height: 30px;" type="button" class="btn btn-secondary btn-sm" onclick="window.location.href = 'inventorypage'">
                                             Xem chi tiết
                                         </button>
@@ -227,9 +235,9 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                             </div>
 
                             <!-- ĐÂY LÀ CHỖ CỦA TOP 10 KHÁCH HÀNG -->
-                            <div class="col-4 border-left-info">
-                                <div style="color: #36b9cc;">
-                                    <h5>TOP 10 KHÁCH HÀNG TRONG THÁNG</h5>
+                            <div class="col-4 ">
+                                <div  class="card p-2 shadow-sm border-left-info">
+                                    <h5 class="font-weight-bold" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG TRONG THÁNG</h5>
                                     <div class="d-flex justify-content-between">
                                         <p>(theo hóa đơn)</p>
 
@@ -237,7 +245,7 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                             Xem chi tiết
                                         </button>
                                     </div>
-                                    <div class="overflow-auto" style="min-height: 400px; max-height: 440px;">
+                                    <div class="overflow-auto" style="min-height: 400px; max-height: 436px;">
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
@@ -353,20 +361,20 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-                            <div class="col-4 d-flex flex-column border-left-secondary">
-                                
+
+
+                            <div class="col-4 d-flex flex-column ">
+
                                 <!-- ĐÂY LÀ CHỖ CỦA TOP 10 SẢN PHẨM -->
-                                <div style="color: #858796;">
-                                    <h5 class="pl-2" >TOP 10 SẢN PHẨM TRONG THÁNG</h5>
+                                <div  class="card p-2 mb-3 shadow-sm border-left-secondary">
+                                    <h5 class="font-weight-bold" style="color: #858796;" >TOP 10 SẢN PHẨM TRONG THÁNG</h5>
                                     <div class="d-flex justify-content-between">
                                         <p>(bán chạy nhất)</p>
                                         <button style="max-height: 30px;" type="button" class="btn btn-secondary btn-sm" onclick="window.location.href = 'StatisticsPage'">
                                             Xem chi tiết
                                         </button>
                                     </div>
-                                    <div class="overflow-auto" style="min-height: 200px; max-height: 220px;">
+                                    <div class="overflow-auto" style="min-height: 190px; max-height: 200px;">
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
@@ -428,28 +436,29 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                     </div>
                                 </div>
 
-                                <!-- Divider -->
-                                <hr class="sidebar-divider mb-1">
 
-                                
                                 <!-- ĐÂY LÀ CHỖ CỦA FEEDBACK CHƯA ĐỌC -->
-                                <div style="color: #858796;">
+                                <div  class="card p-2 shadow-sm border-left-secondary">
                                     <div class="d-flex justify-content-between mb-1">
-                                        <h5 class="pl-2" >FEEDBACK CHƯA ĐỌC</h5>
+                                        <h5 class="font-weight-bold" style="color: #858796;" >FEEDBACK CHƯA ĐỌC</h5>
 
                                         <button style="max-height: 30px;" type="button" class="btn btn-secondary btn-sm" onclick="window.location.href = 'FeedbackListPage'">
                                             Xem chi tiết
                                         </button>
                                     </div>
-                                    
-                                    <div class="overflow-auto" style="min-height: 150px; max-height: 180px;">
+
+                                    <div class="overflow-auto" style="min-height: 140px; max-height: 166px;">
                                         <ul class="list-group">
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
                                                     <p class="my-auto w-75">
                                                         Ông khách aBc có hành vi XyZ với nhân viên !@#
                                                     </p>
-                                                    <input class="my-auto" type="checkbox" value="">
+                                                    <div class="w-25 text-right">
+                                                        <button type="button" class="btn btn-sm">
+                                                            <i class="fas fa-check-circle fa-2x text-gray-600"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
@@ -457,7 +466,11 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                                     <p class="my-auto w-75">
                                                         Ông khách aBc có hành vi XyZ với nhân viên !@#
                                                     </p>
-                                                    <input class="my-auto" type="checkbox" value="">
+                                                    <div class="w-25 text-right">
+                                                        <button type="button" class="btn btn-sm">
+                                                            <i class="fas fa-check-circle fa-2x text-gray-600"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
@@ -465,7 +478,11 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                                     <p class="my-auto w-75">
                                                         Ông khách aBc có hành vi XyZ với nhân viên !@#
                                                     </p>
-                                                    <input class="my-auto" type="checkbox" value="">
+                                                    <div class="w-25 text-right">
+                                                        <button type="button" class="btn btn-sm">
+                                                            <i class="fas fa-check-circle fa-2x text-gray-600"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </li>
                                         </ul>
@@ -483,9 +500,17 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script>
-                                            $.get("Sidebar", function (data) {
-                                                $("#sidebar-placeholder").replaceWith(data);
-                                            });
+            $.get("Sidebar", function (data) {
+                $("#sidebar-placeholder").replaceWith(data);
+            });
+            
+            $("button").find("i").on("mouseenter", function() {
+                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-900");
+            });
+            
+            $("button").find("i").on("mouseout", function() {
+                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
+            });
         </script>
     </body>
 
