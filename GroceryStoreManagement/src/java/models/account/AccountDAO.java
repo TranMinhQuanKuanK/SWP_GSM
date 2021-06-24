@@ -80,7 +80,7 @@ public class AccountDAO implements Serializable {
 
                 String sql = "UPDATE account "
                         + "SET password_acc = ?"
-                        + " WHERE username = ? ";
+                        + " WHERE username = ?";
 
                 stm = con.prepareStatement(sql);
                 stm.setString(1, password);
@@ -120,7 +120,8 @@ public class AccountDAO implements Serializable {
             if (con != null) {
                 //2. Create SQL string
                 String sql = "SELECT username, name, is_owner "
-                        + "FROM account";
+                        + "FROM account "
+                        + "WHERE is_active = 'true'";
 
                 //3. Create statement and assign parameter value if any
                 stm = con.prepareStatement(sql);
@@ -207,7 +208,8 @@ public class AccountDAO implements Serializable {
 
             if (con != null) {
                 //2. Create SQL string
-                String sql = "DELETE FROM account "
+                String sql = "UPDATE account "
+                        + "SET is_active = 'false' "
                         + "WHERE username = ?";
 
                 //3. Create statement and assign parameter value if any
@@ -246,8 +248,8 @@ public class AccountDAO implements Serializable {
             con = DBHelpers.makeConnection();
             if (con != null) {
                 //2. Create SQL string
-                String sql = "INSERT INTO account (name, username, password_acc, is_owner) "
-                        + "VALUES (?, ?, ?, ?)";
+                String sql = "INSERT INTO account (name, username, password_acc, is_owner, is_active) "
+                        + "VALUES (?, ?, ?, ?, 'true')";
 
                 //3. Create Statement and assign Parameter value if any
                 stm = con.prepareStatement(sql);

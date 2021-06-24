@@ -53,36 +53,36 @@ public class CreateAccountServlet extends HttpServlet {
         try {
             if (username == null) {
                 err_obj.setHasError(true);
-                err_obj.setUsernameLengthError("Mục này không được để trống!");
+                err_obj.setUsernameLengthError("Vui lòng nhập tên đăng nhập");
             } else if (username.trim().length() < 6 || username.trim().length() > 30) {
                 err_obj.setHasError(true);
-                err_obj.setUsernameLengthError("Tên đăng nhập phải có độ dài từ 6 đến 30 kí tự!");
+                err_obj.setUsernameLengthError("Tên đăng nhập phải có độ dài từ 6 đến 30 kí tự");
             }
 
             if (password == null) {
                 err_obj.setHasError(true);
-                err_obj.setPasswordLengthError("Mục này không được để trống!");
+                err_obj.setPasswordLengthError("Vui lòng nhập mật khẩu");
             } else if (password.trim().length() < 6 || password.trim().length() > 20) {
                 err_obj.setHasError(true);
-                err_obj.setPasswordLengthError("Mật khẩu phải có độ dài từ 6 đến 20 kí tự!");
+                err_obj.setPasswordLengthError("Mật khẩu phải có độ dài từ 6 đến 20 kí tự");
             } else if (!confirm.trim().equals(password.trim())) {
                 err_obj.setHasError(true);
-                err_obj.setConfirmNotMatch("Không khớp với mật khẩu!");
+                err_obj.setConfirmNotMatch("Mật khẩu xác nhận không trùng khớp");
             }
 
             if (name == null) {
                 err_obj.setHasError(true);
-                err_obj.setNameLengthError("Mục này không được để trống!");
+                err_obj.setNameLengthError("Vui lòng nhập họ và tên");
             } else if (name.trim().length() < 2 || name.trim().length() > 50) {
                 err_obj.setHasError(true);
-                err_obj.setNameLengthError("Họ tên phải có độ dài từ 2 đến 50 kí tự!");
+                err_obj.setNameLengthError("Họ tên phải có độ dài từ 2 đến 50 kí tự");
             }
 
             if (!err_obj.getHasError()) {
                 AccountDAO dao = new AccountDAO();
                 if (dao.checkExist(username)) {
                     err_obj.setHasError(true);
-                    err_obj.setUsernameExist("Tên đăng nhập " + username + " đã được sử dụng!");
+                    err_obj.setUsernameExist("Tên đăng nhập " + username + " đã được sử dụng");
                 } else if (!dao.addAccount(name, username, password, isOwner)) {
                     err_obj.setHasError(true);
                 }

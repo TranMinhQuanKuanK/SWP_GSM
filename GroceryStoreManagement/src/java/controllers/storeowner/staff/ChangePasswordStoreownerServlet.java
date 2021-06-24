@@ -9,10 +9,6 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,13 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.account.AccountDAO;
 import models.account.AccountDTO;
+import models.account.AccountErrObj;
 
 /**
  *
  * @author Huu Quoc
  */
-@WebServlet(name = "GetAccountListServlet", urlPatterns = {"/GetAccountListServlet"})
-public class GetAccountListServlet extends HttpServlet {
+@WebServlet(name = "ChangePasswordStoreownerServlet", urlPatterns = {"/ChangePasswordStoreownerServlet"})
+public class ChangePasswordStoreownerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,27 +38,38 @@ public class GetAccountListServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-
         try (PrintWriter out = response.getWriter()) {
-            AccountDAO dao = new AccountDAO();
-            dao.fetchAccountList();
-
-            List<AccountDTO> resultList = dao.getAccountList();
-
-            if (resultList == null) {
-                resultList = new ArrayList<>();
+            String currentPassword = request.getParameter("currentPassword");
+            String newPassword = request.getParameter("newPassword");
+            String username = (String) request.getSession().getAttribute("USERNAME");
+            AccountErrObj accountErr = new AccountErrObj();
+            if (username != null) {
+                AccountDAO dao = new AccountDAO();
+                AccountDTO aDTO = dao.CheckLogin(username, currentPassword);
+                if (aDTO == null) {
+                    accountErr.setCurrentPasswordError("Mật khẩu hiện tại không đúng");
+                    accountErr.setHasError(true);
+                } else {
+                    if (newPassword.length() < 6 || newPassword.length() > 20) {
+                        accountErr.setNewPasswordError("Mật khẩu mới phải có độ dài từ 6 đến 20 kí tự");
+                        accountErr.setHasError(true);
+                    } else if (newPassword.equals(currentPassword)) {
+                        accountErr.setNewPasswordError("Mật khẩu mới phải khác mật khẩu cũ");
+                        accountErr.setHasError(true);
+                    } else {
+                        dao.ChangePassword(username, newPassword);
+                    }
+                }
+                Gson gson = new Gson();
+                String JSONString = gson.toJson(accountErr);
+                out.print(JSONString);
+                out.flush();
             }
 
-            Collections.sort(resultList, Comparator.comparing(AccountDTO::isIs_owner).reversed());
-
-            Gson gson = new Gson();
-            String JSONS = gson.toJson(resultList);
-            out.print(JSONS);
-            out.flush();
-        } catch (SQLException ex) {
-            log("GetAccountListServlet _ SQL: " + ex.getMessage());
-        } catch (NamingException ex) {
-            log("GetAccountListServlet _ Naming: " + ex.getMessage());
+        } catch (SQLException e) {
+            log("ChangePasswordStoreownerServlet _ SQL: " + e.getMessage());
+        } catch (NamingException e) {
+            log("ChangePasswordStoreownerServlet _ Naming: " + e.getMessage());
         }
     }
 

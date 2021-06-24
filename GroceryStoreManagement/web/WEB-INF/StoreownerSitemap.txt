@@ -27,3 +27,4 @@ GetAccountList = GetAccountListServlet
 ResetAccount = ResetAccountServlet
 DeleteAccount = DeleteAccountServlet
 CreateAccount = CreateAccountServlet
+ChangePasswordStoreowner = ChangePasswordStoreownerServlet
