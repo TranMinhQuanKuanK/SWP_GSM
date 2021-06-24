@@ -51,10 +51,10 @@ public class CheckoutServlet extends HttpServlet {
             BillObj billObj = (BillObj) request.getSession().getAttribute("BILL");
 
             String phone_no = billObj.getPhone_no();
-
+            //Lay time hien tai
             Date date = new Date();
             Timestamp buy_date = new Timestamp(date.getTime());
-
+            //lay ussername
             String cashier_username = (String) request.getSession().getAttribute("USERNAME");
 
             Integer total_cost = billObj.getTotal_cost();
