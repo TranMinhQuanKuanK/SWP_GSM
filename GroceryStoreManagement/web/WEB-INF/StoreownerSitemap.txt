@@ -26,3 +26,4 @@ UpdateQuantity = UpdateQuantityServlet
 GetAccountList = GetAccountListServlet
 ResetAccount = ResetAccountServlet
 DeleteAccount = DeleteAccountServlet
+Sidebar = storeowner/Sidebar.html
