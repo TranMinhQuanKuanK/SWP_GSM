@@ -19,13 +19,12 @@
 
         <!-- Custom styles for this template-->
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet" type="text/css">
-        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
 
         <link href="/GroceryStoreManagement/storeowner/css/productList/productList.css" rel="stylesheet" type="text/css">
-        
+
         <!-- Link jquery for sidebar -->
-        <script src="//code.jquery.com/jquery.min.js"></script>
+
     </head>
 
     <body id="page-top">
@@ -35,12 +34,9 @@
 
             <!-- Sidebar -->
             <div id="sidebar-placeholder">
+            
             </div>
-            <script>
-            $.get("Sidebar", function(data){
-                $("#sidebar-placeholder").replaceWith(data);
-            });
-            </script>
+
             <!-- End of Sidebar -->
 
             <!-- Content Wrapper -->
@@ -371,7 +367,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Successful to edit product toast -->
         <div class="position-absolute bg-success" style="top: 10%; left: 40%; z-index: 8000;">
             <div id="success-to-save-toast" class="toast hide" role="alert">
@@ -387,13 +383,16 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Bootstrap core JavaScript-->
-        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+        <!-- Bootstrap core JavaScript-->
+
+        <!--        <script ></script>-->
+
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+        
         <!-- Core plugin JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Custom scripts for all pages-->
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
@@ -401,6 +400,7 @@
 
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/productList/productList.js" type="text/javascript"></script>
+
     </body>
 
 </html>
