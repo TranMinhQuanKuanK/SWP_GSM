@@ -6,35 +6,48 @@ and open the template in the editor.
 -->
 <html>
 
-<head>
-    <title>TODO supply a title</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
-<body onload="getName()">
-    <div>Đây là cái store owner dashboard!!!</div>
-    <div>You are <span id="storeownername"></span></div>
-    <a href="Logout">Log out</a></br></br>
-    <a href="TestEverythingPage.html">TestEverythingPage</a></br>
-    <a href="StatisticsPage">Statistic</a></br>
-    <a href="PreviousBillPage">View Previous Bill</a></br>
-    <a href="inventorypage">Inventory</a></br>
-    <a href="CashierPasswordChangePage">Cashier Password Change</a></br>
-    <a href="FeedbackListPage">FeedbackList Page</a></br>
-    <script>
-        function getName() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState >= 4 && this.status <= 200) {
-                    document.getElementById("storeownername").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("GET", "GetCurrentName", true);
-            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhttp.send();
-        }
-    </script>
-</body>
+        <!-- Custom styles for this template-->
+        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet" type="text/css">
+    </head>
+
+    <body id="page-top">
+        <!-- Sidebar -->
+        <div id="wrapper">
+
+                <div id="sidebar-placeholder">
+
+                </div>
+                <div id="content-wrapper" class="d-flex flex-column">
+                        <!-- Main Content -->
+                <div id="content">
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        Hello
+                    </div>
+                    
+                </div>
+                </div>
+        </div>
+
+
+
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $.get("Sidebar", function (data) {
+                $("#sidebar-placeholder").replaceWith(data);
+            });
+        </script>
+    </body>
 
 </html>
