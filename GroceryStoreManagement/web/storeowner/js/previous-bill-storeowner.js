@@ -41,13 +41,13 @@ function renderPreBillList() {
 
         var cellNo = row.insertCell(0);
         var cellCustName = row.insertCell(1);
-        var cellCustPhone = row.insertCell(2);
-        var cellTotalCost = row.insertCell(3);
-        var cellBuyDate = row.insertCell(4);
+//        var cellCustPhone = row.insertCell(2);
+        var cellTotalCost = row.insertCell(2);
+        var cellBuyDate = row.insertCell(3);
 
         cellNo.innerHTML = i + 1;
         cellCustName.innerHTML = preBillList[i].name;
-        cellCustPhone.innerHTML = preBillList[i].phoneNo;
+//        cellCustPhone.innerHTML = preBillList[i].phoneNo;
         cellTotalCost.innerHTML = formatNumber(preBillList[i].totalCost);
         cellBuyDate.innerHTML = preBillList[i].buyDate;
     }
@@ -97,7 +97,7 @@ function renderPreBillDetailList(billID) {
             cellProductName.innerHTML = billDetails[i].productName;
             cellQuantity.innerHTML = billDetails[i].quantity;
             cellCost.innerHTML = formatNumber(billDetails[i].cost);
-            cellTotal.innerHTML = billDetails[i].total;
+            cellTotal.innerHTML = formatNumber(billDetails[i].total);
         }
     }
 
@@ -108,7 +108,7 @@ function renderPreBillDetailList(billID) {
     var cellTotalCostLabel = row.insertCell(3);
     var cellTotalCost = row.insertCell(4);
     cellTotalCostLabel.innerHTML = "Tổng cộng";
-    cellTotalCost.innerHTML = totalCost;
+    cellTotalCost.innerHTML = formatNumber(totalCost);
 
     var row = table.insertRow(-1);
     row.insertCell(0);
@@ -126,5 +126,5 @@ function renderPreBillDetailList(billID) {
     var cellCashLabel = row.insertCell(3);
     var cellCash = row.insertCell(4);
     cellCashLabel.innerHTML = "Khách đưa";
-    cellCash.innerHTML = cash;
+    cellCash.innerHTML = formatNumber(cash);
 }

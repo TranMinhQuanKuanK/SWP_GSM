@@ -93,7 +93,7 @@ function format(time) {
 function getTime() {
     var now = new Date();
 
-    var year = format(new Date().getFullYear());
+    var year = now.getFullYear();
     var month = format(now.getMonth() + 1);
     var day = format(now.getDate());
     var hour = format(now.getHours());

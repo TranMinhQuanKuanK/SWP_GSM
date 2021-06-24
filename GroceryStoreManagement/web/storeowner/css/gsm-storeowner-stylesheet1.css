@@ -1193,9 +1193,17 @@ pre code {
     flex: 0 0 41.66667%;
     max-width: 41.66667%;
   }
+  .col-lg-5-5 {
+    flex: 0 0 43%;
+    max-width: 43%;
+  }
   .col-lg-6 {
     flex: 0 0 50%;
     max-width: 50%;
+  }
+  .col-lg-6-5 {
+    flex: 0 0 57%;
+    max-width: 57%;
   }
   .col-lg-7 {
     flex: 0 0 58.33333%;
@@ -9779,6 +9787,16 @@ a:focus {
 .container-xl {
   padding-left: 1.5rem;
   padding-right: 1.5rem;
+}
+
+.lg-container-lt {
+  padding-left: 0.25rem;
+  padding-right: 0.75rem;  
+}
+
+.lg-container-rt {
+  padding-left: 0.75rem;
+  padding-right: 0rem;  
 }
 
 .scroll-to-top {
