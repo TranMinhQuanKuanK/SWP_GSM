@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
 
     <head>
-        <title>TODO supply a title</title>
+        <title>Dashboard Quản Lí</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -23,20 +23,120 @@ and open the template in the editor.
         <!-- Sidebar -->
         <div id="wrapper">
 
-                <div id="sidebar-placeholder">
+            <div id="sidebar-placeholder">
 
-                </div>
-                <div id="content-wrapper" class="d-flex flex-column">
-                        <!-- Main Content -->
+            </div>
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
                 <div id="content">
-
                     <!-- Begin Page Content -->
                     <div class="container-fluid">
-                        Hello
+                        <!-- Page Heading -->
+                        <div class="row d-sm-flex align-items-center justify-content-between mb-4 mt-3">
+                            <h1 class="mb-0" id="header-page">XXX TẠP HÓA KHÔNG HÙ NHAU</h1>
+                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-primary" onclick="window.location.href = 'ProductListPage';">
+                                <i class="fas fa-box-open" style="color: #fff;"></i>&nbsp;
+                                <span class="button-back-text text-light">Thêm Mặt Hàng</span></button>
+                        </div>
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider mb-4">
+
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="card border-left-primary shadow h-100">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                    Doanh thu</div>
+                                                <div id="sales" class="h5 mb-0 font-weight-bold text-gray-800">id=sales</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-piggy-bank fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card border-left-success shadow h-100">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                    Lợi nhuận</div>
+                                                <div id="profit" class="h5 mb-0 font-weight-bold text-gray-800">id=profit</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="card border-left-warning shadow h-100">
+                                    <div class="card-body">
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col mr-2">
+                                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                    Tổng số bill</div>
+                                                <div id="totalBills" class="h5 mb-0 font-weight-bold text-gray-800">id=totalBills</div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="fas fa-shopping-cart fa-2x text-gray-300"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Divider -->
+                        <hr class="sidebar-divider mb-4">
+                        <div class="row">
+                            <div class="col-4">
+                                <div style="color: #ed7468;" class=" border-left-danger">
+                                    <h5 class="pl-2" style="min-height: 60px;">HÀNG SẮP HẾT</h5>
+                                    <div class="overflow-auto" style="max-height: 440px;">
+                                        <ul class="list-group">
+                                        <li class="list-group-item">An item</li>
+                                        <li class="list-group-item">A second item</li>
+                                        <li class="list-group-item">A third item</li>
+                                        <li class="list-group-item">A fourth item</li>
+                                        <li class="list-group-item">And a fifth one</li>
+                                        <li class="list-group-item">An item</li>
+                                        <li class="list-group-item">A second item</li>
+                                        <li class="list-group-item">A third item</li>
+                                        <li class="list-group-item">A fourth item</li>
+                                        <li class="list-group-item">And a fifth one</li>
+                                        <li class="list-group-item">An item</li>
+                                        <li class="list-group-item">A second item</li>
+                                        <li class="list-group-item">A third item</li>
+                                        <li class="list-group-item">A fourth item</li>
+                                        <li class="list-group-item">And a fifth one</li>
+                                    </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-4 border-left-info">
+                                <div style="color: #36b9cc;">
+                                    <h5>TOP 10 KHÁCH HÀNG TRONG THÁNG</h5>
+                                    <p>(theo hóa đơn)</p>
+                                </div>
+                            </div>
+                            <div class="col-4 d-flex flex-column border-left-secondary">
+                                <div style="color: #858796;">
+                                    <h4>TOP 10 SẢN PHẨM TRONG THÁNG</h4>
+                                </div>
+                                <div style="color: #858796;">
+                                    <h4>FEEDBACK CHƯA ĐỌC</h4>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
                 </div>
-                </div>
+            </div>
         </div>
 
 
@@ -44,9 +144,9 @@ and open the template in the editor.
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script>
-            $.get("Sidebar", function (data) {
-                $("#sidebar-placeholder").replaceWith(data);
-            });
+                                $.get("Sidebar", function (data) {
+                                    $("#sidebar-placeholder").replaceWith(data);
+                                });
         </script>
     </body>
 
