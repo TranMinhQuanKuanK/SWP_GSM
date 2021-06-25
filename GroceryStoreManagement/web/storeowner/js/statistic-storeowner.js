@@ -1,48 +1,204 @@
+var statTable;
+
+function processError(errorObject) {
+    document.getElementById("error-date").innerHTML = errorObject.dateError;
+}
+
 function showProductStatistic() {
     var request = new XMLHttpRequest();
-    
+
     var url = "GetProductStatistic";
     url += "?date-from=" + document.getElementById("date-from").value;
     url += "&date-to=" + document.getElementById("date-to").value;
-    url += "&sort-by=" + document.getElementById("sort-by").value;
-    
+
     request.open('GET', url, true);
     request.onload = function () {
-        var productStatistic = JSON.parse(this.responseText);
-        renderProductStatistic(productStatistic);
+        var result = JSON.parse(this.responseText);
+        if (result.isError) {
+            processError(result);
+        } else {
+            renderProductStatistic(result);
+        }
     };
     request.send();
 }
 
 function renderProductStatistic(productStatistic) {
-    
-//    var table2 = $('#product-stat-area').DataTable();
-// 
-////// Sort by column 1 and then re-draw
-//table2
-//    .order( [[ 3, "desc" ]] )
-//    .draw();
+    $(document).ready(function () {
+        statTable = $('#product-stat-area').DataTable({
+            destroy: true,
+            processing: true,
+            data: productStatistic,
+            columns: [{
+                    data: null
+                }, {
+                    data: 'productName'
+                }, {
+                    data: 'quantity'
+                }, {
+                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', '')
+                }],
+            columnDefs: [{
+                    "orderable": false,
+                    "targets": 0
+                }, {
+                    "searchable": false,
+                    "targets": [0, 2, 3]
+                }],
+            order: [[1, 'asc']],
+            language: {
+                "lengthMenu": "_MENU_ sản phẩm mỗi trang",
+                "zeroRecords": "Không tìm thấy sản phẩm nào",
+                "info": "Trang _PAGE_ trong tổng số _PAGES_ trang",
+                "infoEmpty": "Không có thông tin",
+                "infoFiltered": "(lọc từ _MAX_ sản phẩm)",
+                "paginate": {
+                    "first": "Trang đầu",
+                    "last": "Trang cuối",
+                    "next": "Trước",
+                    "previous": "Tiếp"
+                },
+                "search": "Tên sản phẩm: "
+            }
+        });
 
-    if (productStatistic.length === 0) {
-        document.getElementById("not-found-label").style = "display:block";
-    } else {
-        document.getElementById("not-found-label").style = "display:none";
-    }
-    
-    var table = document.getElementById("product-stat-body");
-    table.innerHTML = "";
-    
-    for (i = 0; i < productStatistic.length; i++) {
-        var row = table.insertRow(-1);
-        
-        var cellNo = row.insertCell(0);
-        var cellProductName = row.insertCell(1);
-        var cellQuantity = row.insertCell(2);
-        var cellTotal = row.insertCell(3);
-        
-        cellNo.innerHTML = i + 1;
-        cellProductName.innerHTML = productStatistic[i].productName;
-        cellQuantity.innerHTML = productStatistic[i].quantity;
-        cellTotal.innerHTML = formatNumber(productStatistic[i].total);
-    }
+        statTable.on('order.dt', function () {
+            statTable.column(0, {order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+    });
 }
+
+function showCustomerStatistic() {
+    var request = new XMLHttpRequest();
+
+    var url = "GetCustomerStatistic";
+    url += "?date-from=" + document.getElementById("date-from").value;
+    url += "&date-to=" + document.getElementById("date-to").value;
+
+    request.open('GET', url, true);
+    request.onload = function () {
+        var result = JSON.parse(this.responseText);
+        if (result.isError) {
+            processError(result);
+        } else {
+            renderCustomerStatistic(result);
+        }
+    };
+    request.send();
+}
+
+function renderCustomerStatistic(CustomerStatistic) {
+    $(document).ready(function () {
+        statTable = $('#product-stat-area').DataTable({
+            destroy: true,
+            processing: true,
+            data: CustomerStatistic,
+            columns: [{
+                    data: null
+                }, {
+                    data: 'productName'
+                }, {
+                    data: 'quantity'
+                }, {
+                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', '')
+                }],
+            columnDefs: [{
+                    "orderable": false,
+                    "targets": 0
+                }, {
+                    "searchable": false,
+                    "targets": [0, 2, 3]
+                }],
+            order: [[1, 'asc']],
+            language: {
+                "lengthMenu": "_MENU_ sản phẩm mỗi trang",
+                "zeroRecords": "Không tìm thấy sản phẩm nào",
+                "info": "Trang _PAGE_ trong tổng số _PAGES_ trang",
+                "infoEmpty": "Không có thông tin",
+                "infoFiltered": "(lọc từ _MAX_ sản phẩm)",
+                "paginate": {
+                    "first": "Trang đầu",
+                    "last": "Trang cuối",
+                    "next": "Trước",
+                    "previous": "Tiếp"
+                },
+                "search": "Tên sản phẩm: "
+            }
+        });
+
+        statTable.on('order.dt', function () {
+            statTable.column(0, {order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+    });
+}
+
+function showFinancialStatistic() {
+    var request = new XMLHttpRequest();
+
+    var url = "GetFinancialStatistic";
+    url += "?date-from=" + document.getElementById("date-from").value;
+    url += "&date-to=" + document.getElementById("date-to").value;
+
+    request.open('GET', url, true);
+    request.onload = function () {
+        var result = JSON.parse(this.responseText);
+        if (result.isError) {
+            processError(result);
+        } else {
+            renderFinancialStatistic(result);
+        }
+    };
+    request.send();
+}
+
+function renderFinancialStatistic(financialStatistic) {
+    $(document).ready(function () {
+        statTable = $('#product-stat-area').DataTable({
+            destroy: true,
+            processing: true,
+            data: financialStatistic,
+            columns: [{
+                    data: null
+                }, {
+                    data: 'productName'
+                }, {
+                    data: 'quantity'
+                }, {
+                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', '')
+                }],
+            columnDefs: [{
+                    "orderable": false,
+                    "targets": 0
+                }, {
+                    "searchable": false,
+                    "targets": [0, 2, 3]
+                }],
+            order: [[1, 'asc']],
+            language: {
+                "lengthMenu": "_MENU_ sản phẩm mỗi trang",
+                "zeroRecords": "Không tìm thấy sản phẩm nào",
+                "info": "Trang _PAGE_ trong tổng số _PAGES_ trang",
+                "infoEmpty": "Không có thông tin",
+                "infoFiltered": "(lọc từ _MAX_ sản phẩm)",
+                "paginate": {
+                    "first": "Trang đầu",
+                    "last": "Trang cuối",
+                    "next": "Trước",
+                    "previous": "Tiếp"
+                },
+                "search": "Tên sản phẩm: "
+            }
+        });
+
+        statTable.on('order.dt', function () {
+            statTable.column(0, {order: 'applied'}).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1;
+            });
+        }).draw();
+    });
+}
+

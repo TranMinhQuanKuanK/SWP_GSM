@@ -1,328 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-    <title>Statistic Page</title>
+        <title>Statistic Page</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-        type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        <!-- Custom fonts for this template-->
+        <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+              type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-    <!-- Link jquery for sidebar -->
-    <script src="//code.jquery.com/jquery.min.js"></script>
-</head>
+        <!--Custom styles for tables-->
+        <link href="/GroceryStoreManagement/storeowner/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
 
-<body onload="getTime()" id="page-top">
-    <!-- Page Wrapper -->
-    <div id="wrapper">
+        <!-- Custom styles for this template-->
+        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
 
-        <!-- Sidebar -->
-        <div id="sidebar-placeholder">
-        </div>
-        <script>
-            $.get("Sidebar", function (data) {
-                $("#sidebar-placeholder").replaceWith(data);
-            });
-        </script>
-        <!-- End of Sidebar -->
+        <!-- Link jquery for sidebar -->
+        <script src="//code.jquery.com/jquery.min.js"></script>
+    </head>
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+    <body onload="getTime()" id="page-top">
+        <!-- Page Wrapper -->
+        <div id="wrapper">
 
-            <!-- Main Content -->
-            <div id="content">
+            <!-- Sidebar -->
+            <div id="sidebar-placeholder">
+            </div>
+            <script>
+                $.get("Sidebar", function (data) {
+                    $("#sidebar-placeholder").replaceWith(data);
+                });
+            </script>
+            <!-- End of Sidebar -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                        <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
+                <!-- Main Content -->
+                <div id="content">
 
-                        <a href="javascript:void(0)"
-                            class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                class="button-back-text">Store Owner Dashboard</span></a>
-                    </div>
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
 
-                    <!-- Divider -->
-                    <hr class="sidebar-divider mb-4">
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
+                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
 
-                    <!-- Table Tab Row -->
-                    <ul class="nav nav-tabs nav-fill align-items-center">
-                        <li id="defaultOpen"
-                            class="nav-item border-left-primary justify-content-center shadow h-100 tablink"
-                            onclick="openPage('Product', this, 'Product-btn'); getTime();">
-                            <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
-                                <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
-                                <span class="statistics-tab-heading">Product Statistic</span>
-                            </button>
-                        </li>
-                        <li class="nav-item border-left-success shadow h-100 tablink"
-                            onclick="openPage('Customer', this, 'Customer-btn')">
-                            <button id="Customer-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
-                                <i class="fas fa-dollar-sign fa-2x text-gray-500 my-2"></i>
-                                <span class="statistics-tab-heading">Customer Statistic</span>
-                            </button>
-                        </li>
-                        <li class="nav-item border-left-info shadow h-100 tablink"
-                            onclick="openPage('Financial', this, 'Financial-btn')">
-                            <button id="Financial-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
-                                <i class="fas fa-clipboard-list fa-2x text-gray-500 my-2"></i>
-                                <span class="statistics-tab-heading">Financial Statistic</span>
-                            </button>
-                        </li>
-                    </ul>
-
-                    <!-- Content Row -->
-                    <div class="row">
-
-                        <!-- Table 1 -->
-                        <div class="col-12 tab-content" id="Product">
-                            <div class="card shadow mb-4">
-                                <!-- Table Header -->
-                                <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;
-                                        </h6>
-                                        <div class="form-group d-flex">
-                                            <div class="pt-2">
-                                                <input class="form-control datetime-date-from" type="datetime-local"
-                                                    id="date-from">
-                                            </div>
-                                        </div>
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;
-                                        </h6>
-                                        <div class="form-group d-flex">
-                                            <div class="pt-2">
-                                                <input class="form-control datetime-date-to" type="datetime-local"
-                                                    id="date-to">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Sort by:
-                                            &nbsp;</h6>
-                                        <div class="input-group mb-3 pt-1 col-5">
-                                            <select class="custom-select" id="sort-by">
-                                                <option value="1" selected>Ascending order of quantity sold</option>
-                                                <option value="2">Descending order of quantity sold</option>
-                                                <option value="3">Ascending order of total amount sold</option>
-                                                <option value="4">Descending order of total amount sold</option>
-                                            </select>
-                                        </div>
-                                        <input type="button" onclick="showProductStatistic()"
-                                            class="nav-item active align-items-center justify-content-center mt-2 mb-4"
-                                            value="Hiển thị">
-                                    </div>
-                                </div>
-                                <!-- Table Content -->
-                                <div class="card-body">
-                                    <div class="text-center small">
-                                        <table class="table table-striped" id="product-stat-area">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Tên sản phẩm</th>
-                                                    <th scope="col">Số lượng đã bán</th>
-                                                    <th scope="col">Tổng doanh thu</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="product-stat-body">
-                                            </tbody>
-                                        </table>
-                                        <span id="not-found-label" style="display:none">Không tìm thấy sản phẩm nào</span>
-                                    </div>
-                                </div>
-                                <!--/ End of Table Content -->
-                            </div>
+                            <a href="javascript:void(0)"
+                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
+                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
+                                    class="button-back-text">Store Owner Dashboard</span></a>
                         </div>
-                        <!--/ End of Table -->
 
-                        <!-- Table 2 -->
-                        <div class="col-12 tab-content" id="Customer">
-                            <div class="card shadow mb-4">
-                                <!-- Table Header -->
-                                <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;
-                                        </h6>
-                                        <div class="form-group d-flex">
-                                            <div class="pt-2">
-                                                <input class="form-control datetime-date-from" type="datetime-local"
-                                                    id="date-from">
+                        <!-- Divider -->
+                        <hr class="sidebar-divider mb-4">
+
+                        <!-- Table Tab Row -->
+                        <ul class="nav nav-tabs nav-fill align-items-center">
+                            <li id="defaultOpen"
+                                class="nav-item border-left-primary justify-content-center shadow h-100 tablink"
+                                onclick="openPage('Product', this, 'Product-btn'); getTime();">
+                                <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
+                                    <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
+                                    <span class="statistics-tab-heading">Product Statistic</span>
+                                </button>
+                            </li>
+                            <li class="nav-item border-left-success shadow h-100 tablink"
+                                onclick="openPage('Customer', this, 'Customer-btn'); getTime();">
+                                <button id="Customer-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-500 my-2"></i>
+                                    <span class="statistics-tab-heading">Customer Statistic</span>
+                                </button>
+                            </li>
+                            <li class="nav-item border-left-info shadow h-100 tablink"
+                                onclick="openPage('Financial', this, 'Financial-btn'); getTime();">
+                                <button id="Financial-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
+                                    <i class="fas fa-clipboard-list fa-2x text-gray-500 my-2"></i>
+                                    <span class="statistics-tab-heading">Financial Statistic</span>
+                                </button>
+                            </li>
+                        </ul>
+
+                        <!-- Content Row -->
+                        <div class="row">
+
+                            <!-- Table 1 -->
+                            <div class="col-12 tab-content" id="Product">
+                                <div class="card shadow mb-4">
+                                    <!-- Table Header -->
+                                    <div class="card-header py-3 align-items-center">
+                                        <div class="row justify-content-start">
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
+                                            <div class="form-group d-flex">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-from" type="datetime-local"
+                                                           id="date-from">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;
-                                        </h6>
-                                        <div class="form-group d-flex">
-                                            <div class="pt-2">
-                                                <input class="form-control datetime-date-to" type="datetime-local"
-                                                    id="date-to">
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
+                                            <div class="form-group d-flex">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                           id="date-to">
+                                                </div>
                                             </div>
+                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date"></p>
+                                            <br>
+                                            <input type="button" onclick="showProductStatistic()"
+                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                                   value="Hiển thị">
                                         </div>
                                     </div>
-                                    <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Sort by:
-                                            &nbsp;</h6>
-                                        <div class="input-group mb-3 pt-1 col-5">
-                                            <select class="custom-select" id="sort-by">
-                                                <option selected>Choose...</option>
-                                                <option value="1">One</option>
-                                                <option value="2">Two</option>
-                                                <option value="3">Three</option>
-                                            </select>
+                                    <!-- Table Content -->
+                                    <div class="card-body">
+                                        <div class="text-center small">
+                                            <table class="table table-striped" id="product-stat-area">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Tên sản phẩm</th>
+                                                        <th scope="col">Số lượng đã bán</th>
+                                                        <th scope="col">Tổng doanh thu</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
                                         </div>
-
-                                        <input type="button"
-                                            class="nav-item active align-items-center justify-content-center mt-2 mb-4"
-                                            value="Hiển thị" />
                                     </div>
-
+                                    <!--/ End of Table Content -->
                                 </div>
-                                <!-- Table 2 Content -->
-                                <div class="card-body">
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                                <!--/ End of Table 2 Content -->
                             </div>
-                        </div>
-                        <!--/ End of Table 2 -->
+                            <!--/ End of Table 1 -->
 
-                        <!-- Table 3 -->
-                        <div class="col-12 tab-content" id="Financial">
-                            <div class="card shadow mb-4">
-                                <!-- Table Header -->
-                                <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;
-                                        </h6>
-                                        <div class="form-group d-flex">
-                                            <div class="pt-2">
-                                                <input class="form-control datetime-date-from" type="datetime-local"
-                                                    id="date-from">
+                            <!-- Table 2 -->
+                            <div class="col-12 tab-content" id="Customer">
+                                <div class="card shadow mb-4">
+                                    <!-- Table Header -->
+                                    <div class="card-header py-3 align-items-center">
+                                        <div class="row justify-content-start">
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
+                                            <div class="form-group d-flex">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-from" type="datetime-local"
+                                                           id="date-from">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;
-                                        </h6>
-                                        <div class="form-group d-flex">
-                                            <div class="pt-2">
-                                                <input class="form-control datetime-date-to" type="datetime-local"
-                                                    id="date-to">
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
+                                            <div class="form-group d-flex">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                           id="date-to">
+                                                </div>
                                             </div>
+                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date"></p>
+                                            <br>
+                                            <input type="button" onclick="showCustomerStatistic()"
+                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                                   value="Hiển thị">
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Table 3 Content -->
-                                <div class="card-body">
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                    <!-- Table Content -->
+                                    <div class="card-body">
+                                        <div class="text-center small">
+                                            <table class="table table-striped" id="product-stat-area">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Tên sản phẩm</th>
+                                                        <th scope="col">Số lượng đã bán</th>
+                                                        <th scope="col">Tổng doanh thu</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+                                    <!--/ End of Table Content -->
                                 </div>
-                                <!--/End of Table 3 Content -->
                             </div>
+                            <!--/ End of Table 2 -->
+                           
+                            <!-- Table 3 -->
+                            <div class="col-12 tab-content" id="Financial">
+                                <div class="card shadow mb-4">
+                                    <!-- Table Header -->
+                                    <div class="card-header py-3 align-items-center">
+                                        <div class="row justify-content-start">
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
+                                            <div class="form-group d-flex">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-from" type="datetime-local"
+                                                           id="date-from">
+                                                </div>
+                                            </div>
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
+                                            <div class="form-group d-flex">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                           id="date-to">
+                                                </div>
+                                            </div>
+                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date"></p>
+                                            <br>
+                                            <input type="button" onclick="showFinancialStatistic()"
+                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                                   value="Hiển thị">
+                                        </div>
+                                    </div>
+                                    <!-- Table Content -->
+                                    <div class="card-body">
+                                        <div class="text-center small">
+                                            <table class="table table-striped" id="product-stat-area">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Tên sản phẩm</th>
+                                                        <th scope="col">Số lượng đã bán</th>
+                                                        <th scope="col">Tổng doanh thu</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <!--/ End of Table Content -->
+                                </div>
+                            </div>
+                            <!--/ End of Table 3 -->
+
                         </div>
-                        <!--/ End of Table 3 -->
+                        <!--End of table row-->
 
                     </div>
-                    <!--End of table row-->
+                    <!-- /.container-fluid -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Main Content -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Content Wrapper -->
 
         </div>
-        <!-- End of Content Wrapper -->
+        <!-- End of Page Wrapper -->
 
-    </div>
-    <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="Logout">Logout</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-primary" href="Logout">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/js/statistic-storeowner.js"></script>
-</body>
+        <!-- Custom scripts for all pages-->
+        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/statistic-storeowner.js"></script>
+    </body>
 
 </html>

@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import javax.naming.NamingException;
@@ -44,22 +42,23 @@ public class GetProductStatisticServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
         
-        boolean foundErr = false;
         StatisticErrorObj errors = new StatisticErrorObj();
         String dateFrom = request.getParameter("date-from").replace('T', ' ');
         String dateTo = request.getParameter("date-to").replace('T', ' ');
-        String sortBy = request.getParameter("sort-by");
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
             if (dateFrom.compareTo(dateTo) > 0) {
-                foundErr = true;
-                errors.setDateError("End date must be greater than start date");
+                errors.setIsError(true);
+                errors.setDateError("Ngày kết thúc phải lớn hơn ngày bắt đầu");
             }
 
-            if (foundErr) {
-                //2.1 Caching errors, forward to error page
-                request.setAttribute("PRODUCT_STATISTIC_ERROR", errors);
+            if (errors.isIsError()) {
+                //2.1 Caching errors, return error object
+                Gson gson = new Gson();
+                String errorJSONS = gson.toJson(errors);
+                out.print(errorJSONS);
+                out.flush();
             } else {
                 //2.2 Call DAO
                 ProductStatisticDAO dao = new ProductStatisticDAO();
@@ -70,19 +69,6 @@ public class GetProductStatisticServlet extends HttpServlet {
                 
                 if (resultMap != null) {
                     resultList = new ArrayList<>(resultMap.values());
-
-                    if (sortBy.equals("1")) { //Ascending order of quantity sold
-                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getQuantity));
-                    }
-                    if (sortBy.equals("2")) { //Descending order of quantity sold
-                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getQuantity).reversed());
-                    }
-                    if (sortBy.equals("3")) { //Ascending order of total amount sold
-                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getTotal));
-                    }
-                    if (sortBy.equals("4")) { //Descending order of total amount sold
-                        Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getTotal).reversed());
-                    }
                 }
 
                 Gson gson = new Gson();
