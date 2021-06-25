@@ -39,9 +39,8 @@ public class UpdateQuantityServlet extends HttpServlet {
             int productID = Integer.parseInt(request.getParameter("product_ID"));
             int quantity = Integer.parseInt(request.getParameter("new_quantity"));
             if (quantity >= 0) {
-            String cashier_username = (String) request.getSession().getAttribute("USERNAME");
-            ProductDAO DAO = new ProductDAO();
-            DAO.changeQuantity(productID, quantity);
+                ProductDAO DAO = new ProductDAO();
+                DAO.changeQuantity(productID, quantity);
             } else out.print("Failed");
         } catch (SQLException e) {
             log("SQLException " + e.getMessage());

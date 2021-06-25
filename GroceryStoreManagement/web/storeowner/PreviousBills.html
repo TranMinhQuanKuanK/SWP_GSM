@@ -33,33 +33,14 @@
             $.get("Sidebar", function(data){
                 $("#sidebar-placeholder").replaceWith(data);
             });
-            </script>
-            <!-- End of Sidebar -->
-            
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+        </script>
+        <!-- End of Sidebar -->
 
-                <!-- Main Content -->
-                <div id="content">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
-
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                            <a href="javascript:void(0)"
-                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                    class="button-back-text">Store Owner Dashboard</span></a>
-                        </div>
-
-                        <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
-
-                        <!-- Content Row -->
-                        <div class="row container-fluid">
+            <!-- Main Content -->
+            <div id="content">
 
                             <!-- Look up Table -->
                             <div class="col-lg-5-5 lg-container-lt">
@@ -68,31 +49,32 @@
                                         <h3 class="m-0 font-weight-bold text-primary header-center">LOOK UP</h3>
                                     </div>
 
-                                    <div class="card-body">
-                                        <div class="container-fluid justify-content-start">
 
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Date from: &nbsp;</h6>
                                             <div class="form-group mr-2">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-from" type="datetime-local" id="date-from">
+                                                    <input class="form-control datetime-date-from" type="datetime-local"
+                                                        id="date-from">
                                                 </div>
                                             </div>
 
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;</h6>			 
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;
+                                            </h6>
                                             <div class="form-group mr-2">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-to" type="datetime-local" id="date-to">						
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                        id="date-to">
                                                 </div>
                                             </div>
 
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Phone number or name: &nbsp;</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Phone number
+                                                or name: &nbsp;</h6>
                                             <div class="form-group mr-2">
                                                 <div class="pt-2">
                                                     <input type="text" id="search-value">
                                                     &emsp; &emsp; &ensp;
                                                     <input type="button" onclick="showPreBillList()"
-                                                           class="nav-item active align-items-center justify-content-center mt-2 mb-3"
-                                                           value="Search" />
+                                                        class="nav-item active align-items-center justify-content-center mt-2 mb-3"
+                                                        value="Search" />
                                                 </div>
                                             </div>
                                         </div>
@@ -113,7 +95,8 @@
                                                 </tbody>
                                             </table>
 
-                                            <span id="not-found-label" style="display:none">Không tìm thấy hóa đơn</span>
+                                            <span id="not-found-label" style="display:none">Không tìm thấy hóa
+                                                đơn</span>
                                         </div>
                                         <!--/ End of Look up Table Content -->
 
@@ -127,28 +110,33 @@
                             <div class="col-lg-6-5 lg-container-rt">
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h3 class="m-0 font-weight-bold text-primary header-center">BILL INFORMATION</h3>
+                                        <h3 class="m-0 font-weight-bold text-primary header-center">BILL INFORMATION
+                                        </h3>
                                     </div>
 
                                     <!-- Bill Information Table Content -->
                                     <div class="card-body" style="display:none" id="bill-info">
                                         <div class="container-fluid justify-content-start d-flex">
-                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Tên khách hàng: &nbsp;</span>
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Tên khách
+                                                hàng: &nbsp;</span>
                                             <span class="pt-1 ml-1" id="customer-name"></span>
                                         </div>
 
                                         <div class="container-fluid justify-content-start d-flex">
-                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Số điện thoại: &nbsp;</span>
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Số điện
+                                                thoại: &nbsp;</span>
                                             <span class="pt-1 ml-1" id="customer-phone"></span>
                                         </div>
 
                                         <div class="container-fluid justify-content-start d-flex">
-                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Ngày: &nbsp;</span>
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Ngày:
+                                                &nbsp;</span>
                                             <span class="pt-1 ml-1" id="buy-date"></span>
                                         </div>
 
                                         <div class="container-fluid justify-content-start d-flex">
-                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Thu ngân: &nbsp;</span>
+                                            <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Thu ngân:
+                                                &nbsp;</span>
                                             <span class="pt-1 ml-1" id="cashier-name"></span>
                                         </div>
 
@@ -167,7 +155,8 @@
                                                 </tbody>
                                             </table>
 
-                                            <span id="empty-bill-label" style="display:none">Hóa đơn không có sản phẩm nào</span>
+                                            <span id="empty-bill-label" style="display:none">Hóa đơn không có sản phẩm
+                                                nào</span>
                                         </div>
                                     </div>
                                     <!--/ End of Bill Information Table Content -->
@@ -189,7 +178,8 @@
                                         <div class="modal-body">
                                             <form class="text-center">
                                                 <button type="submit" class="btn btn-success me-2">Xác nhận</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Hủy</button>
                                             </form>
                                         </div>
                                     </div>
@@ -218,7 +208,7 @@
 
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
+            aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -247,5 +237,6 @@
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/previous-bill-storeowner.js"></script>
-    </body>
+</body>
+
 </html>

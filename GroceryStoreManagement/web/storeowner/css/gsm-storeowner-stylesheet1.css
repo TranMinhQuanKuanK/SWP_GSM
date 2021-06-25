@@ -10212,27 +10212,6 @@ a:focus {
   color: #3a3b45;
 }
 
-@media (min-width: 576px) {
-  .topbar .dropdown {
-    position: relative;
-  }
-  .topbar .dropdown .dropdown-menu {
-    width: auto;
-    right: 0;
-  }
-  .topbar .dropdown-list {
-    width: 20rem !important;
-  }
-  .topbar .dropdown-list .dropdown-item .text-truncate {
-    max-width: 13.375rem;
-  }
-}
-
-.sidebar {
-  width: 6.5rem;
-  max-height: 100%;
-}
-
 .sidebar .nav-item {
   position: relative;
 }
@@ -10242,23 +10221,23 @@ a:focus {
 }
 
 .sidebar .nav-item .nav-link {
-  text-align: center;
-  padding: 0.75rem 1rem;
-  width: 6.5rem;
-}
-
-.sidebar .nav-item .nav-link span {
-  font-size: 0.65rem;
   display: block;
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  width: 14rem;
+}
+.sidebar .nav-item .nav-link i {
+  font-size: 0.85rem;
+  margin-right: 0.25rem;
+}
+.sidebar .nav-item .nav-link span {
+  font-size: 0.85rem;
+  display: inline;
 }
 
 .sidebar .nav-item.active .nav-link {
   font-weight: 700;
-}
-
-.sidebar .nav-item .collapsing {
-  display: none;
-  transition: none;
 }
 
 .sidebar.toggled {
@@ -10283,10 +10262,6 @@ a:focus {
 
 .sidebar .sidebar-brand .sidebar-brand-icon i {
   font-size: 2rem;
-}
-
-.sidebar .sidebar-brand .sidebar-brand-text {
-  display: none;
 }
 
 .sidebar hr.sidebar-divider {
@@ -10338,15 +10313,6 @@ a:focus {
   .sidebar .sidebar-heading {
     text-align: left;
   }
-  .sidebar.toggled {
-    overflow: visible;
-    width: 6.5rem !important;
-  }
-
-  .sidebar.toggled .nav-item .collapsing {
-    display: none;
-    transition: none;
-  }
 
   .sidebar.toggled .nav-item:last-child {
     margin-bottom: 1rem;
@@ -10365,9 +10331,6 @@ a:focus {
   }
   .sidebar.toggled .sidebar-brand .sidebar-brand-icon i {
     font-size: 2rem;
-  }
-  .sidebar.toggled .sidebar-brand .sidebar-brand-text {
-    display: none;
   }
   .sidebar.toggled .sidebar-heading {
     text-align: center;
@@ -11007,6 +10970,13 @@ body.sidebar-toggled footer.sticky-footer {
   background-color: #1A1A27;
 }
 
+.sidebar-container{
+  height: 100vh !important;
+  position: fixed;
+  width: 14rem;
+  background-color: #1A1A27;
+}
+
 .sidebar-brand-icon, .sidebar-brand-text {
   color: #FFFFFF;
 }
@@ -11021,6 +10991,11 @@ body.sidebar-toggled footer.sticky-footer {
 
 .nav-item .nav-link span {
   color: #FFFFFF;
+}
+
+.logout-link {
+  max-width: 100% !important;
+  text-align: center !important;
 }
 /**/
 /**/

@@ -33,7 +33,7 @@
         <!--Error field-->
         <div class="error-field" style="display:none;" id='ErrorMessage'>
             <i class="fa fa-exclamation-triangle error-icon"></i>
-            <p class="error-message" onfocus="this.blur()">Lỗi server!!!</p>
+            <p class="error-message" onfocus="this.blur()" id="ErrorMessage"></p>
         </div>
         <!--/ End of error field-->
 
@@ -65,7 +65,7 @@
         function processLoginResponse(data) {
             if (data.has_Error) {
                 document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
-                document.getElementById("ErrorMessage").setAttribute("style", "display:none");
+                document.getElementById("ErrorMessage").setAttribute("style", "display:true");
             } else {
                 //window.location.href = "TestSuccessLogin.html";
 

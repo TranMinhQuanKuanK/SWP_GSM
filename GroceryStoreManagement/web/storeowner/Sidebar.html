@@ -1,54 +1,55 @@
-<div id="perfect-scrollbar" class="wrapper ps-container ps-active-y">
-    <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
-        <!-- Sidebar - Brand -->
-        <li>
-            <div class="sidebar-brand align-items-center justify-content-center mb-1">
-                <div class="sidebar-brand-icon mb-2">
-                    <i class="fas fa-user-circle"></i>
+<div class="sidebar-container">
+    <div id="perfect-scrollbar" class="wrapper ps-container ps-active-y">
+        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
+            <!-- Sidebar - Brand -->
+            <li>
+                <div class="sidebar-brand align-items-center justify-content-center mb-1">
+                    <div class="sidebar-brand-icon mb-2">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <div id="name" class="sidebar-brand-text"><span>Trần Minh Quân hihi haha</span></div>
+                    <div class="nav-item active align-items-center justify-content-center mb-1 logout-link">
+                        <a class="nav-link justify-content-center align-items-center logout-link" href="login.html"
+                            data-toggle="modal" data-target="#logoutModal">
+                            <span>Đăng xuất</span>
+                            <i class="fas fa-sign-out-alt menu-icon"></i>
+                        </a>
+                    </div>
                 </div>
-                <div id="name" class="sidebar-brand-text"><span>Trần Minh Quân hihi haha</span></div>
-            </div>
-            <div class="nav-item active align-items-center justify-content-center mb-1 logout-link">
-                <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
-                    data-toggle="modal" data-target="#logoutModal">
-                    <span>Đăng xuất &nbsp;&nbsp;</span>
-                    <i class="fas fa-sign-out-alt menu-icon"></i>
+            </li>
+
+            <!-- Divider -->
+            <li class="hr-dashboard">
+                <hr class="sidebar-divider">
+            </li>
+
+            <!-- Nav Item - Dashboard-->
+            <li class="nav-item">
+                <a class="nav-link" href="StoreownerDashboardPage">
+                    <i class="fas fa-chalkboard menu-icon"></i>
+                    <span>&nbsp; Dashboard</span>
                 </a>
-            </div>
-        </li>
+            </li>
 
-        <!-- Divider -->
-        <li class="hr-dashboard">
-            <hr class="sidebar-divider">
-        </li>
+            <!-- Divider -->
+            <li>
+                <hr class="sidebar-divider">
+            </li>
 
-        <!-- Nav Item - Dashboard-->
-        <li class="nav-item">
-            <a class="nav-link" href="StoreownerDashboardPage">
-                <i class="fas fa-chalkboard menu-icon"></i>
-                <span>&nbsp; Dashboard</span>
-            </a>
-        </li>
+            <!-- Heading -->
+            <li>
+                <div class="sidebar-heading">
+                    Menu
+                </div>
+            </li>
 
-        <!-- Divider -->
-        <li>
-            <hr class="sidebar-divider">
-        </li>
-
-        <!-- Heading -->
-        <li>
-            <div class="sidebar-heading">
-                Menu
-            </div>
-        </li>
-
-        <!-- Nav Item - Inventory-->
-        <li class="nav-item">
-            <a class="nav-link" href="inventorypage">
-                <i class="fas fa-boxes menu-icon"></i>
-                <span>&nbsp; Kho hàng</span>
-            </a>
-        </li>
+            <!-- Nav Item - Inventory-->
+            <li class="nav-item">
+                <a class="nav-link" href="inventorypage">
+                    <i class="fas fa-boxes menu-icon"></i>
+                    <span>&nbsp; Kho hàng</span>
+                </a>
+            </li>
 
         <!-- Nav Item - Import Goods-->
         <li class="nav-item">
@@ -58,52 +59,54 @@
             </a>
         </li>
 
-        <!-- Nav Item - Product List-->
-        <li class="nav-item">
-            <a class="nav-link" href="ProductListPage">
-                <i class="fas fa-clipboard-list menu-icon"></i>
-                <span>&nbsp; Danh sách mặt hàng</span>
-            </a>
-        </li>
+            <!-- Nav Item - Product List-->
+            <li class="nav-item">
+                <a class="nav-link" href="ProductListPage">
+                    <i class="fas fa-clipboard-list menu-icon"></i>
+                    <span>&nbsp; Danh sách mặt hàng</span>
+                </a>
+            </li>
 
-        <!-- Nav Item - Previous Receipt -->
-        <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">
-                <i class="fas fa-receipt menu-icon"></i>
-                <span>&nbsp; Biên lai</span>
-            </a>
-        </li>
+            <!-- Nav Item - Previous Receipt -->
+            <li class="nav-item">
+                <a class="nav-link" href="PreviousReceiptPage">
+                    <i class="fas fa-receipt menu-icon"></i>
+                    <span>&nbsp; Biên lai</span>
+                </a>
+            </li>
 
-        <!-- Nav Item - Previous Customer Bill -->
-        <li class="nav-item">
-            <a class="nav-link" href="PreviousBillPage">
-                <i class="fas fa-file-invoice-dollar menu-icon"></i>
-                <span>&nbsp; Hóa đơn khách hàng</span>
-            </a>
-        </li>
+            <!-- Nav Item - Previous Customer Bill -->
+            <li class="nav-item">
+                <a class="nav-link" href="PreviousBillPage">
+                    <i class="fas fa-file-invoice-dollar menu-icon"></i>
+                    <span>&nbsp; Hóa đơn khách hàng</span>
+                </a>
+            </li>
 
-        <!-- Nav Item - Statistic -->
-        <li class="nav-item">
-            <a class="nav-link" href="StatisticsPage">
-                <i class="fas fa-chart-bar menu-icon"></i>
-                <span>&nbsp; Thống kê</span>
-            </a>
-        </li>
+            <!-- Nav Item - Statistic -->
+            <li class="nav-item">
+                <a class="nav-link" href="StatisticsPage">
+                    <i class="fas fa-chart-bar menu-icon"></i>
+                    <span>&nbsp; Thống kê</span>
+                </a>
+            </li>
 
-        <!-- Nav Item - Cashier Password Change -->
-        <li class="nav-item">
-            <a class="nav-link" href="CashierPasswordChangePage">
-                <i class="fas fa-key menu-icon"></i>
-                <span>&nbsp; Quản lí nhân viên</span>
-            </a>
-        </li>
+            <!-- Nav Item - Cashier Password Change -->
+            <li class="nav-item">
+                <a class="nav-link" href="CashierPasswordChangePage">
+                    <i class="fas fa-key menu-icon"></i>
+                    <span>&nbsp; Quản lí nhân viên</span>
+                </a>
+            </li>
 
-        <!-- Divider -->
-        <li>
-            <hr class="sidebar-divider d-none d-md-block">
-        </li>
-    </ul>
+            <!-- Divider -->
+            <li>
+                <hr class="sidebar-divider d-none d-md-block">
+            </li>
+        </ul>
+    </div>
 </div>
+
 <script
     src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69d01441f36c0ea791ae2d4469f0f8ff5326f00ae2d00e4bb7d20e24edb.js"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
