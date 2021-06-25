@@ -23,15 +23,22 @@
 
 </head>
 
-<body id="page-top">
+<body onload="getTime()" id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
+        <div id="sidebar-placeholder">
+        </div>
+        <script>
+            $.get("Sidebar", function (data) {
+                $("#sidebar-placeholder").replaceWith(data);
+            });
+        </script>
+<!--        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
+             Sidebar - Brand 
             <li>
                 <div class="sidebar-brand align-items-center justify-content-center">
                     <div class="sidebar-brand-icon mb-2">
@@ -42,7 +49,7 @@
             </li>
 
 
-            <!-- Nav Item - Dashboard -->
+             Nav Item - Dashboard 
             <li>
                 <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
                     <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
@@ -53,13 +60,13 @@
                 </div>
             </li>
 
-            <!-- Divider -->
+             Divider 
             <li>
                 <hr class="sidebar-divider">
             </li>
 
 
-            <!-- Heading -->
+             Heading 
             <li>
                 <div class="sidebar-heading">
                     List of pages
@@ -67,7 +74,7 @@
             </li>
 
 
-            <!-- Nav Item - Inventory Collapse Menu -->
+             Nav Item - Inventory Collapse Menu 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventory"
                     aria-expanded="true" aria-controls="collapseInventory">
@@ -84,7 +91,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Import Goods Collapse Menu -->
+             Nav Item - Import Goods Collapse Menu 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImportGoods"
                     aria-expanded="true" aria-controls="collapseImportGoods">
@@ -99,7 +106,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Product List Collapse Menu -->
+             Nav Item - Product List Collapse Menu 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductList"
                     aria-expanded="true" aria-controls="collapseProductList">
@@ -114,7 +121,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Previous Receipt -->
+             Nav Item - Previous Receipt 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="fas fa-receipt"></i>
@@ -122,7 +129,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Previous Customer Bill -->
+             Nav Item - Previous Customer Bill 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="fas fa-file-invoice-dollar"></i>
@@ -130,7 +137,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Statistic -->
+             Nav Item - Statistic 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="far fa-chart-bar"></i>
@@ -138,7 +145,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Cashier Password Change -->
+             Nav Item - Cashier Password Change 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="fas fa-key"></i>
@@ -146,13 +153,13 @@
                 </a>
             </li>
 
-            <!-- Divider -->
+             Divider 
             <li>
                 <hr class="sidebar-divider d-none d-md-block">
             </li>
 
 
-        </ul>
+        </ul>-->
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -189,27 +196,27 @@
 
                                 <div class="card-body">
                                     <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Date from: &nbsp;
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">From: &nbsp;
                                         </h6>
                                         <br>
                                         <div class="form-group mr-2">
                                             <div class="pt-2">
-                                                <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00">
+                                                <input class="form-control datetime-date-from" type="datetime-local"
+                                                    id="date-from">
                                             </div>
                                         </div>
 
                                         <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;</h6>
                                         <div class="form-group mr-2">
-                                            <div class="pt-2">
-                                                <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00">
+                                             <div class="pt-2">
+                                                <input class="form-control datetime-date-to" type="datetime-local"
+                                                    id="date-to">
                                             </div>
                                         </div>
-
+                                        
                                         <input type="button"
                                             class="nav-item active align-items-center justify-content-center mt-2 mb-3"
-                                            value="Search" />
+                                            value="Search" onclick="GetPreviousReceipt()"/>
                                     </div>
 
                                     <!-- Table content-->
@@ -217,47 +224,15 @@
                                         <table class="table table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
+                                                    <th scope="col">STT</th>
+                                                    <th scope="col">Ngày</th>
+                                                    <th scope="col">Người tạo</th>
+                                                    <th scope="col">Tổng tiền</th>
+                                                    <th scope="col">Hành động</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
+                                            <tbody id="tableContent">
+                                                
                                             </tbody>
                                         </table>
                                     </div>
@@ -377,10 +352,12 @@
 
     <!-- Core plugin JavaScript-->
     <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
     <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/js/previousreceipt-storeowner.js"></script>
 
 </body>
 
