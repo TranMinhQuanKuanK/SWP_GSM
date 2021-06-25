@@ -3,6 +3,9 @@ var select_el = document.getElementById("category-list");
 
 
 $(document).ready(function () {
+    $.get("Sidebar", function (data) {
+                $("#sidebar-placeholder").replaceWith(data);
+    });
     productList = $('#product-list').DataTable({
         processing: true,
         responsive: true,

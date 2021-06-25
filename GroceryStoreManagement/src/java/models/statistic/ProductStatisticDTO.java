@@ -10,10 +10,10 @@ package models.statistic;
  * @author Huu Quoc
  */
 public class ProductStatisticDTO {
-    int quantity;
-    String productName, total;
+    int quantity, total;
+    String productName;
     
-    public ProductStatisticDTO(String productName, int quantity, String total) {
+    public ProductStatisticDTO(String productName, int quantity, int total) {
         this.productName = productName;
         this.quantity = quantity;
         this.total = total;
@@ -27,11 +27,11 @@ public class ProductStatisticDTO {
         this.quantity = quantity;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
