@@ -6,7 +6,6 @@
 package models.previousreceipt;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
  *
@@ -15,14 +14,14 @@ import java.sql.Timestamp;
 public class PreviousReceiptDTO implements Serializable{
     
     private int receipt_ID;
-    private Timestamp import_date;
+    private String import_date;
     private String store_owner_username;
     private int total;
     
     public PreviousReceiptDTO(){
     }
 
-    public PreviousReceiptDTO(int receipt_ID, Timestamp import_date, String store_owner_username, int total) {
+    public PreviousReceiptDTO(int receipt_ID, String import_date, String store_owner_username, int total) {
         this.receipt_ID = receipt_ID;
         this.import_date = import_date;
         this.store_owner_username = store_owner_username;
@@ -37,11 +36,11 @@ public class PreviousReceiptDTO implements Serializable{
         this.receipt_ID = receipt_ID;
     }
 
-    public Timestamp getImport_date() {
+    public String getImport_date() {
         return import_date;
     }
 
-    public void setImport_date(Timestamp import_date) {
+    public void setImport_date(String import_date) {
         this.import_date = import_date;
     }
 

@@ -10,11 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.naming.NamingException;
 import utils.DBHelpers;
+import utils.StringNormalizer;
 
 /**
  *
@@ -41,7 +40,8 @@ public class PreviousReceiptDAO implements Serializable{
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int receipt_ID = rs.getInt("receipt_ID");
-                    Timestamp import_date = rs.getTimestamp("import_date");
+                    String import_date = rs.getString("import_date");
+                    import_date = StringNormalizer.dateNormalize(import_date);
                     String store_owner_username = rs.getString("store_owner_username");
                     int total = rs.getInt("total");
                     PreviousReceiptDTO DTO = new PreviousReceiptDTO(receipt_ID, import_date, store_owner_username, total);
