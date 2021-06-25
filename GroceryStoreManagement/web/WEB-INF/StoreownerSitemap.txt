@@ -28,3 +28,4 @@ ResetAccount = ResetAccountServlet
 DeleteAccount = DeleteAccountServlet
 CreateAccount = CreateAccountServlet
 Sidebar = storeowner/Sidebar.html
+UpdateSuggestion = UpdateSuggestionServlet

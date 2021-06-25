@@ -1,244 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
+<head>
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        <title>Inventory Page</title>
+    <title>Inventory Page</title>
 
-        <!-- Custom fonts for this template-->
-        <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-              type="text/css">
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-        <!-- Custom styles for this template-->
-        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
-        <!-- Link jquery for sidebar -->
-        <script src="//code.jquery.com/jquery.min.js"></script>
+    <!-- Custom styles for this template-->
+    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
+    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
+    <!-- Link jquery for sidebar -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
 
-    </head>
+</head>
 
-    <body id="page-top">
+<body id="page-top">
 
-        <!-- Page Wrapper -->
-        <div id="wrapper">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
 
-            <!-- Sidebar -->
-            <div id="sidebar-placeholder">
-            </div>
-            <script>
-                $.get("Sidebar", function (data) {
-                    $("#sidebar-placeholder").replaceWith(data);
-                });
-            </script>
-            <!-- End of Sidebar -->
+        <!-- Sidebar -->
+        <div id="sidebar-placeholder">
+        </div>
+        <script>
+            $.get("Sidebar", function (data) {
+                $("#sidebar-placeholder").replaceWith(data);
+            });
+        </script>
+        <!-- End of Sidebar -->
 
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
 
-                <!-- Main Content -->
-                <div id="content">
+            <!-- Main Content -->
+            <div id="content">
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
 
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
+                        <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
 
-                            <a href="javascript:void(0)"
-                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                    class="button-back-text">Store Owner Dashboard</span></a>
-                        </div>
+                        <a href="javascript:void(0)"
+                            class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
+                                class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
+                                class="button-back-text">Store Owner Dashboard</span></a>
+                    </div>
 
-                        <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                    <!-- Divider -->
+                    <hr class="sidebar-divider mb-4">
 
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h3 class="mb-0">Manage Inventory</h3>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h3 class="mb-0">Manage Inventory</h3>
 
-                            <a href="javascript:void(0)" class="d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary">
-                                <i class="fas fa-dolly-flatbed darks icon-black"></i>&nbsp;
-                                <span class="button-back-text">Import Items</span></a>
-                        </div>
+                        <a href="javascript:void(0)" class="d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary">
+                            <i class="fas fa-dolly-flatbed darks icon-black"></i>&nbsp;
+                            <span class="button-back-text">Import Items</span></a>
+                    </div>
 
-                        <div class="row">
+                    <div class="row">
 
-                            <!-- Table -->
-                            <div class="card shadow mb-4 col-12">
+                        <!-- Table -->
+                        <div class="card shadow mb-4 col-12">
 
-                                <!-- Table Header -->
-                                <div class="card-header py-3 align-items-center">
-                                    <div class="row justify-content-start">
-                                        <h6 class="ml-2 font-weight-bold text-primary pt-3 pr-0 d-flex">Category: &nbsp;
-                                        </h6>
-                                        <div class="input-group mb-3 col-3 pt-1">
-                                            <select class="custom-select" id="inputGroupSelect01">
+                            <!-- Table Header -->
+                            <div class="card-header py-3 align-items-center">
+                                <div class="row justify-content-start">
+                                    <h6 class="ml-2 font-weight-bold text-primary pt-3 pr-0 d-flex">Category: &nbsp;
+                                    </h6>
+                                    <div class="input-group mb-3 col-3 pt-1">
+                                        <select class="custom-select" id="inputGroupSelect01">
 
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="row justify-content-start">
-                                        <h6 class="ml-2 font-weight-bold text-primary pt-2 pr-0 d-flex">Name: &nbsp;</h6>
-                                        <input class="form-control mr-2 col-5" type="search" placeholder="Search"
-                                               aria-label="Search" id="inputSearchVal">
-                                        <button class="btn btn-outline-success my-2 my-sm-0" type="button"
-                                                onclick="getProduct()">Search</button>
-                                    </div>
-
-                                    <div class="input-group row mt-3 mb-1 w-50 d-flex">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <input type="checkbox" id="noos_check">
-                                            </div>
-                                        </div>
-                                        <input id="btn-checkbox-inventory" type="text" class="form-control" readonly=""
-                                               onfocus="this.blur()" placeholder="Display only nearly out-of-stock items">
+                                        </select>
                                     </div>
                                 </div>
-                                <!--/ End of Table Header -->
 
-                                <!-- Table Content -->
-                                <div class="card-body">
-                                    <div class="text-center small">
-                                        <table class="table table-striped" id="productTable">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">STT</th>
-                                                    <th scope="col">Tên mặt hàng</th>
-                                                    <th scope="col">Loại hàng</th>
-                                                    <th scope="col">Ngưỡng thiếu</th>
-                                                    <th scope="col">Số lượng</th>
-                                                    <th scope="col">Hành động</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tableContent">
-
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                <div class="row justify-content-start">
+                                    <h6 class="ml-2 font-weight-bold text-primary pt-2 pr-0 d-flex">Name: &nbsp;</h6>
+                                    <input class="form-control mr-2 col-5" type="search" placeholder="Search"
+                                        aria-label="Search" id="inputSearchVal">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="button"
+                                        onclick="getProduct()">Search</button>
                                 </div>
-                                <!--/ End of Table Content -->
 
+                                <div class="input-group row mt-3 mb-1 w-50 d-flex">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <input type="checkbox" id="noos_check">
+                                        </div>
+                                    </div>
+                                    <input id="btn-checkbox-inventory" type="text" class="form-control" readonly=""
+                                        onfocus="this.blur()" placeholder="Display only nearly out-of-stock items">
+                                </div>
                             </div>
-                            <!--/ End of Table -->
+                            <!--/ End of Table Header -->
+
+                            <!-- Table Content -->
+                            <div class="card-body">
+                                <div class="text-center small">
+                                    <table class="table table-striped" id="productTable">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">STT</th>
+                                                <th scope="col">Tên mặt hàng</th>
+                                                <th scope="col">Loại hàng</th>
+                                                <th scope="col">Ngưỡng thiếu</th>
+                                                <th scope="col">Số lượng</th>
+                                                <th scope="col">Hành động</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tableContent">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!--/ End of Table Content -->
 
                         </div>
+                        <!--/ End of Table -->
 
                     </div>
-                    <!-- /.container-fluid -->
 
                 </div>
-                <!-- End of Main Content -->
+                <!-- /.container-fluid -->
 
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- End of Main Content -->
 
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Edit quantity Modal-->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Số lượng sản phẩm</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
-                    <div class="modal-body">
-                        <form class="form-inline">
-                            <div class="form-group mb-2">
-                                <label for="productname-label" class="sr-only">Product name</label>
-                                <input type="text" readonly class="form-control-plaintext" id="productname-label"
-                                       value="Product name:" disabled>
-                            </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label for="productname" class="sr-only">Product name</label>
-                                <input type="text" class="form-control" id="productname" disabled>
-                            </div>
-                            <input type="hidden" id="hiddenProductID">
-                        </form>
-                        <form class="form-inline">
-                            <div class="form-group mb-2">
-                                <label for="product-oldquantity-label" class="sr-only">Product old quantity</label>
-                                <input type="text" readonly class="form-control-plaintext" id="product-oldquantity-label"
-                                       value="Product old quantity:" disabled>
-                            </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label for="product-oldquantity" class="sr-only">Product old quantity</label>
-                                <input type="number" class="form-control" id="product-oldquantity" disabled>
-                            </div>
-                        </form>
-                        <form class="form-inline">
-                            <div class="form-group mb-2">
-                                <label for="product-newquantity-label" class="sr-only">Product new quantity</label>
-                                <input type="text" readonly class="form-control-plaintext" id="product-newquantity-label"
-                                       value="Product new quantity:" disabled>
-                            </div>
-                            <div class="form-group mx-sm-3 mb-2">
-                                <label for="product-newquantity" class="sr-only">Product new quantity</label>
-                                <input type="number" class="form-control" id="product-newquantity" value="">
-                            </div>
-                        </form>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="#" onClick="updateQuantity();return false;">Save changes</a>
-                    </div>
+    <!-- Edit quantity Modal-->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Số lượng sản phẩm</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
-        </div>
 
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="Logout">Logout</a>
-                    </div>
+                <div class="modal-body">
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="productname-label" class="sr-only">Product name</label>
+                            <input type="text" readonly class="form-control-plaintext" id="productname-label"
+                                value="Product name:" disabled>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="productname" class="sr-only">Product name</label>
+                            <input type="text" class="form-control" id="productname" disabled>
+                        </div>
+                        <input type="hidden" id="hiddenProductID">
+                    </form>
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="product-oldquantity-label" class="sr-only">Product old quantity</label>
+                            <input type="text" readonly class="form-control-plaintext" id="product-oldquantity-label"
+                                value="Product old quantity:" disabled>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="product-oldquantity" class="sr-only">Product old quantity</label>
+                            <input type="number" class="form-control" id="product-oldquantity" disabled>
+                        </div>
+                    </form>
+                    <form class="form-inline">
+                        <div class="form-group mb-2">
+                            <label for="product-newquantity-label" class="sr-only">Product new quantity</label>
+                            <input type="text" readonly class="form-control-plaintext" id="product-newquantity-label"
+                                value="Product new quantity:" disabled>
+                        </div>
+                        <div class="form-group mx-sm-3 mb-2">
+                            <label for="product-newquantity" class="sr-only">Product new quantity</label>
+                            <input type="number" class="form-control" id="product-newquantity">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="#" onClick="updateQuantity();return false;">Save changes</a>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="Logout">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Core plugin JavaScript-->
-        <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/js/inventory-storeowner.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    </body>
+    <!-- Custom scripts for all pages-->
+    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/js/inventory-storeowner.js"></script>
+
+</body>
 
 </html>

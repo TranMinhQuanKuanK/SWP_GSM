@@ -75,6 +75,39 @@ public class PendingItemDAO implements Serializable {
         return null;
     }
 
+    public boolean IsExistedInPendingList(Integer productID) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+                String sql = "SELECT product_ID "
+                        + "FROM pending_product_noti "
+                        + "WHERE product_ID = ? AND is_resolved = ?";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, productID);
+                stm.setBoolean(2, false);
+                rs = stm.executeQuery();
+                if (rs.next()) {
+                   return true;
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
+   
+
     public boolean CreatePendingList(Integer productID, Timestamp pending_date, String note) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -86,13 +119,47 @@ public class PendingItemDAO implements Serializable {
                 String sql = "INSERT INTO pending_product_noti "
                         + " (product_ID, pending_date, is_resolved,note)"
                         + " VALUES (?,?,?,?)";
-
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, productID);
                 stm.setTimestamp(2, pending_date);
                 stm.setBoolean(3, false);
                 stm.setString(4, note);
 
+                int rowAffect = stm.executeUpdate();
+                if (rowAffect > 0) {
+                    return true;
+                }
+            }
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return false;
+    }
+    
+    public boolean UpdatePendingList(Integer productID) throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+
+                String sql = "UPDATE pending_product_noti\n"
+                        + "SET is_resolved = ?\n"
+                        + "WHERE product_ID = ? and is_resolved = ?";
+
+                stm = con.prepareStatement(sql);
+                stm.setBoolean(1, true);
+                stm.setInt(2, productID);
+                stm.setBoolean(3, false);
                 int rowAffect = stm.executeUpdate();
                 if (rowAffect > 0) {
                     return true;
