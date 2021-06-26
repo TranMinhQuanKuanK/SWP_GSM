@@ -19,9 +19,8 @@
 
         <!-- Custom styles for this template-->
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>
-
-        <link href="/GroceryStoreManagement/storeowner/css/productList/productList.css" rel="stylesheet" type="text/css">
+        <!--        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.css"/>-->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/b-1.7.1/datatables.min.css"/>
 
         <!-- Link jquery for sidebar -->
 
@@ -58,10 +57,10 @@
                         <div class="d-sm-flex align-items-center justify-content-between mb-1">
                             <h3 class="mb-0" style="color: #3F3F3F;">Quản lí mặt hàng</h3>
 
-                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-warning" data-toggle="modal"
+                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-primary" data-toggle="modal"
                                     id="addBtn" data-target="#addProductModal">
-                                <i class="fas fa-box-open darks icon-black"></i>&nbsp;
-                                <span class="button-back-text">Thêm Mặt Hàng</span></button>
+                                <i class="fas fa-box-open text-gray-100"></i>&nbsp;
+                                <span class="text-gray-100">Thêm Mặt Hàng</span></button>
                         </div>
 
                         <div class="row">
@@ -71,24 +70,28 @@
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
                                     <div class="card-header py-1 align-items-center">
-                                        <div class="row justify-content-start" style="margin-bottom: -0.5rem;">
-                                            <h6 class="font-weight-bold text-primary ml-1 pt-3 d-flex">Tên
-                                                hàng:
-                                            </h6>
-                                            <div class="input-group col-4 mt-2 mb-3">
-                                                <input type="text" class="form-control" id="txtSearchProductName">
+                                        <div class="row p-2 justify-content-start" style="margin-bottom: -0.5rem;">
+                                            <div class="col-3 d-flex justify-content-between my-auto">
+                                                <h6 class="font-weight-bold text-primary my-auto w-25" style="min-width: 42px;">Tên
+                                                    hàng:
+                                                </h6>
+                                                <div class="input-group my-auto w-75">
+                                                    <input type="text" class="form-control" id="txtSearchProductName">
+                                                </div>
                                             </div>
-                                            <h6 class="font-weight-bold text-primary pt-3 d-flex">Nhóm:
-                                            </h6>
-                                            <div class="input-group col-3 mt-2 mb-3">
-                                                <select class="custom-select" id="category-list">
-                                                    <option value="" selected>Chọn...</option>
-                                                </select>
+                                            <div class="col-3 d-flex justify-content-between my-auto">
+                                                <h6 class="font-weight-bold text-primary my-auto pr-1" style="min-width: 55px;">Nhóm:
+                                                </h6>
+                                                <div class="input-group my-auto">
+                                                    <select class="custom-select" id="category-list">
+                                                        <option value="" selected>Chọn...</option>
+                                                    </select>
+                                                </div>
                                             </div>
 
-                                            <div class="d-flex pt-3">
-                                                <form>
-                                                    <div class="form-check">
+                                            <div class="col-4 my-auto">
+                                                <form class=" d-flex justify-content-center">
+                                                    <div class="form-check mx-auto">
                                                         <input class="form-check-input" type="checkbox" value="outOfStock"
                                                                id="outOfStockItems">
                                                         <label class="form-check-label" for="outOfStockItems">
@@ -96,7 +99,12 @@
                                                         </label>
                                                     </div>
                                                 </form>
-                                            </div>                                     
+                                            </div>
+                                            <div class="col-2 my-auto d-flex justify-content-end ">
+                                                <div id="length-menu" class="">
+                                                    <!-- Length Menu -->
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -110,7 +118,7 @@
                                                         <th scope="col">Tên</th>
                                                         <th scope="col">Giá bán</th>
                                                         <th scope="col">Nhóm hàng</th>
-                                                        <th scope="col">Nhãn</th>
+                                                        <th scope="col">Đơn vị</th>
                                                         <th scope="col">Đang bán</th>
                                                     </tr>
                                                 </thead>
@@ -192,7 +200,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="unit-label" class="col-form-label">Nhãn:</label>
+                                    <label for="unit-label" class="col-form-label">Đơn vị:</label>
                                     <input type="text" class="form-control" id="add-unit-label">
                                 </div>
                             </div>
@@ -282,7 +290,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="edit-unit-label" class="col-form-label">Nhãn:</label>
+                                    <label for="edit-unit-label" class="col-form-label">Đơn vị:</label>
                                     <input type="text" class="form-control" id="edit-unit-label" disabled>
                                 </div>
                             </div>
@@ -344,7 +352,7 @@
 
 
         <!-- Failed to edit product toast -->
-        <div class="position-absolute bg-light" style="top: 10%; left: 40%; z-index: 7000;">
+        <div class="position-absolute bg-light" style="right: 0.5%; bottom: 1%; z-index: 7000;">
             <div id="fail-to-save-toast" class="toast hide" role="alert">
                 <div class="toast-header">
                     <strong class="mr-auto text-danger">Thay đổi không thành công</strong>
@@ -360,7 +368,7 @@
         </div>
 
         <!-- Successful to edit product toast -->
-        <div class="position-absolute bg-success" style="top: 10%; left: 40%; z-index: 8000;">
+        <div class="position-absolute bg-success" style="right: 0.5%; bottom: 1%; z-index: 8000;">
             <div id="success-to-save-toast" class="toast hide" role="alert">
                 <div class="toast-header">
                     <strong class="mr-auto text-success">Thay đổi thành công</strong>
@@ -376,7 +384,6 @@
         </div>
 
         <!-- Bootstrap core JavaScript-->
-
         <!--        <script ></script>-->
 
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
@@ -389,9 +396,9 @@
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
 
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+        <!--        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>-->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/b-1.7.1/datatables.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/productList/productList.js" type="text/javascript"></script>
-
     </body>
 
 </html>

@@ -530,7 +530,7 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 
     <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
     <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!--    insert main script file here-->
+    <!--    insert main script file here-->
     <script>
         $.get("Sidebar", function (data) {
             $("#sidebar-placeholder").replaceWith(data);
@@ -543,14 +543,14 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
         $("button").find("i").on("mouseout", function () {
             $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
         });
-//        ------------------------------------------------------------
-    function PageLoad() {
-        printNoosItems();
-	PrintTop10Customer();
-	PrintTop10Product();
-	PrintSummary();
-        PrintFeedback();
-    }
+        //        ------------------------------------------------------------
+        function PageLoad() {
+            printNoosItems();
+            PrintTop10Customer();
+            PrintTop10Product();
+            PrintSummary();
+            PrintFeedback();
+        }
     </script>
 </body>
 
