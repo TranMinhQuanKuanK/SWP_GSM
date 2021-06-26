@@ -96,7 +96,7 @@ function printProductList(data) {
             var td_button = document.createElement("td");
             var Add_bt = document.createElement("input");
             Add_bt.setAttribute("type", "button");
-            Add_bt.setAttribute("value", "Add to to-import list");
+            Add_bt.setAttribute("value", "+");
             Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
 
             var Edit_bt = document.createElement("input");

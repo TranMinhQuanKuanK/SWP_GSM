@@ -48,44 +48,52 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
+                        <div class="d-sm-flex align-items-center justify-content-between my-3">
+                            <h1 class="mb-0" id="header-page">PHẢN HỒI</h1>
                         </div>
 
                         <!-- Divider -->
-                        <hr class="sidebar-divider mb-2">
+                        <hr class="sidebar-divider mb-2">              
 
-                        <div class="d-sm-flex align-items-center justify-content-between mb-2">
-                            <h3 class="mb-0" style="color: #3F3F3F;">Phản hồi từ nhân viên</h3>
-                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-4">
+                                        <h3 class="m-0 font-weight-bold text-primary header-center">DANH SÁCH PHẢN HỒI</h3>
 
-                        <div class="input-group row mt-2 mb-3 w-50 d-flex ml-1">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">
-                                    <input type="checkbox" onchange="displayFeedback(this)">
+                                        <div class="input-group row mt-2 w-50 d-flex ml-1">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <input type="checkbox" onchange="displayFeedback(this)">
+                                                </div>
+                                            </div>
+                                            <input id="btn-checkbox-feedback" type="text" class="form-control" readonly=""
+                                                   onfocus="this.blur()" placeholder="Display Seen Feedback Only">
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        <div class="text-center small">
+                                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                                <table class="table table-bordered table-striped mb-0" id="feedbackTable">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">STT</th>
+                                                            <th scope="col">Thời gian</th>
+                                                            <th scope="col">Nội dung</th>
+                                                            <th scope="col">Tên thu ngân</th>
+                                                            <th scope="col">Hành động</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <input id="btn-checkbox-feedback" type="text" class="form-control" readonly=""
-                                   onfocus="this.blur()" placeholder="Display Seen Feedback Only">
                         </div>
-
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                            <table class="table table-bordered table-striped mb-0" id="feedbackTable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Số thứ tự</th>
-                                        <th scope="col">Thời gian</th>
-                                        <th scope="col">Nội dung</th>
-                                        <th scope="col">Tên thu ngân</th>
-                                        <th scope="col">Hành động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-
-
                     </div>
                     <!-- /.container-fluid -->
 
