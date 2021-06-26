@@ -52,22 +52,17 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
                         <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                        <a href="javascript:void(0)"
-                            class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                class="button-back-text">Store Owner Dashboard</span></a>
                     </div>
 
                     <!-- Divider -->
-                    <hr class="sidebar-divider mb-4">
+                    <hr class="sidebar-divider mb-1">
 
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h3 class="mb-0">Manage Inventory</h3>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-1">
+                        <h3 class="mb-0" style="color: #3F3F3F;">Kho hàng</h3>
 
                         <a href="javascript:void(0)" class="d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary">
                             <i class="fas fa-dolly-flatbed darks icon-black"></i>&nbsp;
-                            <span class="button-back-text">Import Items</span></a>
+                            <span class="button-back-text" style="color:black;">Import Items</span></a>
                     </div>
 
                     <div class="row">
@@ -76,33 +71,30 @@
                         <div class="card shadow mb-4 col-12">
 
                             <!-- Table Header -->
-                            <div class="card-header py-3 align-items-center">
+                            <div class="card-header py-1 align-items-center">
                                 <div class="row justify-content-start">
-                                    <h6 class="ml-2 font-weight-bold text-primary pt-3 pr-0 d-flex">Category: &nbsp;
+                                    <h6 class="font-weight-bold text-primary pt-3 pr-0 d-flex">Name: &nbsp;</h6>
+                                    <input class="form-control col-5 mt-2 mb-3" type="search" placeholder="Search"
+                                        aria-label="Search" id="inputSearchVal">
+                                    <h6 class="font-weight-bold text-primary pt-3 pr-0 d-flex">&nbsp; Category:
                                     </h6>
-                                    <div class="input-group mb-3 col-3 pt-1">
+                                    <div class="input-group col-2 mt-2 mb-3">
                                         <select class="custom-select" id="inputGroupSelect01">
-
                                         </select>
                                     </div>
-                                </div>
-
-                                <div class="row justify-content-start">
-                                    <h6 class="ml-2 font-weight-bold text-primary pt-2 pr-0 d-flex">Name: &nbsp;</h6>
-                                    <input class="form-control mr-2 col-5" type="search" placeholder="Search"
-                                        aria-label="Search" id="inputSearchVal">
-                                    <button class="btn btn-outline-success my-2 my-sm-0" type="button"
+                                    
+                                    <button class="btn btn-outline-success mt-2 mb-3" type="button"
                                         onclick="getProduct()">Search</button>
                                 </div>
 
-                                <div class="input-group row mt-3 mb-1 w-50 d-flex">
+                                <div class="input-group row mb-1 w-50 d-flex">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
                                             <input type="checkbox" id="noos_check">
                                         </div>
                                     </div>
                                     <input id="btn-checkbox-inventory" type="text" class="form-control" readonly=""
-                                        onfocus="this.blur()" placeholder="Display only nearly out-of-stock items">
+                                        onfocus="this.blur()" placeholder="Chỉ hiển thị sản phẩm sắp hết hàng">
                                 </div>
                             </div>
                             <!--/ End of Table Header -->
@@ -122,7 +114,7 @@
                                             </tr>
                                         </thead>
                                         <tbody id="tableContent">
-
+                                            
                                         </tbody>
                                     </table>
                                 </div>

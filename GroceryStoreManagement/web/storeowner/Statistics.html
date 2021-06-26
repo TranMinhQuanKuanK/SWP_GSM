@@ -53,15 +53,14 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
                             <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                            <a href="javascript:void(0)"
-                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                    class="button-back-text">Store Owner Dashboard</span></a>
                         </div>
 
                         <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                        <hr class="sidebar-divider mb-2">
+
+                        <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                            <h3 class="mb-0" style="color: #3F3F3F;">Thống kê</h3>
+                        </div>
 
                         <!-- Table Tab Row -->
                         <ul class="nav nav-tabs nav-fill align-items-center">
@@ -96,32 +95,28 @@
                             <div class="col-12 tab-content" id="Product">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-3 align-items-center">
+                                    <div class="card-header py-1 align-items-center">
                                         <div class="row justify-content-start">
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
-                                            <div class="form-group d-flex">
-                                                <div class="pt-2">
-                                                    <input class="form-control datetime-date-from" type="datetime-local"
-                                                           id="date-from">
-                                                </div>
+                                            <h6 class="font-weight-bold text-primary ml-1 pt-3 d-flex">From &nbsp;</h6>
+                                            <div class="form-group d-flex pt-2">                                   
+                                                <input class="form-control datetime-date-from" type="datetime-local"
+                                                       id="date-from">
                                             </div>
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
-                                            <div class="form-group d-flex">
-                                                <div class="pt-2">
-                                                    <input class="form-control datetime-date-to" type="datetime-local"
-                                                           id="date-to">
-                                                </div>
+                                            <h6 class="font-weight-bold text-primary pt-3 d-flex">&nbsp; To &nbsp;</h6>
+                                            <div class="form-group d-flex pt-2">
+                                                <input class="form-control datetime-date-to" type="datetime-local"
+                                                       id="date-to">
                                             </div>
                                             <p class="m-0 pt-3 ml-2" style="color:red" id="error-date"></p>
                                             <br>
                                             <input type="button" onclick="showProductStatistic()"
-                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                                   class="btn btn-outline-success mt-2 mb-3"
                                                    value="Hiển thị">
                                         </div>
                                     </div>
                                     <!-- Table Content -->
                                     <div class="card-body">
-                                        <div class="text-center small">
+                                        <div class="text-center small" style="margin-top: -0.5rem;">
                                             <table class="table table-striped" id="product-stat-area">
                                                 <thead>
                                                     <tr>
@@ -189,7 +184,7 @@
                                 </div>
                             </div>
                             <!--/ End of Table 2 -->
-                           
+
                             <!-- Table 3 -->
                             <div class="col-12 tab-content" id="Financial">
                                 <div class="card shadow mb-4">

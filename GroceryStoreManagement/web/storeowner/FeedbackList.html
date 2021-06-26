@@ -32,9 +32,9 @@
             <div id="sidebar-placeholder">
             </div>
             <script>
-            $.get("Sidebar", function(data){
-                $("#sidebar-placeholder").replaceWith(data);
-            });
+                $.get("Sidebar", function (data) {
+                    $("#sidebar-placeholder").replaceWith(data);
+                });
             </script>
             <!-- End of Sidebar -->
 
@@ -48,23 +48,18 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-2 mt-3">
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
                             <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
                         </div>
 
                         <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                        <hr class="sidebar-divider mb-2">
 
-                        <!-- Content header -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h3 class="mb-0">Feedback Page</h3>
-    
-                            <a href="javascript:void(0)" class="d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary">
-                                <i class="fas fa-dolly-flatbed darks icon-black"></i>&nbsp;
-                                <span class="button-back-text">Import Items</span></a>
+                        <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                            <h3 class="mb-0" style="color: #3F3F3F;">Phản hồi từ nhân viên</h3>
                         </div>
 
-                        <div class="input-group row mt-2 mb-4 w-50 d-flex">
+                        <div class="input-group row mt-2 mb-3 w-50 d-flex ml-1">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <input type="checkbox" onchange="displayFeedback(this)">

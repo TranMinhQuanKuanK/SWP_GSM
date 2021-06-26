@@ -30,55 +30,72 @@
             <div id="sidebar-placeholder">
             </div>
             <script>
-            $.get("Sidebar", function(data){
-                $("#sidebar-placeholder").replaceWith(data);
-            });
-        </script>
-        <!-- End of Sidebar -->
+                $.get("Sidebar", function (data) {
+                    $("#sidebar-placeholder").replaceWith(data);
+                });
+            </script>
+            <!-- End of Sidebar -->
 
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
 
-            <!-- Main Content -->
-            <div id="content">
+                <!-- Main Content -->
+                <div id="content">
+
+                    <div class="container-fluid">
+                        <!-- Page Heading -->
+                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
+                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
+                        </div>
+
+                        <!-- Divider -->
+                        <hr class="sidebar-divider mb-2">
+
+                        <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                            <h3 class="mb-0" style="color: #3F3F3F;">Hóa đơn khách hàng</h3>
+                        </div>
+
+                        <!-- Content Row -->
+                        <div class="row">
 
                             <!-- Look up Table -->
-                            <div class="col-lg-5-5 lg-container-lt">
+                            <div class="col-xl-6 col-lg-6">
                                 <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
+                                    <div class="card-header py-2" style="margin-bottom:-1rem;">
                                         <h3 class="m-0 font-weight-bold text-primary header-center">LOOK UP</h3>
                                     </div>
 
-
-                                            <div class="form-group mr-2">
-                                                <div class="pt-2">
+                                    <div class="card-body">
+                                        <div class="row justify-content-start" style="margin-bottom: -3rem;">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-bold text-primary ml-1 pt-2">Date from: &nbsp;
+                                                </h6>
+                                                <div class="form-group d-flex">
                                                     <input class="form-control datetime-date-from" type="datetime-local"
-                                                        id="date-from">
+                                                           id="date-from">
                                                 </div>
                                             </div>
-
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;
-                                            </h6>
-                                            <div class="form-group mr-2">
-                                                <div class="pt-2">
+                                            <div class="col-6">
+                                                <h6 class="font-weight-bold text-primary pt-2">To: &nbsp;
+                                                </h6>
+                                                <div class="form-group d-flex">
                                                     <input class="form-control datetime-date-to" type="datetime-local"
-                                                        id="date-to">
+                                                           id="date-to">
                                                 </div>
                                             </div>
 
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Phone number
+                                            <h6 class="font-weight-bold text-primary ml-3 d-flex">Phone number
                                                 or name: &nbsp;</h6>
-                                            <div class="form-group mr-2">
-                                                <div class="pt-2">
-                                                    <input type="text" id="search-value">
-                                                    &emsp; &emsp; &ensp;
-                                                    <input type="button" onclick="showPreBillList()"
-                                                        class="nav-item active align-items-center justify-content-center mt-2 mb-3"
-                                                        value="Search" />
+                                            <div class="form-group d-flex">
+                                                <div class="input-group col-12" style="margin-right: -1rem;">
+                                                    <input type="text" class="form-control" id="search-value">
                                                 </div>
+                                                &emsp; &emsp; &ensp;
+                                                <input type="button" onclick="showPreBillList()"
+                                                       class="btn btn-outline-success mb-5 d-flex"
+                                                       value="Search" />
                                             </div>
                                         </div>
-
                                         <!-- Look up Table Content -->
                                         <div class="text-center small">
                                             <table class="table table-striped">
@@ -99,42 +116,44 @@
                                                 đơn</span>
                                         </div>
                                         <!--/ End of Look up Table Content -->
-
                                     </div>
+
                                 </div>
+
+
 
                             </div>
                             <!--/ End of Look up Table -->
 
                             <!-- Bill Information Table -->
-                            <div class="col-lg-6-5 lg-container-rt">
+                            <div class="col-xl-6 col-lg-6">
                                 <div class="card shadow mb-4">
-                                    <div class="card-header py-3">
+                                    <div class="card-header py-2" style="margin-bottom:-1rem;">
                                         <h3 class="m-0 font-weight-bold text-primary header-center">BILL INFORMATION
                                         </h3>
                                     </div>
 
                                     <!-- Bill Information Table Content -->
-                                    <div class="card-body" style="display:none" id="bill-info">
-                                        <div class="container-fluid justify-content-start d-flex">
+                                    <div class="card-body" style="display:none;" id="bill-info">
+                                        <div class="justify-content-start d-flex">
                                             <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Tên khách
                                                 hàng: &nbsp;</span>
                                             <span class="pt-1 ml-1" id="customer-name"></span>
                                         </div>
 
-                                        <div class="container-fluid justify-content-start d-flex">
+                                        <div class="justify-content-start d-flex">
                                             <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Số điện
                                                 thoại: &nbsp;</span>
                                             <span class="pt-1 ml-1" id="customer-phone"></span>
                                         </div>
 
-                                        <div class="container-fluid justify-content-start d-flex">
+                                        <div class="justify-content-start d-flex">
                                             <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Ngày:
                                                 &nbsp;</span>
                                             <span class="pt-1 ml-1" id="buy-date"></span>
                                         </div>
 
-                                        <div class="container-fluid justify-content-start d-flex">
+                                        <div class="justify-content-start d-flex">
                                             <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Thu ngân:
                                                 &nbsp;</span>
                                             <span class="pt-1 ml-1" id="cashier-name"></span>
@@ -179,7 +198,7 @@
                                             <form class="text-center">
                                                 <button type="submit" class="btn btn-success me-2">Xác nhận</button>
                                                 <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Hủy</button>
+                                                        data-dismiss="modal">Hủy</button>
                                             </form>
                                         </div>
                                     </div>
@@ -188,15 +207,19 @@
                             <!--/ End of Bill Information Modal Table -->
 
                         </div>
-
                     </div>
                     <!-- /.container-fluid -->
 
                 </div>
                 <!-- End of Main Content -->
-
             </div>
             <!-- End of Content Wrapper -->
+
+
+
+
+
+
 
         </div>
         <!-- End of Page Wrapper -->
@@ -208,7 +231,7 @@
 
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -226,6 +249,7 @@
             </div>
         </div>
 
+
         <!-- Bootstrap core JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -237,6 +261,6 @@
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/previous-bill-storeowner.js"></script>
-</body>
+    </body>
 
 </html>

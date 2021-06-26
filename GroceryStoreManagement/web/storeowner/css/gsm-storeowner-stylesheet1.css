@@ -11192,3 +11192,7 @@ body.sidebar-toggled footer.sticky-footer {
   color: #4F99FF;
   font-size: 1.1rem !important;
 }
+
+.seen-feedback {
+    background-color: #ff9d9d;
+}

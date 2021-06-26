@@ -34,7 +34,7 @@
 
             <!-- Sidebar -->
             <div id="sidebar-placeholder">
-            
+
             </div>
 
             <!-- End of Sidebar -->
@@ -51,20 +51,15 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
                             <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                            <a href="javascript:void(0)"
-                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                    class="button-back-text">Store Owner Dashboard</span></a>
                         </div>
 
-                        <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                        <hr class="sidebar-divider mb-1">
 
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h3 class="mb-0">Quản lí mặt hàng</h3>
+                        <div class="d-sm-flex align-items-center justify-content-between mb-1">
+                            <h3 class="mb-0" style="color: #3F3F3F;">Quản lí mặt hàng</h3>
 
-                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-warning" data-toggle="modal" id="addBtn" data-target="#addProductModal">
+                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-warning" data-toggle="modal"
+                                    id="addBtn" data-target="#addProductModal">
                                 <i class="fas fa-box-open darks icon-black"></i>&nbsp;
                                 <span class="button-back-text">Thêm Mặt Hàng</span></button>
                         </div>
@@ -75,43 +70,39 @@
                             <div class="col-12">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-3 align-items-center">
-                                        <div class="row justify-content-start">
-                                            <h6 class="ml-2 font-weight-bold text-primary text-right pt-3 pr-2 col-1">Nhóm: &nbsp;
+                                    <div class="card-header py-1 align-items-center">
+                                        <div class="row justify-content-start" style="margin-bottom: -0.5rem;">
+                                            <h6 class="font-weight-bold text-primary ml-1 pt-3 d-flex">Tên
+                                                hàng:
                                             </h6>
-                                            <div class="input-group mb-2 col-2 pt-1">
+                                            <div class="input-group col-4 mt-2 mb-3">
+                                                <input type="text" class="form-control" id="txtSearchProductName">
+                                            </div>
+                                            <h6 class="font-weight-bold text-primary pt-3 d-flex">Nhóm:
+                                            </h6>
+                                            <div class="input-group col-3 mt-2 mb-3">
                                                 <select class="custom-select" id="category-list">
                                                     <option value="" selected>Chọn...</option>
                                                 </select>
                                             </div>
-                                            <h6 class="ml-2 font-weight-bold text-primary text-right pt-3 pr-2 col-1">Tên hàng: &nbsp;
-                                            </h6>
-                                            <div class="input-group mb-2 col-2 pt-1">
-                                                <input type="text" class="form-control" id="txtSearchProductName">
-                                            </div>
-                                            <div class="my-auto col-3">
+
+                                            <div class="d-flex pt-3">
                                                 <form>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value="outOfStock" id="outOfStockItems">
+                                                        <input class="form-check-input" type="checkbox" value="outOfStock"
+                                                               id="outOfStockItems">
                                                         <label class="form-check-label" for="outOfStockItems">
                                                             Xem những mặt hàng dưới ngưỡng
                                                         </label>
                                                     </div>
                                                 </form>
-                                            </div>
-
-                                            <!--
-                                                                                        <input type="button"
-                                                                                               class="nav-item active align-items-center justify-content-center mt-2 mb-4"
-                                                                                               value="Hiển thị" />-->
+                                            </div>                                     
                                         </div>
-
-
-
                                     </div>
+
                                     <!-- Table Body -->
                                     <div class="card-body">
-                                        <div class="text-center">
+                                        <div class="text-center" style="margin-top: -0.5rem;">
                                             <table id="product-list" class="table table-striped table-hover">
                                                 <thead>
                                                     <tr id="list-header">
@@ -389,7 +380,7 @@
         <!--        <script ></script>-->
 
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-        
+
         <!-- Core plugin JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

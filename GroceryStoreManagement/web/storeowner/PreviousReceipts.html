@@ -12,14 +12,16 @@
     <title>Previous Receipt Page</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
+    <!-- Link jquery for sidebar -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
 
 </head>
 
@@ -36,7 +38,7 @@
                 $("#sidebar-placeholder").replaceWith(data);
             });
         </script>
-<!--        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
+        <!--        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
              Sidebar - Brand 
             <li>
@@ -204,160 +206,160 @@
                                                 <input class="form-control datetime-date-from" type="datetime-local"
                                                     id="date-from">
                                             </div>
+
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;
+                                            </h6>
+                                            <div class="form-group mr-2">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                        id="date-to">
+                                                </div>
+                                            </div>
+
+                                            <input type="button"
+                                                class="nav-item active align-items-center justify-content-center mt-2 mb-3"
+                                                value="Search" onclick="GetPreviousReceipt()" />
                                         </div>
 
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;</h6>
-                                        <div class="form-group mr-2">
-                                             <div class="pt-2">
-                                                <input class="form-control datetime-date-to" type="datetime-local"
-                                                    id="date-to">
+                                        <!-- Table content-->
+                                        <div class="text-center small">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">STT</th>
+                                                        <th scope="col">Ngày</th>
+                                                        <th scope="col">Người tạo</th>
+                                                        <th scope="col">Tổng tiền</th>
+                                                        <th scope="col">Hành động</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tableContent">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--/ End of Look up table -->
+
+                                <!-- Receipt information table -->
+                                <div class="col-xl-7 col-lg-5">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h3 class="m-0 font-weight-bold text-primary header-center">RECEIPT
+                                                INFORMATION</h3>
+                                        </div>
+
+                                        <!-- Receipt information table content -->
+                                        <div class="card-body">
+                                            <div class="text-center small">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">First</th>
+                                                            <th scope="col">Last</th>
+                                                            <th scope="col">Handle</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">2</th>
+                                                            <td>Jacob</td>
+                                                            <td>Thornton</td>
+                                                            <td>@fat</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">3</th>
+                                                            <td colspan="2">Larry the Bird</td>
+                                                            <td>@twitter</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">2</th>
+                                                            <td>Jacob</td>
+                                                            <td>Thornton</td>
+                                                            <td>@fat</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">3</th>
+                                                            <td colspan="2">Larry the Bird</td>
+                                                            <td>@twitter</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
-                                        
-                                        <input type="button"
-                                            class="nav-item active align-items-center justify-content-center mt-2 mb-3"
-                                            value="Search" onclick="GetPreviousReceipt()"/>
-                                    </div>
+                                        <!--/ End of Receipt information table content -->
 
-                                    <!-- Table content-->
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">STT</th>
-                                                    <th scope="col">Ngày</th>
-                                                    <th scope="col">Người tạo</th>
-                                                    <th scope="col">Tổng tiền</th>
-                                                    <th scope="col">Hành động</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tableContent">
-                                                
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!--/End of Table content-->
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--/ End of Look up table -->
-
-                        <!-- Receipt information table -->
-                        <div class="col-xl-7 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h3 class="m-0 font-weight-bold text-primary header-center">RECEIPT INFORMATION</h3>
-                                </div>
-
-                                <!-- Receipt information table content -->
-                                <div class="card-body">
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
-                                <!--/ End of Receipt information table content -->
+                                <!--/ End of Receipt information table -->
 
                             </div>
                         </div>
-                        <!--/ End of Receipt information table -->
+                        <!-- /.container-fluid -->
 
                     </div>
-
+                    <!-- End of Main Content -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Content Wrapper -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Page Wrapper -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/js/previousreceipt-storeowner.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
+
+            <!-- Custom scripts for all pages-->
+            <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/js/previousreceipt-storeowner.js"></script>
 
 </body>
 
