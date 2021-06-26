@@ -68,6 +68,7 @@ function processFeedback(data){
     
     // insert table content
     var count = 0;
+    var seen_feedback = data.length;
     for (i = 0; i < data.length; i++) {
         var row = feedbackTable.insertRow(-1);//append thay vì insert đúng vào vị trí trong index
         var cell1 = row.insertCell(0);
@@ -81,15 +82,17 @@ function processFeedback(data){
         cell2.innerHTML = data[i].feedback_date;
         cell3.innerHTML = data[i].feedback_content;
         cell4.innerHTML = data[i].account.name;
-        cell5.innerHTML = "<button onclick='GetAllFeedbackListFromButton(this)' data-feedbackID="+ data[i].feedback_ID +">Mark as read</button>";
+        cell5.innerHTML = '<a class="btn-mark-as-read" onclick="GetAllFeedbackListFromButton(this)" data-feedbackID='+ data[i].feedback_ID +'><i class="fas fa-check-circle"></i></a>'
         
         // append disabled class and remove button if the feedback is seen
         if (data[i].is_seen == 1 ){
+            seen_feedback--;
             row.className = "seen-feedback";
             cell5.innerHTML = "";
         }
     }
     
+    document.getElementById("seen-feedback-number").innerHTML="( " + seen_feedback + " PHẢN HỒI CHƯA ĐỌC )";
 }
 
 

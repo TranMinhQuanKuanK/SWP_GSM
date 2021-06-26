@@ -56,43 +56,43 @@
                         <hr class="sidebar-divider mb-2">              
 
                         <div class="row">
-                            <div class="col-xl-12">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-4">
-                                        <h3 class="m-0 font-weight-bold text-primary header-center">DANH SÁCH PHẢN HỒI</h3>
-
-                                        <div class="input-group row mt-2 w-50 d-flex ml-1">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <input type="checkbox" onchange="displayFeedback(this)">
-                                                </div>
-                                            </div>
-                                            <input id="btn-checkbox-feedback" type="text" class="form-control" readonly=""
-                                                   onfocus="this.blur()" placeholder="Display Seen Feedback Only">
+                            <div class="card shadow mb-2 col-12">
+                                <div class="card-header py-2 row justify-content-between">
+                                    <div class="d-inline-block mt-2 ml-3">
+                                        <h4 class="m-0 font-weight-bold text-primary d-inline-block">PHẢN HỒI TỪ THU NGÂN</h4>
+                                        <h4 class="m-0 font-weight-bold text-primary d-inline-block" id="seen-feedback-number"></h4>
+                                    </div>
+                                    <div class="d-flex row">
+                                        <div class="input-group-text d-flex mr-2">
+                                            <input id="seen-feedback-display" type="checkbox" onchange="displayFeedback(this)">
                                         </div>
+                                        <label class="mt-2 mr-5" for="seen-feedback-display" style="color: black;">
+                                            Hiển thị phản hồi chưa đọc
+                                        </label>
                                     </div>
 
-                                    <div class="card-body">
-                                        <div class="text-center small">
-                                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                                                <table class="table table-bordered table-striped mb-0" id="feedbackTable">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">STT</th>
-                                                            <th scope="col">Thời gian</th>
-                                                            <th scope="col">Nội dung</th>
-                                                            <th scope="col">Tên thu ngân</th>
-                                                            <th scope="col">Hành động</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
+                                </div>
+
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <table class="table table-striped table-border-custom" id="feedbackTable">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" class="table-heading" style="width:5%;">STT</th>
+                                                    <th scope="col" class="table-heading" style="width:15%;">Thời gian</th>
+                                                    <th scope="col" class="table-heading" style="width:50%;">Nội dung</th>
+                                                    <th scope="col" class="table-heading" style="width:20%;">Tên thu ngân</th>
+                                                    <th scope="col" class="table-heading" style="width:10%;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <!-- /.container-fluid -->
