@@ -4,7 +4,7 @@ var select_el = document.getElementById("category-list");
 
 $(document).ready(function () {
     $.get("Sidebar", function (data) {
-                $("#sidebar-placeholder").replaceWith(data);
+        $("#sidebar-placeholder").replaceWith(data);
     });
     productList = $('#product-list').DataTable({
         processing: true,
@@ -61,7 +61,10 @@ $(document).ready(function () {
             }],
         order: [[1, 'asc']],
         language: {
-            "lengthMenu": "Xem _MENU_ hàng hóa mỗi trang",
+            "buttons": {
+                pageLength: "Xem %d hàng hóa"
+            },
+            "lengthMenu": "Xem _MENU_ hàng hóa",
             "zeroRecords": "Không tìm thấy hàng hóa",
             "info": "Đang xem trang thứ _PAGE_ trong _PAGES_ trang",
             "infoEmpty": "Không có thông tin",
@@ -72,9 +75,24 @@ $(document).ready(function () {
                 "next": "Tiếp theo",
                 "previous": "Trước"
             },
-            "search": "Tìm kiếm: "
+            "search": "Tìm kiếm: ",
+            "processing": `<div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                           </div>`
         },
-        dom: 'lrtip'
+        dom: 'lrtip',
+        buttons: ['pageLength'],
+//        lengthMenu: [
+//            [10, 25, 50, 100],
+//            ['10 hàng hóa', '25 hàng hóa', '50 hàng hóa', '100 hàng hóa']
+//        ],
+        initComplete: function () {
+//            this.api().buttons().container()
+//                    .appendTo('#length-menu');
+            $('#product-list_length').appendTo('#length-menu');
+
+
+        }
     });
 
     productList.on('order.dt search.dt', function () {
