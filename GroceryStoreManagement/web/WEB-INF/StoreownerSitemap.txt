@@ -34,3 +34,5 @@ UpdateSuggestion = UpdateSuggestionServlet
 PreviousReceiptPage = storeowner/PreviousReceipts.html
 PreviousReceiptPage = storeowner/PreviousReceipts.html
 GetPreviousReceiptList = GetPreviousReceiptListServlet
+ImportGoodsPage = storeowner/ImportGoods.html
+GetPendingItemList = GetPendingItemListServlet

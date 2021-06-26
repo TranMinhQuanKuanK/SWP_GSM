@@ -5,13 +5,19 @@
  */
 package controllers.storeowner.importgoods;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.pendingItem.PendingItemDAO;
+import models.pendingItem.SuggestionListDTO;
 
 /**
  *
@@ -33,16 +39,16 @@ public class GetPendingItemListServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GetPendingItemListServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GetPendingItemListServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            PendingItemDAO DAO = new PendingItemDAO();
+            ArrayList<SuggestionListDTO> suggestionList = DAO.GetSuggestionList();
+            Gson gson = new Gson();
+            String categoryJSONString = gson.toJson(suggestionList);
+            out.print(categoryJSONString);
+            out.flush();
+        }catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 
