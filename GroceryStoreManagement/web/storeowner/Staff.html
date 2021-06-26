@@ -30,9 +30,9 @@
             <div id="sidebar-placeholder">
             </div>
             <script>
-            $.get("Sidebar", function(data){
-                $("#sidebar-placeholder").replaceWith(data);
-            });
+                $.get("Sidebar", function (data) {
+                    $("#sidebar-placeholder").replaceWith(data);
+                });
             </script>
             <!-- End of Sidebar -->
 
@@ -48,15 +48,14 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
                             <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                            <a href="javascript:void(0)"
-                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                    class="button-back-text">Store Owner Dashboard</span></a>
                         </div>
 
                         <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                        <hr class="sidebar-divider mb-2">
+
+                        <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                            <h3 class="mb-0" style="color: #3F3F3F;">Quản lí nhân viên</h3>
+                        </div>
 
                         <!-- Content Row -->
                         <div class="row">
