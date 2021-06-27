@@ -33,3 +33,4 @@ Sidebar = storeowner/Sidebar.html
 UpdateSuggestion = UpdateSuggestionServlet
 PreviousReceiptPage = storeowner/PreviousReceipts.html
 GetFinancialChart = GetFinancialChartServlet
+GetPreviousReceiptList = GetPreviousReceiptListServlet

@@ -23,7 +23,9 @@ public class StringNormalizer implements Serializable {
 
         return original_builder.toString().toUpperCase().trim().replaceAll(" +", " ");
     }
+    //2023-05-07T12:00
     
+    //string datetime lấy từ frontend thành string để 
     public static String dateNormalize(String original) {
         String normalizedDate = "";
         

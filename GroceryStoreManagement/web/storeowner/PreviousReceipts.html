@@ -12,26 +12,35 @@
     <title>Previous Receipt Page</title>
 
     <!-- Custom fonts for this template-->
-    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+        type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-    <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet2.css" rel="stylesheet">
+    <!-- Link jquery for sidebar -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
 
 </head>
 
-<body id="page-top">
+<body onload="getTime()" id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
+        <div id="sidebar-placeholder">
+        </div>
+        <script>
+            $.get("Sidebar", function (data) {
+                $("#sidebar-placeholder").replaceWith(data);
+            });
+        </script>
+        <!--        <ul class="navbar-nav sidebar accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
+             Sidebar - Brand 
             <li>
                 <div class="sidebar-brand align-items-center justify-content-center">
                     <div class="sidebar-brand-icon mb-2">
@@ -42,7 +51,7 @@
             </li>
 
 
-            <!-- Nav Item - Dashboard -->
+             Nav Item - Dashboard 
             <li>
                 <div class="nav-item active align-items-center justify-content-center mt-3 mb-2">
                     <a class="nav-link d-flex justify-content-center align-items-center" href="login.html"
@@ -53,13 +62,13 @@
                 </div>
             </li>
 
-            <!-- Divider -->
+             Divider 
             <li>
                 <hr class="sidebar-divider">
             </li>
 
 
-            <!-- Heading -->
+             Heading 
             <li>
                 <div class="sidebar-heading">
                     List of pages
@@ -67,7 +76,7 @@
             </li>
 
 
-            <!-- Nav Item - Inventory Collapse Menu -->
+             Nav Item - Inventory Collapse Menu 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseInventory"
                     aria-expanded="true" aria-controls="collapseInventory">
@@ -84,7 +93,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Import Goods Collapse Menu -->
+             Nav Item - Import Goods Collapse Menu 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImportGoods"
                     aria-expanded="true" aria-controls="collapseImportGoods">
@@ -99,7 +108,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Product List Collapse Menu -->
+             Nav Item - Product List Collapse Menu 
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProductList"
                     aria-expanded="true" aria-controls="collapseProductList">
@@ -114,7 +123,7 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Previous Receipt -->
+             Nav Item - Previous Receipt 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="fas fa-receipt"></i>
@@ -122,7 +131,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Previous Customer Bill -->
+             Nav Item - Previous Customer Bill 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="fas fa-file-invoice-dollar"></i>
@@ -130,7 +139,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Statistic -->
+             Nav Item - Statistic 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="far fa-chart-bar"></i>
@@ -138,7 +147,7 @@
                 </a>
             </li>
 
-            <!-- Nav Item - Cashier Password Change -->
+             Nav Item - Cashier Password Change 
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                     <i class="fas fa-key"></i>
@@ -146,13 +155,13 @@
                 </a>
             </li>
 
-            <!-- Divider -->
+             Divider 
             <li>
                 <hr class="sidebar-divider d-none d-md-block">
             </li>
 
 
-        </ul>
+        </ul>-->
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -165,13 +174,8 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                        <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                        <a href="javascript:void(0)"
-                            class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                class="button-back-text">Store Owner Dashboard</span></a>
+                    <div class="d-sm-flex align-items-center justify-content-between my-3">
+                        <h1 class="mb-0" id="header-page">BIÊN LAI</h1>
                     </div>
 
                     <!-- Divider -->
@@ -189,198 +193,168 @@
 
                                 <div class="card-body">
                                     <div class="row justify-content-start">
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">Date from: &nbsp;
+                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">From: &nbsp;
                                         </h6>
                                         <br>
                                         <div class="form-group mr-2">
                                             <div class="pt-2">
-                                                <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00">
+                                                <input class="form-control datetime-date-from" type="datetime-local"
+                                                    id="date-from">
                                             </div>
+
+                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;
+                                            </h6>
+                                            <div class="form-group mr-2">
+                                                <div class="pt-2">
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                        id="date-to">
+                                                </div>
+                                            </div>
+
+                                            <input type="button"
+                                                class="nav-item active align-items-center justify-content-center mt-2 mb-3"
+                                                value="Search" onclick="GetPreviousReceipt()" />
                                         </div>
 
-                                        <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To: &nbsp;</h6>
-                                        <div class="form-group mr-2">
-                                            <div class="pt-2">
-                                                <input class="form-control" type="datetime-local"
-                                                    value="2021-05-26T23:00:00">
-                                            </div>
+                                        <!-- Table content-->
+                                        <div class="text-center small">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">STT</th>
+                                                        <th scope="col">Ngày</th>
+                                                        <th scope="col">Người tạo</th>
+                                                        <th scope="col">Tổng tiền</th>
+                                                        <th scope="col">Hành động</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tableContent">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--/ End of Look up table -->
+
+                                <!-- Receipt information table -->
+                                <div class="col-xl-7 col-lg-5">
+                                    <div class="card shadow mb-4">
+                                        <div class="card-header py-3">
+                                            <h3 class="m-0 font-weight-bold text-primary header-center">RECEIPT
+                                                INFORMATION</h3>
                                         </div>
 
-                                        <input type="button"
-                                            class="nav-item active align-items-center justify-content-center mt-2 mb-3"
-                                            value="Search" />
-                                    </div>
+                                        <!-- Receipt information table content -->
+                                        <div class="card-body">
+                                            <div class="text-center small">
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">#</th>
+                                                            <th scope="col">First</th>
+                                                            <th scope="col">Last</th>
+                                                            <th scope="col">Handle</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">2</th>
+                                                            <td>Jacob</td>
+                                                            <td>Thornton</td>
+                                                            <td>@fat</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">3</th>
+                                                            <td colspan="2">Larry the Bird</td>
+                                                            <td>@twitter</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">1</th>
+                                                            <td>Mark</td>
+                                                            <td>Otto</td>
+                                                            <td>@mdo</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">2</th>
+                                                            <td>Jacob</td>
+                                                            <td>Thornton</td>
+                                                            <td>@fat</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">3</th>
+                                                            <td colspan="2">Larry the Bird</td>
+                                                            <td>@twitter</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <!--/ End of Receipt information table content -->
 
-                                    <!-- Table content-->
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!--/End of Table content-->
-                                </div>
-                            </div>
-
-                        </div>
-                        <!--/ End of Look up table -->
-
-                        <!-- Receipt information table -->
-                        <div class="col-xl-7 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h3 class="m-0 font-weight-bold text-primary header-center">RECEIPT INFORMATION</h3>
-                                </div>
-
-                                <!-- Receipt information table content -->
-                                <div class="card-body">
-                                    <div class="text-center small">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">First</th>
-                                                    <th scope="col">Last</th>
-                                                    <th scope="col">Handle</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td colspan="2">Larry the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
                                     </div>
                                 </div>
-                                <!--/ End of Receipt information table content -->
+                                <!--/ End of Receipt information table -->
 
                             </div>
                         </div>
-                        <!--/ End of Receipt information table -->
+                        <!-- /.container-fluid -->
 
                     </div>
-
+                    <!-- End of Main Content -->
 
                 </div>
-                <!-- /.container-fluid -->
+                <!-- End of Content Wrapper -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Page Wrapper -->
 
-        </div>
-        <!-- End of Content Wrapper -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
-    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
+
+            <!-- Custom scripts for all pages-->
+            <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+            <script src="/GroceryStoreManagement/storeowner/js/previousreceipt-storeowner.js"></script>
 
 </body>
 

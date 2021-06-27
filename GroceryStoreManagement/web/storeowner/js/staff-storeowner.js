@@ -92,15 +92,17 @@ function renderAccountList() {
                 deleteAccount(accountList[i].username);
             });
 
-            var resetButton = '<input type="button" value="Icon refresh" ';
+            var resetButton = '<a ';
             resetButton += 'onclick="document.getElementById(\'reset-username\').innerHTML=';
             resetButton += '\'' + accountList[i].username + '\'" ';
-            resetButton += 'data-toggle="modal" data-target="#reset-password-modal" />';
+            resetButton += 'data-toggle="modal" data-target="#reset-password-modal"> ';
+            resetButton += '<i class="fas fa-redo icon-previous-bills-reset"></i></a>';
 
-            var deleteButton = '<input type="button" value="Icon dấu X" ';
+            var deleteButton = '<a ';
             deleteButton += 'onclick="document.getElementById(\'delete-username\').innerHTML=';
             deleteButton += '\'' + accountList[i].username + '\'" ';
             deleteButton += 'data-toggle="modal" data-target="#delete-account-modal" />';
+            deleteButton += '<i class="fas fa-user-slash icon-previous-bills-remove"></i></a>';
 
             cellResetButton.innerHTML = resetButton;
             cellDeleteButton.innerHTML = deleteButton;
