@@ -30,8 +30,17 @@ public class StringNormalizer implements Serializable {
         normalizedDate += original.substring(8, 10) + '/';
         normalizedDate += original.substring(5, 7) + '/';
         normalizedDate += original.substring(0, 4) + ' ';
-        normalizedDate += original.substring(11, 16) + ' ';
+        normalizedDate += original.substring(11, 16);
         
         return normalizedDate;
+    }
+    
+    public static String monthNormalize(String original) {
+        String normalizedMonth = "";
+        
+        normalizedMonth += original.substring(5) + '/';
+        normalizedMonth += original.substring(0, 4);
+        
+        return normalizedMonth;
     }
 }

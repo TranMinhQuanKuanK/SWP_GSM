@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,15 +18,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.statistic.FinancialStatisticDAO;
-import models.statistic.FinancialStatisticObj;
+import models.statistic.FinancialChartDataObj;
 import models.statistic.StatisticErrorObj;
+import utils.StringNormalizer;
 
 /**
  *
  * @author Huu Quoc
  */
-@WebServlet(name = "GetFinancialStatisticServlet", urlPatterns = {"/GetFinancialStatisticServlet"})
-public class GetFinancialStatisticServlet extends HttpServlet {
+@WebServlet(name = "GetFinancialChartServlet", urlPatterns = {"/GetFinancialChartServlet"})
+public class GetFinancialChartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,9 +43,12 @@ public class GetFinancialStatisticServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         
         StatisticErrorObj errors = new StatisticErrorObj();
-        String dateFrom = request.getParameter("date-from").replace('T', ' ');
-        String dateTo = request.getParameter("date-to").replace('T', ' ');
-
+        String dateFrom = request.getParameter("date-from");
+        String dateTo = request.getParameter("date-to");
+        
+//        dateFrom += "-06";
+//        dateTo += "-04";
+        
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
             if (dateFrom.compareTo(dateTo) > 0) {
@@ -59,13 +65,25 @@ public class GetFinancialStatisticServlet extends HttpServlet {
             } else {
                 //2.2 Call DAO
                 FinancialStatisticDAO dao = new FinancialStatisticDAO();
-                FinancialStatisticObj result = new FinancialStatisticObj();
                 
-                result.setCountBill(dao.getBillCount(dateFrom, dateTo));
-                result.setCountReceipt(dao.getReceiptCount(dateFrom, dateTo));
-                result.setSumRevenue(dao.getSumRevenue(dateFrom, dateTo));
-                result.setSumProfit(dao.getSumProfit(dateFrom, dateTo));
-                result.setSumCost(dao.getSumCost(dateFrom, dateTo));
+                List<String> events = new ArrayList<>();
+                List<Integer> revenue = new ArrayList<>();
+                List<Integer> profit = new ArrayList<>();
+                
+                String dateIterator = dateFrom;
+                while (dateIterator.compareTo(dateTo) < 0) {
+                    events.add(dateIterator);
+                    dateIterator = dao.nextMonth(dateIterator);
+                }
+                
+                int i = 0;
+                for (String month : events) {
+                    revenue.add(dao.getSumRevenue(month, dao.nextMonth(month)));
+                    profit.add(dao.getSumProfit(month, dao.nextMonth(month)));
+                    events.set(i++, StringNormalizer.monthNormalize(month)); 
+                }
+                
+                FinancialChartDataObj result = new FinancialChartDataObj(events, revenue, profit);
                 
                 Gson gson = new Gson();
                 String financialStatisticJSONS = gson.toJson(result);
@@ -73,9 +91,9 @@ public class GetFinancialStatisticServlet extends HttpServlet {
                 out.flush();
             }
         } catch (SQLException ex) {
-            log("GetFinancialStatisticServlet _ SQL: " + ex.getMessage());
+            log("GetFinancialChartServlet _ SQL: " + ex.getMessage());
         } catch (NamingException ex) {
-            log("GetFinancialStatisticServlet _ Naming: " + ex.getMessage());
+            log("GetFinancialChartServlet _ Naming: " + ex.getMessage());
         }
     }
 

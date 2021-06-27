@@ -10,7 +10,16 @@ package models.previousBill;
  * @author Huu Quoc
  */
 public class PreBillErrorObj {
+    private boolean isError;
     private String dateError;
+
+    public boolean isIsError() {
+        return isError;
+    }
+
+    public void setIsError(boolean isError) {
+        this.isError = isError;
+    }
 
     public String getDateError() {
         return dateError;
