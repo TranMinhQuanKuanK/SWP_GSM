@@ -18,9 +18,9 @@ function showPreBillList() {
             error.style.display = "block";
         } else {
             error.style.display = "none";
-            renderCustomerStatistic(result);
+            preBillList = result;
+            renderPreBillList();
         }
-        preBillList = JSON.parse(this.responseText);
         renderPreBillList();
     };
     request.send();

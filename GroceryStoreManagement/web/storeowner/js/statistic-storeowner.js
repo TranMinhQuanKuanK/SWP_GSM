@@ -114,7 +114,7 @@ function renderCustomerStatistic(CustomerStatistic) {
                     "targets": [0, 2]
                 }, {
                     "searchable": false,
-                    "targets": [0, 2, 3]
+                    "targets": [0, 3, 4]
                 }],
             order: [[1, 'asc']],
             language: {
@@ -183,7 +183,6 @@ function showChart() {
     request.open('GET', url, true);
     request.onload = function () {
         var result = JSON.parse(this.responseText);
-        console.log(result);
         if (result.isError) {
             error.innerHTML = result.dateError;
             error.style.display = "block";
@@ -215,16 +214,29 @@ function drawCurveTypes(chartData) {
     data.addRows(items);
 
     var options = {
-        title: 'Doanh thu và lợi nhuận trong giai đoạn '
-                + chartData.events[0] + ' - ' + chartData.events[chartData.events.length - 1],
+        title: 'Doanh thu và lợi nhuận trong giai đoạn ' 
+                + chartData.events[0] + ' - ' + chartData.events[chartData.events.length - 1]
+                + ' (đvt: VND)',
+        fontName: 'Nunito',
+        fontSize: 16,
         hAxis: {
+            textStyle: {
+                fontSize: 12
+            }
         },
         vAxis: {
-            title: 'VND',
-            viewWindow:{ min: 0 }
+            textStyle: {
+                fontSize: 12
+            },
+            viewWindow: {
+                min: 0 
+            }
         },
-        series: {
-            1: {curveType: 'function'}
+        legend: {
+            position: 'right',
+            textStyle: {
+                fontSize: 12
+            }
         }
     };
 
