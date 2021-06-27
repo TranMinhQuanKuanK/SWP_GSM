@@ -99,22 +99,42 @@ function getTime() {
     var hour = format(now.getHours());
     var minute = format(now.getMinutes());
     var second = format(now.getSeconds());
+    var preMonth;
+    
+    if (now.getMonth() === 0) {
+        preMonth = 12;
+        year = year - 1;
+    } else {
+        preMonth = format(now.getMonth());
+    }
 
-    var dateTime = [year, month, day].join('-') + 'T' + [hour, minute, second].join(':');
+    //Set datetime-type elements
     var dateTo = document.getElementsByClassName("datetime-date-to");
     for (i = 0; i < dateTo.length; i++) {
-        dateTo[i].value = dateTime;
+        dateTo[i].value = [year, month, day].join('-') + 'T' + [hour, minute, second].join(':');
     }
-
-    if (now.getMonth() === 0) {
-        month = 12;
-    } else {
-        month = format(now.getMonth());
-    }
-
-    var dateTime = [year, month, day].join('-') + 'T' + [hour, minute, second].join(':');
     var dateFrom = document.getElementsByClassName("datetime-date-from");
     for (i = 0; i < dateFrom.length; i++) {
-        dateFrom[i].value = dateTime;
+        dateFrom[i].value = [year, preMonth, day].join('-') + 'T' + [hour, minute, second].join(':');
+    }
+    
+    //Set date-type elements
+    var dateTo = document.getElementsByClassName("date-date-to");
+    for (i = 0; i < dateTo.length; i++) {
+        dateTo[i].value = [year, month, day].join('-');
+    }
+    var dateFrom = document.getElementsByClassName("date-date-from");
+    for (i = 0; i < dateFrom.length; i++) {
+        dateFrom[i].value = [year, preMonth, day].join('-');
+    }
+    
+    //Set month-type elements
+    var dateTo = document.getElementsByClassName("month-date-to");
+    for (i = 0; i < dateTo.length; i++) {
+        dateTo[i].value = [year, month].join('-');
+    }
+    var dateFrom = document.getElementsByClassName("month-date-from");
+    for (i = 0; i < dateFrom.length; i++) {
+        dateFrom[i].value = [year - 1, month].join('-');
     }
 }
