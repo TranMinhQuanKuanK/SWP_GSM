@@ -44,6 +44,7 @@ $(document).ready(function () {
             {data: 'name', render: function (data, type, row) {
                     return data.normalize();
                 }},
+            {data: 'cost_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
             {data: 'selling_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
             {data: 'category.name'},
             {data: 'unit_label'},
