@@ -26,6 +26,7 @@ function processCategory(data) {
 
 var productObject;
 var notification;
+var tempThreshold;
 
 function getProduct() {
     productObject = null;
@@ -127,6 +128,11 @@ function addToPendingListByOwner(productID) {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
+            if (notification == "1"){
+                notification = "Đã thêm vào Pending List do duới ngưỡng";
+            } else if (notification == "2"){
+                notification = "Không thể thêm! Sản phẩm đã tồn tại trong Pending List";
+            }
             alert(notification);
         }
     };
@@ -150,6 +156,9 @@ function addToPendingListAuto(productID) {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
+            if (notification == "1"){
+                notification = "Đã tự động thêm vào Pending List do duới ngưỡng";
+            }
             alert(notification);
         }
     };
@@ -200,8 +209,13 @@ function updateQuantity() {
     var xhttp = new XMLHttpRequest();
     var productID = document.getElementById("hiddenProductID").value;
     var newquantity = document.getElementById("product-newquantity").value;
-    var threshold = document.getElementById("thresholdOf"+productID).innerHTML;
-    if(threshold >= newquantity){
+    for (i = 0; i < productObject.length; i++) {
+        if (productObject[i].product_ID == productID) {
+            tempThreshold = productObject[i].lower_threshold;
+            break;
+        }
+    }
+    if(tempThreshold >= newquantity){
         addToPendingListAuto(productID);
     } else {
         changeStatusInPendingListIfHas(productID);
