@@ -10377,10 +10377,6 @@ a:focus {
     background-color: #eaecf4;
 }
 
-.sidebar-light #sidebarToggle::after {
-    color: #b7b9cc;
-}
-
 .sidebar-light #sidebarToggle:hover {
     background-color: #dddfeb;
 }
@@ -11200,7 +11196,7 @@ body.sidebar-toggled footer.sticky-footer {
 }
 
 .seen-feedback {
-    background-color: #ff9d9d;
+    background-color: #bbbbbb;
 }
 
 .table-heading {
@@ -11249,11 +11245,21 @@ body.sidebar-toggled footer.sticky-footer {
 .icon-previous-bills-reset{
     font-size: 1.5rem;
     color: blue;
+    opacity: 0.6;
+}
+
+.icon-previous-bills-reset:hover {
+    opacity: 1;
 }
 
 .icon-previous-bills-remove{
     font-size: 1.5rem;
     color: red;
+    opacity: 0.6;
+}
+
+.icon-previous-bills-remove:hover{
+    opacity: 1;
 }
 
 .btn-create-account{
@@ -11280,12 +11286,18 @@ body.sidebar-toggled footer.sticky-footer {
 
 .btn-mark-as-read{
     font-size: 2rem;
-    padding: 0.2rem;
-    color: blue;
+    padding-: 0.2rem;
+    color: #9a9a9a;
     margin: 0;
 }
 
 .btn-mark-as-read:hover{
-    color:blue;
-    opacity:0.6;
+    color:#5a5a5a;
+}
+
+.modal-center-position {
+    position: absolute;
+    top: 150px;
+    bottom: 0;
+    z-index: 10040;
 }
