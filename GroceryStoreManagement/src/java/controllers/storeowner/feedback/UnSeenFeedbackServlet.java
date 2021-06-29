@@ -23,8 +23,8 @@ import models.feedback.FeedbackDTO;
  *
  * @author Admin
  */
-@WebServlet(name = "SeenFeedbackServlet", urlPatterns = {"/SeenFeedbackServlet"})
-public class SeenFeedbackServlet extends HttpServlet {
+@WebServlet(name = "UnSeenFeedbackServlet", urlPatterns = {"/UnSeenFeedbackServlet"})
+public class UnSeenFeedbackServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,7 +40,18 @@ public class SeenFeedbackServlet extends HttpServlet {
         response.setContentType("application/json;charset=UTF-8");
         try (PrintWriter out = response.getWriter()){
             FeedbackDAO fDAO = new FeedbackDAO();
-            ArrayList<FeedbackDTO> FeedbackList = fDAO.getSeenFeedbackList();
+            
+            // Change is_seen to 1 if we receive feedback_ID
+            Integer feedback_ID;
+            if (request.getParameter("feedback_ID") == null) {
+                feedback_ID = null;
+            } else {
+                feedback_ID = Integer.parseInt(request.getParameter("feedback_ID"));
+                fDAO.ChangeFeedbackToIsSeen(feedback_ID);
+            }
+            
+            ArrayList<FeedbackDTO> FeedbackList = fDAO.getUnSeenFeedbackList();
+            
             Gson gson = new Gson();
             String feedbackJSONString = gson.toJson(FeedbackList);
             out.print(feedbackJSONString);

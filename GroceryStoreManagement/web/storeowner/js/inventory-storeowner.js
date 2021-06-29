@@ -75,10 +75,12 @@ function printProductList(data) {
             var th_index = document.createElement("th");
             th_index.setAttribute("scope", "row");
             th_index.innerHTML = index;
+            th_index.style.textAlign = "right";
 
             var td_name = document.createElement("td");
             td_name.innerHTML = data[i].name;
-
+            td_name.style.textAlign = "left";
+            
             var td_category = document.createElement("td");
             td_category.innerHTML = data[i].category.name;
 
@@ -94,14 +96,12 @@ function printProductList(data) {
             }
 
             var td_button = document.createElement("td");
-            var Add_bt = document.createElement("input");
-            Add_bt.setAttribute("type", "button");
-            Add_bt.setAttribute("value", "+");
+            var Add_bt = document.createElement("a");
+            Add_bt.innerHTML = "<i class='far fa-plus-square btn-inventory mr-2'></i>";
             Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
 
-            var Edit_bt = document.createElement("input");
-            Edit_bt.setAttribute("type", "button");
-            Edit_bt.setAttribute("value", "...");
+            var Edit_bt = document.createElement("a");
+            Edit_bt.innerHTML = "<i class='fas fa-ellipsis-h btn-inventory'></i>";
             Edit_bt.setAttribute("data-toggle", "modal");
             Edit_bt.setAttribute("data-target", "#editModal");
             Edit_bt.setAttribute("onclick", "setUpModal(" + data[i].product_ID + ")");

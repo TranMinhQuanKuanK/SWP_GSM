@@ -11132,7 +11132,11 @@ body.sidebar-toggled footer.sticky-footer {
 
 /**/
 /**/
-
+/**/
+html {
+    overflow-y: scroll;
+}
+/**/
 /*header*/
 #header-page{
     color: #3F3F3F;
@@ -11300,4 +11304,14 @@ body.sidebar-toggled footer.sticky-footer {
     top: 150px;
     bottom: 0;
     z-index: 10040;
+}
+
+.btn-inventory {
+    color: #454545;
+    font-size: 1.8rem !important;
+    margin-left: 1rem;
+}
+
+.btn-inventory:hover {
+    opacity: 0.5;
 }
