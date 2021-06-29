@@ -5,13 +5,22 @@
  */
 package controllers.storeowner.importgoods;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import models.product.ProductDAO;
+import models.product.ProductDTO;
+import models.receipt.ReceiptItem;
+import models.receipt.ReceiptObj;
 
 /**
  *
@@ -33,16 +42,42 @@ public class AddToReceiptFromPendingServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AddToReceiptFromPendingServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AddToReceiptFromPendingServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            System.out.println("I went to pending_to_receipt servlet");
+            HttpSession session = request.getSession();
+            Integer product_ID = Integer.parseInt(request.getParameter("product_ID"));
+            System.out.println("product id toi nhan la: " + product_ID);
+            ReceiptObj receipt = (ReceiptObj)session.getAttribute("RECEIPT");
+            ProductDAO pDAO = new ProductDAO();
+            ProductDTO pDTO = pDAO.GetProductByID(product_ID);
+
+            if (receipt == null) {
+                session.setAttribute("RECEIPT", new ReceiptObj());
+            } else {
+                ArrayList<ReceiptItem> receipt_details = receipt.getReceipt_detail();
+                //ktra san pham da ton tai tren session chua
+                boolean found = false;
+                for (int i = 0; i < receipt_details.size(); i++) {
+                    if (receipt_details.get(i).getProduct().getProduct_ID() == product_ID) {
+                        found = true;
+                        break;
+                    }
+                }
+                //Neu chua ton tai thi them vao session
+                if (!found) {
+                        ReceiptItem receiptItem = new ReceiptItem(pDTO, 1);
+                        receipt.getReceipt_detail().add(receiptItem);
+                        receipt.setTotal_cost(receipt.getTotal_cost() + pDTO.getSelling_price());
+                }
+                session.setAttribute("RECEIPT", receipt);
+            }
+            Gson gson = new Gson();
+            String receiptJSONString = gson.toJson(receipt);
+            out.print(receiptJSONString);
+            out.flush();  
+        }catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 

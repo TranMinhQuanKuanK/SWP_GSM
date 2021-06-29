@@ -7,7 +7,7 @@ window.onload = function () {
             processCategory(selectOptions);
         }
     };
-    xhttp.open("GET", "GetCategoryList", true);
+    xhttp.open("GET", "GetCategoryList", false);
     xhttp.send();
 };
 
@@ -43,7 +43,8 @@ function getProduct() {
     if (noos.checked == true) {
         if (cat_ID === "all") {
             var url =
-                    "GetProductList?search_value=" + search_val + "&only_noos_items=1";
+                    "GetProductList?search_value=" + search_val + 
+                    "&only_noos_items=1";
         } else {
             var url =
                     "GetProductList?search_value=" +
@@ -57,7 +58,8 @@ function getProduct() {
             var url = "GetProductList?search_value=" + search_val;
         } else {
             var url =
-                    "GetProductList?search_value=" + search_val + "&category_id=" + cat_ID;
+                    "GetProductList?search_value=" + search_val + 
+                    "&category_id=" + cat_ID;
         }
     }
 
@@ -129,9 +131,7 @@ function addToPendingListByOwner(productID) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
             if (notification == "1"){
-                notification = "Đã thêm vào Pending List do duới ngưỡng";
-            } else if (notification == "2"){
-                notification = "Không thể thêm! Sản phẩm đã tồn tại trong Pending List";
+                notification = "Đã thêm vào Pending List";
             }
             alert(notification);
         }
