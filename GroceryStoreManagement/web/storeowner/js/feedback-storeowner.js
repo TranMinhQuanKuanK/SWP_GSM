@@ -92,7 +92,7 @@ function processFeedback(data){
         }
     }
     
-    document.getElementById("seen-feedback-number").innerHTML="( " + seen_feedback + " PHẢN HỒI CHƯA ĐỌC )";
+    document.getElementById("seen-feedback-number").innerHTML="(" + seen_feedback + " PHẢN HỒI CHƯA ĐỌC)";
 }
 
 

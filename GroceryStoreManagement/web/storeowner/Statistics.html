@@ -27,7 +27,7 @@
         <script src="//code.jquery.com/jquery.min.js"></script>
     </head>
 
-    <body onload="getTime()" id="page-top">
+    <body onload="getTime(); showProductStatistic();" id="page-top">
         <!-- Page Wrapper -->
         <div id="wrapper">
 
@@ -62,21 +62,21 @@
                         <ul class="nav nav-tabs nav-fill align-items-center">
                             <li id="defaultOpen"
                                 class="nav-item border-left-primary justify-content-center shadow h-100 tablink"
-                                onclick="openPage('Product', this, 'Product-btn');">
+                                onclick="openPage('Product', this, 'Product-btn'); showProductStatistic();">
                                 <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Product Statistic</span>
                                 </button>
                             </li>
                             <li class="nav-item border-left-success shadow h-100 tablink"
-                                onclick="openPage('Customer', this, 'Customer-btn');">
+                                onclick="openPage('Customer', this, 'Customer-btn'); showCustomerStatistic();">
                                 <button id="Customer-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-dollar-sign fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Customer Statistic</span>
                                 </button>
                             </li>
                             <li class="nav-item border-left-info shadow h-100 tablink"
-                                onclick="openPage('Financial', this, 'Financial-btn');">
+                                onclick="openPage('Financial', this, 'Financial-btn'); showFinancialStatistic();">
                                 <button id="Financial-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-clipboard-list fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Financial Statistic</span>
