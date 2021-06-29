@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
     <head>
         <meta charset="utf-8">
@@ -62,21 +62,21 @@
                         <ul class="nav nav-tabs nav-fill align-items-center">
                             <li id="defaultOpen"
                                 class="nav-item border-left-primary justify-content-center shadow h-100 tablink"
-                                onclick="openPage('Product', this, 'Product-btn'); getTime();">
+                                onclick="openPage('Product', this, 'Product-btn');">
                                 <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Product Statistic</span>
                                 </button>
                             </li>
                             <li class="nav-item border-left-success shadow h-100 tablink"
-                                onclick="openPage('Customer', this, 'Customer-btn'); getTime();">
+                                onclick="openPage('Customer', this, 'Customer-btn');">
                                 <button id="Customer-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-dollar-sign fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Customer Statistic</span>
                                 </button>
                             </li>
                             <li class="nav-item border-left-info shadow h-100 tablink"
-                                onclick="openPage('Financial', this, 'Financial-btn'); getTime();">
+                                onclick="openPage('Financial', this, 'Financial-btn');">
                                 <button id="Financial-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-clipboard-list fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Financial Statistic</span>
@@ -96,14 +96,14 @@
                                             <h6 class="font-weight-bold text-primary ml-1 pt-3 d-flex">From &nbsp;</h6>
                                             <div class="form-group d-flex pt-2">                                   
                                                 <input class="form-control datetime-date-from" type="datetime-local"
-                                                       id="date-from">
+                                                       id="date-from-product">
                                             </div>
                                             <h6 class="font-weight-bold text-primary pt-3 d-flex">&nbsp; To &nbsp;</h6>
                                             <div class="form-group d-flex pt-2">
                                                 <input class="form-control datetime-date-to" type="datetime-local"
-                                                       id="date-to">
+                                                       id="date-to-product">
                                             </div>
-                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date"></p>
+                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-product"></p>
                                             <br>
                                             <input type="button" onclick="showProductStatistic()"
                                                    class="btn btn-outline-success mt-2 mb-3"
@@ -142,17 +142,17 @@
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
                                                     <input class="form-control datetime-date-from" type="datetime-local"
-                                                           id="date-from">
+                                                           id="date-from-customer">
                                                 </div>
                                             </div>
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
                                                     <input class="form-control datetime-date-to" type="datetime-local"
-                                                           id="date-to">
+                                                           id="date-to-customer">
                                                 </div>
                                             </div>
-                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date"></p>
+                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-customer"></p>
                                             <br>
                                             <input type="button" onclick="showCustomerStatistic()"
                                                    class="nav-item active align-items-center justify-content-center mt-2 mb-4"
@@ -162,13 +162,14 @@
                                     <!-- Table Content -->
                                     <div class="card-body">
                                         <div class="text-center small">
-                                            <table class="table table-striped" id="product-stat-area">
+                                            <table class="table table-striped" id="customer-stat-area">
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">Tên sản phẩm</th>
-                                                        <th scope="col">Số lượng đã bán</th>
-                                                        <th scope="col">Tổng doanh thu</th>
+                                                        <th scope="col">Tên khách hàng</th>
+                                                        <th scope="col">Số điện thoại</th>
+                                                        <th scope="col">Số đơn hàng đã mua</th>
+                                                        <th scope="col">Tổng chi tiêu</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -191,38 +192,37 @@
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
                                                     <input class="form-control datetime-date-from" type="datetime-local"
-                                                           id="date-from">
+                                                           id="date-from-financial">
                                                 </div>
                                             </div>
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
                                                     <input class="form-control datetime-date-to" type="datetime-local"
-                                                           id="date-to">
+                                                           id="date-to-financial">
                                                 </div>
                                             </div>
-                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date"></p>
+                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-financial"></p>
                                             <br>
                                             <input type="button" onclick="showFinancialStatistic()"
                                                    class="nav-item active align-items-center justify-content-center mt-2 mb-4"
                                                    value="Hiển thị">
+
+                                            <button class="nav-link d-flex justify-content-center align-items-center d-sm-inline-block btn btn-sm button-back"
+                                                    data-toggle="modal" data-target="#view-chart-modal">
+                                                <span>Xem biểu đồ &nbsp;</span>
+                                                <i class="fas fa-chart-line"></i>
+                                            </button>
                                         </div>
                                     </div>
                                     <!-- Table Content -->
-                                    <div class="card-body">
-                                        <div class="text-center small">
-                                            <table class="table table-striped" id="product-stat-area">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Tên sản phẩm</th>
-                                                        <th scope="col">Số lượng đã bán</th>
-                                                        <th scope="col">Tổng doanh thu</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
+                                    <div class="card-body" style="display:none" id="financial-stat-area">
+                                        <div class="text-center small m-0 pt-3 ml-2">
+                                            <label>Số đơn đã bán:</label>&nbsp;<span id="bill-count"></span><br>
+                                            <label>Số đơn đã nhập:</label>&nbsp;<span id="receipt-count"></span><br>
+                                            <label>Doanh thu:</label>&nbsp;<span id="sum-revenue"></span><br>
+                                            <label>Chi tiêu:</label>&nbsp;<span id="sum-cost"></span><br>
+                                            <label>Lợi nhuận:</label>&nbsp;<span id="sum-profit"></span><br>
                                         </div>
                                     </div>
                                     <!--/ End of Table Content -->
@@ -269,6 +269,42 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal View Chart -->
+        <div class="modal fade" id="view-chart-modal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary font-weight-bold">Biểu đồ thống kê</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <label class="m-0 font-weight-bold text-primary pt-1 ml-2">Từ &nbsp;</label>
+                        <input type="month" class="form-control month-date-from" id="date-from-chart"/>
+                        <label class="m-0 font-weight-bold text-primary pt-1 ml-2">Đến &nbsp;</label>
+                        <input type="month" class="form-control month-date-to" id="date-to-chart"/>
+                        <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-chart"></p>
+                        <input type="button" onclick="showChart()"
+                               class="align-items-center justify-content-center mt-2 mb-4"
+                               value="Hiển thị">
+                        <div id="chart_div"></div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End of Modal View Chart -->
+
+        <!--Scripts for Chart Drawing-->
+        <script src="https://www.gstatic.com/charts/loader.js"></script>
 
         <!-- Bootstrap core JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
