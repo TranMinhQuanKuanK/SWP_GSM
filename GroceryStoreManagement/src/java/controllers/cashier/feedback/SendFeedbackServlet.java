@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.feedback.FeedbackDAO;
+import utils.EmailSender;
 
 /**
  *
@@ -46,6 +47,7 @@ public class SendFeedbackServlet extends HttpServlet {
             fDAO.createFeedback(new Timestamp(date.getTime()),
                     feedback_content, cashier_username);
             } else out.print("Failed");
+            EmailSender.SendPasswordEmail("quantmse150070@fpt.edu.vn","Trần Minh Quân", "accountHIHI", "123123");
         } catch (SQLException e) {
             log("SQLException " + e.getMessage());
         } catch (NamingException e) {
