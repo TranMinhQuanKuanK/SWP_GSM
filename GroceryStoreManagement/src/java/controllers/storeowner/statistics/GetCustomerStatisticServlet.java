@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import javax.naming.NamingException;
@@ -69,6 +71,7 @@ public class GetCustomerStatisticServlet extends HttpServlet {
                 
                 if (resultMap != null) {
                     resultList = new ArrayList<>(resultMap.values());
+                    Collections.sort(resultList, Comparator.comparing(CustomerStatisticDTO::getTotal).reversed());
                 }
                 
                 Gson gson = new Gson();
