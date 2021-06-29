@@ -52,15 +52,18 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                     <hr class="sidebar-divider mb-2">
 
                     <div class="row">
+                        <input type="hidden" class="datetime-date-from" id="date-from">
+                        <input type="hidden" class="datetime-date-to" id="date-to">
                         <div class="col-4">
                             <div class="card bg-primary shadow h-100">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-light text-uppercase mb-1">
-                                                <h4 class="font-weight-bold">Doanh thu tháng</h4>
+                                                <h4 class="font-weight-bold">Doanh thu</h4>
+                                                <h5 class="font-weight-bold statistics-info"></h5>
                                             </div>
-                                            <div id="sales" class="h5 mb-0 font-weight-bold text-gray-100">id=sales
+                                            <div id="sum-revenue" class="h4 mb-0 font-weight-bold text-gray-100">
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -77,8 +80,9 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-light text-uppercase mb-1">
                                                 <h4 class="font-weight-bold">Lợi nhuận</h4>
+                                                <h5 class="font-weight-bold statistics-info"></h5>
                                             </div>
-                                            <div id="profit" class="h5 mb-0 font-weight-bold text-gray-100">id=profit
+                                            <div id="sum-profit" class="h4 mb-0 font-weight-bold text-gray-100">
                                             </div>
                                         </div>
                                         <div class="col-auto">
@@ -94,10 +98,11 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-light text-uppercase mb-1">
-                                                <h4 class="font-weight-bold">Tổng số bill</h4>
+                                                <h4 class="font-weight-bold">Tổng số đơn</h4>
+                                                <h5 class="font-weight-bold statistics-info"></h5>
                                             </div>
-                                            <div id="totalBills" class="h5 mb-0 font-weight-bold text-gray-100">
-                                                id=totalBills</div>
+                                            <div id="bill-count" class="h4 mb-0 font-weight-bold text-gray-100">
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-shopping-cart fa-2x text-gray-100"></i>
@@ -119,7 +124,7 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="d-flex justify-content-between">
                                     <h5 class="pl-2 font-weight-bold" style="min-height: 60px; color: #ed7468;">HÀNG SẮP
                                         HẾT</h5>
-                                    <button style="max-height: 30px;" type="button" class="btn btn-secondary btn-sm"
+                                    <button style="max-height: 30px;" type="button" class="btn btn-danger btn-sm"
                                         onclick="window.location.href = 'inventorypage'">
                                         Xem chi tiết
                                     </button>
@@ -267,122 +272,22 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                             <div class="card p-2 shadow-sm border-left-info">
                                 <h5 class="font-weight-bold" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG TRONG THÁNG</h5>
                                 <div class="d-flex justify-content-between">
-                                    <p>(theo hóa đơn)</p>
+                                    <p>(theo tổng chi tiêu)</p>
 
-                                    <button type="button" style="max-height: 30px;" class="btn btn-secondary btn-sm"
+                                    <button type="button" style="max-height: 30px;" class="btn btn-info btn-sm"
                                         onclick="window.location.href = 'PreviousBillPage'">
                                         Xem chi tiết
                                     </button>
                                 </div>
                                 <div class="overflow-auto" style="min-height: 400px; max-height: 436px;">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
+                                    <ul class="list-group" id="top-customer">
+                                        <li class="list-group-item bg-info text-light" style="position: relative">
                                             <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    1. Hồng Nhật Dương
+                                                <p class="my-auto w-75">
+                                                    Tên khách hàng
                                                 </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    2. Lê Nguyễn Hữu Quốc
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    3. Trần Minh Quân the 1st of K15
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    4. Lưu Đức Hùng
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    5. The Thành
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    6. Dummy
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    7. Dummy
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    8. Dummy
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    9. Dummy
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto">
-                                                    10. Dummy
-                                                </p>
-                                                <p class="my-auto">
-                                                    XxXxXxxx
-                                                    <sup>đ</sup>
+                                                <p class="my-auto w-25 text-right">
+                                                    Tổng chi
                                                 </p>
                                             </div>
                                         </li>
@@ -395,70 +300,24 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                         <div class="col-4 d-flex flex-column ">
 
                             <!-- ĐÂY LÀ CHỖ CỦA TOP 10 SẢN PHẨM -->
-                            <div class="card p-2 mb-3 shadow-sm border-left-secondary">
-                                <h5 class="font-weight-bold" style="color: #858796;">TOP 10 SẢN PHẨM TRONG THÁNG</h5>
+                            <div class="card p-2 mb-3 shadow-sm border-left-dark">
+                                <h5 class="font-weight-bold" style="color: #5a5c69;">TOP 10 SẢN PHẨM TRONG THÁNG</h5>
                                 <div class="d-flex justify-content-between">
-                                    <p>(bán chạy nhất)</p>
-                                    <button style="max-height: 30px;" type="button" class="btn btn-secondary btn-sm"
+                                    <p>(theo số lượng đã bán)</p>
+                                    <button style="max-height: 30px;" type="button" class="btn btn-dark btn-sm"
                                         onclick="window.location.href = 'StatisticsPage'">
                                         Xem chi tiết
                                     </button>
                                 </div>
                                 <div class="overflow-auto" style="min-height: 190px; max-height: 200px;">
-                                    <ul class="list-group">
-                                        <li class="list-group-item">
+                                    <ul class="list-group" id="top-product">
+                                        <li class="list-group-item bg-dark text-light" style="position: relative">
                                             <div class="d-flex justify-content-between">
                                                 <p class="my-auto w-75">
-                                                    1. Lô đất Lê Thị Minh Khôi
+                                                    Tên sản phẩm
                                                 </p>
                                                 <p class="my-auto w-25 text-right">
-                                                    10
-                                                    <sup>lô</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto w-75">
-                                                    2. Gà quay rừng Daklak
-                                                </p>
-                                                <p class="my-auto w-25 text-right">
-                                                    100
-                                                    <sup>con</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto w-75">
-                                                    3. Hù Chết Thì Thôi
-                                                </p>
-                                                <p class="my-auto w-25 text-right">
-                                                    10
-                                                    <sup>Ủa Quân</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto w-75">
-                                                    4. Viết javascript mấy cái này khoai phết
-                                                </p>
-                                                <p class="my-auto w-25 text-right">
-                                                    @@
-                                                    <sup>lần</sup>
-                                                </p>
-                                            </div>
-                                        </li>
-                                        <li class="list-group-item">
-                                            <div class="d-flex justify-content-between">
-                                                <p class="my-auto w-75">
-                                                    5. Good luck
-                                                </p>
-                                                <p class="my-auto w-25 text-right">
-                                                    100
-                                                    <sup>chaiyo</sup>
+                                                    Số lượng
                                                 </p>
                                             </div>
                                         </li>
@@ -530,6 +389,14 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 
     <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
     <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom scripts for all pages-->
+    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+    
+    <!--Script for Statistics-->
+    <script src="/GroceryStoreManagement/storeowner/js/quoc-dashboard-storeowner.js"></script>
+    
     <!--    insert main script file here-->
     <script>
         $.get("Sidebar", function (data) {

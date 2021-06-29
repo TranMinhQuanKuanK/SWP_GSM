@@ -46,9 +46,6 @@ public class GetFinancialChartServlet extends HttpServlet {
         String dateFrom = request.getParameter("date-from");
         String dateTo = request.getParameter("date-to");
         
-//        dateFrom += "-06";
-//        dateTo += "-04";
-        
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
             if (dateFrom.compareTo(dateTo) > 0) {
@@ -71,7 +68,7 @@ public class GetFinancialChartServlet extends HttpServlet {
                 List<Integer> profit = new ArrayList<>();
                 
                 String dateIterator = dateFrom;
-                while (dateIterator.compareTo(dateTo) < 0) {
+                while (dateIterator.compareTo(dateTo) <= 0) {
                     events.add(dateIterator);
                     dateIterator = dao.nextMonth(dateIterator);
                 }
