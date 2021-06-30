@@ -56,7 +56,7 @@ function renderPreBillList() {
         cellNo.innerHTML = i + 1;
         cellCustName.innerHTML = preBillList[i].name;
         cellTotalCost.innerHTML = formatNumber(preBillList[i].totalCost);
-        cellBuyDate.innerHTML = preBillList[i].buyDate;
+        cellBuyDate.innerHTML = preBillList[i].buyDate.substring(0, 10);
     }
 }
 

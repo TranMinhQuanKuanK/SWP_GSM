@@ -118,18 +118,18 @@ function renderCustomerStatistic(CustomerStatistic) {
                 }],
             order: [[1, 'asc']],
             language: {
-                "lengthMenu": "_MENU_ sản phẩm mỗi trang",
-                "zeroRecords": "Không tìm thấy sản phẩm nào",
+                "lengthMenu": "_MENU_ khách hàng mỗi trang",
+                "zeroRecords": "Không tìm thấy khách hàng nào",
                 "info": "Trang _PAGE_ trong tổng số _PAGES_ trang",
                 "infoEmpty": "Không có thông tin",
-                "infoFiltered": "(lọc từ _MAX_ sản phẩm)",
+                "infoFiltered": "(lọc từ _MAX_ khách hàng)",
                 "paginate": {
                     "first": "Trang đầu",
                     "last": "Trang cuối",
                     "next": "Trước",
                     "previous": "Tiếp"
                 },
-                "search": "Tên sản phẩm: "
+                "search": "Tên khách hàng: "
             }
         });
 
