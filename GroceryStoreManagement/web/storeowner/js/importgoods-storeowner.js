@@ -1,15 +1,15 @@
 var receiptOnSession;
 
-window.onload = function(){
+window.onload = function () {
     getPendingList();
     getReceipt();
 };
 
-function getReceipt(){
+function getReceipt() {
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
-            receiptOnSession = JSON.parse(this.responseText);
-            renderReceiptDetail();
+        receiptOnSession = JSON.parse(this.responseText);
+        renderReceiptDetail();
     };
     xhttp.open("GET", "GetReceipt", false);
     xhttp.send();
@@ -104,7 +104,7 @@ function renderReceiptDetail() {
     document.getElementById("TOTALCOST").innerHTML = "";
     var totalcost = receiptOnSession.total_cost;
     var td_totalcost = document.createElement("span");
-    td_totalcost.innerHTML =totalcost;
+    td_totalcost.innerHTML = totalcost;
     document.getElementById("TOTALCOST").appendChild(td_totalcost);
     var index = 0;
     var receiptItems = receiptOnSession.receipt_detail;
@@ -122,29 +122,29 @@ function renderReceiptDetail() {
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
         input_quantity.setAttribute("class", "text-right float-right w-50");
-        input_quantity.setAttribute("id", "quantityOf"+receiptItems[i].product.product_ID);
+        input_quantity.setAttribute("id", "quantityOf" + receiptItems[i].product.product_ID);
         input_quantity.setAttribute("type", "number");
         input_quantity.setAttribute("value", receiptItems[i].quantity);
         input_quantity.setAttribute("min", "1");
         input_quantity.setAttribute("onchange", "updateQuantityItem(" + receiptItems[i].product.product_ID + ")");
         td_quantity.appendChild(input_quantity);
-        
-        
+
+
         var td_price = document.createElement("td");
         td_price.innerHTML = receiptItems[i].product.selling_price;
         td_price.setAttribute("class", "text-right");
-        
+
         var td_cost = document.createElement("td");
-        td_cost.innerHTML = receiptItems[i].product.selling_price*receiptItems[i].quantity;
+        td_cost.innerHTML = receiptItems[i].product.selling_price * receiptItems[i].quantity;
         td_cost.setAttribute("class", "text-right");
-        
+
         var td_button = document.createElement("td");
         var Remove_bt = document.createElement("input");
         Remove_bt.setAttribute("type", "button");
         Remove_bt.setAttribute("value", "Remove");
         Remove_bt.setAttribute("onclick", "removeFromReceipt(" + receiptItems[i].product.product_ID + ")");
         td_button.appendChild(Remove_bt);
-        
+
 
         tr.appendChild(th_index);
         tr.appendChild(td_name);
@@ -157,8 +157,8 @@ function renderReceiptDetail() {
     }
 }
 
-function updateQuantityItem(productID){
-    var tempQuantity = document.getElementById("quantityOf"+productID).value;
+function updateQuantityItem(productID) {
+    var tempQuantity = document.getElementById("quantityOf" + productID).value;
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
         console.log(this.responseText);
@@ -166,7 +166,7 @@ function updateQuantityItem(productID){
     };
     content =
             "product_id=" +
-            encodeURIComponent(productID)+
+            encodeURIComponent(productID) +
             "&quantity=" +
             encodeURIComponent(tempQuantity);
     xhttp.open("POST", "EditQuantityInReceipt", false);
@@ -178,7 +178,7 @@ function updateQuantityItem(productID){
     renderReceiptDetail();
 }
 
-function removeFromReceipt(productID){
+function removeFromReceipt(productID) {
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
         console.log(this.responseText);
@@ -196,17 +196,21 @@ function removeFromReceipt(productID){
     renderReceiptDetail();
 }
 
-function importReceipt(){
-    var xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        console.log(this.responseText);
-        receiptOnSession = JSON.parse(this.responseText);
-        if (receiptOnSession == null){
-            alert("Đã nhập hàng vào kho!");
-        }
-    };
-    xhttp.open("GET", "MakeNewReceipt", false);
-    xhttp.send();
-    getPendingList();
-    getReceipt();
+function importReceipt() {
+    if (receiptOnSession.total_cost !== 0) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            console.log(this.responseText);
+            receiptOnSession = JSON.parse(this.responseText);
+            if (receiptOnSession == null) {
+                alert("Đã nhập hàng vào kho!");
+            }
+        };
+        xhttp.open("GET", "MakeNewReceipt", false);
+        xhttp.send();
+        getPendingList();
+        getReceipt();
+    } else {
+        alert("Xin nhập dữ liệu vào form!");
+    }
 }
