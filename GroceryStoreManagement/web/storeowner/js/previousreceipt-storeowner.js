@@ -31,7 +31,7 @@ function renderReceiptList(data){
             td_date.innerHTML = data[i].import_date;
 
             var td_user = document.createElement("td");
-            td_user.innerHTML = data[i].store_owner_username;
+            td_user.innerHTML = data[i].owner_name;
 
             var td_total = document.createElement("td");
             td_total.innerHTML = data[i].total;
@@ -77,7 +77,7 @@ function GetDetail(receiptID){
     for (i = 0; i < receiptList.length; i++) {
         if (receiptList[i].receipt_ID == receiptID) {
             var totalReceipt = receiptList[i].total;
-            var username = receiptList[i].store_owner_username;
+            var username = receiptList[i].owner_name;
             var import_date = receiptList[i].import_date;
         }
     }   
