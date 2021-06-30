@@ -158,6 +158,7 @@ function showFinancialStatistic() {
         } else {
             error.style.display = "none";
             renderFinancialStatistic(result);
+            showChart();
         }
     };
     request.send();
@@ -174,22 +175,15 @@ function renderFinancialStatistic(financialStatistic) {
 
 function showChart() {
     var request = new XMLHttpRequest();
-    var error = document.getElementById("error-date-chart");
 
     var url = "GetFinancialChart";
-    url += "?date-from=" + document.getElementById("date-from-chart").value;
-    url += "&date-to=" + document.getElementById("date-to-chart").value;
+    url += "?date-from=" + document.getElementById("date-from-financial").value;
+    url += "&date-to=" + document.getElementById("date-to-financial").value;
 
     request.open('GET', url, true);
     request.onload = function () {
-        var result = JSON.parse(this.responseText);
-        if (result.isError) {
-            error.innerHTML = result.dateError;
-            error.style.display = "block";
-        } else {
-            error.style.display = "none";
-            renderChart(result);
-        }
+        var chartData = JSON.parse(this.responseText);
+        renderChart(chartData);
     };
     request.send();
 }
@@ -214,7 +208,7 @@ function drawCurveTypes(chartData) {
     data.addRows(items);
 
     var options = {
-        title: 'Doanh thu và lợi nhuận trong giai đoạn ' 
+        title: 'Doanh thu và lợi nhuận trong giai đoạn '
                 + chartData.events[0] + ' - ' + chartData.events[chartData.events.length - 1]
                 + ' (đvt: VND)',
         fontName: 'Nunito',
@@ -229,7 +223,7 @@ function drawCurveTypes(chartData) {
                 fontSize: 12
             },
             viewWindow: {
-                min: 0 
+                min: 0
             }
         },
         legend: {

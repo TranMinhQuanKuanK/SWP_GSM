@@ -62,7 +62,7 @@
                         <ul class="nav nav-tabs nav-fill align-items-center">
                             <li id="defaultOpen"
                                 class="nav-item border-left-primary justify-content-center shadow h-100 tablink"
-                                onclick="openPage('Product', this, 'Product-btn'); showProductStatistic();">
+                                onclick="openPage('Product', this, 'Product-btn');">
                                 <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
                                     <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
                                     <span class="statistics-tab-heading">Product Statistic</span>
@@ -191,28 +191,22 @@
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-from" type="datetime-local"
+                                                    <input class="form-control month-date-from" type="month"
                                                            id="date-from-financial">
                                                 </div>
                                             </div>
                                             <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
                                             <div class="form-group d-flex">
                                                 <div class="pt-2">
-                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                    <input class="form-control month-date-to" type="month"
                                                            id="date-to-financial">
                                                 </div>
                                             </div>
                                             <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-financial"></p>
                                             <br>
-                                            <input type="button" onclick="showFinancialStatistic()"
+                                            <input type="button" onclick="showFinancialStatistic();"
                                                    class="nav-item active align-items-center justify-content-center mt-2 mb-4"
                                                    value="Hiển thị">
-
-                                            <button class="nav-link d-flex justify-content-center align-items-center d-sm-inline-block btn btn-sm button-back"
-                                                    data-toggle="modal" data-target="#view-chart-modal">
-                                                <span>Xem biểu đồ &nbsp;</span>
-                                                <i class="fas fa-chart-line"></i>
-                                            </button>
                                         </div>
                                     </div>
                                     <!-- Table Content -->
@@ -224,6 +218,7 @@
                                             <label>Doanh thu:</label>&nbsp;<span id="sum-revenue"></span><br>
                                             <label>Lợi nhuận:</label>&nbsp;<span id="sum-profit"></span><br>
                                         </div>
+                                        <div id="chart_div"></div>
                                     </div>
                                     <!--/ End of Table Content -->
                                 </div>
@@ -269,39 +264,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Modal View Chart -->
-        <div class="modal fade" id="view-chart-modal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title text-primary font-weight-bold">Biểu đồ thống kê</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <label class="m-0 font-weight-bold text-primary pt-1 ml-2">Từ &nbsp;</label>
-                        <input type="month" class="form-control month-date-from" id="date-from-chart"/>
-                        <label class="m-0 font-weight-bold text-primary pt-1 ml-2">Đến &nbsp;</label>
-                        <input type="month" class="form-control month-date-to" id="date-to-chart"/>
-                        <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-chart"></p>
-                        <input type="button" onclick="showChart()"
-                               class="align-items-center justify-content-center mt-2 mb-4"
-                               value="Hiển thị">
-                        <div id="chart_div"></div>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-        <!-- End of Modal View Chart -->
 
         <!--Scripts for Chart Drawing-->
         <script src="https://www.gstatic.com/charts/loader.js"></script>
