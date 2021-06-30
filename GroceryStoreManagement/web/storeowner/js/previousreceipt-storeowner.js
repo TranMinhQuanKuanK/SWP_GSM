@@ -73,6 +73,29 @@ function GetDetail(receiptID){
             );
     xhttp.send(content);
     renderReceiptDetail();
+    
+    for (i = 0; i < receiptList.length; i++) {
+        if (receiptList[i].receipt_ID == receiptID) {
+            var totalReceipt = receiptList[i].total;
+            var username = receiptList[i].store_owner_username;
+            var import_date = receiptList[i].import_date;
+        }
+    }   
+    document.getElementById("STOREOWNERUSERNAME").innerHTML = "";
+    document.getElementById("IMPORTDATE").innerHTML = "";
+    document.getElementById("TOTALCOST").innerHTML = "";
+    var td_totalcost = document.createElement("span");
+    td_totalcost.innerHTML = totalReceipt;
+
+    var td_username = document.createElement("span");
+    td_username.innerHTML = username;
+    
+    var td_date = document.createElement("span");
+    td_date.innerHTML = import_date;
+    
+    document.getElementById("TOTALCOST").appendChild(td_totalcost);
+    document.getElementById("STOREOWNERUSERNAME").appendChild(td_username);
+    document.getElementById("IMPORTDATE").appendChild(td_date);
 }
 
 function renderReceiptDetail() {
@@ -110,9 +133,6 @@ function renderReceiptDetail() {
 
         document.getElementById("receiptDetailContent").appendChild(tr);
     }
-    document.getElementById("TOTALCOST").innerHTML = "";
-    var td_totalcost = document.createElement("span");
-    td_totalcost.innerHTML = tempTotal;
-    document.getElementById("TOTALCOST").appendChild(td_totalcost);
+    
 }
 
