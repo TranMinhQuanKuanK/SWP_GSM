@@ -9,6 +9,8 @@ window.onload = function () {
     };
     xhttp.open("GET", "GetCategoryList", false);
     xhttp.send();
+    
+    getProduct();
 };
 
 function processCategory(data) {
