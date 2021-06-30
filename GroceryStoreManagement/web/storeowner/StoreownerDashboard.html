@@ -93,10 +93,10 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                         <!-- Page Heading -->
                         <div class="row d-sm-flex align-items-center justify-content-between mb-4 mt-3">
                             <h1 class="mb-0" id="header-page">TRANG CHỦ</h1>
-                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-secondary"
+                            <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-primary"
                                     onclick="window.location.href = 'ProductListPage';">
                                 <i class="fas fa-box-open" style="color: #fff;"></i>&nbsp;
-                                <span class="button-back-text text-light">Nhập Hàng</span></button>
+                                <span class="button-back-text text-light">Nhập hàng</span></button>
                         </div>
 
                         <!-- Divider -->
@@ -202,7 +202,7 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                     <div class="card-heading">
                                         <h5 class="font-weight-bold" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG TRONG THÁNG</h5>
                                         <div class="d-flex justify-content-between">
-                                            <p>(theo tổng chi tiêu)</p>
+                                            <p style="color: #36b9cc;">(theo tổng chi tiêu)</p>
                                             <button type="button" style="max-height: 30px;" class="btn btn-info btn-sm" onclick="window.location.href = 'PreviousBillPage'">
                                                 <span>Xem chi tiết</span>
                                             </button>
@@ -228,12 +228,12 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 
                             <!-- ĐÂY LÀ CHỖ CỦA TOP 10 SẢN PHẨM -->
                             <div class="col-12 col-lg-4 d-flex flex-column mb-2">
-                                <div class="card p-2 shadow-sm border-left-dark" style="min-height: 315px; max-height: 320px; margin-bottom: 10px;">
+                                <div class="card p-2 shadow-sm border-left-custom" style="min-height: 315px; max-height: 320px; margin-bottom: 10px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold" style="color: #5a5c69;">TOP 10 SẢN PHẨM TRONG THÁNG</h5>
+                                        <h5 class="font-weight-bold" style="color: #AA2EE6;">TOP 10 SẢN PHẨM TRONG THÁNG</h5>
                                         <div class="d-flex justify-content-between">
-                                            <p>(theo số lượng đã bán)</p>
-                                            <button style="max-height: 30px;" type="button" class="btn btn-dark btn-sm"
+                                            <p style="color: #AA2EE6;">(theo số lượng đã bán)</p>
+                                            <button style="max-height: 30px;" type="button" class="btn btn-custom btn-sm"
                                                     onclick="window.location.href = 'StatisticsPage'">
                                                 <span>Xem chi tiết</span>
                                             </button>
@@ -257,11 +257,11 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 
 
                                 <!-- ĐÂY LÀ CHỖ CỦA FEEDBACK CHƯA ĐỌC -->
-                                <div id="feedback-section" class="card p-2 shadow-sm border-left-secondary" style="min-height: 210px; max-height: 215px;">
+                                <div id="feedback-section" class="card p-2 shadow-sm border-left-success" style="min-height: 210px; max-height: 215px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold" style="color: #858796;">FEEDBACK CHƯA ĐỌC</h5>
+                                        <h5 class="font-weight-bold" style="color: #1cc88a;">FEEDBACK CHƯA ĐỌC</h5>
                                         <div class="d-flex justify-content-end ">
-                                            <button style="max-height: 30px;" type="button" class="btn btn-secondary btn-sm" onclick="window.location.href = 'FeedbackListPage'">
+                                            <button style="max-height: 30px;" type="button" class="btn btn-success btn-sm" onclick="window.location.href = 'FeedbackListPage'">
                                                 <span>Xem chi tiết</span>
                                             </button>
                                         </div>
@@ -326,25 +326,25 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 
         <!--    insert main script file here-->
         <script>
-                                                $.get("Sidebar", function (data) {
-                                                    $("#sidebar-placeholder").replaceWith(data);
-                                                });
+            $.get("Sidebar", function (data) {
+                $("#sidebar-placeholder").replaceWith(data);
+            });
 
-                                                $("#feedback-section button").find("i").on("mouseenter", function () {
-                                                    $(this).attr("class", "fas fa-check-circle fa-2x text-gray-900");
-                                                });
+            $("#feedback-section button").find("i").on("mouseenter", function () {
+                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-900");
+            });
 
-                                                $("#feedback-section button").find("i").on("mouseout", function () {
-                                                    $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
-                                                });
-                                                //        ------------------------------------------------------------
-                                                function PageLoad() {
-                                                    printNoosItems();
-                                                    PrintTop10Customer();
-                                                    PrintTop10Product();
-                                                    PrintSummary();
-                                                    PrintFeedback();
-                                                }
+            $("#feedback-section button").find("i").on("mouseout", function () {
+                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
+            });
+            //        ------------------------------------------------------------
+            function PageLoad() {
+                printNoosItems();
+                PrintTop10Customer();
+                PrintTop10Product();
+                PrintSummary();
+                PrintFeedback();
+            }
         </script>
     </body>
 </html>
