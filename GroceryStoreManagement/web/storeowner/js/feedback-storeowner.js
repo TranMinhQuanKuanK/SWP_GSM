@@ -25,7 +25,7 @@ function GetAllFeedbackList(){
 // Function triggered when button "mark as read" is clicked
 function GetAllFeedbackListFromButton(button){
     var xhttp = new XMLHttpRequest();
-    var feedback_ID = button.getAttribute("data-feedbackID")
+    var feedback_ID = button.getAttribute("data-feedbackID");
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
@@ -77,7 +77,7 @@ function processAllFeedback(data){
         }
     }
     
-    document.getElementById("seen-feedback-number").innerHTML="( " + seen_feedback + " PHẢN HỒI CHƯA ĐỌC )";
+    document.getElementById("seen-feedback-number").innerHTML="(" + seen_feedback + " PHẢN HỒI CHƯA ĐỌC)";
 }
     
 function GetUnSeenFeedbackList(){
@@ -96,7 +96,7 @@ function GetUnSeenFeedbackList(){
 
 function GetUnSeenFeedbackListFromButton(button){
     var xhttp = new XMLHttpRequest();
-    var feedback_ID = button.getAttribute("data-feedbackID")
+    var feedback_ID = button.getAttribute("data-feedbackID");
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);

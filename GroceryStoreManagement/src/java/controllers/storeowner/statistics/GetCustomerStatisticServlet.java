@@ -50,7 +50,10 @@ public class GetCustomerStatisticServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
-            if (dateFrom.compareTo(dateTo) > 0) {
+            if (dateFrom.length() == 0 || dateTo.length() == 0) {
+                errors.setIsError(true);
+                errors.setDateError("Ngày nhập không tồn tại");
+            } else if (dateFrom.compareTo(dateTo) > 0) {
                 errors.setIsError(true);
                 errors.setDateError("Ngày kết thúc phải lớn hơn ngày bắt đầu");
             }
