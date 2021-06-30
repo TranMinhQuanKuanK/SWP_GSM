@@ -2,7 +2,6 @@ var preBillList;
 
 function showPreBillList() {
     var request = new XMLHttpRequest();
-    var error = document.getElementById("error-date-prebill");
 
     var url = "GetPreviousBillList";
     url += "?date-from=" + document.getElementById("date-from").value;
@@ -14,10 +13,8 @@ function showPreBillList() {
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         if (result.isError) {
-            error.innerHTML = result.dateError;
-            error.style.display = "block";
+            alert(result.dateError);
         } else {
-            error.style.display = "none";
             preBillList = result;
             renderPreBillList();
         }

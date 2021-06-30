@@ -3,7 +3,6 @@ google.charts.load('current', {packages: ['corechart', 'line']});
 
 function showProductStatistic() {
     var request = new XMLHttpRequest();
-    var error = document.getElementById("error-date-product");
 
     var url = "GetProductStatistic";
     url += "?date-from=" + document.getElementById("date-from-product").value;
@@ -13,10 +12,8 @@ function showProductStatistic() {
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         if (result.isError) {
-            error.innerHTML = result.dateError;
-            error.style.display = "block";
+            alert(result.dateError);
         } else {
-            error.style.display = "none";
             renderProductStatistic(result);
         }
     };
@@ -72,7 +69,6 @@ function renderProductStatistic(productStatistic) {
 
 function showCustomerStatistic() {
     var request = new XMLHttpRequest();
-    var error = document.getElementById("error-date-customer");
 
     var url = "GetCustomerStatistic";
     url += "?date-from=" + document.getElementById("date-from-customer").value;
@@ -82,10 +78,8 @@ function showCustomerStatistic() {
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         if (result.isError) {
-            error.innerHTML = result.dateError;
-            error.style.display = "block";
+            alert(result.dateError);
         } else {
-            error.style.display = "none";
             renderCustomerStatistic(result);
         }
     };
@@ -143,7 +137,6 @@ function renderCustomerStatistic(CustomerStatistic) {
 
 function showFinancialStatistic() {
     var request = new XMLHttpRequest();
-    var error = document.getElementById("error-date-financial");
 
     var url = "GetFinancialStatistic";
     url += "?date-from=" + document.getElementById("date-from-financial").value;
@@ -153,10 +146,8 @@ function showFinancialStatistic() {
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         if (result.isError) {
-            error.innerHTML = result.dateError;
-            error.style.display = "block";
+            alert(result.dateError);
         } else {
-            error.style.display = "none";
             renderFinancialStatistic(result);
             showChart();
         }

@@ -91,22 +91,21 @@
                             <div class="col-12 tab-content" id="Product">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-1 align-items-center">
-                                        <div class="row justify-content-start">
-                                            <h6 class="font-weight-bold text-primary ml-1 pt-3 d-flex">From &nbsp;</h6>
+                                    <div class="card-header py-2 align-items-center">
+                                        <div class="row justify-content-start pt-1">
+                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">Từ &nbsp;</h6>
                                             <div class="form-group d-flex pt-2">                                   
                                                 <input class="form-control datetime-date-from" type="datetime-local"
                                                        id="date-from-product">
                                             </div>
-                                            <h6 class="font-weight-bold text-primary pt-3 d-flex">&nbsp; To &nbsp;</h6>
+                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">&nbsp; Đến &nbsp;</h6>
                                             <div class="form-group d-flex pt-2">
                                                 <input class="form-control datetime-date-to" type="datetime-local"
                                                        id="date-to-product">
                                             </div>
-                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-product"></p>
-                                            <br>
                                             <input type="button" onclick="showProductStatistic()"
-                                                   class="btn btn-outline-success mt-2 mb-3"
+                                                   class="btn btn-outline-success btn-sm mt-2 mb-2 ml-4"
+                                                   style="height: calc(1.5em + 0.75rem + 2px);"
                                                    value="Hiển thị">
                                         </div>
                                     </div>
@@ -136,26 +135,21 @@
                             <div class="col-12 tab-content" id="Customer">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-3 align-items-center">
-                                        <div class="row justify-content-start">
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
-                                            <div class="form-group d-flex">
-                                                <div class="pt-2">
-                                                    <input class="form-control datetime-date-from" type="datetime-local"
-                                                           id="date-from-customer">
-                                                </div>
+                                    <div class="card-header py-2 align-items-center">
+                                        <div class="row justify-content-start pt-1">
+                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">Từ &nbsp;</h6>
+                                            <div class="form-group d-flex pt-2">                                   
+                                                <input class="form-control datetime-date-from" type="datetime-local"
+                                                       id="date-from-customer">
                                             </div>
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
-                                            <div class="form-group d-flex">
-                                                <div class="pt-2">
-                                                    <input class="form-control datetime-date-to" type="datetime-local"
-                                                           id="date-to-customer">
-                                                </div>
+                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">&nbsp; Đến &nbsp;</h6>
+                                            <div class="form-group d-flex pt-2">
+                                                <input class="form-control datetime-date-to" type="datetime-local"
+                                                       id="date-to-customer">
                                             </div>
-                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-customer"></p>
-                                            <br>
                                             <input type="button" onclick="showCustomerStatistic()"
-                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                                   class="btn btn-outline-success btn-sm mt-2 mb-2 ml-4"
+                                                   style="height: calc(1.5em + 0.75rem + 2px);"
                                                    value="Hiển thị">
                                         </div>
                                     </div>
@@ -186,26 +180,21 @@
                             <div class="col-12 tab-content" id="Financial">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-3 align-items-center">
-                                        <div class="row justify-content-start">
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">From &nbsp;</h6>
-                                            <div class="form-group d-flex">
-                                                <div class="pt-2">
-                                                    <input class="form-control month-date-from" type="month"
-                                                           id="date-from-financial">
-                                                </div>
+                                    <div class="card-header py-2 align-items-center">
+                                        <div class="row justify-content-start pt-1">
+                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">Từ &nbsp;</h6>
+                                            <div class="form-group d-flex pt-2">                                   
+                                                <input class="form-control month-date-from" type="month"
+                                                       id="date-from-financial">
                                             </div>
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-2 d-flex">To &nbsp;</h6>
-                                            <div class="form-group d-flex">
-                                                <div class="pt-2">
-                                                    <input class="form-control month-date-to" type="month"
-                                                           id="date-to-financial">
-                                                </div>
+                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">&nbsp; Đến &nbsp;</h6>
+                                            <div class="form-group d-flex pt-2">
+                                                <input class="form-control month-date-to" type="month"
+                                                       id="date-to-financial">
                                             </div>
-                                            <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-financial"></p>
-                                            <br>
-                                            <input type="button" onclick="showFinancialStatistic();"
-                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-4"
+                                            <input type="button" onclick="showFinancialStatistic()"
+                                                   class="btn btn-outline-success btn-sm mt-2 mb-2 ml-4"
+                                                   style="height: calc(1.5em + 0.75rem + 2px);"
                                                    value="Hiển thị">
                                         </div>
                                     </div>
