@@ -54,7 +54,7 @@ public class AddToSuggestionServlet extends HttpServlet {
                     out.print(notiJSONString);
                     out.flush();
                 } else {
-                    String notiJSONString = gson.toJson("2");
+                    String notiJSONString = gson.toJson("1");
                     out.print(notiJSONString);
                     out.flush();
                 }

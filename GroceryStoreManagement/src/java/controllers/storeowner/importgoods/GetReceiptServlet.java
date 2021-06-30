@@ -8,22 +8,20 @@ package controllers.storeowner.importgoods;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import models.receipt.ReceiptItem;
 import models.receipt.ReceiptObj;
 
 /**
  *
  * @author ROG STRIX
  */
-@WebServlet(name = "RemoveFromReceiptServlet", urlPatterns = {"/RemoveFromReceiptServlet"})
-public class RemoveFromReceiptServlet extends HttpServlet {
+@WebServlet(name = "GetReceiptServlet", urlPatterns = {"/GetReceiptServlet"})
+public class GetReceiptServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,25 +37,12 @@ public class RemoveFromReceiptServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             HttpSession session = request.getSession();
-            Integer product_ID = Integer.parseInt(request.getParameter("product_ID"));
-            ReceiptObj receipt = (ReceiptObj)session.getAttribute("RECEIPT");
-            ArrayList<ReceiptItem> details = receipt.getReceipt_detail();
-            int result = -1;
-            for (int i = 0; i < details.size(); i++) {
-                if (details.get(i).getProduct().getProduct_ID() == product_ID) {
-                    result = i;
-                }
-            }
-            if (result >= 0) {
-                ReceiptItem selected_for_remove_Product = details.get(result);
-                int price_lost = selected_for_remove_Product.getProduct().getSelling_price()
-                        * selected_for_remove_Product.getQuantity();
-                details.remove(result);
-                receipt.setTotal_cost(receipt.getTotal_cost() - price_lost);
-                receipt.setReceipt_detail(details);
+            ReceiptObj receipt = null;
+            if (session.getAttribute("RECEIPT") == null) {
+                receipt = new ReceiptObj();
                 session.setAttribute("RECEIPT", receipt);
             } else {
-                System.out.println("INVALID ID");
+                receipt = (ReceiptObj) session.getAttribute("RECEIPT");
             }
             Gson gson = new Gson();
             String JSONString = gson.toJson(receipt);
