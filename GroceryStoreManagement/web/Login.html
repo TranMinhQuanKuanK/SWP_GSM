@@ -31,9 +31,9 @@
         <!--/ End of input field-->
 
         <!--Error field-->
-        <div class="error-field" style="display:none;" id='ErrorMessage'>
+        <div class="error-field" style='display:none;' id='ErrorMessageDiv'>
             <i class="fa fa-exclamation-triangle error-icon"></i>
-            <p class="error-message" onfocus="this.blur()" id="ErrorMessage"></p>
+            <p class="error-message" onfocus="this.blur()"  id='ErrorMessage'></p>
         </div>
         <!--/ End of error field-->
 
@@ -65,7 +65,7 @@
         function processLoginResponse(data) {
             if (data.has_Error) {
                 document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
-                document.getElementById("ErrorMessage").setAttribute("style", "display:true");
+                document.getElementById("ErrorMessageDiv").setAttribute("style", "display:true");
             } else {
                 //window.location.href = "TestSuccessLogin.html";
 

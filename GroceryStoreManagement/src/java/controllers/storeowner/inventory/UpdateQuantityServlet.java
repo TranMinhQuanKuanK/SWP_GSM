@@ -41,7 +41,7 @@ public class UpdateQuantityServlet extends HttpServlet {
             if (quantity >= 0) {
                 ProductDAO DAO = new ProductDAO();
                 DAO.changeQuantity(productID, quantity);
-            } else out.print("Failed");
+            }
         } catch (SQLException e) {
             log("SQLException " + e.getMessage());
         } catch (NamingException e) {

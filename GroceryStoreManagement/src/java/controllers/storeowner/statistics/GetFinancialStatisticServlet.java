@@ -38,14 +38,17 @@ public class GetFinancialStatisticServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        
+
         StatisticErrorObj errors = new StatisticErrorObj();
         String dateFrom = request.getParameter("date-from").replace('T', ' ');
         String dateTo = request.getParameter("date-to").replace('T', ' ');
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
-            if (dateFrom.compareTo(dateTo) > 0) {
+            if (dateFrom.length() == 0 || dateTo.length() == 0) {
+                errors.setIsError(true);
+                errors.setDateError("Ngày nhập không tồn tại");
+            } else if (dateFrom.compareTo(dateTo) > 0) {
                 errors.setIsError(true);
                 errors.setDateError("Ngày kết thúc phải lớn hơn ngày bắt đầu");
             }
@@ -60,13 +63,22 @@ public class GetFinancialStatisticServlet extends HttpServlet {
                 //2.2 Call DAO
                 FinancialStatisticDAO dao = new FinancialStatisticDAO();
                 FinancialStatisticObj result = new FinancialStatisticObj();
-                
+
+                if (dateFrom.length() == 7) {
+                    dateFrom += "-01 00:00:00";
+                }
+
+                if (dateTo.length() == 7) {
+                    dateTo = dao.nextMonth(dateTo);
+                    dateTo += "-01 00:00:00";
+                }
+
                 result.setCountBill(dao.getBillCount(dateFrom, dateTo));
                 result.setCountReceipt(dao.getReceiptCount(dateFrom, dateTo));
                 result.setSumRevenue(dao.getSumRevenue(dateFrom, dateTo));
                 result.setSumProfit(dao.getSumProfit(dateFrom, dateTo));
                 result.setSumCost(dao.getSumCost(dateFrom, dateTo));
-                
+
                 Gson gson = new Gson();
                 String financialStatisticJSONS = gson.toJson(result);
                 out.print(financialStatisticJSONS);

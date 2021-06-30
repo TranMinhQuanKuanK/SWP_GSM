@@ -5,13 +5,26 @@
  */
 package controllers.storeowner.importgoods;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.pendingItem.PendingItemDAO;
+import models.pendingItem.PendingItemDTO;
+import models.product.ProductDAO;
+import models.receipt.ReceiptDAO;
+import models.receipt.ReceiptDetailDAO;
+import models.receipt.ReceiptItem;
+import models.receipt.ReceiptObj;
 
 /**
  *
@@ -33,16 +46,54 @@ public class MakeNewReceiptServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet MakeNewReceiptServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet MakeNewReceiptServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            ReceiptObj receipt = (ReceiptObj) request.getSession().getAttribute("RECEIPT");
+            Date date = new Date();
+            Timestamp import_date = new Timestamp(date.getTime());
+            String username = (String) request.getSession().getAttribute("USERNAME");
+            Integer receiptTotal = receipt.getTotal_cost();
+            //Them vao ReceiptDB
+            ReceiptDAO rDAO = new ReceiptDAO();
+            Integer receipt_ID = rDAO.CreateReceipt(import_date, username, receiptTotal);
+            
+            PendingItemDAO pdDAO = new PendingItemDAO();
+            ArrayList<PendingItemDTO> pendingList = pdDAO.GetPendingList();
+            ProductDAO pDAO = new ProductDAO();
+            ArrayList<ReceiptItem> receiptItems = receipt.getReceipt_detail();
+            for (ReceiptItem detail : receiptItems) {
+                
+                Integer product_id = detail.getProduct().getProduct_ID();
+                Integer quantity = detail.getQuantity();
+                Integer price = detail.getProduct().getSelling_price();
+                Integer costItem = price * quantity;
+                //Them vao ReceiptDetailDB
+                ReceiptDetailDAO rdDAO = new ReceiptDetailDAO();
+                rdDAO.CreateReceiptDetail(product_id, quantity, receipt_ID, price, costItem);
+                
+                //Cap nhat Inventory
+                boolean is_lower_than_threshold = pDAO.AddQuantityToProduct(product_id, quantity );
+                boolean isExisted = pdDAO.IsExistedInPendingList(product_id);
+                
+                
+                if (is_lower_than_threshold) { //Neu so luong thap hon nguong
+                    if (!isExisted){ //Chua ton tai trong Pending -> San pham moi tao, nhung import khong du
+                        String notiMessage = "Tự động thêm lúc nhập hàng do không đủ số lượng";
+                        pdDAO.CreatePendingList(product_id, import_date, notiMessage);
+                    }
+                } else { // Neu so luong cao hon nguong
+                    if (isExisted){ // Ton tai trong pending -> Cap nhat trang thai is_resolved
+                        pdDAO.UpdatePendingList(product_id);
+                    }
+                }
+            }
+            request.getSession().setAttribute("RECEIPT",null);
+            Gson gson = new Gson();
+            String receiptJSONString = gson.toJson(null);
+            out.print(receiptJSONString);
+            out.flush();
+        }catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 

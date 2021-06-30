@@ -61,8 +61,6 @@ public class CustomerStatisticDAO {
                     if (this.customerStatisticMap == null) {
                         this.customerStatisticMap = new HashMap<>();
                     }
-                    
-                    System.out.println(customerName);
 
                     if (this.customerStatisticMap.containsKey(phoneNum)) {
                         quantity += this.customerStatisticMap.get(phoneNum).getQuantity();
