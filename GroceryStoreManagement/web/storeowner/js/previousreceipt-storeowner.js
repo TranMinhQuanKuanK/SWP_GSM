@@ -35,6 +35,7 @@ function renderReceiptList(data){
 
             var td_total = document.createElement("td");
             td_total.innerHTML = data[i].total;
+            td_total.setAttribute("class", "text-right");
 
             var td_button = document.createElement("td");
                 var Add_bt = document.createElement("input");
@@ -54,5 +55,64 @@ function renderReceiptList(data){
     } // finish printing a product detail row
 }
 
+var receiptDetail;
 
+function GetDetail(receiptID){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        console.log(this.responseText);
+        receiptDetail = JSON.parse(this.responseText);
+    };
+    content =
+            "receipt_ID=" +
+            encodeURIComponent(receiptID);
+    xhttp.open("POST", "GetReceiptInformation", false);
+    xhttp.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded;charset=UTF-8"
+            );
+    xhttp.send(content);
+    renderReceiptDetail();
+}
+
+function renderReceiptDetail() {
+    document.getElementById("receiptDetailContent").innerHTML = "";
+    var tempTotal = 0;
+    var index = 0;
+    for (i = 0; i < receiptDetail.length; i++) {
+        index++;
+        var tr = document.createElement("tr");
+
+        var th_index = document.createElement("th");
+        th_index.setAttribute("scope", "row");
+        th_index.innerHTML = index;
+
+        var td_name = document.createElement("td");
+        td_name.innerHTML = receiptDetail[i].productName;
+
+        var td_quantity = document.createElement("td");
+        td_quantity.innerHTML = receiptDetail[i].quantity;
+
+        var td_price = document.createElement("td");
+        td_price.innerHTML = receiptDetail[i].cost;
+        td_price.setAttribute("class", "text-right");
+
+        var td_total = document.createElement("td");
+        td_total.innerHTML = receiptDetail[i].total;
+        td_total.setAttribute("class", "text-right");
+        tempTotal += receiptDetail[i].total;
+
+        tr.appendChild(th_index);
+        tr.appendChild(td_name);
+        tr.appendChild(td_quantity);
+        tr.appendChild(td_price);
+        tr.appendChild(td_total);
+
+        document.getElementById("receiptDetailContent").appendChild(tr);
+    }
+    document.getElementById("TOTALCOST").innerHTML = "";
+    var td_totalcost = document.createElement("span");
+    td_totalcost.innerHTML = tempTotal;
+    document.getElementById("TOTALCOST").appendChild(td_totalcost);
+}
 

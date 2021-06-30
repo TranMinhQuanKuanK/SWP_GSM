@@ -63,4 +63,52 @@ public class PreviousReceiptDAO implements Serializable{
         }
         return listReceipt;
     }
+    
+    public ArrayList<PreviousReceiptDetailDTO> getReceiptDetails(int receiptID)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        ArrayList<PreviousReceiptDetailDTO> result = null;
+
+        try {
+            con = DBHelpers.makeConnection();
+            if (con != null) {
+                String sql = "SELECT R.product_ID, R.quantity, R.cost_price, R.total, P.name "
+                           + "FROM receipt_detail R JOIN product P ON R.product_ID = P.product_ID "
+                           + "WHERE R.receipt_ID = ?";
+
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, receiptID);
+                rs = stm.executeQuery();
+
+                while (rs.next()) {
+                    int quantity = rs.getInt(2);
+                    int cost = rs.getInt(3);
+                    int total = rs.getInt(4);
+                    String productName = rs.getString(5);
+
+                    if (result == null) {
+                        result = new ArrayList<>();
+                    }
+
+                    result.add(new PreviousReceiptDetailDTO(quantity, cost, total, productName));
+                }
+            }
+
+            return result;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+
+            if (stm != null) {
+                stm.close();
+            }
+
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 }
