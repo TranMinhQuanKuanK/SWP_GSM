@@ -39,3 +39,5 @@ GetPendingItemList = GetPendingItemListServlet
 AddToReceiptFromPending = AddToReceiptFromPendingServlet
 RemoveFromReceipt = RemoveFromReceiptServlet
 GetReceipt = GetReceiptServlet
+EditQuantityInReceipt = EditQuantityInReceiptServlet
+MakeNewReceipt = MakeNewReceiptServlet
