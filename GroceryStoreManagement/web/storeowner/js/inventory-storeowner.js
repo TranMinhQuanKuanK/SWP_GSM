@@ -7,8 +7,10 @@ window.onload = function () {
             processCategory(selectOptions);
         }
     };
-    xhttp.open("GET", "GetCategoryList", true);
+    xhttp.open("GET", "GetCategoryList", false);
     xhttp.send();
+    
+    getProduct();
 };
 
 function processCategory(data) {
@@ -26,6 +28,7 @@ function processCategory(data) {
 
 var productObject;
 var notification;
+var tempThreshold;
 
 function getProduct() {
     productObject = null;
@@ -42,7 +45,8 @@ function getProduct() {
     if (noos.checked == true) {
         if (cat_ID === "all") {
             var url =
-                    "GetProductList?search_value=" + search_val + "&only_noos_items=1";
+                    "GetProductList?search_value=" + search_val + 
+                    "&only_noos_items=1";
         } else {
             var url =
                     "GetProductList?search_value=" +
@@ -56,7 +60,8 @@ function getProduct() {
             var url = "GetProductList?search_value=" + search_val;
         } else {
             var url =
-                    "GetProductList?search_value=" + search_val + "&category_id=" + cat_ID;
+                    "GetProductList?search_value=" + search_val + 
+                    "&category_id=" + cat_ID;
         }
     }
 
@@ -75,10 +80,12 @@ function printProductList(data) {
             var th_index = document.createElement("th");
             th_index.setAttribute("scope", "row");
             th_index.innerHTML = index;
+            th_index.style.textAlign = "right";
 
             var td_name = document.createElement("td");
             td_name.innerHTML = data[i].name;
-
+            td_name.style.textAlign = "left";
+            
             var td_category = document.createElement("td");
             td_category.innerHTML = data[i].category.name;
 
@@ -94,14 +101,12 @@ function printProductList(data) {
             }
 
             var td_button = document.createElement("td");
-            var Add_bt = document.createElement("input");
-            Add_bt.setAttribute("type", "button");
-            Add_bt.setAttribute("value", "Add to to-import list");
+            var Add_bt = document.createElement("a");
+            Add_bt.innerHTML = "<i class='far fa-plus-square btn-inventory mr-2'></i>";
             Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
 
-            var Edit_bt = document.createElement("input");
-            Edit_bt.setAttribute("type", "button");
-            Edit_bt.setAttribute("value", "...");
+            var Edit_bt = document.createElement("a");
+            Edit_bt.innerHTML = "<i class='fas fa-ellipsis-h btn-inventory'></i>";
             Edit_bt.setAttribute("data-toggle", "modal");
             Edit_bt.setAttribute("data-target", "#editModal");
             Edit_bt.setAttribute("onclick", "setUpModal(" + data[i].product_ID + ")");
@@ -127,6 +132,9 @@ function addToPendingListByOwner(productID) {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
+            if (notification == "1"){
+                notification = "Đã thêm vào Pending List";
+            }
             alert(notification);
         }
     };
@@ -150,6 +158,9 @@ function addToPendingListAuto(productID) {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
+            if (notification == "1"){
+                notification = "Đã tự động thêm vào Pending List do duới ngưỡng";
+            }
             alert(notification);
         }
     };
@@ -200,8 +211,13 @@ function updateQuantity() {
     var xhttp = new XMLHttpRequest();
     var productID = document.getElementById("hiddenProductID").value;
     var newquantity = document.getElementById("product-newquantity").value;
-    var threshold = document.getElementById("thresholdOf"+productID).innerHTML;
-    if(threshold >= newquantity){
+    for (i = 0; i < productObject.length; i++) {
+        if (productObject[i].product_ID == productID) {
+            tempThreshold = productObject[i].lower_threshold;
+            break;
+        }
+    }
+    if(tempThreshold >= newquantity){
         addToPendingListAuto(productID);
     } else {
         changeStatusInPendingListIfHas(productID);

@@ -49,13 +49,8 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                            <a href="javascript:void(0)"
-                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                    class="button-back-text">Store Owner Dashboard</span></a>
+                        <div class="d-sm-flex align-items-center justify-content-between my-3">
+                            <h1 class="mb-0" id="header-page">NHẬP HÀNG</h1>
                         </div>
 
                         <!-- Divider -->
@@ -73,17 +68,10 @@
 
                                     <div class="card-body">
                                         <div class="row justify-content-start">
-                                            <h6 class="m-0 font-weight-bold text-primary pt-3 ml-3 d-flex">Date: &nbsp;</h6>
-                                            <div class="form-group mr-2">
-                                                <div class="pt-2">
-                                                    <input class="form-control" type="datetime-local"
-                                                           value="2021-05-26T23:00:00" id="example-datetime-local-input">
-                                                </div>
-                                            </div>
+                                            
 
-                                            <input type="button"
-                                                   class="nav-item active align-items-center justify-content-center mt-2 mb-3"
-                                                   value="Hiển thị" />
+                                            <div id="TOTALCOST"></div>
+                                            
                                         </div>
 
                                         <!--Receipt Table Content-->
@@ -91,47 +79,16 @@
                                             <table class="table table-striped">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">First</th>
-                                                        <th scope="col">Last</th>
-                                                        <th scope="col">Handle</th>
+                                                        <th scope="col">STT</th>
+                                                        <th scope="col">TÊN SP</th>
+                                                        <th scope="col">SỐ LƯỢNG</th>
+                                                        <th scope="col">ĐƠN GIÁ</th>
+                                                        <th scope="col">THÀNH TIỀN</th>
+                                                        <th scope="col">HÀNH ĐỘNG</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td colspan="2">Larry the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">1</th>
-                                                        <td>Mark</td>
-                                                        <td>Otto</td>
-                                                        <td>@mdo</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">2</th>
-                                                        <td>Jacob</td>
-                                                        <td>Thornton</td>
-                                                        <td>@fat</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">3</th>
-                                                        <td colspan="2">Larry the Bird</td>
-                                                        <td>@twitter</td>
-                                                    </tr>
+                                                <tbody id="receiptContent">
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -139,7 +96,7 @@
                                         <hr>
 
                                         <div class="d-flex justify-content-center">
-                                            <button class="btn d-sm-inline-block shadow-sm bg-secondary">
+                                            <button class="btn d-sm-inline-block shadow-sm bg-secondary" onclick="importReceipt()">
                                                 <i class="fas fa-dolly-flatbed darks icon-black"></i>&nbsp;
                                                 <span class="button-back-text">Import</span>
                                             </button>
@@ -160,7 +117,7 @@
 
                                     <div class="card-body">
                                         <div class="d-flex justify-content-center">
-                                            <a href="javascript:void(0)" class="btn d-sm-inline-block shadow-sm bg-secondary">
+                                            <a href="inventorypage" class="btn d-sm-inline-block shadow-sm bg-secondary">
                                                 <i class="fas fa-box-open darks icon-black"></i>&nbsp;
                                                 <span class="button-back-text">Add some more products</span>
                                             </a>
@@ -173,89 +130,14 @@
                                                 <table class="table table-striped">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">#</th>
-                                                            <th scope="col">First</th>
-                                                            <th scope="col">Last</th>
-                                                            <th></th>
+                                                            <th scope="col">STT</th>
+                                                            <th scope="col">TÊN SP</th>
+                                                            <th scope="col">CÒN</th>
+                                                            <th scope="col">HÀNH ĐỘNG</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td class="btn-col">
-                                                                <button>
-                                                                    +
-                                                                </button>
-                                                                <button>
-                                                                    Remove
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Jacob</td>
-                                                            <td>Thornton</td>
-                                                            <td class="btn-col">
-                                                                <button>
-                                                                    +
-                                                                </button>
-                                                                <button>
-                                                                    Remove
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">3</th>
-                                                            <td colspan="2">Larry the Bird</td>
-                                                            <td class="btn-col">
-                                                                <button>
-                                                                    +
-                                                                </button>
-                                                                <button>
-                                                                    Remove
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">1</th>
-                                                            <td>Mark</td>
-                                                            <td>Otto</td>
-                                                            <td class="btn-col">
-                                                                <button>
-                                                                    +
-                                                                </button>
-                                                                <button>
-                                                                    Remove
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">2</th>
-                                                            <td>Jacob</td>
-                                                            <td>Thornton</td>
-                                                            <td class="btn-col">
-                                                                <button>
-                                                                    +
-                                                                </button>
-                                                                <button>
-                                                                    Remove
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">3</th>
-                                                            <td colspan="2">Larry the Bird</td>
-                                                            <td class="btn-col">
-                                                                <button>
-                                                                    +
-                                                                </button>
-                                                                <button>
-                                                                    Remove
-                                                                </button>
-                                                            </td>
-                                                        </tr>
+                                                    <tbody id="tableContent">
+                                                       
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -316,6 +198,7 @@
         <!-- Custom scripts for all pages-->
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/js/importgoods-storeowner.js"></script>
 
     </body>
 

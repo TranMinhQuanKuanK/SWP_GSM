@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import javax.naming.NamingException;
@@ -48,7 +50,10 @@ public class GetProductStatisticServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
-            if (dateFrom.compareTo(dateTo) > 0) {
+            if (dateFrom.length() == 0 || dateTo.length() == 0) {
+                errors.setIsError(true);
+                errors.setDateError("Ngày nhập không tồn tại");
+            } else if (dateFrom.compareTo(dateTo) > 0) {
                 errors.setIsError(true);
                 errors.setDateError("Ngày kết thúc phải lớn hơn ngày bắt đầu");
             }
@@ -69,6 +74,7 @@ public class GetProductStatisticServlet extends HttpServlet {
                 
                 if (resultMap != null) {
                     resultList = new ArrayList<>(resultMap.values());
+                    Collections.sort(resultList, Comparator.comparing(ProductStatisticDTO::getQuantity).reversed());
                 }
 
                 Gson gson = new Gson();

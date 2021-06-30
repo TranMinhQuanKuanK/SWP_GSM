@@ -5,13 +5,24 @@
  */
 package controllers.storeowner.statistics;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.statistic.CustomerStatisticDAO;
+import models.statistic.CustomerStatisticDTO;
+import models.statistic.StatisticErrorObj;
 
 /**
  *
@@ -31,19 +42,50 @@ public class GetCustomerStatisticServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
+        
+        StatisticErrorObj errors = new StatisticErrorObj();
+        String dateFrom = request.getParameter("date-from").replace('T', ' ');
+        String dateTo = request.getParameter("date-to").replace('T', ' ');
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GetCustomerStatisticServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GetCustomerStatisticServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            
+            //1. Check error
+            if (dateFrom.length() == 0 || dateTo.length() == 0) {
+                errors.setIsError(true);
+                errors.setDateError("Ngày nhập không tồn tại");
+            } else if (dateFrom.compareTo(dateTo) > 0) {
+                errors.setIsError(true);
+                errors.setDateError("Ngày kết thúc phải lớn hơn ngày bắt đầu");
+            }
+
+            if (errors.isIsError()) {
+                //2.1 Caching errors, return error object
+                Gson gson = new Gson();
+                String errorJSONS = gson.toJson(errors);
+                out.print(errorJSONS);
+                out.flush();
+            } else {
+                //2.2 Call DAO
+                CustomerStatisticDAO dao = new CustomerStatisticDAO();
+                dao.searchCustomerStatistic(dateFrom, dateTo);
+
+                Map<String, CustomerStatisticDTO> resultMap = dao.getCustomerStatisticMap();
+                List<CustomerStatisticDTO> resultList = new ArrayList<>();
+                
+                if (resultMap != null) {
+                    resultList = new ArrayList<>(resultMap.values());
+                    Collections.sort(resultList, Comparator.comparing(CustomerStatisticDTO::getTotal).reversed());
+                }
+                
+                Gson gson = new Gson();
+                String customerStatisticJSONS = gson.toJson(resultList);
+                out.print(customerStatisticJSONS);
+                out.flush();
+            }
+        } catch (SQLException ex) {
+            log("GetCustomerStatisticServlet _ SQL: " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("GetCustomerStatisticServlet _ Naming: " + ex.getMessage());
         }
     }
 

@@ -5,13 +5,19 @@
  */
 package controllers.storeowner.previousReceipts;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.previousreceipt.PreviousReceiptDAO;
+import models.previousreceipt.PreviousReceiptDTO;
 
 /**
  *
@@ -33,16 +39,18 @@ public class GetPreviousReceiptListServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet GetPreviousReceiptListServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet GetPreviousReceiptListServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            String dateFrom = request.getParameter("date-from").replace('T', ' ');
+            String dateTo = request.getParameter("date-to").replace('T', ' ');
+            PreviousReceiptDAO DAO = new PreviousReceiptDAO();
+            ArrayList<PreviousReceiptDTO> receiptList = DAO.GetPreviousReceipt(dateFrom, dateTo);
+            Gson gson = new Gson();
+            String productJSONString = gson.toJson(receiptList);
+            out.print(productJSONString);
+            out.flush();
+        }catch (SQLException e) {
+            log("SQLException " + e.getMessage());
+        } catch (NamingException e) {
+            log("NamingException " + e.getMessage());
         }
     }
 

@@ -50,11 +50,11 @@ public class AddToSuggestionServlet extends HttpServlet {
                 Gson gson = new Gson();
                 if (!isExisted) { // chưa tồn tại trong Pending thì ghi xuống
                     DAO.CreatePendingList(productID, noteday, notiMessage);
-                    String notiJSONString = gson.toJson("Thêm vào Pending List thành công");
+                    String notiJSONString = gson.toJson("1");
                     out.print(notiJSONString);
                     out.flush();
                 } else {
-                    String notiJSONString = gson.toJson("Sản phẩm đã tồn tại trong Pending List!");
+                    String notiJSONString = gson.toJson("1");
                     out.print(notiJSONString);
                     out.flush();
                 }
@@ -65,16 +65,12 @@ public class AddToSuggestionServlet extends HttpServlet {
                 PendingItemDAO DAO = new PendingItemDAO();
                 boolean isExisted = DAO.IsExistedInPendingList(productID);
                 Gson gson = new Gson();
-                if (!isExisted) { // chưa tồn tại trong Pending thì ghi xuống
+                if (!isExisted) { 
                     DAO.CreatePendingList(productID, noteday, notiMessage);
-                    String notiJSONString = gson.toJson("Đã tự dộng thêm vào Pending List do dưới ngưỡng!");
+                    String notiJSONString = gson.toJson("1");
                     out.print(notiJSONString);
                     out.flush();
-                } else {
-                    String notiJSONString = gson.toJson("Đã tự dộng thêm vào Pending List do dưới ngưỡng!");
-                    out.print(notiJSONString);
-                    out.flush();
-                }
+                } 
             }
 
         } catch (SQLException e) {

@@ -30,9 +30,9 @@
             <div id="sidebar-placeholder">
             </div>
             <script>
-            $.get("Sidebar", function(data){
-                $("#sidebar-placeholder").replaceWith(data);
-            });
+                $.get("Sidebar", function (data) {
+                    $("#sidebar-placeholder").replaceWith(data);
+                });
             </script>
             <!-- End of Sidebar -->
 
@@ -46,17 +46,12 @@
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4 mt-3">
-                            <h1 class="mb-0" id="header-page">XXX GROCERY STORE MANAGEMENT</h1>
-
-                            <a href="javascript:void(0)"
-                               class="d-none d-sm-inline-block btn btn-sm shadow-sm button-back"><i
-                                    class="fas fa-arrow-circle-left button-back-icon"></i>&nbsp; <span
-                                    class="button-back-text">Store Owner Dashboard</span></a>
+                        <div class="d-sm-flex align-items-center justify-content-between my-3">
+                            <h1 class="mb-0" id="header-page">QUẢN LÍ NHÂN VIÊN</h1>
                         </div>
 
                         <!-- Divider -->
-                        <hr class="sidebar-divider mb-4">
+                        <hr class="sidebar-divider mb-2">
 
                         <!-- Content Row -->
                         <div class="row">
@@ -65,123 +60,36 @@
                             <div class="col-xl-12">
                                 <div class="card shadow mb-4">
                                     <div class="card-header py-3">
-                                        <h3 class="m-0 font-weight-bold text-primary header-center">DANH SÁCH TÀI KHOẢN</h3>
+                                        <h3 class="mb-2 font-weight-bold text-primary header-center">DANH SÁCH TÀI KHOẢN</h3>
 
-                                        <button class="nav-link d-flex justify-content-center align-items-center d-sm-inline-block btn btn-sm button-back"
-                                                data-toggle="modal" data-target="#add-new-modal">
-                                            <span>Tạo tài khoản &nbsp;</span>
-                                            <i class="fas fa-plus-circle logout-group"></i>
-                                        </button>
+                                        <div class="justify-content-end row">
+                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-create-account"
+                                                    data-toggle="modal" data-target="#add-new-modal">
+                                                <span>Tạo tài khoản &nbsp;</span>
+                                                <i class="fas fa-user-plus"></i>
+                                            </button>
 
-                                        <button class="nav-link d-flex justify-content-center align-items-center d-sm-inline-block btn btn-sm button-back"
-                                                data-toggle="modal" data-target="#change-password-modal">
-                                            <span>Đổi mật khẩu &nbsp;</span>
-                                            <i class="fas fa-undo logout-group"></i>
-                                        </button>
+                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-change-password"
+                                                    data-toggle="modal" data-target="#change-password-modal">
+                                                <span>Đổi mật khẩu &nbsp;</span>
+                                                <i class="fas fa-undo"></i>
+                                            </button>
+                                        </div>
                                     </div>
 
                                     <div class="card-body">
 
-                                        <!-- Add New Account Modal -->
-                                        <div class="modal fade" id="add-new-modal" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-primary">Đăng ký tài khoản</h5>
-                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="form-group">
-                                                            <span class="m-0 pt-1 ml-1">Họ và tên</span>
-                                                            <input class="form-control" type="text" id="new-name">
-                                                            <p style="color:red" id="error-name"></p>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <span class="m-0 pt-1 ml-1">Tên đăng nhập</span>
-                                                            <input class="form-control" type="text" id="new-username">
-                                                            <p id="error-username"></p>
-                                                            <p style="color:red" id="error-username-exist"></p>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <span class="m-0 pt-1 ml-1">Mật khẩu</span>
-                                                            <input class="form-control" type="password" id="new-password">
-                                                            <p style="color:red" id="error-password"></p>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <span class="m-0 pt-1 ml-1">Xác nhận mật khẩu</span>
-                                                            <input class="form-control" type="password" id="new-confirm">
-                                                            <p style="color:red" id="error-confirm"></p>
-                                                        </div>
-                                                        <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-owner"/>
-                                                        <span class="m-0 pt-2">&nbsp; Chủ tiệm</span><br>
-                                                        <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-cashier" checked="checked"/>
-                                                        <span class="m-0 pt-2">&nbsp; Thu ngân</span>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary" onclick="createNewAccount()">Đăng ký</button>
-                                                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End of Add New Account Modal -->
-
-                                        <!-- Change Pasword Modal -->
-                                        <div class="modal fade" id="change-password-modal" tabindex="-1" aria-labelledby="changePasswordLabel"
-                                             aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-primary" id="changePasswordLabel">Đổi mật khẩu</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <form>
-                                                            <div class="form-group">
-                                                                <label for="currentPassword">Mật khẩu hiện tại</label>
-                                                                <input type="password" class="form-control" id="currentPassword"
-                                                                       aria-describedby="currentPassword">
-                                                                <span style="color:red" id="current-password-error"></span>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="newPassword">Mật khẩu mới</label>
-                                                                <input type="password" class="form-control" id="newPassword"
-                                                                       aria-describedby="newPassword">
-                                                                <span style="color:red" id="new-password-error"></span>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
-                                                                <input type="password" class="form-control" id="confirmNewPassword"
-                                                                       aria-describedby="confirmNewPassword">
-                                                                <span style="color:red" id="confirm-password-error"></span>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary" onclick="passwordChange()">Đổi mật khẩu</button>
-                                                        <button type="button" class="btn btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--End of Change Password Modal-->
-
                                         <!-- Look up Table Content -->
                                         <div class="text-center small">
-                                            <table class="table table-striped">
+                                            <table class="table table-striped table-border-custom">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">Tên đăng nhập</th>
-                                                        <th scope="col">Họ và tên</th>
-                                                        <th scope="col">Vai trò</th>
-                                                        <th scope="col"></th>
-                                                        <th scope="col"></th>
+                                                        <th scope="col" class="table-heading" style="width:10%;">STT</th>
+                                                        <th scope="col" class="table-heading" style="width:25%;">Tên đăng nhập</th>
+                                                        <th scope="col" class="table-heading" style="width:25%;">Họ và tên</th>
+                                                        <th scope="col" class="table-heading" style="width:20%;">Vai trò</th>
+                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
+                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="account-list-area">
@@ -189,63 +97,6 @@
                                             </table>
                                         </div>
                                         <!--/ End of Look up Table Content -->
-
-                                        <!-- Modal Confirm Reset Password -->
-                                        <div class="modal fade" id="reset-password-modal" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-primary">Xác nhận</h5>
-                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản</span>
-                                                        <span class="m-0 text-primary pt-1 ml-1" id="reset-username"></span>
-                                                        <span class="m-0 pt-1 ml-1">không?</span>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary" onclick="resetAccount(document.getElementById('reset-username').innerHTML)">Đồng ý</button>
-                                                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End of Modal Confirm Reset Password -->
-
-                                        <!-- Modal Confirm Delete Account -->
-                                        <div class="modal fade" id="delete-account-modal" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title text-primary">Xác nhận</h5>
-                                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="modal-body">
-                                                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn vô hiệu hóa tài khoản</span>
-                                                        <span class="m-0 text-primary pt-1 ml-1" id="delete-username"></span>
-                                                        <span class="m-0 pt-1 ml-1">không?</span>
-                                                    </div>
-
-                                                    <div class="modal-footer">
-                                                        <button class="btn btn-primary" onclick="deleteAccount(document.getElementById('delete-username').innerHTML)">Đồng ý</button>
-                                                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- End of Modal Confirm Delete Account -->
-
                                     </div>
                                 </div>
 
@@ -270,6 +121,151 @@
         <a class="scroll-to-top rounded" href="#page-top">
             <i class="fas fa-angle-up"></i>
         </a>
+
+        <!-- Modal Confirm Reset Password -->
+        <div class="modal fade modal-center-position" id="reset-password-modal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary">Xác nhận</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản</span>
+                        <span class="m-0 text-primary pt-1 ml-1" id="reset-username"></span>
+                        <span class="m-0 pt-1 ml-1">không?</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="resetAccount(document.getElementById('reset-username').innerHTML)">Đồng ý</button>
+                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End of Modal Confirm Reset Password -->
+
+        <!-- Modal Confirm Delete Account -->
+        <div class="modal fade modal-center-position" id="delete-account-modal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary">Xác nhận</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn vô hiệu hóa tài khoản</span>
+                        <span class="m-0 text-primary pt-1 ml-1" id="delete-username"></span>
+                        <span class="m-0 pt-1 ml-1">không?</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="deleteAccount(document.getElementById('delete-username').innerHTML)">Đồng ý</button>
+                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- End of Modal Confirm Delete Account -->
+
+        <!-- Add New Account Modal -->
+        <div class="modal fade" id="add-new-modal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary">Đăng ký tài khoản</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <span class="m-0 pt-1 ml-1">Họ và tên</span>
+                            <input class="form-control" type="text" id="new-name">
+                            <p style="color:red" id="error-name"></p>
+                        </div>
+                        <div class="form-group">
+                            <span class="m-0 pt-1 ml-1">Tên đăng nhập</span>
+                            <input class="form-control" type="text" id="new-username">
+                            <p id="error-username"></p>
+                            <p style="color:red" id="error-username-exist"></p>
+                        </div>
+                        <div class="form-group">
+                            <span class="m-0 pt-1 ml-1">Mật khẩu</span>
+                            <input class="form-control" type="password" id="new-password">
+                            <p style="color:red" id="error-password"></p>
+                        </div>
+                        <div class="form-group">
+                            <span class="m-0 pt-1 ml-1">Xác nhận mật khẩu</span>
+                            <input class="form-control" type="password" id="new-confirm">
+                            <p style="color:red" id="error-confirm"></p>
+                        </div>
+                        <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-owner"/>
+                        <span class="m-0 pt-2">&nbsp; Chủ tiệm</span><br>
+                        <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-cashier" checked="checked"/>
+                        <span class="m-0 pt-2">&nbsp; Thu ngân</span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" onclick="createNewAccount()">Đăng ký</button>
+                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End of Add New Account Modal -->
+
+        <!-- Change Pasword Modal -->
+        <div class="modal fade" id="change-password-modal" tabindex="-1" aria-labelledby="changePasswordLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary" id="changePasswordLabel">Đổi mật khẩu</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="currentPassword">Mật khẩu hiện tại</label>
+                                <input type="password" class="form-control" id="currentPassword"
+                                       aria-describedby="currentPassword">
+                                <span style="color:red" id="current-password-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">Mật khẩu mới</label>
+                                <input type="password" class="form-control" id="newPassword"
+                                       aria-describedby="newPassword">
+                                <span style="color:red" id="new-password-error"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
+                                <input type="password" class="form-control" id="confirmNewPassword"
+                                       aria-describedby="confirmNewPassword">
+                                <span style="color:red" id="confirm-password-error"></span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" onclick="passwordChange()">Đổi mật khẩu</button>
+                        <button type="button" class="btn btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End of Change Password Modal-->
 
         <!-- Logout Modal-->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

@@ -11,8 +11,14 @@ function showPreBillList() {
     }
     request.open('GET', url, true);
     request.onload = function () {
-        preBillList = JSON.parse(this.responseText);
-        renderPreBillList(preBillList);
+        var result = JSON.parse(this.responseText);
+        if (result.isError) {
+            alert(result.dateError);
+        } else {
+            preBillList = result;
+            renderPreBillList();
+        }
+        renderPreBillList();
     };
     request.send();
 }
@@ -41,15 +47,13 @@ function renderPreBillList() {
 
         var cellNo = row.insertCell(0);
         var cellCustName = row.insertCell(1);
-//        var cellCustPhone = row.insertCell(2);
         var cellTotalCost = row.insertCell(2);
         var cellBuyDate = row.insertCell(3);
 
         cellNo.innerHTML = i + 1;
         cellCustName.innerHTML = preBillList[i].name;
-//        cellCustPhone.innerHTML = preBillList[i].phoneNo;
         cellTotalCost.innerHTML = formatNumber(preBillList[i].totalCost);
-        cellBuyDate.innerHTML = preBillList[i].buyDate;
+        cellBuyDate.innerHTML = preBillList[i].buyDate.substring(0, 10);
     }
 }
 

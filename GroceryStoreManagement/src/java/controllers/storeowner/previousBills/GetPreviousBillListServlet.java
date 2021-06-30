@@ -44,11 +44,18 @@ public class GetPreviousBillListServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
 
-        boolean foundErr = false;
         PreBillErrorObj errors = new PreBillErrorObj();
         String searchValue = request.getParameter("search-value");
         String dateFrom = request.getParameter("date-from").replace('T', ' ');
         String dateTo = request.getParameter("date-to").replace('T', ' ');
+
+        if (dateFrom.length() == 10) {
+            dateFrom += " 00:00:00";
+        }
+
+        if (dateTo.length() == 10) {
+            dateTo += " 23:59:59";
+        }
 
         if (searchValue == null) {
             searchValue = "";
@@ -58,14 +65,20 @@ public class GetPreviousBillListServlet extends HttpServlet {
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error
-            if (dateFrom.compareTo(dateTo) > 0) {
-                foundErr = true;
-                errors.setDateError("End date must be greater than start date");
+            if (dateFrom.length() == 0 || dateTo.length() == 0) {
+                errors.setIsError(true);
+                errors.setDateError("Ngày nhập không tồn tại");
+            } else if (dateFrom.compareTo(dateTo) > 0) {
+                errors.setIsError(true);
+                errors.setDateError("Ngày kết thúc phải lớn hơn ngày bắt đầu");
             }
 
-            if (foundErr) {
+            if (errors.isIsError()) {
                 //2.1 Caching errors, forward to error page
-                request.setAttribute("PREVIOUS_BILL_ERROR", errors);
+                Gson gson = new Gson();
+                String errorJSONS = gson.toJson(errors);
+                out.print(errorJSONS);
+                out.flush();
             } else {
                 //2.2 Call DAO
                 PreBillDAO dao = new PreBillDAO();
