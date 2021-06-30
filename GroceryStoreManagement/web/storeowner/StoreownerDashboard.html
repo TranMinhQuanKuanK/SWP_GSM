@@ -37,18 +37,18 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                 padding-top: 0.25em;
             }
 
-            #sum-revenue,
-            #sum-profit,
-            #bill-count,
-            #top-customer p,
-            #top-product p,
-            #feedback-section p,
+            .overflow-text p,
             h4,
             h5, 
             .card-heading p {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
+            }
+            
+            .overflow-text li:hover p {
+                white-space: normal;
+                overflow: auto;
             }
 
             @media (max-width: 1300px) {
@@ -169,7 +169,7 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                             <div class="col-12 col-lg-4 mb-2">
                                 <div class="card border-left-danger p-2 shadow-sm" style="min-height: 540px; max-height: 545px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold" style="color: #ed7468;">HÀNG SẮP HẾT</h5>
+                                        <h5 class="font-weight-bold header-center" style="color: #ed7468;">HÀNG SẮP HẾT</h5>
                                         <div class="d-flex justify-content-end">
                                             <button style="max-height: 30px;" type="button" class="btn btn-danger btn-sm" onclick="window.location.href = 'inventorypage'">
                                                 <span>Xem chi tiết</span>
@@ -200,16 +200,16 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                             <div class="col-12 col-lg-4 mb-2">
                                 <div class="card p-2 shadow-sm border-left-info" style="min-height: 540px; max-height: 545px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG TRONG THÁNG</h5>
+                                        <h5 class="font-weight-bold header-center" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG <span class="statistics-info"></span></h5>
                                         <div class="d-flex justify-content-between">
-                                            <p style="color: #36b9cc;">(theo tổng chi tiêu)</p>
+                                            <p class="ml-1" style="color: #36b9cc;">(theo tổng chi tiêu)</p>
                                             <button type="button" style="max-height: 30px;" class="btn btn-info btn-sm" onclick="window.location.href = 'PreviousBillPage'">
                                                 <span>Xem chi tiết</span>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="overflow-auto">
-                                        <ul class="list-group" id="top-customer">
+                                        <ul class="list-group overflow-text" id="top-customer">
                                             <!--                                                <li class="list-group-item bg-info text-light" style="position: relative">
                                                                                                 <div class="d-flex justify-content-between">
                                                                                                     <p class="my-auto w-75">
@@ -230,9 +230,9 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                             <div class="col-12 col-lg-4 d-flex flex-column mb-2">
                                 <div class="card p-2 shadow-sm border-left-custom" style="min-height: 315px; max-height: 320px; margin-bottom: 10px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold" style="color: #AA2EE6;">TOP 10 SẢN PHẨM TRONG THÁNG</h5>
+                                        <h5 class="font-weight-bold header-center" style="color: #AA2EE6;">TOP 10 SẢN PHẨM <span class="statistics-info"></span></h5>
                                         <div class="d-flex justify-content-between">
-                                            <p style="color: #AA2EE6;">(theo số lượng đã bán)</p>
+                                            <p class="ml-1" style="color: #AA2EE6;">(theo số lượng đã bán)</p>
                                             <button style="max-height: 30px;" type="button" class="btn btn-custom btn-sm"
                                                     onclick="window.location.href = 'StatisticsPage'">
                                                 <span>Xem chi tiết</span>
@@ -240,7 +240,7 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                         </div>
                                     </div>
                                     <div class="overflow-auto">
-                                        <ul class="list-group" id="top-product">
+                                        <ul class="list-group overflow-text" id="top-product">
                                             <!--                                                <li class="list-group-item bg-dark text-light">
                                                                                                 <div class="d-flex justify-content-between">
                                                                                                     <p class="my-auto w-75">
@@ -257,23 +257,23 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 
 
                                 <!-- ĐÂY LÀ CHỖ CỦA FEEDBACK CHƯA ĐỌC -->
-                                <div id="feedback-section" class="card p-2 shadow-sm border-left-success" style="min-height: 210px; max-height: 215px;">
+                                <div class="card p-2 shadow-sm border-left-success" style="min-height: 210px; max-height: 215px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold" style="color: #1cc88a;">FEEDBACK CHƯA ĐỌC</h5>
-                                        <div class="d-flex justify-content-end ">
+                                        <h5 class="font-weight-bold header-center" style="color: #1cc88a;">FEEDBACK CHƯA ĐỌC</h5>
+                                        <div class="d-flex justify-content-end">
                                             <button style="max-height: 30px;" type="button" class="btn btn-success btn-sm" onclick="window.location.href = 'FeedbackListPage'">
                                                 <span>Xem chi tiết</span>
                                             </button>
                                         </div>
                                     </div>
                                     <div class="overflow-auto">
-                                        <ul class="list-group">
+                                        <ul class="list-group overflow-text" id="feedback-section">
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
-                                                    <p class="my-auto w-75">
+                                                    <p class="my-auto w-80">
                                                         Ông khách aBc có hành vi XyZ với nhân viên !@#
                                                     </p>
-                                                    <div class="w-25 text-right">
+                                                    <div class="w-20 text-right">
                                                         <button type="button" class="btn btn-sm">
                                                             <i class="fas fa-check-circle fa-2x text-gray-600"></i>
                                                         </button>
@@ -282,22 +282,10 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="d-flex justify-content-between">
-                                                    <p class="my-auto w-75">
+                                                    <p class="my-auto w-80">
                                                         Ông khách aBc có hành vi XyZ với nhân viên !@#
                                                     </p>
-                                                    <div class="w-25 text-right">
-                                                        <button type="button" class="btn btn-sm">
-                                                            <i class="fas fa-check-circle fa-2x text-gray-600"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="my-auto w-75">
-                                                        Ông khách aBc có hành vi XyZ với nhân viên !@#
-                                                    </p>
-                                                    <div class="w-25 text-right">
+                                                    <div class="w-20 text-right">
                                                         <button type="button" class="btn btn-sm">
                                                             <i class="fas fa-check-circle fa-2x text-gray-600"></i>
                                                         </button>
