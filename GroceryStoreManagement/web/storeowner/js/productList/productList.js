@@ -59,6 +59,14 @@ $(document).ready(function () {
                 "searchable": false,
                 "orderable": false,
                 "targets": 0
+            },
+            {
+                "targets": [2,3],
+                "className": 'dt-body-right'
+            },
+            {
+                "targets": [1],
+                "className": 'dt-body-left'
             }],
         order: [[1, 'asc']],
         language: {

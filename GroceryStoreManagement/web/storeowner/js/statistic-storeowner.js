@@ -33,14 +33,25 @@ function renderProductStatistic(productStatistic) {
                 }, {
                     data: 'quantity'
                 }, {
-                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', '')
+                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')
                 }],
             columnDefs: [{
+                    "targets": [3],
+                    "className": "text-gray-900 dt-body-right"
+                },
+                {
+                    "targets": [1],
+                    "className": "text-gray-900 dt-body-left"
+                }, {
                     "orderable": false,
                     "targets": 0
-                }, {
+                }, 
+                {
                     "searchable": false,
                     "targets": [0, 2, 3]
+                },{
+                    "targets": "_all",
+                    "className": "text-gray-900"
                 }],
             order: [[1, 'asc']],
             language: {
@@ -101,14 +112,24 @@ function renderCustomerStatistic(CustomerStatistic) {
                 }, {
                     data: 'quantity'
                 }, {
-                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', '')
+                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')
                 }],
             columnDefs: [{
+                    "targets": [4],
+                    "className": "text-gray-900 dt-body-right"
+                },
+                {
+                    "targets": [1],
+                    "className": "text-gray-900 dt-body-left"
+                },{
                     "orderable": false,
                     "targets": [0, 2]
                 }, {
                     "searchable": false,
                     "targets": [0, 3, 4]
+                },{
+                    "targets": "_all",
+                    "className": "text-gray-900"
                 }],
             order: [[1, 'asc']],
             language: {

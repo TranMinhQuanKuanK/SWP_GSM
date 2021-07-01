@@ -9,7 +9,6 @@ window.onload = function () {
     };
     xhttp.open("GET", "GetCategoryList", false);
     xhttp.send();
-    
     getProduct();
 };
 
@@ -64,7 +63,6 @@ function getProduct() {
                     "&category_id=" + cat_ID;
         }
     }
-
     xhttp.open("GET", url, false);
     xhttp.send();
 }
@@ -91,9 +89,11 @@ function printProductList(data) {
 
             var td_threshold = document.createElement("td");
             td_threshold.innerHTML = data[i].lower_threshold;
+            td_threshold.setAttribute("class", "text-right");
             td_threshold.setAttribute("id", "thresholdOf" + data[i].product_ID);
 
             var td_quantity = document.createElement("td");
+            td_quantity.setAttribute("class", "text-right");
             td_quantity.innerHTML = data[i].quantity;
 
             if (data[i].lower_threshold >= data[i].quantity) {
