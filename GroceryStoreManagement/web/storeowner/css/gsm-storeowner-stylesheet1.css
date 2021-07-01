@@ -11290,6 +11290,11 @@ html {
     font-weight: 500;
 }
 
+.table-border-custom > tbody > tr:hover{
+    color:white;
+    background-color: #4e73df;
+}
+
 .import-goods-text{
     color: white;
 }
@@ -11298,18 +11303,18 @@ html {
     color:black;
 }
 
-.total-previous-bills {
+.total-previous-bills, .total-previous-receipts {
     color: #ff0000 !important;
 }
 
-.total-previous-bills-price {
+.total-previous-bills-price, .total-previous-receipts-price {
     color: #ff0000 !important;
     font-weight: 700 !important;
 }
 
 .icon-previous-bills-reset{
     font-size: 1.5rem;
-    color: blue;
+    color: #454545;
     opacity: 0.6;
 }
 
@@ -11328,8 +11333,6 @@ html {
 }
 
 .btn-create-account{
-    color:white;
-    background-color: green;
     margin-right: 1rem;
 }
 
@@ -11373,6 +11376,15 @@ html {
     margin-left: 1rem;
 }
 
+.btn-import-goods{
+    color: #454545;
+    font-size: 1.5rem !important;
+}
+
 .btn-inventory:hover {
+    opacity: 0.5;
+}
+
+.btn-import-goods:hover{
     opacity: 0.5;
 }
