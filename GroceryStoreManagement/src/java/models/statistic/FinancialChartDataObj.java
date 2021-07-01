@@ -13,14 +13,15 @@ import java.util.List;
  */
 public class FinancialChartDataObj {
     List<String> events;
-    List<Integer> revenue, profit;
+    List<Integer> revenue, profit, cost;
 
-    public FinancialChartDataObj(List<String> events, List<Integer> revenue, List<Integer> profit) {
+    public FinancialChartDataObj(List<String> events, List<Integer> revenue, List<Integer> profit, List<Integer> cost) {
         this.events = events;
         this.revenue = revenue;
         this.profit = profit;
+        this.cost = cost;
     }
-    
+
     public List<String> getEvents() {
         return events;
     }
@@ -43,5 +44,13 @@ public class FinancialChartDataObj {
 
     public void setProfit(List<Integer> profit) {
         this.profit = profit;
+    }
+    
+    public List<Integer> getCost() {
+        return cost;
+    }
+
+    public void setCost(List<Integer> cost) {
+        this.cost = cost;
     }
 }

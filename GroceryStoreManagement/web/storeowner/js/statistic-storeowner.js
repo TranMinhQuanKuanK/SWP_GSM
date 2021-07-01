@@ -207,14 +207,15 @@ function renderChart(chartData) {
 function drawCurveTypes(chartData) {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'X');
+    data.addColumn('number', 'Tổng giá vốn');
     data.addColumn('number', 'Doanh thu');
     data.addColumn('number', 'Lợi nhuận');
 
     var items = new Array(chartData.events.length);
 
     for (var i = 0; i < items.length; i++) {
-        items[i] = new Array(3);
-        items[i] = [chartData.events[i], chartData.revenue[i], chartData.profit[i]];
+        items[i] = new Array(4);
+        items[i] = [chartData.events[i], chartData.cost[i], chartData.revenue[i], chartData.profit[i]];
     }
 
     data.addRows(items);
@@ -224,7 +225,8 @@ function drawCurveTypes(chartData) {
                 + chartData.events[0] + ' - ' + chartData.events[chartData.events.length - 1]
                 + ' (đvt: VND)',
         fontName: 'Nunito',
-        fontSize: 16,
+        fontSize: 17,
+        height: 400,
         hAxis: {
             textStyle: {
                 fontSize: 12
@@ -241,12 +243,23 @@ function drawCurveTypes(chartData) {
             textStyle: {
                 fontSize: 12
             }
+        },
+        series: {
+            0: {
+                color: '#dc3912'
+            },
+            1: {
+                color: '#3366cc'
+            },
+            2: {
+                color: '#1cc88a'
+            }
         }
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
-    setTimeout(centerChartTitle,10);
+    setTimeout(centerChartTitle, 10);
 }
 
 
@@ -258,10 +271,8 @@ function centerChartTitle() {
     var width = window.innerWidth
             || document.documentElement.clientWidth
             || document.body.clientWidth;
-    console.log(document.getElementById("perfect-scrollbar").clientWidth + " " + document.getElementById("perfect-scrollbar").offsetWidth);
     var sideBarWidth = document.getElementById("perfect-scrollbar").offsetWidth || document.getElementById("perfect-scrollbar").clientWidth;
     var chartTitle = document.querySelector('#chart_div > div > div:nth-child(1) > div > svg > g:nth-child(3) > text');
     var centerXAxis = width / 2 - chartTitle.innerHTML.length - sideBarWidth - 110;
-    console.log(centerXAxis);
     chartTitle.setAttribute("x", centerXAxis);
 }

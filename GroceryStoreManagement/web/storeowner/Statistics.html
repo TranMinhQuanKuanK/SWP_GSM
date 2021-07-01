@@ -79,14 +79,14 @@
                                 onclick="openPage('Product', this, 'Product-btn');">
                                 <button id="Product-btn" class="shadow rounded-top nav-link w-100 tablink-btn d-flex justify-content-between">
                                     <span class="statistics-tab-heading my-auto" style="font-size: 1.5rem;">Product Statistics</span>
-                                    <i class="fas fa-calendar fa-2x my-auto"></i>
+                                    <i class="fas fa-box-open fa-2x my-auto"></i>
                                 </button>
                             </li>
                             <li class="nav-item h-100"
                                 onclick="openPage('Customer', this, 'Customer-btn'); showCustomerStatistic();">
                                 <button id="Customer-btn" class="shadow rounded-top nav-link  w-100 tablink-btn d-flex justify-content-between">
                                     <span class="statistics-tab-heading my-auto" style="font-size: 1.5rem;">Customer Statistics</span>
-                                    <i class="fas fa-dollar-sign fa-2x my-auto"></i>
+                                    <i class="fas fa-users fa-2x my-auto"></i>
                                 </button>
                             </li>
                             <li class="nav-item shadow h-100"
@@ -223,45 +223,42 @@
                                     </div>
                                     <!-- Table Content -->
                                     <div class="card-body" style="display:none" id="financial-stat-area">
-                                        <div class="w-25 mx-auto" style="min-width: 300px;">
-                                            <table class="table table-sm">
-                                                <!--                                                <thead>
-                                                                                                    <tr>
-                                                                                                        <th scope="col"></th>
-                                                                                                         <th scope="col"></th>
-                                                                                                    </tr>
-                                                                                                </thead>-->
-                                                <tbody>
-                                                    <tr>
-                                                        <th scope="row">Số đơn đã bán:</th>
-                                                        <td class="text-right"><span id="bill-count"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Số đơn đã nhập:</th>
-                                                        <td class="text-right"><span id="receipt-count"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Tổng giá vốn:</th>
-                                                        <td class="text-right"><span id="sum-cost"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Doanh thu:</th>
-                                                        <td class="text-right" style="color: #3366cc;"><span id="sum-revenue"></span></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th scope="row">Lợi nhuận:</th>
-                                                        <td class="text-right" style="color: #dc3912;"><span id="sum-profit"></span></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--                                        <div class="text-center m-0 pt-3 ml-2">
-                                                                                    <label for="bill-count">Số đơn đã bán:</label>&nbsp;<br>
-                                                                                    <label for="receipt-count"></label>&nbsp;<br>
-                                                                                    <label for="sum-cost"></label>&nbsp;<br>
-                                                                                    <label for="sum-revenue"></label>&nbsp;<span id="sum-revenue"></span><br>
-                                                                                    <label for="sum-profit"></label>&nbsp;<span id="sum-revenue"></span><br>
-                                                                                </div>-->
+                                        <table class="mx-auto" style="min-width: 800px;">
+                                            <tr>
+                                                <td>
+                                                    <table class="table table-sm w-25 ml-5" style="min-width: 300px;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row">Số đơn đã bán:</th>
+                                                                <td class="text-right"><span id="bill-count"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row">Số đơn đã nhập:</th>
+                                                                <td class="text-right"><span id="receipt-count"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <table class="table table-sm w-25" style="min-width: 300px;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="row" style="color: #dc3912;">Tổng giá vốn:</th>
+                                                                <td class="text-right" style="color: #dc3912;"><span id="sum-cost"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row" style="color: #3366cc;">Doanh thu:</th>
+                                                                <td class="text-right" style="color: #3366cc;"><span id="sum-revenue"></span></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="row" style="color: #1cc88a;">Lợi nhuận:</th>
+                                                                <td class="text-right" style="color: #1cc88a;"><span id="sum-profit"></span></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
                                         <div id="chart_div" style="min-height: 300px;"></div>
                                     </div>
                                     <!--/ End of Table Content -->
