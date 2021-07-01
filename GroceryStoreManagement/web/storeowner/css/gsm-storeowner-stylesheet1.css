@@ -11291,7 +11291,13 @@ html {
 }
 
 .table-border-custom > tbody > tr:hover{
+    color:black;
+    background-color: #4e73df66; //same as #4e73df but opacity=0.4
+}
+
+.table-border-custom > tbody > tr.active-row {
     color:white;
+    font-weight: bold;
     background-color: #4e73df;
 }
 
