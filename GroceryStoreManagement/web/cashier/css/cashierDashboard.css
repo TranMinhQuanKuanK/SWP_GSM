@@ -97,7 +97,7 @@ th.bill-total-price {
 /* TABLE CHECKOUT */
 
 .table-checkout input {
-    max-width: 100px;
+    max-width: 110px;
 }
 
 .table-checkout td:first-child {
@@ -116,4 +116,11 @@ th.bill-total-price {
 .royalblueBg {
     color: #fff;
     background-color: #4e73df !important;
+}
+
+
+form label.required:after
+{
+    color: red;
+    content: " *";
 }

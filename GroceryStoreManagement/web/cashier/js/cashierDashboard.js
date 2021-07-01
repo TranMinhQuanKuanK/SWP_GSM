@@ -640,7 +640,7 @@ function Checkout() {
   if (currentBill.total_cost == 0) {
     alert("Chưa mua gì mà bấm thanh toán????? Bị khùng hả?");
   } else {
-    var cash = document.getElementById("cash").value;
+    var cash = document.getElementById("cash").value.replaceAll(".", "");
     var xhttp = new XMLHttpRequest();
 
     xhttp.open("GET", "Checkout?cash=" + cash, true);
@@ -719,7 +719,7 @@ function SetupPagination(products, wrapper, rows_per_page) {
 
 function PaginationButton(page, products) {
   let button = document.createElement("button");
-  button.setAttribute("class", "btn btn-sm btn-outline-warning");
+  button.setAttribute("class", "btn btn-sm btn-outline-secondary");
   button.innerText = page;
 
   if (current_page == page) button.classList.add("active");

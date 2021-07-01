@@ -70,6 +70,7 @@ function openPage(pageName, elmnt, pageBtn) {
         tablinks[i].style.backgroundColor = "#fff";
         tablinks[i].style.opacity = 0.7;
         tablinks[i].classList.add("border");
+        tablinks[i].classList.add("border-bottom-0");
         tablinks[i].classList.add("border-primary");
         tablinks[i].childNodes[1].style.color = "#4e73df";
         tablinks[i].childNodes[3].style.color = "#4e73df";
