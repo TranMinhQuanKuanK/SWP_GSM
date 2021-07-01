@@ -28,9 +28,9 @@
         <div class="container-fluid p-0">
             <!-- Header bao gồm tên cửa hàng + tên cashier + nút logout -->
             <div class="container-fluid heading royalblueBg">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between pr-2 pl-2">
                     <div class="my-auto">
-                        <h3 class="my-auto font-weight-bold">CỬA HÀNG .... </h3>
+                        <h3 class="my-auto font-weight-bold">TẠP HÓA BLUE </h3>
                     </div>
                     <!-- Chào cashier và cái nút bánh răng -->
                     <div class="d-flex justify-content-between">
@@ -38,7 +38,7 @@
                         <div class="btn-group">
                             <button type="button" class="btn royalblueBg border border-light btn-sm" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#fff"
                                      class="bi bi-gear" viewBox="0 0 16 16">
                                 <path
                                     d="M8 4.754a3.246 3.246 0 1 0 0 6.492 3.246 3.246 0 0 0 0-6.492zM5.754 8a2.246 2.246 0 1 1 4.492 0 2.246 2.246 0 0 1-4.492 0z" />
@@ -238,10 +238,13 @@
                                     </a>
                                 </div>
                                 <!-- Thông tin khách hàng -->
-                                <table class="table">
+                                <table class="table w-100">
                                     <thead>
                                         <tr>
-                                            <th scope="col" colspan="2" class="text-center" id="customer-name">Khách hàng
+                                            <th scope="col" colspan="2" class="text-center" style="max-width: 0;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                white-space: nowrap;" id="customer-name">Khách hàng
                                                 vãng lai</th>
                                         </tr>
                                     </thead>
@@ -291,7 +294,7 @@
                                         <tr class="text-right">
                                             <td>Khách đưa</td>
                                             <td>
-                                                <input id="cash" class="text-right" type="number" min="0">
+                                                <input id="cash" class="text-right" type="text" pattern="[0-9]*">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -299,7 +302,7 @@
                                 <!-- 2 nút feedback và checkout -->
                                 <div class="text-right">
                                     <button id="clear-bill-btn" type="button" class="btn btn-secondary btn-lg">
-                                        Hủy Đơn
+                                        Hủy đơn
                                     </button>
                                     <button class="btn royalblueBg btn-lg w-50" data-toggle="modal"
                                             data-target="#bill-preview-modal" onclick="printPreviewBill(currentBill);">Thanh
@@ -326,15 +329,15 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="feedback" class="col-form-label">Nội dung:</label>
-                                    <textarea class="form-control" id="feedback"></textarea>
+                                    <label for="feedback" class="col-form-label required">Nội dung:</label>
+                                    <textarea class="form-control" id="feedback" required></textarea>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success me-2" onclick="sendFeedback()">Gửi
+                            <button type="button" class="btn royalblueBg me-2" onclick="sendFeedback()">Gửi
                                 phản hồi</button>
-                            <button class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                            <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                         </div>
                     </div>
                 </div>
@@ -354,28 +357,28 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="currentPassword">Mật khẩu hiện tại</label>
+                                    <label for="currentPassword" class="required">Mật khẩu hiện tại</label>
                                     <input type="password" class="form-control" id="currentPassword"
                                            aria-describedby="currentPassword">
                                     <span style="color:red" id="current-password-error"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="newPassword">Mật khẩu mới</label>
+                                    <label for="newPassword" class="required">Mật khẩu mới</label>
                                     <input type="password" class="form-control" id="newPassword"
-                                           aria-describedby="newPassword">
+                                           aria-describedby="newPassword" required>
                                     <span style="color:red" id="new-password-error"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
+                                    <label for="confirmNewPassword" class="required">Xác nhận mật khẩu mới</label>
                                     <input type="password" class="form-control" id="confirmNewPassword"
-                                           aria-describedby="confirmNewPassword">
+                                           aria-describedby="confirmNewPassword" required>
                                     <span style="color:red" id="confirm-password-error"></span>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info me-2" onclick="passwordChange()">Đổi mật khẩu</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn royalblueBg me-2" onclick="passwordChange()">Đổi mật khẩu</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                         </div>
                     </div>
                 </div>
@@ -393,9 +396,9 @@
                         </div>
                         <div class="modal-body">
                             <form class="text-center">
-                                <button type="button" class="btn btn-secondary me-2" onclick="location.href = 'Logout';">Đăng
+                                <button type="button" class="btn royalblueBg me-2" onclick="location.href = 'Logout';">Đăng
                                     xuất</button>
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Hủy</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                             </form>
                         </div>
                     </div>
@@ -415,22 +418,22 @@
                         <div class="modal-body">
                             <form>
                                 <div class="form-group">
-                                    <label for="customerName">Tên khách hàng</label>
+                                    <label for="customerName" class="required">Tên khách hàng</label>
                                     <input type="text" class="form-control" id="customerName"
-                                           aria-describedby="customerName">
+                                           aria-describedby="customerName" required>
                                     <span style="color:red" id="customer-name-error"></span>
                                 </div>
                                 <div class="form-group">
-                                    <label for="customerPhoneNo">Số điện thoại</label>
+                                    <label for="customerPhoneNo" class="required">Số điện thoại</label>
                                     <input type="text" class="form-control" id="customerPhoneNo"
-                                           aria-describedby="customerPhoneNo">
+                                           aria-describedby="customerPhoneNo" required>
                                     <span style="color:red" id="phone-no-error"></span>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-info me-2" onclick="RegisterCustomer()">Đăng ký</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn royalblueBg me-2" onclick="RegisterCustomer()">Đăng ký</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                         </div>
                     </div>
                 </div>
@@ -557,7 +560,7 @@
                                                 <tr>
                                                     <th scope="row" class="text-right" style="width: 80%;">Thành tiền:</th>
                                                     <td class="text-right pr-3"><span id="bill-preview-total-after-discount"
-                                                                                 style="font-weight: bold; color:red"></span></td>
+                                                                                      style="font-weight: bold; color:red"></span></td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row" class="text-right" style="width: 80%;">Tiền mặt khách đưa: </th>
@@ -575,8 +578,8 @@
                         </div>
                         <div class="modal-footer">
                             <form class="text-center">
-                                <button type="button" class="btn btn-success me-2" onclick="Checkout()">Chốt đơn</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Chỉnh sửa thêm</button>
+                                <button type="button" class="btn royalblueBg me-2" onclick="Checkout()">Chốt đơn</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
                             </form>
                         </div>
                     </div>
