@@ -1,9 +1,9 @@
 var receiptList;
-function GetPreviousReceipt(){
+function GetPreviousReceipt() {
     var request = new XMLHttpRequest();
     var dateStart = document.getElementById("date-from").value;
     var dateEnd = document.getElementById("date-to").value;
-    
+
     var url = "GetPreviousReceiptList";
     url += "?date-from=" + document.getElementById("date-from").value;
     url += "&date-to=" + document.getElementById("date-to").value;
@@ -15,7 +15,7 @@ function GetPreviousReceipt(){
     request.send();
 }
 
-function renderReceiptList(data){
+function renderReceiptList(data) {
     document.getElementById("tableContent").innerHTML = "";
     var index = 0;
     for (i = 0; i < data.length; i++) {
@@ -38,12 +38,11 @@ function renderReceiptList(data){
             td_total.setAttribute("class", "text-right");
 
             var td_button = document.createElement("td");
-                var Add_bt = document.createElement("input");
-                Add_bt.setAttribute("type", "button");
-                Add_bt.setAttribute("value", "Chi tiết");
-                Add_bt.setAttribute("onclick", "GetDetail(" + data[i].receipt_ID + ")");
+            var Add_bt = document.createElement("a");
+            Add_bt.innerHTML = "<i class='fas fa-info-circle btn-inventory'></i>";
+            Add_bt.setAttribute("onclick", "GetDetail(" + data[i].receipt_ID + ")");
             td_button.appendChild(Add_bt);
-   
+
             tr.appendChild(th_index);
             tr.appendChild(td_date);
             tr.appendChild(td_user);
@@ -57,7 +56,7 @@ function renderReceiptList(data){
 
 var receiptDetail;
 
-function GetDetail(receiptID){
+function GetDetail(receiptID) {
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
         console.log(this.responseText);
@@ -73,14 +72,19 @@ function GetDetail(receiptID){
             );
     xhttp.send(content);
     renderReceiptDetail();
-    
+
     for (i = 0; i < receiptList.length; i++) {
         if (receiptList[i].receipt_ID == receiptID) {
             var totalReceipt = receiptList[i].total;
             var username = receiptList[i].owner_name;
             var import_date = receiptList[i].import_date;
         }
-    }   
+    }
+
+    if (receiptList.length > 0) {
+        document.getElementById("receipt-info").style.display = "block";
+    }
+
     document.getElementById("STOREOWNERUSERNAME").innerHTML = "";
     document.getElementById("IMPORTDATE").innerHTML = "";
     document.getElementById("TOTALCOST").innerHTML = "";
@@ -89,10 +93,10 @@ function GetDetail(receiptID){
 
     var td_username = document.createElement("span");
     td_username.innerHTML = username;
-    
+
     var td_date = document.createElement("span");
     td_date.innerHTML = import_date;
-    
+
     document.getElementById("TOTALCOST").appendChild(td_totalcost);
     document.getElementById("STOREOWNERUSERNAME").appendChild(td_username);
     document.getElementById("IMPORTDATE").appendChild(td_date);
@@ -133,6 +137,6 @@ function renderReceiptDetail() {
 
         document.getElementById("receiptDetailContent").appendChild(tr);
     }
-    
+
 }
 
