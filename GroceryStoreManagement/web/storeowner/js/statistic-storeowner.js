@@ -45,11 +45,11 @@ function renderProductStatistic(productStatistic) {
                 }, {
                     "orderable": false,
                     "targets": 0
-                }, 
+                },
                 {
                     "searchable": false,
                     "targets": [0, 2, 3]
-                },{
+                }, {
                     "targets": "_all",
                     "className": "text-gray-900"
                 }],
@@ -121,13 +121,13 @@ function renderCustomerStatistic(CustomerStatistic) {
                 {
                     "targets": [1],
                     "className": "text-gray-900 dt-body-left"
-                },{
+                }, {
                     "orderable": false,
                     "targets": [0, 2]
                 }, {
                     "searchable": false,
                     "targets": [0, 3, 4]
-                },{
+                }, {
                     "targets": "_all",
                     "className": "text-gray-900"
                 }],
@@ -179,9 +179,9 @@ function showFinancialStatistic() {
 function renderFinancialStatistic(financialStatistic) {
     document.getElementById("bill-count").innerHTML = financialStatistic.countBill;
     document.getElementById("receipt-count").innerHTML = financialStatistic.countReceipt;
-    document.getElementById("sum-revenue").innerHTML = formatNumber(financialStatistic.sumRevenue);
-    document.getElementById("sum-cost").innerHTML = formatNumber(financialStatistic.sumCost);
-    document.getElementById("sum-profit").innerHTML = formatNumber(financialStatistic.sumProfit);
+    document.getElementById("sum-revenue").innerHTML = eVietnam(financialStatistic.sumRevenue);
+    document.getElementById("sum-cost").innerHTML = eVietnam(financialStatistic.sumCost);
+    document.getElementById("sum-profit").innerHTML = eVietnam(financialStatistic.sumProfit);
     document.getElementById("financial-stat-area").style.display = "block";
 }
 
@@ -234,9 +234,7 @@ function drawCurveTypes(chartData) {
             textStyle: {
                 fontSize: 12
             },
-            viewWindow: {
-                min: 0
-            }
+            viewWindowMode: 'pretty'
         },
         legend: {
             position: 'right',
@@ -248,5 +246,22 @@ function drawCurveTypes(chartData) {
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
+    setTimeout(centerChartTitle,10);
 }
 
+
+function eVietnam(num) {
+    return num.toLocaleString('vi', {style: 'currency', currency: 'VND'});
+}
+
+function centerChartTitle() {
+    var width = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+    console.log(document.getElementById("perfect-scrollbar").clientWidth + " " + document.getElementById("perfect-scrollbar").offsetWidth);
+    var sideBarWidth = document.getElementById("perfect-scrollbar").offsetWidth || document.getElementById("perfect-scrollbar").clientWidth;
+    var chartTitle = document.querySelector('#chart_div > div > div:nth-child(1) > div > svg > g:nth-child(3) > text');
+    var centerXAxis = width / 2 - chartTitle.innerHTML.length - sideBarWidth - 110;
+    console.log(centerXAxis);
+    chartTitle.setAttribute("x", centerXAxis);
+}

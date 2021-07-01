@@ -66,8 +66,8 @@ function renderProductStatistic(productStatistic) {
         
         li.setAttribute("class", "list-group-item");
         container.setAttribute("class", "d-flex justify-content-between");
-        name.setAttribute("class", "my-auto w-80");
-        key.setAttribute("class", "my-auto w-20 text-right");
+        name.setAttribute("class", "my-auto w-75");
+        key.setAttribute("class", "my-auto w-25 text-right");
         
         name.innerHTML = (i + 1) + ". " + productStatistic[i].productName;
         key.innerHTML = productStatistic[i].quantity;
@@ -105,8 +105,8 @@ function renderCustomerStatistic(CustomerStatistic) {
         
         li.setAttribute("class", "list-group-item");
         container.setAttribute("class", "d-flex justify-content-between");
-        name.setAttribute("class", "my-auto w-65");
-        key.setAttribute("class", "my-auto w-35 text-right");
+        name.setAttribute("class", "my-auto w-75");
+        key.setAttribute("class", "my-auto w-25 text-right");
         
         name.innerHTML = (i + 1) + ". " + CustomerStatistic[i].customerName;
         key.innerHTML = formatNumber(CustomerStatistic[i].total) + "đ";
@@ -117,6 +117,3 @@ function renderCustomerStatistic(CustomerStatistic) {
         ul.appendChild(li);
     }
 }
-
-
-

@@ -29,17 +29,15 @@
             body {
                 color: #000 !important;
             }
+            table {
+                color: #000 !important;
+            }
             #content .nav-item {
                 opacity: 1;
             }
             #content .nav-item:hover {
                 background: #e4e4e4 !important;
             }
-
-            /*            #Product-btn,
-                        #Product-btn:focus {
-                            background: #007bff !important;
-                        }*/
         </style>
     </head>
 
@@ -117,11 +115,11 @@
                                                 </div>
                                             </div>
                                             <div class="mr-2 d-flex">
-                                            <h6 class="font-weight-bold text-primary my-auto">&nbsp; Đến &nbsp;</h6>
-                                            <div class="form-group d-flex my-auto">
-                                                <input class="form-control datetime-date-to" type="datetime-local"
-                                                       id="date-to-product">
-                                            </div>
+                                                <h6 class="font-weight-bold text-primary my-auto">&nbsp; Đến &nbsp;</h6>
+                                                <div class="form-group d-flex my-auto">
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                           id="date-to-product">
+                                                </div>
                                             </div>
                                             <input type="button" onclick="showProductStatistic()"
                                                    class="btn btn-primary"
@@ -205,18 +203,18 @@
                                     <div class="card-header">
                                         <div class="row d-flex justify-content-start p-2">
                                             <div class="mr-2 d-flex">
-                                            <h6 class="font-weight-bold text-primary my-auto">Từ &nbsp;</h6>
-                                            <div class="form-group d-flex my-auto">                                   
-                                                <input class="form-control month-date-from" type="month"
-                                                       id="date-from-financial">
-                                            </div>
+                                                <h6 class="font-weight-bold text-primary my-auto">Từ &nbsp;</h6>
+                                                <div class="form-group d-flex my-auto">                                   
+                                                    <input class="form-control month-date-from" type="month"
+                                                           id="date-from-financial">
+                                                </div>
                                             </div>
                                             <div class="mr-2 d-flex">
-                                            <h6 class="font-weight-bold text-primary my-auto">&nbsp; Đến &nbsp;</h6>
-                                            <div class="form-group d-flex my-auto">
-                                                <input class="form-control month-date-to" type="month"
-                                                       id="date-to-financial">
-                                            </div>
+                                                <h6 class="font-weight-bold text-primary my-auto">&nbsp; Đến &nbsp;</h6>
+                                                <div class="form-group d-flex my-auto">
+                                                    <input class="form-control month-date-to" type="month"
+                                                           id="date-to-financial">
+                                                </div>
                                             </div>
                                             <input type="button" onclick="showFinancialStatistic()"
                                                    class="btn btn-primary"
@@ -225,14 +223,46 @@
                                     </div>
                                     <!-- Table Content -->
                                     <div class="card-body" style="display:none" id="financial-stat-area">
-                                            <div class="text-center m-0 pt-3 ml-2">
-                                            <label for="bill-count">Số đơn đã bán:</label>&nbsp;<span id="bill-count"></span><br>
-                                            <label for="receipt-count">Số đơn đã nhập:</label>&nbsp;<span id="receipt-count"></span><br>
-                                            <label for="sum-cost">Chi tiêu:</label>&nbsp;<span id="sum-cost"></span><br>
-                                            <label for="sum-revenue">Doanh thu:</label>&nbsp;<span id="sum-revenue"></span><br>
-                                            <label for="sum-profit">Lợi nhuận:</label>&nbsp;<span id="sum-profit"></span><br>
+                                        <div class="w-25 mx-auto" style="min-width: 300px;">
+                                            <table class="table table-sm">
+                                                <!--                                                <thead>
+                                                                                                    <tr>
+                                                                                                        <th scope="col"></th>
+                                                                                                         <th scope="col"></th>
+                                                                                                    </tr>
+                                                                                                </thead>-->
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Số đơn đã bán:</th>
+                                                        <td class="text-right"><span id="bill-count"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Số đơn đã nhập:</th>
+                                                        <td class="text-right"><span id="receipt-count"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Tổng giá vốn:</th>
+                                                        <td class="text-right"><span id="sum-cost"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Doanh thu:</th>
+                                                        <td class="text-right" style="color: #3366cc;"><span id="sum-revenue"></span></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Lợi nhuận:</th>
+                                                        <td class="text-right" style="color: #dc3912;"><span id="sum-profit"></span></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         </div>
-                                        <div id="chart_div"></div>
+                                        <!--                                        <div class="text-center m-0 pt-3 ml-2">
+                                                                                    <label for="bill-count">Số đơn đã bán:</label>&nbsp;<br>
+                                                                                    <label for="receipt-count"></label>&nbsp;<br>
+                                                                                    <label for="sum-cost"></label>&nbsp;<br>
+                                                                                    <label for="sum-revenue"></label>&nbsp;<span id="sum-revenue"></span><br>
+                                                                                    <label for="sum-profit"></label>&nbsp;<span id="sum-revenue"></span><br>
+                                                                                </div>-->
+                                        <div id="chart_div" style="min-height: 300px;"></div>
                                     </div>
                                     <!--/ End of Table Content -->
                                 </div>
@@ -274,6 +304,20 @@
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/statistic-storeowner.js"></script>
+        <script>
+//                                                window.onload = setTimeout(centerChartTitle, 200);
+//
+//                                                function centerChartTitle() {
+//                                                    var width = window.innerWidth
+//                                                            || document.documentElement.clientWidth
+//                                                            || document.body.clientWidth;
+//                                                    console.log(document.getElementById("perfect-scrollbar").clientWidth + " " + document.getElementById("perfect-scrollbar").offsetWidth);
+//                                                    var sideBarWidth = document.getElementById("perfect-scrollbar").offsetWidth || document.getElementById("perfect-scrollbar").clientWidth;
+//                                                    var chartTitle = document.querySelector('#chart_div > div > div:nth-child(1) > div > svg > g:nth-child(3) > text');
+//                                                    var centerXAxis = width / 2 - chartTitle.innerHTML.length - sideBarWidth;
+//                                                    chartTitle.setAttribute("x", centerXAxis);
+//                                                };
+        </script>
     </body>
 
 </html>

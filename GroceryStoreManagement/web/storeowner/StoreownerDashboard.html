@@ -40,7 +40,9 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
             .overflow-text p,
             h4,
             h5, 
-            .card-heading p {
+            .card-heading p,
+            #pending-list-on-dashboard span,
+            #pending-list-on-dashboard button {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -319,7 +321,6 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
             });
             //        ------------------------------------------------------------
             function PageLoad() {
-                printNoosItems();
                 PrintTop10Customer();
                 PrintTop10Product();
                 PrintSummary();

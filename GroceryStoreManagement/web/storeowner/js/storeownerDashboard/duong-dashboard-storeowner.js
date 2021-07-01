@@ -19,6 +19,7 @@ function renderPendingList(data) {
             var itemContent = document.createElement("div");
             itemContent.setAttribute("class", "d-flex justify-content-between");
                 var itemName = document.createElement("span");
+                itemName.setAttribute("class", "mr-2");
                 itemName.innerHTML = data[i].product_name;
                 
                 var btGroup = document.createElement("div");
