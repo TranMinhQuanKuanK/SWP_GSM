@@ -45,14 +45,12 @@ function renderPendingList(data) {
         td_quantity.innerHTML = data[i].product_quantity;
 
         var td_button = document.createElement("td");
-        var Add_bt = document.createElement("input");
-        Add_bt.setAttribute("type", "button");
-        Add_bt.setAttribute("value", "Add to Receipt");
+        var Add_bt = document.createElement("a");
+        Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-import-goods'></i>";
         Add_bt.setAttribute("onclick", "addToReceipt(" + data[i].product_ID + ")");
 
-        var Ignore_bt = document.createElement("input");
-        Ignore_bt.setAttribute("type", "button");
-        Ignore_bt.setAttribute("value", "Ignore");
+        var Ignore_bt = document.createElement("a");
+        Ignore_bt.innerHTML = "<i class='fas fa-minus-circle btn-import-goods ml-3'></i>";
         Ignore_bt.setAttribute("onclick", "changeStatusInPendingList(" + data[i].product_ID + ")");
 
         td_button.appendChild(Add_bt);
@@ -121,7 +119,8 @@ function renderReceiptDetail() {
 
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
-        input_quantity.setAttribute("class", "text-right float-right w-50");
+        input_quantity.style.width = "80%";
+        input_quantity.setAttribute("class", "text-right float-right");
         input_quantity.setAttribute("id", "quantityOf" + receiptItems[i].product.product_ID);
         input_quantity.setAttribute("type", "number");
         input_quantity.setAttribute("value", receiptItems[i].quantity);
@@ -139,9 +138,8 @@ function renderReceiptDetail() {
         td_cost.setAttribute("class", "text-right");
 
         var td_button = document.createElement("td");
-        var Remove_bt = document.createElement("input");
-        Remove_bt.setAttribute("type", "button");
-        Remove_bt.setAttribute("value", "Remove");
+        var Remove_bt = document.createElement("a");
+        Remove_bt.innerHTML = "<i class='fas fa-trash-alt btn-import-goods'></i>";
         Remove_bt.setAttribute("onclick", "removeFromReceipt(" + receiptItems[i].product.product_ID + ")");
         td_button.appendChild(Remove_bt);
 

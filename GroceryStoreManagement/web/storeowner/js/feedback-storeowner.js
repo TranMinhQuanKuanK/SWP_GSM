@@ -64,6 +64,7 @@ function processAllFeedback(data){
 
         count += 1;
         cell1.innerHTML = count;
+        cell1.style.textAlign = "right";
         cell2.innerHTML = data[i].feedback_date;
         cell3.innerHTML = data[i].feedback_content;
         cell4.innerHTML = data[i].account.name;
@@ -77,7 +78,7 @@ function processAllFeedback(data){
         }
     }
     
-    document.getElementById("seen-feedback-number").innerHTML="(" + seen_feedback + " PHẢN HỒI CHƯA ĐỌC)";
+    document.getElementById("seen-feedback-number").innerHTML="( " + seen_feedback + " phản hồi chưa đọc )";
 }
     
 function GetUnSeenFeedbackList(){
@@ -135,13 +136,14 @@ function processUnSeenFeedback(data){
 
         count += 1;
         cell1.innerHTML = count;
+        cell1.style.textAlign = "right";
         cell2.innerHTML = data[i].feedback_date;
         cell3.innerHTML = data[i].feedback_content;
         cell4.innerHTML = data[i].account.name;
         cell5.innerHTML = '<a class="btn-mark-as-read" onclick="GetUnSeenFeedbackListFromButton(this)" data-feedbackID='+ data[i].feedback_ID +'><i class="fas fa-check-circle"></i></a>';
     }
     
-    document.getElementById("seen-feedback-number").innerHTML="(" + seen_feedback + " PHẢN HỒI CHƯA ĐỌC)";
+    document.getElementById("seen-feedback-number").innerHTML="( " + seen_feedback + " phản hồi chưa đọc )";
 }
 
 
