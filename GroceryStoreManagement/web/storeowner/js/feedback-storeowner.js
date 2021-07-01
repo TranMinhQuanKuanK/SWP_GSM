@@ -12,8 +12,7 @@ function GetAllFeedbackList(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
-            console.log(this.responseText);
-            var feedbackObject = JSON.parse(this.responseText);
+            let feedbackObject = JSON.parse(this.responseText);
             processAllFeedback(feedbackObject);
         }
     };
@@ -26,18 +25,18 @@ function GetAllFeedbackList(){
 function GetAllFeedbackListFromButton(button){
     var xhttp = new XMLHttpRequest();
     var feedback_ID = button.getAttribute("data-feedbackID");
+    var url = "";
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
-            console.log(this.responseText);
-            var feedbackObject = JSON.parse(this.responseText);
+            let feedbackObject = JSON.parse(this.responseText);
             processAllFeedback(feedbackObject);
         }
     };
     
     if (feedback_ID == null){
-        var url = "GetFeedbackList";
+        url = "GetFeedbackList";
     } else {
-        var url = "GetFeedbackList?feedback_ID=" + feedback_ID;
+        url = "GetFeedbackList?feedback_ID=" + feedback_ID;
     }
     
     xhttp.open("GET",url, true);
@@ -55,12 +54,12 @@ function processAllFeedback(data){
     var count = 0;
     var seen_feedback = data.length;
     for (i = 0; i < data.length; i++) {
-        var row = feedbackTable.insertRow(-1);//append thay vì insert đúng vào vị trí trong index
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
+        let row = feedbackTable.insertRow(-1);//append thay vì insert đúng vào vị trí trong index
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
 
         count += 1;
         cell1.innerHTML = count;
@@ -78,15 +77,14 @@ function processAllFeedback(data){
         }
     }
     
-    document.getElementById("seen-feedback-number").innerHTML="( " + seen_feedback + " phản hồi chưa đọc )";
+    document.getElementById("seen-feedback-number").innerHTML = "( " + seen_feedback + " phản hồi chưa đọc )";
 }
     
 function GetUnSeenFeedbackList(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
-            console.log(this.responseText);
-            var feedbackObject = JSON.parse(this.responseText);
+            let feedbackObject = JSON.parse(this.responseText);
             processUnSeenFeedback(feedbackObject);
         }
     };
@@ -98,18 +96,18 @@ function GetUnSeenFeedbackList(){
 function GetUnSeenFeedbackListFromButton(button){
     var xhttp = new XMLHttpRequest();
     var feedback_ID = button.getAttribute("data-feedbackID");
+    var url = "";
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
-            console.log(this.responseText);
-            var feedbackObject = JSON.parse(this.responseText);
+            let feedbackObject = JSON.parse(this.responseText);
             processUnSeenFeedback(feedbackObject);
         }
     };
     
     if (feedback_ID == null){
-        var url = "UnSeenFeedback";
+        url = "UnSeenFeedback";
     } else {
-        var url = "UnSeenFeedback?feedback_ID=" + feedback_ID;
+        url = "UnSeenFeedback?feedback_ID=" + feedback_ID;
     }
     
     xhttp.open("GET",url, true);
@@ -127,12 +125,12 @@ function processUnSeenFeedback(data){
     var count = 0;
     var seen_feedback = data.length;
     for (i = 0; i < data.length; i++) {
-        var row = feedbackTable.insertRow(-1);//append thay vì insert đúng vào vị trí trong index
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
+        let row = feedbackTable.insertRow(-1);//append thay vì insert đúng vào vị trí trong index
+        let cell1 = row.insertCell(0);
+        let cell2 = row.insertCell(1);
+        let cell3 = row.insertCell(2);
+        let cell4 = row.insertCell(3);
+        let cell5 = row.insertCell(4);
 
         count += 1;
         cell1.innerHTML = count;
@@ -143,14 +141,5 @@ function processUnSeenFeedback(data){
         cell5.innerHTML = '<a class="btn-mark-as-read" onclick="GetUnSeenFeedbackListFromButton(this)" data-feedbackID='+ data[i].feedback_ID +'><i class="fas fa-check-circle"></i></a>';
     }
     
-    document.getElementById("seen-feedback-number").innerHTML="( " + seen_feedback + " phản hồi chưa đọc )";
+    document.getElementById("seen-feedback-number").innerHTML = "( " + seen_feedback + " phản hồi chưa đọc )";
 }
-
-
-
-
-
-
-
-
-

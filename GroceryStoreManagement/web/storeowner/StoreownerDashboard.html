@@ -50,6 +50,16 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                 white-space: normal;
                 overflow: auto;
             }
+            
+            #feedback-section button {
+                color: #1ac88a;
+                opacity: 0.9;
+            }
+            #feedback-section button:hover, 
+            #feedback-section button:focus {
+                color: #38ac2e;
+                opacity: 1;
+            }
 
             @media (max-width: 1300px) {
                 .card-heading {
@@ -236,30 +246,6 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                     </div>
                                     <div class="overflow-auto">
                                         <ul class="list-group overflow-text" id="feedback-section">
-                                            <li class="list-group-item">
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="my-auto w-80">
-                                                        Ông khách aBc có hành vi XyZ với nhân viên !@#
-                                                    </p>
-                                                    <div class="w-20 text-right">
-                                                        <button type="button" class="btn btn-sm">
-                                                            <i class="fas fa-check-circle fa-2x text-gray-600"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li class="list-group-item">
-                                                <div class="d-flex justify-content-between">
-                                                    <p class="my-auto w-80">
-                                                        Ông khách aBc có hành vi XyZ với nhân viên !@#
-                                                    </p>
-                                                    <div class="w-20 text-right">
-                                                        <button type="button" class="btn btn-sm">
-                                                            <i class="fas fa-check-circle fa-2x text-gray-600"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -280,22 +266,23 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
         <!--Script for Pending List-->
         <script src="/GroceryStoreManagement/storeowner/js/storeownerDashboard/duong-dashboard-storeowner.js"></script>
         <!--Script for Statistics-->
-        <script src="/GroceryStoreManagement/storeowner/js/storeownerDashboard/quoc-dashboard-storeowner.js"></script>
-
-
+        <script src="/GroceryStoreManagement/storeowner/js/quoc-dashboard-storeowner.js"></script>
+        <!--Script for Feedback-->
+        <script src="/GroceryStoreManagement/storeowner/js/hung-dashboard-storeowner.js"></script>
+        
         <!--    insert main script file here-->
         <script>
             $.get("Sidebar", function (data) {
                 $("#sidebar-placeholder").replaceWith(data);
             });
 
-            $("#feedback-section button").find("i").on("mouseenter", function () {
-                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-900");
-            });
-
-            $("#feedback-section button").find("i").on("mouseout", function () {
-                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
-            });
+//            $("#feedback-section button").find("i").on("mouseenter", function () {
+//                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-900");
+//            });
+//
+//            $("#feedback-section button").find("i").on("mouseout", function () {
+//                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
+//            });
             //        ------------------------------------------------------------
             function PageLoad() {
                 PrintTop10Customer();
