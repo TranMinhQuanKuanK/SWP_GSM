@@ -1,113 +1,119 @@
 * {
-  font-family: "Nunito", sans-serif;
+    font-family: "Nunito", sans-serif;
 }
 
 h5 {
-  margin: auto 0;
+    margin: auto 0;
 }
 
 a,
 a:hover,
 a:focus {
-  text-decoration: none;
-  color: #000;
+    text-decoration: none;
+    color: #000;
 }
 /* =======================
         LAYOUT
     ====================
- */
+*/
 
 .heading {
-  padding: 1vmin;
+    padding: 1vmin;
 }
 
 .content-title {
-  height: 70px;
+    height: 70px;
 }
 
 .content-title th {
-  background-color: #fff;
-  position: sticky;
-  top: 0;
+    background-color: #fff;
+    position: sticky;
+    top: 0;
 }
 
 /* TABLE CATEGORY LIST */
 
 #category-list td:hover,
 td:focus {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .table-category-list {
-  min-width: 110px;
+    min-width: 110px;
 }
 
 /* TABLE PRODUCT LIST */
 th.product-list-name {
-  width: 59%;
+    width: 59%;
 }
 
 th.product-list-price {
-  width: 40%;
+    width: 40%;
 }
 
 th.product-list-info {
-  width: 10%;
+    width: 10%;
 }
 
 .table-product-list {
-  min-width: 500px;
+    min-width: 500px;
 }
 
 .product-info {
-  min-width: 500px;
-  min-height: 150px;
+    min-width: 500px;
+    min-height: 150px;
 }
 
 /* TABLE BILL */
 
 th.bill-number {
-  width: 5%;
+    width: 5%;
 }
 
 th.bill-name {
-  width: 35%;
+    width: 35%;
 }
 
 th.bill-price {
-  width: 15%;
+    width: 15%;
 }
 
 th.bill-quantity {
-  width: 15%;
+    width: 15%;
 }
 
 .table-bill input {
-  max-width: 50px;
+    max-width: 50px;
 }
 
 th.bill-remove {
-  width: 10%;
+    width: 10%;
 }
 
 th.bill-total-price {
-  width: 20%;
+    width: 20%;
 }
 
 /* TABLE CHECKOUT */
 
 .table-checkout input {
-  max-width: 100px;
+    max-width: 100px;
 }
 
 .table-checkout td:first-child {
-  width: 65%;
+    width: 65%;
 }
 
 /* Custom colors for product list */
 .product-out-of-stock {
-  background: #ff0800e3 !important;
+    color: #fff;
+    background: #ff0800e3 !important;
 }
 .product-low-quantity {
-  background: #eb8582e3 !important;
+    background: #FFCC00 !important;
+}
+
+.royalblueBg {
+    color: #fff;
+    background-color: #4e73df !important;
 }
