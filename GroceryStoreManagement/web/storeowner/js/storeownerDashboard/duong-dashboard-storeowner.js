@@ -25,14 +25,16 @@ function renderPendingList(data) {
                 btGroup.setAttribute("class", "d-flex");
                 btGroup.setAttribute("role", "group");
                     var btAdd = document.createElement("button");
+                    btAdd.setAttribute("style", "height: 1.8rem");
                     btAdd.setAttribute("type", "button");
-                    btAdd.setAttribute("class", "btn btn-outline-danger btn-sm mr-2");
+                    btAdd.setAttribute("class", "btn btn-outline-danger btn-sm mr-2 my-auto");
                     btAdd.setAttribute("onclick", "addToReceipt(" + data[i].product_ID + ")");
                     btAdd.innerHTML = "Thêm";
                     
                     var btIgnore = document.createElement("button");
+                    btIgnore.setAttribute("style", "height: 1.8rem");
                     btIgnore.setAttribute("type", "button");
-                    btIgnore.setAttribute("class", "btn btn-outline-secondary btn-sm");
+                    btIgnore.setAttribute("class", "btn btn-outline-secondary btn-sm my-auto");
                     btIgnore.setAttribute("onclick", "changeStatusInPendingList(" + data[i].product_ID + ")");
                     btIgnore.innerHTML = "Bỏ qua";
                 btGroup.appendChild(btAdd);
