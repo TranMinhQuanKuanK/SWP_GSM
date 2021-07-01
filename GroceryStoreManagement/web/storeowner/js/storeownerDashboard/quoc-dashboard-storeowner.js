@@ -12,7 +12,7 @@ window.onload = function () {
     dateTo = document.getElementById("date-to").value;
 
     //Get first day of month
-    dateFrom = dateTo.substring(0, 8) + "01" + dateTo.substring(10);
+    dateFrom = dateTo.substring(0, 8) + "01 00:00:00";
 
     showFinancialStatistic();
     showProductStatistic();
