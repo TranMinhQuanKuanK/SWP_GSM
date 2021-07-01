@@ -31,7 +31,7 @@ body {
   text-align: center;
   z-index:0;
   white-space:nowrap;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 .login-h1{
   font-weight: bold;
@@ -84,7 +84,8 @@ body {
   width: 100%;
   padding: 15px 10px;
   border: 0;
-  background-color: #7c7c77;
+  background-color: #4e73df;
+  opacity:0.9;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   cursor: pointer;
@@ -93,6 +94,7 @@ body {
 
 .login-submit:hover{
   box-shadow: inset 0 0 0 1px #001e76, 0 0 3px 1px #001962;
+  opacity: 1;
 }
 
 /*Default display: none; if error display flex*/
