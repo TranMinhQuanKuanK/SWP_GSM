@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Import Goods Page</title>
+        <title>Nhập hàng</title>
 
         <!-- Custom fonts for this template-->
         <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -73,80 +73,12 @@
                                         <h3 class="m-0 font-weight-bold text-primary header-center">RECEIPT</h3>
                                     </div>
 
-                                    <div class="card-body mt-1">
-                                        <div class="ml-2 d-inline-block" style="width:55%;">
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Tên khách
-                                                        hàng: &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:55%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="customer-name"></span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Số điện
-                                                        thoại: &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:55%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="customer-phone"></span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Ngày:
-                                                        &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:55%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="buy-date"></span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex">Thu ngân:
-                                                        &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:55%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="cashier-name"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ml-4 d-inline-block" style="width:35%; position:absolute;">
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex" style="width:55%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex total-previous-bills">Tổng cộng: &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="pt-1 ml-1 total-previous-bills-price" id="asdf">13214560000</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex" style="width:55%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex total-previous-bills">Giảm giá: &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="asdf2">13214560000</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex " style="width:55%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex total-previous-bills">Tiền mặt:
-                                                        &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="fafaf">13214560000 </span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="justify-content-start d-flex " style="width:55%;">
-                                                    <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex total-previous-bills">Khách đưa:
-                                                        &nbsp;</span>
-                                                </div>
-                                                <div class="justify-content-start d-flex" style="width:45%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="asdf">13214560000 </span>
-                                                </div>
-                                            </div>
+                                    <div class="card-body">
+                                        <div class="row justify-content-start">
+                                            
+
+                                            <div id="TOTALCOST"></div>
+                                            
                                         </div>
 
                                         <!--Receipt Table Content-->
@@ -171,9 +103,9 @@
                                         <hr>
 
                                         <div class="d-flex justify-content-center">
-                                            <button class="btn btn-primary d-sm-inline-block shadow-sm">
-                                                <i class="fas fa-dolly-flatbed"></i>&nbsp;
-                                                <span class="">Import</span>
+                                            <button class="btn d-sm-inline-block shadow-sm bg-secondary" onclick="importReceipt()">
+                                                <i class="fas fa-dolly-flatbed darks icon-black"></i>&nbsp;
+                                                <span class="button-back-text">Import</span>
                                             </button>
                                         </div>
 

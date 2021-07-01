@@ -2,7 +2,6 @@ var preBillList;
 
 function showPreBillList() {
     var request = new XMLHttpRequest();
-    var error = document.getElementById("error-date-prebill");
 
     var url = "GetPreviousBillList";
     url += "?date-from=" + document.getElementById("date-from").value;
@@ -14,10 +13,8 @@ function showPreBillList() {
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         if (result.isError) {
-            error.innerHTML = result.dateError;
-            error.style.display = "block";
+            alert(result.dateError);
         } else {
-            error.style.display = "none";
             preBillList = result;
             renderPreBillList();
         }
@@ -56,7 +53,7 @@ function renderPreBillList() {
         cellNo.innerHTML = i + 1;
         cellCustName.innerHTML = preBillList[i].name;
         cellTotalCost.innerHTML = formatNumber(preBillList[i].totalCost);
-        cellBuyDate.innerHTML = preBillList[i].buyDate;
+        cellBuyDate.innerHTML = preBillList[i].buyDate.substring(0, 10);
     }
 }
 

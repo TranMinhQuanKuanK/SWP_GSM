@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Previous Bills Page</title>
+        <title>Hóa đơn khách hàng</title>
 
         <!-- Custom fonts for this template-->
         <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -64,32 +64,29 @@
                                     <div class="card-body">
                                         <div class="row justify-content-start" style="margin-bottom: -3rem;">
                                             <div class="col-6">
-                                                <h6 class="font-weight-bold text-primary ml-1 pt-2">Date from: &nbsp;
+                                                <h6 class="font-weight-bold text-primary ml-1 pt-2">Từ: &nbsp;
                                                 </h6>
                                                 <div class="form-group d-flex">
-                                                    <input class="form-control datetime-date-from" type="datetime-local"
+                                                    <input class="form-control date-date-from" type="date"
                                                            id="date-from" style="color:black;">
                                                 </div>
                                             </div>
                                             <div class="col-6">
-                                                <h6 class="font-weight-bold text-primary pt-2">To: &nbsp;
+                                                <h6 class="font-weight-bold text-primary pt-2">Đến: &nbsp;
                                                 </h6>
                                                 <div class="form-group d-flex">
-                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                    <input class="form-control date-date-to" type="date"
                                                            id="date-to" style="color:black;">
                                                 </div>
-                                                <p class="m-0 pt-3 ml-2" style="color:red" id="error-date-prebill"></p>
                                             </div>
 
-                                            <h6 class="font-weight-bold text-primary ml-3 d-flex row pt-2">Phone number
-                                                or name: &nbsp;</h6> 
+                                            <h6 class="font-weight-bold text-primary ml-3 d-flex row pt-2">Tên/SĐT: &nbsp;</h6> 
                                             <div class="form-group d-flex">
                                                 <div class="input-group col-10" style="margin-right: -1rem;">
                                                     <input type="text" class="form-control" id="search-value" style="color:black;">
                                                 </div>
-                                                &emsp; &emsp; &ensp;
                                                 <input type="button" onclick="showPreBillList()"
-                                                       class="btn btn-primary mb-5 d-flex"
+                                                       class="btn btn-primary mb-5 d-flex ml-3"
                                                        value="Search" />
                                             </div>
                                         </div>
@@ -108,7 +105,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <span id="not-found-label" style="display:none">Không tìm thấy hóa
+                                            <span class="pt-1 bill-info" id="not-found-label" style="display:none">Không tìm thấy hóa
                                                 đơn</span>
                                         </div>
                                         <!--/ End of Look up Table Content -->
@@ -219,7 +216,7 @@
                                                 </tbody>
                                             </table>
 
-                                            <span id="empty-bill-label" style="display:none">Hóa đơn không có sản phẩm
+                                            <span class="pt-1 bill-info" id="empty-bill-label" style="display:none">Hóa đơn không có sản phẩm
                                                 nào</span>
                                         </div>
                                     </div>

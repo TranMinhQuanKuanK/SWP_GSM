@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <title>Login Page</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" href="cashier/css/reset.css" />
     <link rel="stylesheet" href="cashier/css/login-page.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
@@ -31,9 +31,9 @@
         <!--/ End of input field-->
 
         <!--Error field-->
-        <div class="error-field" style="display:none;" id='ErrorMessage'>
+        <div class="error-field" style='display:none;' id='ErrorMessageDiv'>
             <i class="fa fa-exclamation-triangle error-icon"></i>
-            <p class="error-message" onfocus="this.blur()" id="ErrorMessage"></p>
+            <p class="error-message" onfocus="this.blur()"  id='ErrorMessage'></p>
         </div>
         <!--/ End of error field-->
 
@@ -65,7 +65,7 @@
         function processLoginResponse(data) {
             if (data.has_Error) {
                 document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
-                document.getElementById("ErrorMessage").setAttribute("style", "display:true");
+                document.getElementById("ErrorMessageDiv").setAttribute("style", "display:true");
             } else {
                 //window.location.href = "TestSuccessLogin.html";
 
