@@ -3,7 +3,6 @@ window.onload = getPendingList();
 function getPendingList() {
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
-        console.log(this.responseText);
         var pendingList = JSON.parse(this.responseText);
         renderPendingList(pendingList);
     };
