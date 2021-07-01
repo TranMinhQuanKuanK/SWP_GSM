@@ -18,8 +18,8 @@ function renderPendingList(data) {
         itemRow.setAttribute("class", "list-group-item");
             var itemContent = document.createElement("div");
             itemContent.setAttribute("class", "d-flex justify-content-between");
-                var itemName = document.createElement("span");
-                itemName.setAttribute("class", "mr-2");
+                var itemName = document.createElement("p");
+                itemName.setAttribute("class", "mr-2 my-auto w-57");
                 itemName.innerHTML = data[i].product_name;
                 
                 var btGroup = document.createElement("div");
