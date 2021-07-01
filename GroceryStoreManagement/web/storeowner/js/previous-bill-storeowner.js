@@ -112,8 +112,10 @@ function renderPreBillDetailList(billID) {
     var cellTotalCostLabel = row.insertCell(3);
     var cellTotalCost = row.insertCell(4);
     cellTotalCostLabel.innerHTML = "Tổng cộng";
+    cellTotalCostLabel.className = "total-previous-bills";
     cellTotalCost.innerHTML = formatNumber(totalCost);
-
+    cellTotalCost.className = "total-previous-bills-price";
+    
     var row = table.insertRow(-1);
     row.insertCell(0);
     row.insertCell(1);

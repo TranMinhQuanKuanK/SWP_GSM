@@ -11304,6 +11304,7 @@ html {
 }
 
 .total-previous-bills, .total-previous-receipts {
+    font-weight: 700 !important;
     color: #ff0000 !important;
 }
 
@@ -11336,20 +11337,8 @@ html {
     margin-right: 1rem;
 }
 
-.btn-create-account:hover{
-    opacity: 0.7;
-    color:white;
-}
-
 .btn-change-password{
-    color:white;
-    background-color: orange;
     margin-right:1rem;
-}
-
-.btn-change-password:hover{
-    opacity: 0.7;
-    color:white;
 }
 
 .btn-mark-as-read{
@@ -11374,6 +11363,7 @@ html {
     color: #454545;
     font-size: 1.8rem !important;
     margin-left: 1rem;
+    opacity: 0.75;
 }
 
 .btn-import-goods{
@@ -11382,7 +11372,7 @@ html {
 }
 
 .btn-inventory:hover {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .btn-import-goods:hover{
