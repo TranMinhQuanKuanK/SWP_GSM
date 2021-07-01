@@ -118,6 +118,12 @@ th.bill-total-price {
     background-color: #4e73df !important;
 }
 
+.royalblueBg:hover,
+.royalblueBg:focus{
+    color: #fff !important;
+    background-color: #395fcc !important;
+}
+
 
 form label.required:after
 {
