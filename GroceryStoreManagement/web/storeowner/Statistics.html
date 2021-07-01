@@ -18,13 +18,29 @@
             rel="stylesheet">
 
         <!--Custom styles for tables-->
-        <link href="/GroceryStoreManagement/storeowner/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>
-
+        <!--        <link href="/GroceryStoreManagement/storeowner/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css"/>-->
         <!-- Custom styles for this template-->
         <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/b-1.7.1/datatables.min.css"/>
 
         <!-- Link jquery for sidebar -->
         <script src="//code.jquery.com/jquery.min.js"></script>
+        <style>
+            body {
+                color: #000 !important;
+            }
+            #content .nav-item {
+                opacity: 1;
+            }
+            #content .nav-item:hover {
+                background: #e4e4e4 !important;
+            }
+
+            /*            #Product-btn,
+                        #Product-btn:focus {
+                            background: #007bff !important;
+                        }*/
+        </style>
     </head>
 
     <body onload="getTime(); showProductStatistic();" id="page-top">
@@ -61,25 +77,25 @@
                         <!-- Table Tab Row -->
                         <ul class="nav nav-tabs nav-fill align-items-center">
                             <li id="defaultOpen"
-                                class="nav-item border-left-primary justify-content-center shadow h-100 tablink"
+                                class="nav-item h-100"
                                 onclick="openPage('Product', this, 'Product-btn');">
-                                <button id="Product-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
-                                    <i class="fas fa-calendar fa-2x text-gray-500 my-2"></i>
-                                    <span class="statistics-tab-heading">Product Statistic</span>
+                                <button id="Product-btn" class="shadow rounded-top nav-link w-100 tablink-btn d-flex justify-content-between">
+                                    <span class="statistics-tab-heading my-auto" style="font-size: 1.5rem;">Product Statistics</span>
+                                    <i class="fas fa-calendar fa-2x my-auto"></i>
                                 </button>
                             </li>
-                            <li class="nav-item border-left-success shadow h-100 tablink"
+                            <li class="nav-item h-100"
                                 onclick="openPage('Customer', this, 'Customer-btn'); showCustomerStatistic();">
-                                <button id="Customer-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
-                                    <i class="fas fa-dollar-sign fa-2x text-gray-500 my-2"></i>
-                                    <span class="statistics-tab-heading">Customer Statistic</span>
+                                <button id="Customer-btn" class="shadow rounded-top nav-link  w-100 tablink-btn d-flex justify-content-between">
+                                    <span class="statistics-tab-heading my-auto" style="font-size: 1.5rem;">Customer Statistics</span>
+                                    <i class="fas fa-dollar-sign fa-2x my-auto"></i>
                                 </button>
                             </li>
-                            <li class="nav-item border-left-info shadow h-100 tablink"
+                            <li class="nav-item shadow h-100"
                                 onclick="openPage('Financial', this, 'Financial-btn'); showFinancialStatistic();">
-                                <button id="Financial-btn" class="nav-link rounded-0 border-top w-100 tablink-btn">
-                                    <i class="fas fa-clipboard-list fa-2x text-gray-500 my-2"></i>
-                                    <span class="statistics-tab-heading">Financial Statistic</span>
+                                <button id="Financial-btn" class="rounded-top nav-link w-100 tablink-btn d-flex justify-content-between">
+                                    <span class="statistics-tab-heading my-auto" style="font-size: 1.5rem;">Financial Statistics</span>
+                                    <i class="fas fa-clipboard-list fa-2x my-auto"></i>
                                 </button>
                             </li>
                         </ul>
@@ -91,21 +107,24 @@
                             <div class="col-12 tab-content" id="Product">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-2 align-items-center">
-                                        <div class="row justify-content-start pt-1">
-                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">Từ &nbsp;</h6>
-                                            <div class="form-group d-flex pt-2">                                   
-                                                <input class="form-control datetime-date-from" type="datetime-local"
-                                                       id="date-from-product">
+                                    <div class="card-header">
+                                        <div class="row d-flex justify-content-start p-2">
+                                            <div class="mr-2 d-flex">
+                                                <h6 class="font-weight-bold text-primary my-auto">Từ &nbsp;</h6>
+                                                <div class="form-group d-flex my-auto">                                   
+                                                    <input class="form-control datetime-date-from" type="datetime-local"
+                                                           id="date-from-product">
+                                                </div>
                                             </div>
-                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">&nbsp; Đến &nbsp;</h6>
-                                            <div class="form-group d-flex pt-2">
+                                            <div class="mr-2 d-flex">
+                                            <h6 class="font-weight-bold text-primary my-auto">&nbsp; Đến &nbsp;</h6>
+                                            <div class="form-group d-flex my-auto">
                                                 <input class="form-control datetime-date-to" type="datetime-local"
                                                        id="date-to-product">
                                             </div>
+                                            </div>
                                             <input type="button" onclick="showProductStatistic()"
-                                                   class="btn btn-outline-success btn-sm mt-2 mb-2 ml-4"
-                                                   style="height: calc(1.5em + 0.75rem + 2px);"
+                                                   class="btn btn-primary"
                                                    value="Hiển thị">
                                         </div>
                                     </div>
@@ -116,9 +135,9 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">Tên sản phẩm</th>
+                                                        <th scope="col" style="text-align: left;">Tên sản phẩm</th>
                                                         <th scope="col">Số lượng đã bán</th>
-                                                        <th scope="col">Tổng doanh thu</th>
+                                                        <th scope="col" style="text-align: right;">Tổng doanh thu</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -135,21 +154,24 @@
                             <div class="col-12 tab-content" id="Customer">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-2 align-items-center">
-                                        <div class="row justify-content-start pt-1">
-                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">Từ &nbsp;</h6>
-                                            <div class="form-group d-flex pt-2">                                   
-                                                <input class="form-control datetime-date-from" type="datetime-local"
-                                                       id="date-from-customer">
+                                    <div class="card-header">
+                                        <div class="row d-flex justify-content-start p-2">
+                                            <div class="mr-2 d-flex">
+                                                <h6 class="font-weight-bold text-primary my-auto">Từ &nbsp;</h6>
+                                                <div class="form-group d-flex my-auto">                                   
+                                                    <input class="form-control datetime-date-from " type="datetime-local"
+                                                           id="date-from-customer">
+                                                </div>
                                             </div>
-                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">&nbsp; Đến &nbsp;</h6>
-                                            <div class="form-group d-flex pt-2">
-                                                <input class="form-control datetime-date-to" type="datetime-local"
-                                                       id="date-to-customer">
+                                            <div class="mr-2 d-flex">
+                                                <h6 class="font-weight-bold text-primary my-auto">&nbsp; Đến &nbsp;</h6>
+                                                <div class="form-group d-flex my-auto">
+                                                    <input class="form-control datetime-date-to" type="datetime-local"
+                                                           id="date-to-customer">
+                                                </div>
                                             </div>
                                             <input type="button" onclick="showCustomerStatistic()"
-                                                   class="btn btn-outline-success btn-sm mt-2 mb-2 ml-4"
-                                                   style="height: calc(1.5em + 0.75rem + 2px);"
+                                                   class="btn btn-primary"
                                                    value="Hiển thị">
                                         </div>
                                     </div>
@@ -160,10 +182,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col">#</th>
-                                                        <th scope="col">Tên khách hàng</th>
+                                                        <th scope="col" style="text-align: left;">Tên khách hàng</th>
                                                         <th scope="col">Số điện thoại</th>
                                                         <th scope="col">Số đơn hàng đã mua</th>
-                                                        <th scope="col">Tổng chi tiêu</th>
+                                                        <th scope="col" style="text-align: right;">Tổng chi tiêu</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -180,32 +202,35 @@
                             <div class="col-12 tab-content" id="Financial">
                                 <div class="card shadow mb-4">
                                     <!-- Table Header -->
-                                    <div class="card-header py-2 align-items-center">
-                                        <div class="row justify-content-start pt-1">
-                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">Từ &nbsp;</h6>
-                                            <div class="form-group d-flex pt-2">                                   
+                                    <div class="card-header">
+                                        <div class="row d-flex justify-content-start p-2">
+                                            <div class="mr-2 d-flex">
+                                            <h6 class="font-weight-bold text-primary my-auto">Từ &nbsp;</h6>
+                                            <div class="form-group d-flex my-auto">                                   
                                                 <input class="form-control month-date-from" type="month"
                                                        id="date-from-financial">
                                             </div>
-                                            <h6 class="font-weight-bold text-primary ml-3 pt-3 d-flex">&nbsp; Đến &nbsp;</h6>
-                                            <div class="form-group d-flex pt-2">
+                                            </div>
+                                            <div class="mr-2 d-flex">
+                                            <h6 class="font-weight-bold text-primary my-auto">&nbsp; Đến &nbsp;</h6>
+                                            <div class="form-group d-flex my-auto">
                                                 <input class="form-control month-date-to" type="month"
                                                        id="date-to-financial">
                                             </div>
+                                            </div>
                                             <input type="button" onclick="showFinancialStatistic()"
-                                                   class="btn btn-outline-success btn-sm mt-2 mb-2 ml-4"
-                                                   style="height: calc(1.5em + 0.75rem + 2px);"
+                                                   class="btn btn-primary"
                                                    value="Hiển thị">
                                         </div>
                                     </div>
                                     <!-- Table Content -->
                                     <div class="card-body" style="display:none" id="financial-stat-area">
-                                        <div class="text-center small m-0 pt-3 ml-2">
-                                            <label>Số đơn đã bán:</label>&nbsp;<span id="bill-count"></span><br>
-                                            <label>Số đơn đã nhập:</label>&nbsp;<span id="receipt-count"></span><br>
-                                            <label>Chi tiêu:</label>&nbsp;<span id="sum-cost"></span><br>
-                                            <label>Doanh thu:</label>&nbsp;<span id="sum-revenue"></span><br>
-                                            <label>Lợi nhuận:</label>&nbsp;<span id="sum-profit"></span><br>
+                                            <div class="text-center m-0 pt-3 ml-2">
+                                            <label for="bill-count">Số đơn đã bán:</label>&nbsp;<span id="bill-count"></span><br>
+                                            <label for="receipt-count">Số đơn đã nhập:</label>&nbsp;<span id="receipt-count"></span><br>
+                                            <label for="sum-cost">Chi tiêu:</label>&nbsp;<span id="sum-cost"></span><br>
+                                            <label for="sum-revenue">Doanh thu:</label>&nbsp;<span id="sum-revenue"></span><br>
+                                            <label for="sum-profit">Lợi nhuận:</label>&nbsp;<span id="sum-profit"></span><br>
                                         </div>
                                         <div id="chart_div"></div>
                                     </div>
@@ -263,8 +288,8 @@
 
         <!-- Core plugin JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>
-
+        <!--        <script src="/GroceryStoreManagement/storeowner/vendor/datatables/jquery.dataTables.min.js"></script>-->
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.25/b-1.7.1/datatables.min.js"></script>
         <!-- Custom scripts for all pages-->
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
         <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
