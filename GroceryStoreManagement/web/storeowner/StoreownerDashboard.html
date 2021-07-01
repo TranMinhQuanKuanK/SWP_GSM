@@ -45,12 +45,12 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
-            
+
             .overflow-text li:hover p {
                 white-space: normal;
                 overflow: auto;
             }
-            
+
             #feedback-section button {
                 color: #1ac88a;
                 opacity: 0.9;
@@ -88,6 +88,24 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                 }
             }
         </style>
+        <!--favicon link-->
+        <link rel="apple-touch-icon" sizes="57x57" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/GroceryStoreManagement/storeowner/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/GroceryStoreManagement/storeowner/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/GroceryStoreManagement/storeowner/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/GroceryStoreManagement/storeowner/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/GroceryStoreManagement/storeowner/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
     </head>
 
     <body id="page-top" onload="PageLoad()">
@@ -299,12 +317,12 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
         <script src="/GroceryStoreManagement/storeowner/js/quoc-dashboard-storeowner.js"></script>
         <!--Script for Feedback-->
         <script src="/GroceryStoreManagement/storeowner/js/hung-dashboard-storeowner.js"></script>
-        
+
         <!--    insert main script file here-->
         <script>
-            $.get("Sidebar", function (data) {
-                $("#sidebar-placeholder").replaceWith(data);
-            });
+                                                $.get("Sidebar", function (data) {
+                                                    $("#sidebar-placeholder").replaceWith(data);
+                                                });
 
 //            $("#feedback-section button").find("i").on("mouseenter", function () {
 //                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-900");
@@ -313,14 +331,14 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
 //            $("#feedback-section button").find("i").on("mouseout", function () {
 //                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
 //            });
-            //        ------------------------------------------------------------
-            function PageLoad() {
-                printNoosItems();
-                PrintTop10Customer();
-                PrintTop10Product();
-                PrintSummary();
-                PrintFeedback();
-            }
+                                                //        ------------------------------------------------------------
+                                                function PageLoad() {
+                                                    printNoosItems();
+                                                    PrintTop10Customer();
+                                                    PrintTop10Product();
+                                                    PrintSummary();
+                                                    PrintFeedback();
+                                                }
         </script>
     </body>
 </html>
