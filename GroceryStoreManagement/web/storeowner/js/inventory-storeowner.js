@@ -9,7 +9,6 @@ window.onload = function () {
     };
     xhttp.open("GET", "GetCategoryList", false);
     xhttp.send();
-    
     getProduct();
 };
 
@@ -64,7 +63,6 @@ function getProduct() {
                     "&category_id=" + cat_ID;
         }
     }
-
     xhttp.open("GET", url, false);
     xhttp.send();
 }
