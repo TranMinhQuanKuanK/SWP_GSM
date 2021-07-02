@@ -8,7 +8,7 @@ const productList_element = document.getElementById("product-list"); //biến c�
 const pagination_element = document.getElementById("page-selection");
 var accountErrObj;
 var customerErrObj;
-
+var previewCash;
 function SearchForProduct(id) {
   for (i = 0; i < productList.length; i++) {
     if (productList[i].product_ID == id) return productList[i];
@@ -238,8 +238,9 @@ function printBill(billObject) {
   );
   document.getElementById("discount").innerHTML =
     "<del>" + formatNumber(discount) + "</del>";
-  document.getElementById("total-after-discount").innerHTML =
-    "<strong>" + formatNumber(total_cost_after_discount) + "</strong>";
+  document.getElementById("total-after-discount").innerHTML = formatNumber(
+    total_cost_after_discount
+  );
   //in ra tên customer
   renderCustomer();
 
@@ -249,13 +250,11 @@ function printBill(billObject) {
 
 function printPreviewBill(billObject) {
   //in tên và điểm
-  document.getElementById(
-    "bill-preview-customer-name"
-  ).innerHTML = document.getElementById("customer-name").innerHTML;
+  document.getElementById("bill-preview-customer-name").innerHTML =
+    document.getElementById("customer-name").innerHTML;
 
-  document.getElementById(
-    "bill-preview-customer-point"
-  ).innerHTML = document.getElementById("point-of-customer").innerHTML;
+  document.getElementById("bill-preview-customer-point").innerHTML =
+    document.getElementById("point-of-customer").innerHTML;
   //in bảng bill
   document.getElementById("bill-preview-area").innerHTML = "";
   for (i = 0; i < billObject.Bill_Detail.length; i++) {
@@ -292,22 +291,37 @@ function printPreviewBill(billObject) {
     document.getElementById("bill-preview-area").appendChild(tr);
   }
   //in phần thành tiền/giảm giá/tổng tiền/khách đưa:
-  document.getElementById(
-    "bill-preview-total"
-  ).innerHTML = document.getElementById("total").innerHTML;
+  document.getElementById("bill-preview-total").innerHTML =
+    document.getElementById("total").innerHTML;
 
-  document.getElementById(
-    "bill-preview-discount"
-  ).innerHTML = document.getElementById("discount").innerHTML;
+  document.getElementById("bill-preview-discount").innerHTML =
+    document.getElementById("discount").innerHTML;
 
-  document.getElementById(
-    "bill-preview-total-after-discount"
-  ).innerHTML = document.getElementById("total-after-discount").innerHTML;
+  document.getElementById("bill-preview-total-after-discount").innerHTML =
+    document.getElementById("total-after-discount").innerHTML;
 
   document.getElementById("bill-preview-cash").innerHTML =
     document.getElementById("cash").value == ""
       ? "...Chưa nhập..."
       : formatNumber(document.getElementById("cash").value);
+
+  var cash = parseInt(
+    document.getElementById("cash").value.split(".").join("")
+  );
+  var total = parseInt(
+    document
+      .getElementById("total-after-discount")
+      .innerHTML.split(".")
+      .join("")
+  );
+  document.getElementById("bill-preview-change").innerHTML =
+    document.getElementById("cash").value == ""
+      ? "...Chưa nhập..."
+      : formatNumber(
+          parseInt(cash) - parseInt(total) > 0
+            ? parseInt(cash) - parseInt(total)
+            : 0
+        );
   $("#bill-preview-modal").modal("show");
 }
 function display_Bill_ErrorMessage() {
@@ -503,8 +517,9 @@ function calculateDiscount() {
 
 function EditQuantityBill(product_id) {
   var xhttp = new XMLHttpRequest();
-  quantity = document.getElementById("quantity-for-product-" + product_id)
-    .value;
+  quantity = document.getElementById(
+    "quantity-for-product-" + product_id
+  ).value;
   xhttp.open(
     "GET",
     "EditQuantityBill?product_id=" + product_id + "&quantity=" + quantity,
@@ -635,12 +650,21 @@ function RegisterCustomer() {
     }
   }
 }
+function clearbill() {
+  var xhttp = new XMLHttpRequest();
 
+  xhttp.open("GET", "ClearBill", true);
+  xhttp.onload = function () {
+    getBill();
+    document.getElementById("cash").value = "";
+  };
+  xhttp.send();
+}
 function Checkout() {
   if (currentBill.total_cost == 0) {
-    alert("Chưa mua gì mà bấm thanh toán????? Bị khùng hả?");
+    alert("Không mua gì sao checkout????");
   } else {
-    var cash = document.getElementById("cash").value.replaceAll(".", "");
+    var cash = document.getElementById("cash").value.split(".").join("");
     var xhttp = new XMLHttpRequest();
 
     xhttp.open("GET", "Checkout?cash=" + cash, true);
@@ -775,37 +799,36 @@ function DisplayPagination() {
 
 // Format user input for currency
 $("#cash").on("input", function () {
-    /*
+  /*
      * These additional lines prevent the function from running when the user 
      makes a selection within the input
      or presses the arrow keys on the keyboard
      */
-    var selection = window.getSelection().toString();
-    if (selection !== '') {
-        return;
-    }
-    if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
-        return;
-    }
-    // End of additional checks
+  var selection = window.getSelection().toString();
+  if (selection !== "") {
+    return;
+  }
+  if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
+    return;
+  }
+  // End of additional checks
 
-    /*
+  /*
      *  Retrieve the value from the input.
      Sanitize the value using RegEx by removing unnecessary characters such as spaces, underscores, dashes, and letters.
      Deploy parseInt() function to make sure the value is an integer (a round number).
      Add the thousand separator with the eVietnam() function, then pass the sanitised value back to the input element.
      */
-    var input = $(this).val();
-    var input = input.replace(/[\D\s\._\-]+/g, "");
-    input = input ? parseInt(input, 10) : 0;
-    $(this).val(function () {
-        return (input === 0) ? "" : eVietnam(input);
-    });
+  var input = $(this).val();
+  var input = input.replace(/[\D\s\._\-]+/g, "");
+  input = input ? parseInt(input, 10) : 0;
+  $(this).val(function () {
+    return input === 0 ? "" : eVietnam(input);
+  });
 });
 
 function eVietnam(num) {
-    console.log(num.toLocaleString('vi'));
-    return num.toLocaleString('vi');
+  return num.toLocaleString("vi");
 }
 // DisplayProductList(
 //   productList,

@@ -103,6 +103,7 @@ function renderPreBillDetailList(billID) {
 
             cellNo.innerHTML = i + 1;
             cellProductName.innerHTML = billDetails[i].productName;
+            cellProductName.style.textAlign = "left";
             cellQuantity.innerHTML = billDetails[i].quantity;
             cellCost.innerHTML = formatNumber(billDetails[i].cost);
             cellTotal.innerHTML = formatNumber(billDetails[i].total);

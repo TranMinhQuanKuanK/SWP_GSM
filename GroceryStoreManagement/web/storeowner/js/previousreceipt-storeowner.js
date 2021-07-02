@@ -116,6 +116,7 @@ function renderReceiptDetail() {
 
         var td_name = document.createElement("td");
         td_name.innerHTML = receiptDetail[i].productName;
+        td_name.style.textAlign = "left";
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = receiptDetail[i].quantity;

@@ -40,9 +40,11 @@ function renderPendingList(data) {
 
         var td_name = document.createElement("td");
         td_name.innerHTML = data[i].product_name;
+        td_name.style.textAlign = "left";
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = data[i].product_quantity;
+        td_quantity.setAttribute("class", "text-right");
 
         var td_button = document.createElement("td");
         var Add_bt = document.createElement("a");
@@ -113,10 +115,12 @@ function renderReceiptDetail() {
         var th_index = document.createElement("th");
         th_index.setAttribute("scope", "row");
         th_index.innerHTML = index;
-
+        th_index.setAttribute("class", "text-right");
+        
         var td_name = document.createElement("td");
         td_name.innerHTML = receiptItems[i].product.name;
-
+        td_name.setAttribute("class", "text-left");
+        
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
         input_quantity.style.width = "80%";
