@@ -3,7 +3,6 @@ window.onload = getPendingList();
 function getPendingList() {
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
-        console.log(this.responseText);
         var pendingList = JSON.parse(this.responseText);
         renderPendingList(pendingList);
     };
@@ -18,21 +17,24 @@ function renderPendingList(data) {
         itemRow.setAttribute("class", "list-group-item");
             var itemContent = document.createElement("div");
             itemContent.setAttribute("class", "d-flex justify-content-between");
-                var itemName = document.createElement("span");
+                var itemName = document.createElement("p");
+                itemName.setAttribute("class", "mr-2 my-auto w-57");
                 itemName.innerHTML = data[i].product_name;
                 
                 var btGroup = document.createElement("div");
                 btGroup.setAttribute("class", "d-flex");
                 btGroup.setAttribute("role", "group");
                     var btAdd = document.createElement("button");
+                    btAdd.setAttribute("style", "height: 1.8rem");
                     btAdd.setAttribute("type", "button");
-                    btAdd.setAttribute("class", "btn btn-outline-danger btn-sm mr-2");
+                    btAdd.setAttribute("class", "btn btn-outline-danger btn-sm mr-2 my-auto");
                     btAdd.setAttribute("onclick", "addToReceipt(" + data[i].product_ID + ")");
                     btAdd.innerHTML = "Thêm";
                     
                     var btIgnore = document.createElement("button");
+                    btIgnore.setAttribute("style", "height: 1.8rem");
                     btIgnore.setAttribute("type", "button");
-                    btIgnore.setAttribute("class", "btn btn-outline-secondary btn-sm");
+                    btIgnore.setAttribute("class", "btn btn-outline-secondary btn-sm my-auto");
                     btIgnore.setAttribute("onclick", "changeStatusInPendingList(" + data[i].product_ID + ")");
                     btIgnore.innerHTML = "Bỏ qua";
                 btGroup.appendChild(btAdd);

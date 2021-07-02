@@ -67,14 +67,23 @@ function openPage(pageName, elmnt, pageBtn) {
     // Remove the background color of all previous active button
     tablinks = document.getElementsByClassName("tablink-btn");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].style.backgroundColor = "";
+        tablinks[i].style.backgroundColor = "#fff";
+        tablinks[i].style.opacity = 0.7;
+        tablinks[i].classList.add("border");
+        tablinks[i].classList.add("border-bottom-0");
+        tablinks[i].classList.add("border-primary");
+        tablinks[i].childNodes[1].style.color = "#4e73df";
+        tablinks[i].childNodes[3].style.color = "#4e73df";
     }
 
     // Show the specific tab content
     document.getElementById(pageName).style.display = "block";
-
+    
     // Add the specific color to the button used to open the tab content
-    document.getElementById(pageBtn).style.backgroundColor = "#FFDF6C";
+    document.getElementById(pageBtn).childNodes[1].style.color = "#fff";
+    document.getElementById(pageBtn).childNodes[3].style.color = "#fff";
+    document.getElementById(pageBtn).style.backgroundColor = "#4e73df";
+    document.getElementById(pageBtn).style.opacity = 1;
 }
 
 // Get the element with id="defaultOpen" and click on it

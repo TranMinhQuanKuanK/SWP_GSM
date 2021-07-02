@@ -33,14 +33,25 @@ function renderProductStatistic(productStatistic) {
                 }, {
                     data: 'quantity'
                 }, {
-                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', '')
+                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')
                 }],
             columnDefs: [{
+                    "targets": [3],
+                    "className": "text-gray-900 dt-body-right"
+                },
+                {
+                    "targets": [1],
+                    "className": "text-gray-900 dt-body-left"
+                }, {
                     "orderable": false,
                     "targets": 0
-                }, {
+                },
+                {
                     "searchable": false,
                     "targets": [0, 2, 3]
+                }, {
+                    "targets": "_all",
+                    "className": "text-gray-900"
                 }],
             order: [[1, 'asc']],
             language: {
@@ -101,14 +112,24 @@ function renderCustomerStatistic(CustomerStatistic) {
                 }, {
                     data: 'quantity'
                 }, {
-                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', '')
+                    data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')
                 }],
             columnDefs: [{
+                    "targets": [4],
+                    "className": "text-gray-900 dt-body-right"
+                },
+                {
+                    "targets": [1],
+                    "className": "text-gray-900 dt-body-left"
+                }, {
                     "orderable": false,
                     "targets": [0, 2]
                 }, {
                     "searchable": false,
                     "targets": [0, 3, 4]
+                }, {
+                    "targets": "_all",
+                    "className": "text-gray-900"
                 }],
             order: [[1, 'asc']],
             language: {
@@ -158,9 +179,9 @@ function showFinancialStatistic() {
 function renderFinancialStatistic(financialStatistic) {
     document.getElementById("bill-count").innerHTML = financialStatistic.countBill;
     document.getElementById("receipt-count").innerHTML = financialStatistic.countReceipt;
-    document.getElementById("sum-revenue").innerHTML = formatNumber(financialStatistic.sumRevenue);
-    document.getElementById("sum-cost").innerHTML = formatNumber(financialStatistic.sumCost);
-    document.getElementById("sum-profit").innerHTML = formatNumber(financialStatistic.sumProfit);
+    document.getElementById("sum-revenue").innerHTML = eVietnam(financialStatistic.sumRevenue);
+    document.getElementById("sum-cost").innerHTML = eVietnam(financialStatistic.sumCost);
+    document.getElementById("sum-profit").innerHTML = eVietnam(financialStatistic.sumProfit);
     document.getElementById("financial-stat-area").style.display = "block";
 }
 
@@ -186,14 +207,15 @@ function renderChart(chartData) {
 function drawCurveTypes(chartData) {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'X');
+    data.addColumn('number', 'Tổng giá vốn');
     data.addColumn('number', 'Doanh thu');
     data.addColumn('number', 'Lợi nhuận');
 
     var items = new Array(chartData.events.length);
 
     for (var i = 0; i < items.length; i++) {
-        items[i] = new Array(3);
-        items[i] = [chartData.events[i], chartData.revenue[i], chartData.profit[i]];
+        items[i] = new Array(4);
+        items[i] = [chartData.events[i], chartData.cost[i], chartData.revenue[i], chartData.profit[i]];
     }
 
     data.addRows(items);
@@ -203,7 +225,8 @@ function drawCurveTypes(chartData) {
                 + chartData.events[0] + ' - ' + chartData.events[chartData.events.length - 1]
                 + ' (đvt: VND)',
         fontName: 'Nunito',
-        fontSize: 16,
+        fontSize: 17,
+        height: 400,
         hAxis: {
             textStyle: {
                 fontSize: 12
@@ -213,19 +236,43 @@ function drawCurveTypes(chartData) {
             textStyle: {
                 fontSize: 12
             },
-            viewWindow: {
-                min: 0
-            }
+            viewWindowMode: 'pretty'
         },
         legend: {
             position: 'right',
             textStyle: {
                 fontSize: 12
             }
+        },
+        series: {
+            0: {
+                color: '#dc3912'
+            },
+            1: {
+                color: '#3366cc'
+            },
+            2: {
+                color: '#1cc88a'
+            }
         }
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
     chart.draw(data, options);
+    setTimeout(centerChartTitle, 10);
 }
 
+
+function eVietnam(num) {
+    return num.toLocaleString('vi', {style: 'currency', currency: 'VND'});
+}
+
+function centerChartTitle() {
+    var width = window.innerWidth
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+    var sideBarWidth = document.getElementById("perfect-scrollbar").offsetWidth || document.getElementById("perfect-scrollbar").clientWidth;
+    var chartTitle = document.querySelector('#chart_div > div > div:nth-child(1) > div > svg > g:nth-child(3) > text');
+    var centerXAxis = width / 2 - chartTitle.innerHTML.length - sideBarWidth - 110;
+    chartTitle.setAttribute("x", centerXAxis);
+}

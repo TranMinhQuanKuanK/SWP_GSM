@@ -36,15 +36,6 @@ function renderPreBillList() {
     for (i = 0; i < preBillList.length; i++) {
         var row = table.insertRow(-1);
 
-        var createClickHandler = function (i) {
-            return function () {
-                renderPreBillDetailList(preBillList[i].billID);
-            };
-        };
-
-        row.onclick = createClickHandler(i);
-        row.style = "cursor:pointer";
-
         var cellNo = row.insertCell(0);
         var cellCustName = row.insertCell(1);
         var cellTotalCost = row.insertCell(2);
@@ -54,6 +45,19 @@ function renderPreBillList() {
         cellCustName.innerHTML = preBillList[i].name;
         cellTotalCost.innerHTML = formatNumber(preBillList[i].totalCost);
         cellBuyDate.innerHTML = preBillList[i].buyDate.substring(0, 10);
+        
+        var createClickHandler = function (i, row) {
+            return function () {
+                for (var j = 0; j < table.rows.length; j++) {
+                    table.rows[j].classList.remove("active-row");
+                } 
+                row.className = "active-row";
+                renderPreBillDetailList(preBillList[i].billID);
+            };
+        };
+
+        row.onclick = createClickHandler(i, row);
+        row.style.cursor = "pointer";
     }
 }
 
@@ -112,8 +116,10 @@ function renderPreBillDetailList(billID) {
     var cellTotalCostLabel = row.insertCell(3);
     var cellTotalCost = row.insertCell(4);
     cellTotalCostLabel.innerHTML = "Tổng cộng";
+    cellTotalCostLabel.className = "total-previous-bills";
     cellTotalCost.innerHTML = formatNumber(totalCost);
-
+    cellTotalCost.className = "total-previous-bills-price";
+    
     var row = table.insertRow(-1);
     row.insertCell(0);
     row.insertCell(1);

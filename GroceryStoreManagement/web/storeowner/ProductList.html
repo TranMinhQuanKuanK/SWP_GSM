@@ -23,11 +23,40 @@
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.25/b-1.7.1/datatables.min.css"/>
 
         <style>
+            body {
+                color: #000;
+            }
+            input, select, input:disabled, select:disabled {
+                color: #000 !important;
+            }
+
+            form label.required:after
+            {
+                color: red;
+                content: " *";
+            }
             table.table-hover tbody tr:hover {
                 background-color: #4d73df;
                 color: #fff;
             }
         </style>
+        <link rel="apple-touch-icon" sizes="57x57" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/GroceryStoreManagement/storeowner/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/GroceryStoreManagement/storeowner/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/GroceryStoreManagement/storeowner/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/GroceryStoreManagement/storeowner/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/GroceryStoreManagement/storeowner/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
 
     </head>
 
@@ -117,9 +146,9 @@
                                                 <thead>
                                                     <tr id="list-header">
                                                         <th scope="col">STT</th>
-                                                        <th scope="col">Tên hàng</th>
-                                                        <th scope="col">Giá nhập</th>
-                                                        <th scope="col">Giá bán</th>
+                                                        <th scope="col" style="text-align: left;">Tên hàng</th>
+                                                        <th scope="col" style="text-align: right;">Giá nhập</th>
+                                                        <th scope="col" style="text-align: right;">Giá bán</th>
                                                         <th scope="col">Nhóm hàng</th>
                                                         <th scope="col">Đơn vị</th>
                                                         <th scope="col">Đang bán</th>
@@ -170,14 +199,14 @@
                         <form>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="edit-product-name" class="col-form-label">Tên:</label>
+                                    <label for="edit-product-name" class="col-form-label required">Tên:</label>
                                     <input type="text" class="form-control" id="add-product-name" required>
                                 </div>
                             </div>
                             <p class="text-danger d-none" id="add-product-name-warning"></p>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="edit-category-name" class="col-form-label">Nhóm:</label>
+                                    <label for="edit-category-name" class="col-form-label required">Nhóm:</label>
                                     <select class="form-control category-list-modal" id="add-category-name">
                                         <option value="" selected></option>
                                     </select>
@@ -190,7 +219,7 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="add-cost-price" class="col-form-label">Giá mua:</label>
+                                    <label for="add-cost-price" class="col-form-label required">Giá mua:</label>
                                     <div class="input-group">
                                         <input type="text" pattern="[0-9]*" class="form-control" id="add-cost-price" required>
                                         <div class="input-group-append">
@@ -199,7 +228,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="add-selling-price" class="col-form-label">Giá bán:</label>
+                                    <label for="add-selling-price" class="col-form-label required">Giá bán:</label>
                                     <div class="input-group">
                                         <input type="text" pattern="[0-9]*" class="form-control" id="add-selling-price" required>
                                         <div class="input-group-append">
@@ -260,14 +289,14 @@
                         <form>
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="edit-product-name" class="col-form-label">Tên:</label>
+                                    <label for="edit-product-name" class="col-form-label required">Tên:</label>
                                     <input type="text" class="form-control" id="edit-product-name" required disabled>
                                 </div>
                             </div>
                             <p class="text-danger d-none" id="edit-product-name-warning"></p>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="edit-category-name" class="col-form-label">Nhóm:</label>
+                                    <label for="edit-category-name" class="col-form-label required">Nhóm:</label>
                                     <select class="form-control category-list-modal" id="edit-category-name" disabled>
                                         <option value="" selected></option>
                                     </select>
@@ -280,7 +309,7 @@
 
                             <div class="form-row">
                                 <div class="form-group col-md-4">
-                                    <label for="edit-cost-price" class="col-form-label">Giá mua:</label>
+                                    <label for="edit-cost-price" class="col-form-label required">Giá mua:</label>
                                     <div class="input-group">
                                         <input type="text" pattern="[0-9]*" class="form-control" id="edit-cost-price" required disabled>
                                         <div class="input-group-append">
@@ -289,7 +318,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="edit-selling-price" class="col-form-label">Giá bán:</label>
+                                    <label for="edit-selling-price" class="col-form-label required">Giá bán:</label>
                                     <div class="input-group">
                                         <input type="text" pattern="[0-9]*" class="form-control" id="edit-selling-price" required disabled>
                                         <div class="input-group-append">

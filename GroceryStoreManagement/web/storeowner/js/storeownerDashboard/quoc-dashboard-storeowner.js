@@ -1,6 +1,9 @@
 var dateFrom, dateTo;
 
-window.onload = function () {
+window.onload = onloadFunction();
+
+function onloadFunction() {
+        console.log("SDFSDFSDFSDFSDFSDFSDFSDF?SF?SD?F?@$#?#??#");
     getTime();
 
     var labels = document.getElementsByClassName("statistics-info");
@@ -17,7 +20,7 @@ window.onload = function () {
     showFinancialStatistic();
     showProductStatistic();
     showCustomerStatistic();
-};
+}
 
 function showFinancialStatistic() {
     var request = new XMLHttpRequest();
@@ -117,6 +120,3 @@ function renderCustomerStatistic(CustomerStatistic) {
         ul.appendChild(li);
     }
 }
-
-
-

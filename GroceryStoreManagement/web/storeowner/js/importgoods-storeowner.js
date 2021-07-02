@@ -139,7 +139,7 @@ function renderReceiptDetail() {
 
         var td_button = document.createElement("td");
         var Remove_bt = document.createElement("a");
-        Remove_bt.innerHTML = "<i class='fas fa-trash-alt btn-import-goods'></i>";
+        Remove_bt.innerHTML = "<i class='fas fa-times-circle btn-inventory'></i>";
         Remove_bt.setAttribute("onclick", "removeFromReceipt(" + receiptItems[i].product.product_ID + ")");
         td_button.appendChild(Remove_bt);
 

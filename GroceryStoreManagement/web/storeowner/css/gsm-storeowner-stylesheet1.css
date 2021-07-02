@@ -7580,6 +7580,10 @@ button.bg-dark:focus {
     width: 50% !important;
 }
 
+.w-57 {
+    width: 57% !important;
+}
+
 .w-65 {
     width: 65% !important;
 }
@@ -11054,6 +11058,19 @@ body.sidebar-toggled footer.sticky-footer {
     max-width: 100% !important;
     text-align: center !important;
 }
+
+.logout-link-button{
+    border: 3px solid transparent;
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.logout-link-button:hover{
+    border:3px solid white;
+    border-radius: 30px;
+}
 /**/
 /**/
 /*Sidebar perfect scrollbar*/
@@ -11291,7 +11308,13 @@ html {
 }
 
 .table-border-custom > tbody > tr:hover{
+    color:black;
+    background-color: #4e73df66; //same as #4e73df but opacity=0.4
+}
+
+.table-border-custom > tbody > tr.active-row {
     color:white;
+    font-weight: bold;
     background-color: #4e73df;
 }
 
@@ -11304,6 +11327,7 @@ html {
 }
 
 .total-previous-bills, .total-previous-receipts {
+    font-weight: 700 !important;
     color: #ff0000 !important;
 }
 
@@ -11336,20 +11360,8 @@ html {
     margin-right: 1rem;
 }
 
-.btn-create-account:hover{
-    opacity: 0.7;
-    color:white;
-}
-
 .btn-change-password{
-    color:white;
-    background-color: orange;
     margin-right:1rem;
-}
-
-.btn-change-password:hover{
-    opacity: 0.7;
-    color:white;
 }
 
 .btn-mark-as-read{
@@ -11374,17 +11386,19 @@ html {
     color: #454545;
     font-size: 1.8rem !important;
     margin-left: 1rem;
+    opacity: 0.75;
 }
 
 .btn-import-goods{
     color: #454545;
     font-size: 1.5rem !important;
+    opacity: 0.75;
 }
 
 .btn-inventory:hover {
-    opacity: 0.5;
+    opacity: 1;
 }
 
 .btn-import-goods:hover{
-    opacity: 0.5;
+    opacity: 1;
 }
