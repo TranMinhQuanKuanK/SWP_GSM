@@ -121,29 +121,35 @@ function getTime() {
     var dateTo = document.getElementsByClassName("datetime-date-to");
     for (i = 0; i < dateTo.length; i++) {
         dateTo[i].value = [year, month, day].join('-') + 'T' + [hour, minute, second].join(':');
+        dateTo[i].max = dateTo[i].value;
     }
     var dateFrom = document.getElementsByClassName("datetime-date-from");
     for (i = 0; i < dateFrom.length; i++) {
         dateFrom[i].value = [year, preMonth, day].join('-') + 'T' + [hour, minute, second].join(':');
+        dateFrom[i].max = dateTo[i].value;
     }
     
     //Set date-type elements
     var dateTo = document.getElementsByClassName("date-date-to");
     for (i = 0; i < dateTo.length; i++) {
         dateTo[i].value = [year, month, day].join('-');
+        dateTo[i].max = dateTo[i].value;
     }
     var dateFrom = document.getElementsByClassName("date-date-from");
     for (i = 0; i < dateFrom.length; i++) {
         dateFrom[i].value = [year, preMonth, day].join('-');
+        dateFrom[i].max = dateTo[i].value;
     }
     
     //Set month-type elements
     var dateTo = document.getElementsByClassName("month-date-to");
     for (i = 0; i < dateTo.length; i++) {
         dateTo[i].value = [year, month].join('-');
+        dateTo[i].max = dateTo[i].value;
     }
     var dateFrom = document.getElementsByClassName("month-date-from");
     for (i = 0; i < dateFrom.length; i++) {
         dateFrom[i].value = [year - 1, month].join('-');
+        dateFrom[i].max = dateTo[i].value;
     }
 }
