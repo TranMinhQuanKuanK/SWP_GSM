@@ -5551,13 +5551,13 @@ a.badge-dark:focus, a.badge-dark.focus {
     font-size: 1.5rem;
     font-weight: 700;
     line-height: 1;
-    color: #000;
+    color: #4e73df;
     text-shadow: 0 1px 0 #fff;
     opacity: .5;
 }
 
 .close:hover {
-    color: #000;
+    color: #4e73df;
     text-decoration: none;
 }
 
@@ -5764,6 +5764,7 @@ a.close.disabled {
 .modal-title {
     margin-bottom: 0;
     line-height: 1.5;
+    font-weight: bold;
 }
 
 .modal-body {
@@ -11344,6 +11345,7 @@ html {
 
 .icon-previous-bills-reset:hover {
     opacity: 1;
+    cursor: pointer;
 }
 
 .icon-previous-bills-remove{
@@ -11354,6 +11356,7 @@ html {
 
 .icon-previous-bills-remove:hover{
     opacity: 1;
+    cursor: pointer;
 }
 
 .btn-create-account{

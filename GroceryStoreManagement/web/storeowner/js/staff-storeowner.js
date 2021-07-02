@@ -43,16 +43,17 @@ function resetAccount(username) {
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         request.onload = function () {
             accountErr = JSON.parse(this.responseText);
-            if (accountErr.hasError) {
-                alert(accountErr.resetPasswordError);
-            } else {
-                alert("Đặt lại mật khẩu thành công");
-            }
+            $('#reset-password-modal').modal('hide');
+            setTimeout(function () {
+                if (accountErr.hasError) {
+                    alert(accountErr.resetPasswordError);
+                } else {
+                    alert("Đặt lại mật khẩu thành công");
+                }
+            }, 200);
         };
         request.send(content);
     }
-
-    $('#reset-password-modal').modal('hide');
 }
 
 function deleteAccount(username) {
@@ -66,17 +67,18 @@ function deleteAccount(username) {
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
         request.onload = function () {
             accountErr = JSON.parse(this.responseText);
-            if (accountErr.hasError) {
-                alert(accountErr.deleteAccountError);
-            } else {
-                alert("Vô hiệu hóa tài khoản thành công");
-                showAccountList();
-            }
+            $('#delete-account-modal').modal('hide');
+            setTimeout(function () {
+                if (accountErr.hasError) {
+                    alert(accountErr.deleteAccountError);
+                } else {
+                    alert("Vô hiệu hóa tài khoản thành công");
+                    showAccountList();
+                }
+            }, 200);
         };
         request.send(content);
     }
-
-    $('#delete-account-modal').modal('hide');
 }
 
 function renderAccountList() {
@@ -115,7 +117,7 @@ function renderAccountList() {
             resetButton += 'onclick="document.getElementById(\'reset-username\').innerHTML=';
             resetButton += '\'' + accountList[i].username + '\'" ';
             resetButton += 'data-toggle="modal" data-target="#reset-password-modal"> ';
-            resetButton += '<i class="fas fa-redo icon-previous-bills-reset"></i></a>';
+            resetButton += '<i class="fas fa-undo icon-previous-bills-reset"></i></a>';
 
             var deleteButton = '<a ';
             deleteButton += 'onclick="document.getElementById(\'delete-username\').innerHTML=';
@@ -180,7 +182,7 @@ function createNewAccount() {
 
 function passwordChange() {
     clearAllError();
-    
+
     var accountErrObj;
     var currentPassword = document.getElementById("currentPassword").value;
     var newPassword = document.getElementById("newPassword").value;
