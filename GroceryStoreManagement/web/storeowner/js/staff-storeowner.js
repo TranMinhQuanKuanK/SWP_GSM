@@ -1,5 +1,24 @@
 var accountList;
 
+function clearAllInput() {
+    var inputs = document.querySelectorAll(".modal-input");
+    for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = "";
+    }
+}
+
+function clearAllError() {
+    var errors = document.querySelectorAll(".modal-error");
+    for (var i = 0; i < errors.length; i++) {
+        errors[i].innerHTML = "";
+    }
+}
+
+function clearModal() {
+    clearAllInput();
+    clearAllError();
+}
+
 function showAccountList() {
     var request = new XMLHttpRequest();
 
@@ -135,6 +154,7 @@ function createNewAccount() {
     request.open('POST', url, true);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
     request.onload = function () {
+        clearAllError();
         accountErr = JSON.parse(this.responseText);
         if (accountErr.hasError) {
             document.getElementById("error-name").innerHTML = (accountErr.nameLengthError ? accountErr.nameLengthError : "");
@@ -142,24 +162,16 @@ function createNewAccount() {
             document.getElementById("error-password").innerHTML = (accountErr.passwordLengthError ? accountErr.passwordLengthError : "");
             document.getElementById("error-confirm").innerHTML = (accountErr.confirmNotMatch ? accountErr.confirmNotMatch : "");
             document.getElementById("error-username-exist").innerHTML = (accountErr.usernameExist ? accountErr.usernameExist : "");
+
             document.getElementById("new-password").value = "";
             document.getElementById("new-confirm").value = "";
         } else {
-            showAccountList();
-            document.getElementById("error-name").innerHTML = "";
-            document.getElementById("error-username").innerHTML = "";
-            document.getElementById("error-password").innerHTML = "";
-            document.getElementById("error-confirm").innerHTML = "";
-            document.getElementById("error-username-exist").innerHTML = "";
-            
-            alert("Đăng ký tài khoản thành công");
-
-            document.getElementById("new-name").value = "";
-            document.getElementById("new-username").value = "";
-            document.getElementById("new-password").value = "";
-            document.getElementById("new-confirm").value = "";
-
-            $('#add-new-modal').modal('hide');
+            setTimeout(function () {
+                alert("Đăng ký tài khoản thành công");
+                $('#add-new-modal').modal('hide');
+                showAccountList();
+                clearAllInput();
+            }, 200);
         }
         ;
     };
@@ -167,31 +179,26 @@ function createNewAccount() {
 }
 
 function passwordChange() {
-    function clearAllError() {
-        document.getElementById("current-password-error").innerHTML = "";
-        document.getElementById("new-password-error").innerHTML = "";
-        document.getElementById("confirm-password-error").innerHTML = "";
-    }
-    function clearAllInput() {
-        document.getElementById("currentPassword").value = "";
-        document.getElementById("newPassword").value = "";
-        document.getElementById("confirmNewPassword").value = "";
-    }
     clearAllError();
-
+    
     var accountErrObj;
     var currentPassword = document.getElementById("currentPassword").value;
     var newPassword = document.getElementById("newPassword").value;
     var confirmNewPassword = document.getElementById("confirmNewPassword").value;
+
     if (currentPassword.length === 0) {
         document.getElementById("current-password-error").innerHTML =
                 "Vui lòng nhập mật khẩu hiện tại";
-    } else if (newPassword.length === 0) {
-        document.getElementById("new-password-error").innerHTML =
-                "Vui lòng nhập mật khẩu mới";
+        clearAllInput();
+    }
+
+    if (newPassword.length === 0) {
+        document.getElementById("new-password-error").innerHTML = "Vui lòng nhập mật khẩu mới";
+        document.getElementById("confirmNewPassword").value = "";
     } else if (confirmNewPassword !== newPassword) {
-        document.getElementById("confirm-password-error").innerHTML =
-                "Mật khẩu xác nhận không trùng khớp";
+        document.getElementById("confirm-password-error").innerHTML = "Mật khẩu xác nhận không trùng khớp";
+        document.getElementById("newPassword").value = "";
+        document.getElementById("confirmNewPassword").value = "";
     } else {
         var xhttp = new XMLHttpRequest();
 
@@ -214,21 +221,23 @@ function passwordChange() {
 
         function processError() {
             clearAllError();
-            document.getElementById("newPassword").value = "";
-            document.getElementById("confirmNewPassword").value = "";
             if (accountErrObj.hasError === true) {
-                if (accountErrObj.currentPasswordError.length > 2) {
+                if (accountErrObj.currentPasswordError.length) {
                     document.getElementById("current-password-error").innerHTML =
                             accountErrObj.currentPasswordError;
                 }
-                if (accountErrObj.newPasswordError.length > 2) {
+                if (accountErrObj.newPasswordError.length) {
                     document.getElementById("new-password-error").innerHTML =
                             accountErrObj.newPasswordError;
+                    document.getElementById("newPassword").value = "";
+                    document.getElementById("confirmNewPassword").value = "";
                 }
             } else {
-                clearAllInput();
-                alert("Đổi mật khẩu thành công");
-                $("#change-password-modal").modal("hide");
+                setTimeout(function () {
+                    alert("Đổi mật khẩu thành công");
+                    $('#change-password-modal').modal('hide');
+                    clearAllInput();
+                }, 200);
             }
         }
     }

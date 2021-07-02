@@ -57,6 +57,8 @@ public class CreateAccountServlet extends HttpServlet {
             } else if (username.trim().length() < 6 || username.trim().length() > 30) {
                 err_obj.setHasError(true);
                 err_obj.setUsernameLengthError("Tên đăng nhập phải có độ dài từ 6 đến 30 kí tự");
+            } else if (username.contains(" ")) {
+                err_obj.setUsernameLengthError("Tên đăng nhập không được chứa khoảng trắng");
             }
 
             if (password == null) {
