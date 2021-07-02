@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.product.ProductDAO;
 import models.product.ProductError;
+import utils.TryParseInt;
 
 /**
  *
@@ -34,15 +35,44 @@ public class AddNewProductServlet extends HttpServlet {
             boolean foundErr = false;
             ProductError err = new ProductError();
             ProductDAO dao = new ProductDAO();
-
-            String productName = request.getParameter("productName");
-            int productCategoryID = Integer.parseInt(request.getParameter("productCategoryID"));
-            int productLowerThreshold = Integer.parseInt(request.getParameter("productLowerThreshold"));
-            int productCostPrice = Integer.parseInt(request.getParameter("productCostPrice"));
-            int productSellingPrice = Integer.parseInt(request.getParameter("productSellingPrice"));
-            String productUnitLabel = request.getParameter("productUnitLabel");
-            String productLocation = request.getParameter("productLocation");
-            boolean productIsSelling = request.getParameter("productIsSelling").equals("true");
+            String productName;
+            int productCategoryID, productLowerThreshold = 0, productCostPrice = 0, productSellingPrice = 0;
+            String productUnitLabel, productLocation;
+            boolean productIsSelling;
+            if (TryParseInt.tryParse(request.getParameter("productLowerThreshold")) == null) {
+                foundErr = true;
+                err.setLowerThresholdErr("Mức dưới ngưỡng quá lớn");
+            }
+            if (TryParseInt.tryParse(request.getParameter("productCostPrice")) == null) {
+                foundErr = true;
+                err.setCostPriceErr("Tiền mua quá lớn");
+            }
+            if (TryParseInt.tryParse(request.getParameter("productSellingPrice")) == null) {
+                foundErr = true;
+                err.setSellingPriceErr("Tiền bán quá lớn");
+            }
+            if (!foundErr) {
+                productLowerThreshold = Integer.parseInt(request.getParameter("productLowerThreshold"));
+                productCostPrice = Integer.parseInt(request.getParameter("productCostPrice"));
+                productSellingPrice = Integer.parseInt(request.getParameter("productSellingPrice"));
+                if (productLowerThreshold < 0) {
+                    foundErr = true;
+                    err.setLowerThresholdErr("Mức dưới ngưỡng phải lớn hơn 0");
+                }
+                if (productCostPrice < 0) {
+                    foundErr = true;
+                    err.setCostPriceErr("Tiền mua phải lớn hơn 0");
+                }
+                if (productSellingPrice < 0) {
+                    foundErr = true;
+                    err.setSellingPriceErr("Tiền bán phải lớn hơn 0");
+                }
+            }
+            productName = request.getParameter("productName");
+            productCategoryID = Integer.parseInt(request.getParameter("productCategoryID"));
+            productUnitLabel = request.getParameter("productUnitLabel");
+            productLocation = request.getParameter("productLocation");
+            productIsSelling = request.getParameter("productIsSelling").equals("true");
 
             if (productName.equals("") || productName.length() > 100) {
                 foundErr = true;
@@ -50,21 +80,40 @@ public class AddNewProductServlet extends HttpServlet {
             }
 
             if (dao.ConfirmMatchedProduct(productName, 0)) {
+                System.out.println(dao.ConfirmMatchedProduct(productName, 0));
                 foundErr = true;
                 err.setNameErr("Tên món hàng đã tồn tại");
             }
-            if (productLowerThreshold < 0) {
-                foundErr = true;
-                err.setLowerThresholdErr("Mức dưới ngưỡng phải lớn hơn 0");
-            }
-            if (productCostPrice < 0) {
-                foundErr = true;
-                err.setCostPriceErr("Tiền mua phải lớn hơn 0");
-            }
-            if (productSellingPrice < 0) {
-                foundErr = true;
-                err.setSellingPriceErr("Tiền bán phải lớn hơn 0");
-            }
+//            String productName = request.getParameter("productName");
+//            int productCategoryID = Integer.parseInt(request.getParameter("productCategoryID"));
+//            int productLowerThreshold = Integer.parseInt(request.getParameter("productLowerThreshold"));
+//            int productCostPrice = Integer.parseInt(request.getParameter("productCostPrice"));
+//            int productSellingPrice = Integer.parseInt(request.getParameter("productSellingPrice"));
+//            String productUnitLabel = request.getParameter("productUnitLabel");
+//            String productLocation = request.getParameter("productLocation");
+//            boolean productIsSelling = request.getParameter("productIsSelling").equals("true");
+//
+//            if (productName.equals("") || productName.length() > 100) {
+//                foundErr = true;
+//                err.setNameErr("Tên món hàng phải từ 1 tới 100 chữ");
+//            }
+//
+//            if (dao.ConfirmMatchedProduct(productName, 0)) {
+//                foundErr = true;
+//                err.setNameErr("Tên món hàng đã tồn tại");
+//            }
+//            if (productLowerThreshold < 0) {
+//                foundErr = true;
+//                err.setLowerThresholdErr("Mức dưới ngưỡng phải lớn hơn 0");
+//            }
+//            if (productCostPrice < 0) {
+//                foundErr = true;
+//                err.setCostPriceErr("Tiền mua phải lớn hơn 0");
+//            }
+//            if (productSellingPrice < 0) {
+//                foundErr = true;
+//                err.setSellingPriceErr("Tiền bán phải lớn hơn 0");
+//            }
 
             Gson gson = new Gson();
             if (foundErr) {

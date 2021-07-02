@@ -3,22 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.storeowner.importgoods;
+package controllers.storeowner.staff;
 
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.account.AccountDAO;
+import models.account.AccountDTO;
 
 /**
  *
- * @author ROG STRIX
+ * @author Huu Quoc
  */
-@WebServlet(name = "IgnorePendingItemServlet", urlPatterns = {"/IgnorePendingItemServlet"})
-public class IgnorePendingItemServlet extends HttpServlet {
+@WebServlet(name = "GetAccountListServlet", urlPatterns = {"/GetAccountListServlet"})
+public class GetAccountListServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,18 +40,28 @@ public class IgnorePendingItemServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("application/json;charset=UTF-8");
+
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet IgnorePendingItemServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet IgnorePendingItemServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            AccountDAO dao = new AccountDAO();
+            dao.fetchAccountList();
+
+            List<AccountDTO> resultList = dao.getAccountList();
+
+            if (resultList == null) {
+                resultList = new ArrayList<>();
+            }
+
+            Collections.sort(resultList, Comparator.comparing(AccountDTO::isIs_owner).reversed());
+
+            Gson gson = new Gson();
+            String JSONS = gson.toJson(resultList);
+            out.print(JSONS);
+            out.flush();
+        } catch (SQLException ex) {
+            log("GetAccountListServlet _ SQL: " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("GetAccountListServlet _ Naming: " + ex.getMessage());
         }
     }
 

@@ -98,10 +98,10 @@ function createHTMLForEachProduct(product) {
     "                                        </svg>";
 
   if (product.quantity <= product.lower_threshold && product.quantity > 0) {
-    tr_el.setAttribute("class", "product-low-quantity text-black");
-    btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
-  } else if (product.quantity == 0) {
-    tr_el.setAttribute("class", "product-out-of-stock text-white");
+    tr_el.setAttribute("class", "product-low-quantity font-weight-bold");
+    btn_el.setAttribute("class", "btn btn-outline-dark rounded-circle");
+  } else if (product.quantity === 0) {
+    tr_el.setAttribute("class", "product-out-of-stock font-weight-bold");
     btn_el.setAttribute("class", "btn btn-outline-light rounded-circle");
   }
 
@@ -379,7 +379,7 @@ function renderCategory(categoryListObject) {
   tr.setAttribute("onclick", "setCategoryAndSearch(event," + null + ")");
   var td = document.createElement("td");
   td.innerHTML = "(Tất cả)";
-  td.setAttribute("class", "bg-secondary");
+  td.setAttribute("class", "royalblueBg");
   tr.appendChild(td);
   document.getElementById("category-list").appendChild(tr);
 
@@ -403,8 +403,8 @@ function renderCategory(categoryListObject) {
 
 function setCategoryAndSearch(event, id) {
   //In đậm các category được click
-  $("#category-list tr td").removeClass("bg-secondary");
-  event.target.setAttribute("class", "bg-secondary");
+  $("#category-list tr td").removeClass("royalblueBg");
+  event.target.setAttribute("class", "royalblueBg");
   category_id = id;
   SearchProduct();
 }
@@ -640,7 +640,7 @@ function Checkout() {
   if (currentBill.total_cost == 0) {
     alert("Chưa mua gì mà bấm thanh toán????? Bị khùng hả?");
   } else {
-    var cash = document.getElementById("cash").value;
+    var cash = document.getElementById("cash").value.replaceAll(".", "");
     var xhttp = new XMLHttpRequest();
 
     xhttp.open("GET", "Checkout?cash=" + cash, true);
@@ -719,7 +719,7 @@ function SetupPagination(products, wrapper, rows_per_page) {
 
 function PaginationButton(page, products) {
   let button = document.createElement("button");
-  button.setAttribute("class", "btn btn-sm btn-outline-warning");
+  button.setAttribute("class", "btn btn-sm btn-outline-secondary");
   button.innerText = page;
 
   if (current_page == page) button.classList.add("active");
@@ -773,6 +773,40 @@ function DisplayPagination() {
   }
 }
 
+// Format user input for currency
+$("#cash").on("input", function () {
+    /*
+     * These additional lines prevent the function from running when the user 
+     makes a selection within the input
+     or presses the arrow keys on the keyboard
+     */
+    var selection = window.getSelection().toString();
+    if (selection !== '') {
+        return;
+    }
+    if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
+        return;
+    }
+    // End of additional checks
+
+    /*
+     *  Retrieve the value from the input.
+     Sanitize the value using RegEx by removing unnecessary characters such as spaces, underscores, dashes, and letters.
+     Deploy parseInt() function to make sure the value is an integer (a round number).
+     Add the thousand separator with the eVietnam() function, then pass the sanitised value back to the input element.
+     */
+    var input = $(this).val();
+    var input = input.replace(/[\D\s\._\-]+/g, "");
+    input = input ? parseInt(input, 10) : 0;
+    $(this).val(function () {
+        return (input === 0) ? "" : eVietnam(input);
+    });
+});
+
+function eVietnam(num) {
+    console.log(num.toLocaleString('vi'));
+    return num.toLocaleString('vi');
+}
 // DisplayProductList(
 //   productList,
 //   rows_per_page,

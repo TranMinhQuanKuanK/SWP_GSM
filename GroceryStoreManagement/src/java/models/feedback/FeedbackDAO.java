@@ -119,7 +119,7 @@ public class FeedbackDAO implements Serializable {
         return null;
     }
     
-    public ArrayList<FeedbackDTO> getSeenFeedbackList() throws SQLException, NamingException {
+    public ArrayList<FeedbackDTO> getUnSeenFeedbackList() throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -132,7 +132,7 @@ public class FeedbackDAO implements Serializable {
                             + "FROM cashier_feedback\n"
                             + "JOIN account\n" 
                             + "ON account.username = cashier_feedback.cashier_username\n"
-                            + "WHERE is_seen = 1\n"
+                            + "WHERE is_seen = 0\n"
                             + "ORDER BY feedback_date DESC";
                 
                 stm = con.prepareStatement(sql);

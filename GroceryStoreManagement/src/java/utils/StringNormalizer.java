@@ -23,27 +23,26 @@ public class StringNormalizer implements Serializable {
 
         return original_builder.toString().toUpperCase().trim().replaceAll(" +", " ");
     }
+    //2023-05-07T12:00
     
+    //string datetime lấy từ frontend thành string để 
     public static String dateNormalize(String original) {
         String normalizedDate = "";
         
         normalizedDate += original.substring(8, 10) + '/';
         normalizedDate += original.substring(5, 7) + '/';
         normalizedDate += original.substring(0, 4) + ' ';
-        normalizedDate += original.substring(11, 16) + ' ';
-        
-        System.out.println(normalizedDate);
+        normalizedDate += original.substring(11, 16);
         
         return normalizedDate;
     }
     
-    public static String moneyNormalize(String original) {
-        StringBuilder normalizedMoney = new StringBuilder(original);
+    public static String monthNormalize(String original) {
+        String normalizedMonth = "";
         
-        for (int i = normalizedMoney.length() - 3; i > 0; i -= 3) {
-            normalizedMoney.insert(i, ' ');
-        }
+        normalizedMonth += original.substring(5) + '/';
+        normalizedMonth += original.substring(0, 4);
         
-        return normalizedMoney.toString();
+        return normalizedMonth;
     }
 }

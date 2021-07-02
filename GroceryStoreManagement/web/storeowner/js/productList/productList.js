@@ -3,6 +3,9 @@ var select_el = document.getElementById("category-list");
 
 
 $(document).ready(function () {
+    $.get("Sidebar", function (data) {
+        $("#sidebar-placeholder").replaceWith(data);
+    });
     productList = $('#product-list').DataTable({
         processing: true,
         responsive: true,
@@ -41,6 +44,7 @@ $(document).ready(function () {
             {data: 'name', render: function (data, type, row) {
                     return data.normalize();
                 }},
+            {data: 'cost_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
             {data: 'selling_price', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')},
             {data: 'category.name'},
             {data: 'unit_label'},
@@ -55,10 +59,21 @@ $(document).ready(function () {
                 "searchable": false,
                 "orderable": false,
                 "targets": 0
+            },
+            {
+                "targets": [2,3],
+                "className": 'dt-body-right'
+            },
+            {
+                "targets": [1],
+                "className": 'dt-body-left'
             }],
         order: [[1, 'asc']],
         language: {
-            "lengthMenu": "Xem _MENU_ hàng hóa mỗi trang",
+            "buttons": {
+                pageLength: "Xem %d hàng hóa"
+            },
+            "lengthMenu": "Xem _MENU_ hàng hóa",
             "zeroRecords": "Không tìm thấy hàng hóa",
             "info": "Đang xem trang thứ _PAGE_ trong _PAGES_ trang",
             "infoEmpty": "Không có thông tin",
@@ -69,9 +84,24 @@ $(document).ready(function () {
                 "next": "Tiếp theo",
                 "previous": "Trước"
             },
-            "search": "Tìm kiếm: "
+            "search": "Tìm kiếm: ",
+            "processing": `<div class="spinner-border text-primary" role="status">
+                            <span class="sr-only">Loading...</span>
+                           </div>`
         },
-        dom: 'lrtip'
+        dom: 'lrtip',
+        buttons: ['pageLength'],
+//        lengthMenu: [
+//            [10, 25, 50, 100],
+//            ['10 hàng hóa', '25 hàng hóa', '50 hàng hóa', '100 hàng hóa']
+//        ],
+        initComplete: function () {
+//            this.api().buttons().container()
+//                    .appendTo('#length-menu');
+            $('#product-list_length').appendTo('#length-menu');
+
+
+        }
     });
 
     productList.on('order.dt search.dt', function () {

@@ -1,84 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <title>Login Page</title>
-    <link rel="stylesheet" href="cashier/css/reset.css" />
-    <link rel="stylesheet" href="cashier/css/login-page.css" />
-</head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <title>Login Page</title>
+        <link rel="stylesheet" href="cashier/css/reset.css" />
+        <link rel="stylesheet" href="cashier/css/login-page.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <link rel="apple-touch-icon" sizes="57x57" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/GroceryStoreManagement/storeowner/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/GroceryStoreManagement/storeowner/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/GroceryStoreManagement/storeowner/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/GroceryStoreManagement/storeowner/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/GroceryStoreManagement/storeowner/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+    </head>
 
-<body>
+    <body>
+        <form action="javascript:void(0);" class="login" autocomplete="off">
+            <h1 class="login-heading"><span class="login-h1">Đăng nhập</span></h1>
 
-    <form action="javascript:void(0);" class="login" autocomplete="off">
-        <h1 class="login-heading">Login</h1>
+            <!--Input field-->
+            <div class="login-field">
+                <i class="fa fa-user-circle-o login-icon"></i>
+                <input id="txtUsername" type="text" class="login-input" placeholder="Tài khoản" required>
+            </div>
+            <div class="login-field">
+                <i class="fa fa-lock login-icon"></i>
+                <input id="txtPassword" type="password" class="login-input" placeholder="Mật khẩu" required>
+            </div>
+            <!--/ End of input field-->
 
-        <!--Input field-->
-        <div class="login-field">
-            <i class="fa fa-user-circle-o login-icon"></i>
-            <input id="txtUsername" type="text" class="login-input" placeholder="Username" required>
-        </div>
-        <div class="login-field">
-            <i class="fa fa-lock login-icon"></i>
-            <input id="txtPassword" type="password" class="login-input" placeholder="Password" required>
-        </div>
-        <!--/ End of input field-->
+            <!--Error field-->
+            <div class="error-field" style='display:none;' id='ErrorMessageDiv'>
+                <i class="fa fa-exclamation-triangle error-icon"></i>
+                <p class="error-message" onfocus="this.blur()"  id='ErrorMessage'></p>
+            </div>
+            <!--/ End of error field-->
 
-        <!--Error field-->
-        <div class="error-field" style="display:none;" id='ErrorMessage'>
-            <i class="fa fa-exclamation-triangle error-icon"></i>
-            <p class="error-message" readonly onfocus="this.blur()">Lỗi server!!!</p>
-        </div>
-        <!--/ End of error field-->
+            <button type="submit" class="login-submit" onclick="checkLogin()">Đăng nhập</button>
 
-        <button class="login-submit" type="submit" onclick="checkLogin()">Login</button>
+        </form>
+        <script>
+            function checkLogin() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState >= 4 && this.status <= 200) {
+                        var loginErrorObject = JSON.parse(this.responseText);
+                        processLoginResponse(loginErrorObject);
+                    }
+                };
+                var txtUsername = document.getElementById("txtUsername").value;
+                var txtPassword = document.getElementById("txtPassword").value;
+                //                var formdata = new FormData();
+                //                formdata.append('txtUsername', txtUsername);
+                //                formdata.append('txtPassword', txtPassword);
+                var formTxt = 'txtUsername=' + encodeURIComponent(txtUsername) +
+                        '&txtPassword=' + encodeURIComponent(txtPassword);
 
-
-    </form>
-    <script>
-        function checkLogin() {
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState >= 4 && this.status <= 200) {
-                    var loginErrorObject = JSON.parse(this.responseText);
-                    processLoginResponse(loginErrorObject);
-                }
-            };
-            var txtUsername = document.getElementById("txtUsername").value;
-            var txtPassword = document.getElementById("txtPassword").value;
-            //                var formdata = new FormData();
-            //                formdata.append('txtUsername', txtUsername);
-            //                formdata.append('txtPassword', txtPassword);
-            var formTxt = 'txtUsername=' + encodeURIComponent(txtUsername) +
-                '&txtPassword=' + encodeURIComponent(txtPassword);
-
-            xhttp.open("POST", "LoginServlet", true);
-            xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-            xhttp.send(formTxt);
-        }
-
-        function processLoginResponse(data) {
-            if (data.has_Error) {
-                document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
-                document.getElementById("ErrorMessage").setAttribute("style", "display:none");
-            } else {
-                //window.location.href = "TestSuccessLogin.html";
-
-                if (data.user_type == 1) {
-                    window.location.href = "StoreownerDashboardPage";
-                } else {
-                    window.location.href = "CashierDashboardPage";
-                }
-                //document.getElementById("ErrorMessage").innerHTML = "login successs! you are " + role;
+                xhttp.open("POST", "LoginServlet", true);
+                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhttp.send(formTxt);
             }
-        }
-    </script>
-</body>
+
+            function processLoginResponse(data) {
+                if (data.has_Error) {
+                    document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
+                    document.getElementById("ErrorMessageDiv").setAttribute("style", "display:true");
+                } else {
+                    //window.location.href = "TestSuccessLogin.html";
+
+                    if (data.user_type == 1) {
+                        window.location.href = "StoreownerDashboardPage";
+                    } else {
+                        window.location.href = "CashierDashboardPage";
+                    }
+                    //document.getElementById("ErrorMessage").innerHTML = "login successs! you are " + role;
+                }
+            }
+        </script>
+        <script>
+            var colors = new Array(
+                    [28, 216, 210], [147, 237, 199],
+                    [237, 66, 100], [255, 237, 188],
+                    [220, 36, 36], [74, 86, 157],
+                    [252, 53, 76], [10, 191, 188],
+                    [248, 87, 166], [255, 88, 88],
+                    [229, 93, 135], [95, 195, 228]
+                    );
+
+            var step = 0;
+            var colorIndices = [0, 1, 2, 3];
+
+            //transition speed
+            var gradientSpeed = 0.005;
+
+            function updateGradient() {
+                var c0_0 = colors[colorIndices[0]];
+                var c0_1 = colors[colorIndices[1]];
+                var c1_0 = colors[colorIndices[2]];
+                var c1_1 = colors[colorIndices[3]];
+
+                var istep = 1 - step;
+                var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+                var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+                var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+                var color1 = "#" + ((r1 << 16) | (g1 << 8) | b1).toString(16);
+
+                var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+                var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+                var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+                var color2 = "#" + ((r2 << 16) | (g2 << 8) | b2).toString(16);
+
+                $('.login-h1').css({
+                    background: "-webkit-gradient(linear, left top, right top, from(" + color1 + "), to(" + color2 + "))"
+                }).css({
+                    background: "-moz-linear-gradient(left, " + color1 + " 0%, " + color2 + " 100%)"
+                }).css({
+                    '-webkit-text-fill-color': 'transparent',
+                    '-webkit-background-clip': 'text'
+                });
+
+                step += gradientSpeed;
+                if (step >= 1) {
+                    step %= 1;
+                    colorIndices[0] = colorIndices[1];
+                    colorIndices[2] = colorIndices[3];
+
+                    //pick two new target color indices
+                    //do not pick the same as the current one
+                    colorIndices[1] = (colorIndices[1] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+                    colorIndices[3] = (colorIndices[3] + Math.floor(1 + Math.random() * (colors.length - 1))) % colors.length;
+
+                }
+            }
+
+            setInterval(updateGradient, 8);
+        </script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+        
+        
+    </body>
 
 </html>

@@ -3,28 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controllers.storeowner.feedback;
+package controllers.storeowner.staff;
 
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import models.feedback.FeedbackDAO;
-import models.feedback.FeedbackDTO;
+import models.account.AccountDAO;
+import models.account.AccountErrObj;
 
 /**
  *
- * @author Admin
+ * @author Huu Quoc
  */
-@WebServlet(name = "SeenFeedbackServlet", urlPatterns = {"/SeenFeedbackServlet"})
-public class SeenFeedbackServlet extends HttpServlet {
+@WebServlet(name = "DeleteAccountServlet", urlPatterns = {"/DeleteAccountServlet"})
+public class DeleteAccountServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,17 +37,25 @@ public class SeenFeedbackServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()){
-            FeedbackDAO fDAO = new FeedbackDAO();
-            ArrayList<FeedbackDTO> FeedbackList = fDAO.getSeenFeedbackList();
+        String username = request.getParameter("username");
+        
+        try (PrintWriter out = response.getWriter()) {
+            AccountDAO dao = new AccountDAO();
+            AccountErrObj accountErr = new AccountErrObj();
+            
+            if (!dao.deleteAccount(username)) {
+                accountErr.setHasError(true);
+                accountErr.setDeleteAccountError("Không thể xóa tài khoản. Vui lòng tải lại trang!");
+            }
+            
             Gson gson = new Gson();
-            String feedbackJSONString = gson.toJson(FeedbackList);
-            out.print(feedbackJSONString);
+            String JSONString = gson.toJson(accountErr);
+            out.print(JSONString);
             out.flush();
-        } catch (SQLException e) {
-            log("SQLException " + e.getMessage());
-        } catch (NamingException e) {
-            log("NamingException " + e.getMessage());
+        } catch (SQLException ex) {
+            log("DeleteAccountListServlet _ SQL: " + ex.getMessage());
+        } catch (NamingException ex) {
+            log("DeleteAccountListServlet _ Naming: " + ex.getMessage());
         }
     }
 
