@@ -1,5 +1,80 @@
 var statTable;
 google.charts.load('current', {packages: ['corechart', 'line']});
+var viewBy, customInput, period, dateFrom, dateTo;
+
+function setTitle() {
+    if (viewBy === "custom") {
+        period.innerHTML = "giai đoạn " + formatDateTime(dateFrom.value) + " - " + formatDateTime(dateTo.value);
+    } else {
+        var currentMonth = new Date().getMonth() + 1;
+        var currentYear = new Date().getFullYear();
+        var curentQuarter = (new Date().getMonth() / 3 + 1);
+
+        if (viewBy === "month") {
+            period.innerHTML = "tháng " + currentMonth + "/" + currentYear;
+        }
+        if (viewBy === "quarter") {
+            period.innerHTML = "quý " + curentQuarter + "/" + currentYear;
+        }
+        if (viewBy === "year") {
+            period.innerHTML = "năm " + currentYear;
+        }
+    }
+}
+
+function prepareInfo(statCriterion) {
+    if (viewBy === "custom") {
+        customInput.style.display = "block";
+    } else {
+        customInput.style.display = "none";
+
+        if (statCriterion === "financial") {
+            if (viewBy === "month") {
+                dateFrom.value = dateTo.value.substring(0, 7);
+            }
+            if (viewBy === "quarter") {
+                var firstMonthOfQuarter = format((new Date().getMonth()) / 3 * 3 + 1);
+                dateFrom.value = dateTo.value.substring(0, 5) + firstMonthOfQuarter;
+            }
+            if (viewBy === "year") {
+                dateFrom.value = dateTo.value.substring(0, 5) + "01";
+            }
+        } else {
+            if (viewBy === "month") {
+                dateFrom.value = dateTo.value.substring(0, 8) + "01";
+            }
+            if (viewBy === "quarter") {
+                var firstMonthOfQuarter = format((new Date().getMonth()) / 3 * 3 + 1);
+                dateFrom.value = dateTo.value.substring(0, 5) + firstMonthOfQuarter + "-01";
+            }
+            if (viewBy === "year") {
+                dateFrom.value = dateTo.value.substring(0, 5) + "01-01";
+            }
+        }
+    }
+}
+
+function handleOnchange(statCriterion) {
+    getTime();
+
+    viewBy = document.getElementById("view-by-" + statCriterion).value;
+    dateFrom = document.getElementById("date-from-" + statCriterion);
+    dateTo = document.getElementById("date-to-" + statCriterion);
+    period = document.getElementById("period-" + statCriterion);
+    customInput = document.getElementById("custom-input-" + statCriterion);
+
+    prepareInfo(statCriterion);
+
+    if (true) {
+        if (statCriterion === "product") {
+            showProductStatistic();
+        } else if (statCriterion === "customer") {
+            showCustomerStatistic();
+        } else if (statCriterion === "financial") {
+            showFinancialStatistic();
+        }
+    }
+}
 
 function showProductStatistic() {
     var request = new XMLHttpRequest();
@@ -14,6 +89,7 @@ function showProductStatistic() {
         if (result.isError) {
             alert(result.dateError);
         } else {
+            setTitle();
             renderProductStatistic(result);
         }
     };
@@ -36,7 +112,7 @@ function renderProductStatistic(productStatistic) {
                     data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')
                 }],
             columnDefs: [{
-                    "targets": [3],
+                    "targets": [2, 3],
                     "className": "text-gray-900 dt-body-right"
                 },
                 {
@@ -53,7 +129,7 @@ function renderProductStatistic(productStatistic) {
                     "targets": "_all",
                     "className": "text-gray-900"
                 }],
-            order: [[1, 'asc']],
+            order: [[3, 'desc']],
             language: {
                 "lengthMenu": "_MENU_ sản phẩm mỗi trang",
                 "zeroRecords": "Không tìm thấy sản phẩm nào",
@@ -91,6 +167,7 @@ function showCustomerStatistic() {
         if (result.isError) {
             alert(result.dateError);
         } else {
+            setTitle();
             renderCustomerStatistic(result);
         }
     };
@@ -115,7 +192,7 @@ function renderCustomerStatistic(CustomerStatistic) {
                     data: 'total', render: $.fn.dataTable.render.number('.', '.', 0, '', 'đ')
                 }],
             columnDefs: [{
-                    "targets": [4],
+                    "targets": [3, 4],
                     "className": "text-gray-900 dt-body-right"
                 },
                 {
@@ -131,7 +208,7 @@ function renderCustomerStatistic(CustomerStatistic) {
                     "targets": "_all",
                     "className": "text-gray-900"
                 }],
-            order: [[1, 'asc']],
+            order: [[4, 'desc']],
             language: {
                 "lengthMenu": "_MENU_ khách hàng mỗi trang",
                 "zeroRecords": "Không tìm thấy khách hàng nào",
@@ -144,7 +221,7 @@ function renderCustomerStatistic(CustomerStatistic) {
                     "next": "Trước",
                     "previous": "Tiếp"
                 },
-                "search": "Tên khách hàng: "
+                "search": "Tên/SĐT khách hàng: "
             }
         });
 
@@ -169,6 +246,7 @@ function showFinancialStatistic() {
         if (result.isError) {
             alert(result.dateError);
         } else {
+            setTitle();
             renderFinancialStatistic(result);
             showChart();
         }
@@ -177,8 +255,8 @@ function showFinancialStatistic() {
 }
 
 function renderFinancialStatistic(financialStatistic) {
-    document.getElementById("bill-count").innerHTML = financialStatistic.countBill;
-    document.getElementById("receipt-count").innerHTML = financialStatistic.countReceipt;
+//    document.getElementById("bill-count").innerHTML = financialStatistic.countBill;
+//    document.getElementById("receipt-count").innerHTML = financialStatistic.countReceipt;
     document.getElementById("sum-revenue").innerHTML = eVietnam(financialStatistic.sumRevenue);
     document.getElementById("sum-cost").innerHTML = eVietnam(financialStatistic.sumCost);
     document.getElementById("sum-profit").innerHTML = eVietnam(financialStatistic.sumProfit);
@@ -218,11 +296,24 @@ function drawCurveTypes(chartData) {
         items[i] = [chartData.events[i], chartData.cost[i], chartData.revenue[i], chartData.profit[i]];
     }
 
+    if (document.getElementById("empty-row-display").value === "hide") {
+        var emptyItems = new Array();
+        
+        while (items[0][1] === 0 && items[0][2] === 0 && items[0][3] === 0) {
+            emptyItems.push(items[0][0]);
+            items.shift();
+        }
+        if (emptyItems.length !== 0) {
+            alert("Giai đoạn " + emptyItems[0] + " - " + emptyItems[emptyItems.length - 1]
+                    + " không có dữ liệu nên sẽ không được hiển thị trong biểu đồ");
+        }
+    }
+
     data.addRows(items);
 
     var options = {
         title: 'Doanh thu và lợi nhuận trong giai đoạn '
-                + chartData.events[0] + ' - ' + chartData.events[chartData.events.length - 1]
+                + items[0][0] + ' - ' + items[items.length - 1][0]
                 + ' (đvt: VND)',
         fontName: 'Nunito',
         fontSize: 17,
