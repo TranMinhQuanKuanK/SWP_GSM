@@ -17,6 +17,7 @@ a:focus {
     text-decoration: none;
     color: #000;
 }
+
 /* =======================
         LAYOUT
     ====================
@@ -28,8 +29,9 @@ a:focus {
 
 .content-title {
     height: 70px;
-
 }
+
+
 
 
 .content-title th {
@@ -39,39 +41,38 @@ a:focus {
 }
 
 .body-left {
-    max-height: 550px;
-    margin-bottom: 2em;
+    max-height: 85vh;
+    margin-bottom: 1em;
 }
 
 .body-right {
-    max-height: 550px;
-    margin-bottom: 2em;
+    max-height: 85vh;
+    margin-bottom: 1em;
 }
 
-@media (min-width: 1500px) and (max-width: 1699px) {
+@media (min-width: 1367px) and (max-width: 1699px) {
     .body-left {
-        min-height: 550px;
-        max-height: 700px;
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 1em;
+    }
+
+    .body-right {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 1em;
+    }
+}
+@media (min-width: 1700px) and (max-width: 2000px)  {
+    .body-left {
+        min-height: 80vh;
+        max-height: 90vh;
         margin-bottom: 2em;
     }
 
     .body-right {
-        min-height: 550px;
-        max-height: 700px;
-        margin-bottom: 2em;
-    }
-}
-@media (min-width: 1700px) {
-    .body-left {
-        min-height: 700px;
-        max-height: 800px;
-        margin-bottom: 2em;
-    }
-
-    .body-right {
-        min-height: 700px;
-
-        max-height: 800px;
+        min-height: 80vh;
+        max-height: 90vh;
         margin-bottom: 2em;
     }
 }
