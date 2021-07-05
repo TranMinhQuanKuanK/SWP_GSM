@@ -1,5 +1,10 @@
 var receiptOnSession;
 
+window.onload = function () {
+    getReceipt();
+    getPendingList();
+};
+
 function getReceipt() {
     var xhttp = new XMLHttpRequest();
     xhttp.onload = function () {
