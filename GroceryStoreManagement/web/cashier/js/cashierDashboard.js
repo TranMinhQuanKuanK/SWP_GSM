@@ -518,7 +518,7 @@ function calculateDiscount() {
   } else return 0;
 }
 
-function EditQuantityBill() {
+function EditQuantityBill(product_id) {
   var xhttp = new XMLHttpRequest();
   quantity = document.getElementById(
     "quantity-for-product-" + product_id
