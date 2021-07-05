@@ -49,7 +49,7 @@ function DisplayProductInfo(id) {
   document.getElementById("product-info-name").innerHTML = product.name;
   document.getElementById("product-info-quantity").innerHTML = product.quantity;
   document.getElementById("product-info-price").innerHTML =
-    product.selling_price;
+    eVietnamCurrency(product.selling_price);
   document.getElementById("product-info-location").innerHTML = product.location;
 }
 
@@ -836,6 +836,10 @@ $("#cash").on("input", function () {
 
 function eVietnam(num) {
   return num.toLocaleString("vi");
+}
+
+function eVietnamCurrency(num) {
+  return num.toLocaleString("vi", { style: 'currency', currency: 'VND' });
 }
 // DisplayProductList(
 //   productList,
