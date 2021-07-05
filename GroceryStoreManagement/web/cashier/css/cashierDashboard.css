@@ -22,6 +22,9 @@ a:focus {
         LAYOUT
     ====================
 */
+textarea {
+   resize: none;
+}
 
 .heading {
     padding: 1vmin;
