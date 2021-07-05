@@ -46,6 +46,8 @@ function renderPreBillList() {
         cellTotalCost.innerHTML = formatNumber(preBillList[i].totalCost);
         cellBuyDate.innerHTML = preBillList[i].buyDate.substring(0, 10);
         
+        cellTotalCost.style.textAlign = "right";
+        
         var createClickHandler = function (i, row) {
             return function () {
                 for (var j = 0; j < table.rows.length; j++) {
@@ -107,6 +109,9 @@ function renderPreBillDetailList(billID) {
             cellQuantity.innerHTML = billDetails[i].quantity;
             cellCost.innerHTML = formatNumber(billDetails[i].cost);
             cellTotal.innerHTML = formatNumber(billDetails[i].total);
+            
+            cellCost.style.textAlign = "right";
+            cellTotal.style.textAlign = "right";
         }
     }
 
@@ -118,8 +123,10 @@ function renderPreBillDetailList(billID) {
     var cellTotalCost = row.insertCell(4);
     cellTotalCostLabel.innerHTML = "Tổng cộng";
     cellTotalCostLabel.className = "total-previous-bills";
+    cellTotalCostLabel.style.textAlign = "left";
     cellTotalCost.innerHTML = formatNumber(totalCost);
     cellTotalCost.className = "total-previous-bills-price";
+    cellTotalCost.style.textAlign = "right";
     
     var row = table.insertRow(-1);
     row.insertCell(0);
@@ -128,7 +135,9 @@ function renderPreBillDetailList(billID) {
     var cellPointUsedLabel = row.insertCell(3);
     var cellPointUsed = row.insertCell(4);
     cellPointUsedLabel.innerHTML = "Điểm sử dụng";
+    cellPointUsedLabel.style.textAlign = "left";
     cellPointUsed.innerHTML = pointUsed;
+    cellPointUsed.style.textAlign = "right";
 
     var row = table.insertRow(-1);
     row.insertCell(0);
@@ -137,5 +146,7 @@ function renderPreBillDetailList(billID) {
     var cellCashLabel = row.insertCell(3);
     var cellCash = row.insertCell(4);
     cellCashLabel.innerHTML = "Khách đưa";
+    cellCashLabel.style.textAlign = "left";
     cellCash.innerHTML = formatNumber(cash);
+    cellCash.style.textAlign = "right";
 }

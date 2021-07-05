@@ -46,6 +46,7 @@ public class ChangePasswordStoreownerServlet extends HttpServlet {
             if (username != null) {
                 AccountDAO dao = new AccountDAO();
                 AccountDTO aDTO = dao.CheckLogin(username, currentPassword);
+                
                 if (aDTO == null) {
                     accountErr.setCurrentPasswordError("Mật khẩu hiện tại không đúng");
                     accountErr.setHasError(true);

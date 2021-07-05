@@ -15,14 +15,16 @@
     $(window).resize(function () {
         if ($(window).width() < 768) {
             $('.sidebar .collapse').collapse('hide');
-        }; 
+        }
+        ;
 
         // Toggle the side navigation when window is resized below 480px
         if ($(window).width() < 480 && !$(".sidebar").hasClass("toggled")) {
             $("body").addClass("sidebar-toggled");
             $(".sidebar").addClass("toggled");
             $('.sidebar .collapse').collapse('hide');
-        };	 
+        }
+        ;
     });
 
     // Prevent the content wrapper from scrolling when the fixed side navigation hovered over
@@ -31,7 +33,7 @@
             var e0 = e.originalEvent,
                     delta = e0.wheelDelta || -e0.detail;
             this.scrollTop += (delta < 0 ? 1 : -1) * 30;
-            e.preventDefault();							
+            e.preventDefault();
         }
     });
 
@@ -78,7 +80,7 @@ function openPage(pageName, elmnt, pageBtn) {
 
     // Show the specific tab content
     document.getElementById(pageName).style.display = "block";
-    
+
     // Add the specific color to the button used to open the tab content
     document.getElementById(pageBtn).childNodes[1].style.color = "#fff";
     document.getElementById(pageBtn).childNodes[3].style.color = "#fff";
@@ -99,6 +101,16 @@ function format(time) {
     return (time < 10 ? '0' : '') + time;
 }
 
+function formatDateTime(original) {
+    var normalizedDate = "";
+    if (original.length > 7) {
+        normalizedDate += original.substring(8, 10) + '/';
+    }
+    normalizedDate += original.substring(5, 7) + '/';
+    normalizedDate += original.substring(0, 4);
+    return normalizedDate;
+}
+
 function getTime() {
     var now = new Date();
 
@@ -109,7 +121,7 @@ function getTime() {
     var minute = format(now.getMinutes());
     var second = format(now.getSeconds());
     var preMonth;
-    
+
     if (now.getMonth() === 0) {
         preMonth = 12;
         year = year - 1;
@@ -121,29 +133,35 @@ function getTime() {
     var dateTo = document.getElementsByClassName("datetime-date-to");
     for (i = 0; i < dateTo.length; i++) {
         dateTo[i].value = [year, month, day].join('-') + 'T' + [hour, minute, second].join(':');
+        dateTo[i].max = dateTo[i].value;
     }
     var dateFrom = document.getElementsByClassName("datetime-date-from");
     for (i = 0; i < dateFrom.length; i++) {
         dateFrom[i].value = [year, preMonth, day].join('-') + 'T' + [hour, minute, second].join(':');
+        dateFrom[i].max = dateTo[i].value;
     }
-    
+
     //Set date-type elements
     var dateTo = document.getElementsByClassName("date-date-to");
     for (i = 0; i < dateTo.length; i++) {
         dateTo[i].value = [year, month, day].join('-');
+        dateTo[i].max = dateTo[i].value;
     }
     var dateFrom = document.getElementsByClassName("date-date-from");
     for (i = 0; i < dateFrom.length; i++) {
         dateFrom[i].value = [year, preMonth, day].join('-');
+        dateFrom[i].max = dateTo[i].value;
     }
-    
+
     //Set month-type elements
     var dateTo = document.getElementsByClassName("month-date-to");
     for (i = 0; i < dateTo.length; i++) {
         dateTo[i].value = [year, month].join('-');
+        dateTo[i].max = dateTo[i].value;
     }
     var dateFrom = document.getElementsByClassName("month-date-from");
     for (i = 0; i < dateFrom.length; i++) {
         dateFrom[i].value = [year - 1, month].join('-');
+        dateFrom[i].max = dateTo[i].value;
     }
 }

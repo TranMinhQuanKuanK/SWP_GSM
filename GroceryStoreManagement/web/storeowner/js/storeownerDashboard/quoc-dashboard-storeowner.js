@@ -3,7 +3,6 @@ var dateFrom, dateTo;
 window.onload = onloadFunction();
 
 function onloadFunction() {
-        console.log("SDFSDFSDFSDFSDFSDFSDFSDF?SF?SD?F?@$#?#??#");
     getTime();
 
     var labels = document.getElementsByClassName("statistics-info");
