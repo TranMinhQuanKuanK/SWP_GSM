@@ -113,11 +113,11 @@ function renderProductStatistic(productStatistic) {
                 }],
             columnDefs: [{
                     "targets": [2, 3],
-                    "className": "text-gray-900 dt-body-right"
+                    "className": "dt-body-right"
                 },
                 {
                     "targets": [1],
-                    "className": "text-gray-900 dt-body-left"
+                    "className": "dt-body-left"
                 }, {
                     "orderable": false,
                     "targets": 0
@@ -126,8 +126,7 @@ function renderProductStatistic(productStatistic) {
                     "searchable": false,
                     "targets": [0, 2, 3]
                 }, {
-                    "targets": "_all",
-                    "className": "text-gray-900"
+                    "targets": "_all"
                 }],
             order: [[3, 'desc']],
             language: {
@@ -193,11 +192,11 @@ function renderCustomerStatistic(CustomerStatistic) {
                 }],
             columnDefs: [{
                     "targets": [3, 4],
-                    "className": "text-gray-900 dt-body-right"
+                    "className": "dt-body-right"
                 },
                 {
                     "targets": [1],
-                    "className": "text-gray-900 dt-body-left"
+                    "className": "dt-body-left"
                 }, {
                     "orderable": false,
                     "targets": [0, 2]
@@ -205,8 +204,7 @@ function renderCustomerStatistic(CustomerStatistic) {
                     "searchable": false,
                     "targets": [0, 3, 4]
                 }, {
-                    "targets": "_all",
-                    "className": "text-gray-900"
+                    "targets": "_all"
                 }],
             order: [[4, 'desc']],
             language: {
