@@ -420,24 +420,27 @@ function setCategoryAndSearch(event, id) {
   $("#category-list tr td").removeClass("royalblueBg");
   event.target.setAttribute("class", "royalblueBg");
   category_id = id;
+  document.getElementById("product-search-bar").value = "";
   SearchProduct();
 }
 
 function searchCustomerByPhone() {
   var xhttp = new XMLHttpRequest();
   var phone_no = document.getElementById("phone-no-input").value;
-  xhttp.open("GET", "GetCustomerByPhone?phone_no=" + phone_no, true);
-  xhttp.onload = function () {
-    //nếu kết quả trả về null thì thôi, còn nếu khác null thì in ra
-    result_dto = JSON.parse(this.responseText);
-    if (result_dto != null) {
-      currentBill.customer_dto = result_dto;
-      printBill(currentBill);
-    } else if (result_dto == null) {
-      alert("Không tìm thấy khách hàng tương ứng!");
-    }
-  };
-  xhttp.send();
+  if (phone_no != "") {
+    xhttp.open("GET", "GetCustomerByPhone?phone_no=" + phone_no, true);
+    xhttp.onload = function () {
+      //nếu kết quả trả về null thì thôi, còn nếu khác null thì in ra
+      result_dto = JSON.parse(this.responseText);
+      if (result_dto != null) {
+        currentBill.customer_dto = result_dto;
+        printBill(currentBill);
+      } else if (result_dto == null) {
+        alert("Không tìm thấy khách hàng tương ứng!");
+      }
+    };
+    xhttp.send();
+  }
 }
 
 function renderCustomer() {
@@ -515,7 +518,7 @@ function calculateDiscount() {
   } else return 0;
 }
 
-function EditQuantityBill(product_id) {
+function EditQuantityBill() {
   var xhttp = new XMLHttpRequest();
   quantity = document.getElementById(
     "quantity-for-product-" + product_id
@@ -646,6 +649,9 @@ function RegisterCustomer() {
         clearAllError();
         clearAllInput();
         $("#registerCustomer").modal("hide");
+        //search sẵn cho khách hàng
+        document.getElementById("phone-no-input").value = customerPhoneNo;
+        searchCustomerByPhone();
       }
     }
   }
@@ -672,6 +678,7 @@ function Checkout() {
       // customerErrObj = JSON.parse(this.responseText);
       clearBill();
       getBill();
+      SearchProduct();
       document.getElementById("cash").value = "";
       $("#bill-preview-modal").modal("hide");
     };
