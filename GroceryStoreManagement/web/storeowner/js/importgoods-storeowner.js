@@ -102,7 +102,7 @@ function addToReceipt(productID) {
 function renderReceiptDetail() {
     document.getElementById("receiptContent").innerHTML = "";
     document.getElementById("TOTALCOST").innerHTML = "";
-    var totalcost = receiptOnSession.total_cost;
+    var totalcost = receiptOnSession.total_cost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
     var td_totalcost = document.createElement("span");
     td_totalcost.innerHTML = totalcost;
     document.getElementById("TOTALCOST").appendChild(td_totalcost);
@@ -134,11 +134,12 @@ function renderReceiptDetail() {
 
 
         var td_price = document.createElement("td");
-        td_price.innerHTML = receiptItems[i].product.selling_price;
+        td_price.innerHTML = receiptItems[i].product.selling_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_price.setAttribute("class", "text-right");
 
         var td_cost = document.createElement("td");
-        td_cost.innerHTML = receiptItems[i].product.selling_price * receiptItems[i].quantity;
+        let totalcost = receiptItems[i].product.selling_price * receiptItems[i].quantity;
+        td_cost.innerHTML = totalcost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_cost.setAttribute("class", "text-right");
 
         var td_button = document.createElement("td");

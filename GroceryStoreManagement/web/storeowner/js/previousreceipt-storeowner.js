@@ -37,7 +37,7 @@ function renderReceiptList(data) {
             td_user.innerHTML = data[i].owner_name;
 
             var td_total = document.createElement("td");
-            td_total.innerHTML = data[i].total;
+            td_total.innerHTML = data[i].total.toLocaleString('vi', {style : 'currency', currency : 'VND'});
             td_total.setAttribute("class", "text-right");
 
             var td_button = document.createElement("td");
@@ -92,7 +92,7 @@ function GetDetail(receiptID) {
     document.getElementById("IMPORTDATE").innerHTML = "";
     document.getElementById("TOTALCOST").innerHTML = "";
     var td_totalcost = document.createElement("span");
-    td_totalcost.innerHTML = totalReceipt;
+    td_totalcost.innerHTML = totalReceipt.toLocaleString('vi', {style : 'currency', currency : 'VND'});
 
     var td_username = document.createElement("span");
     td_username.innerHTML = username;
@@ -125,11 +125,11 @@ function renderReceiptDetail() {
         td_quantity.innerHTML = receiptDetail[i].quantity;
 
         var td_price = document.createElement("td");
-        td_price.innerHTML = receiptDetail[i].cost;
+        td_price.innerHTML = receiptDetail[i].cost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_price.setAttribute("class", "text-right");
 
         var td_total = document.createElement("td");
-        td_total.innerHTML = receiptDetail[i].total;
+        td_total.innerHTML = receiptDetail[i].total.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_total.setAttribute("class", "text-right");
         tempTotal += receiptDetail[i].total;
 

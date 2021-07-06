@@ -103,8 +103,9 @@ function printProductList(data) {
             var td_button = document.createElement("td");
             var Add_bt = document.createElement("a");
 
-            Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2'></i>";
+            Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2' style='opacity: 0.2;'></i>";
             Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
+            Add_bt.setAttribute("style", "pointer-events: none; cursor: default;");
 
             var Edit_bt = document.createElement("a");
             Edit_bt.innerHTML = "<i class='fas fa-ellipsis-h btn-inventory'></i>";
