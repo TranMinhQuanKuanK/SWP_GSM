@@ -24,8 +24,7 @@ function getPendingList() {
     };
     xhttp.open("GET", "GetPendingItemList", false);
     xhttp.send();
-}
-;
+};
 
 function renderPendingList(data) {
     document.getElementById("tableContent").innerHTML = "";
