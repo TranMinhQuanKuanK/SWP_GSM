@@ -64,7 +64,9 @@ function processAllFeedback(data){
         count += 1;
         cell1.innerHTML = count;
         cell1.style.textAlign = "right";
-        cell2.innerHTML = data[i].feedback_date;
+        let temp = Date.parse(data[i].feedback_date);
+        let temp_datetime = new Date(temp).toLocaleString('en-AU').toUpperCase();
+        cell2.innerHTML = temp_datetime;
         cell2.style.textAlign = "left";
         cell3.innerHTML = data[i].feedback_content;
         cell3.style.textAlign = "left";
@@ -137,7 +139,9 @@ function processUnSeenFeedback(data){
         count += 1;
         cell1.innerHTML = count;
         cell1.style.textAlign = "right";
-        cell2.innerHTML = data[i].feedback_date;
+        let temp = Date.parse(data[i].feedback_date);
+        let temp_datetime = new Date(temp).toLocaleString('en-AU').toUpperCase();
+        cell2.innerHTML = temp_datetime;
         cell2.style.textAlign = "left";
         cell3.innerHTML = data[i].feedback_content;
         cell3.style.textAlign = "left";

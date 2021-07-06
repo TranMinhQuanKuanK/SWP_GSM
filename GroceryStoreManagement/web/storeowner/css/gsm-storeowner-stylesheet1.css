@@ -11330,11 +11330,14 @@ html {
 .total-previous-bills, .total-previous-receipts {
     font-weight: 700 !important;
     color: #ff0000 !important;
+    font-size: 1.25rem;
 }
 
 .total-previous-bills-price, .total-previous-receipts-price {
     color: #ff0000 !important;
     font-weight: 700 !important;
+    font-size: 1.25rem;
+    margin-left: 2rem;
 }
 
 .icon-previous-bills-reset{
