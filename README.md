@@ -2,7 +2,7 @@
 ## About project:
 This project is introduced as a solution for small-to-medium-sized grocery stores in Vietnam. Common grocery stores around Vietnam often encounter some problems such as inventory loss, overwhelming paperwork for inventory management and purchase order or miscalculation, etc. This web-application helps the store owners to deal with the above problems. The website supports the following functionalities for:
 ## Team Member
-- Trần Minh Quân - Backend + Planner
+- Trần Minh Quân - Backend + Database +  Planner
 - Hoàng Phước Thành - Backend + Frontend 
 - Lưu Đức Hùng - Backend + Frontend 
 - Lê Nguyễn Hữu Quốc - Backend
