@@ -5,7 +5,7 @@ This project is introduced as a solution for small-to-medium-sized grocery store
 ## Project user's interface:
 ### Login screen:
 ![](img/Login.png)
-
+### Cashier role screen:
 ![](img/Cashier.png)
 
 ![](img/Cashier2.png)
@@ -13,7 +13,7 @@ This project is introduced as a solution for small-to-medium-sized grocery store
 ![](img/Cashier3.png)
 
 ![](img/Cashier4.png)
-
+### Admin's dashboard:
 ![](img/a_Dashboard.png)
 
 ![](img/a_Inventory.png)
