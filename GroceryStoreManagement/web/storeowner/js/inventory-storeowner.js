@@ -114,18 +114,12 @@ function printProductList(data) {
 
             var td_button = document.createElement("td");
             var Add_bt = document.createElement("a");
-            const foundInPending = Boolean (pendingList.filter(item=>item.product_ID === data[i].product_ID).length);
-           
-            if (foundInPending === false){
-                Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2'></i>";
-                Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
-            } else {
-                Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2' style='opacity: 0.2;'></i>";
-                Add_bt.setAttribute("style", "pointer-events: none; cursor: default;");
-            }
-            
+
+            Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2'></i>";
+            Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
+
             var Edit_bt = document.createElement("a");
-            Edit_bt.innerHTML = "<i class='fas fa-ellipsis-h btn-inventory'></i>";
+            Edit_bt.innerHTML = "<i class='far fa-edit btn-inventory'></i>";
             Edit_bt.setAttribute("data-toggle", "modal");
             Edit_bt.setAttribute("data-target", "#editModal");
             Edit_bt.setAttribute("onclick", "setUpModal(" + data[i].product_ID + ")");
