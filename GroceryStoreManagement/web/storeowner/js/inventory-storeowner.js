@@ -9,6 +9,7 @@ window.onload = function () {
     };
     xhttp.open("GET", "GetCategoryList", false);
     xhttp.send();
+    getPendingList();
     getProduct();
 };
 
@@ -25,9 +26,10 @@ function processCategory(data) {
     }
 }
 
-var productObject;
-var notification;
-var tempThreshold;
+let productObject;
+let notification;
+let tempThreshold;
+let pendingList;
 
 function getProduct() {
     productObject = null;
@@ -67,6 +69,16 @@ function getProduct() {
     xhttp.send();
 }
 
+function getPendingList() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        console.log(this.responseText);
+        pendingList = JSON.parse(this.responseText);
+    };
+    xhttp.open("GET", "GetPendingItemList", false);
+    xhttp.send();
+};
+
 function printProductList(data) {
     document.getElementById("tableContent").innerHTML = "";
     var index = 0;
@@ -102,10 +114,16 @@ function printProductList(data) {
 
             var td_button = document.createElement("td");
             var Add_bt = document.createElement("a");
-
-            Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2'></i>";
-            Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
-
+            const foundInPending = Boolean (pendingList.filter(item=>item.product_ID === data[i].product_ID).length);
+           
+            if (foundInPending === false){
+                Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2'></i>";
+                Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
+            } else {
+                Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2' style='opacity: 0.2;'></i>";
+                Add_bt.setAttribute("style", "pointer-events: none; cursor: default;");
+            }
+            
             var Edit_bt = document.createElement("a");
             Edit_bt.innerHTML = "<i class='fas fa-ellipsis-h btn-inventory'></i>";
             Edit_bt.setAttribute("data-toggle", "modal");
@@ -150,6 +168,8 @@ function addToPendingListByOwner(productID) {
             "application/x-www-form-urlencoded;charset=UTF-8"
             );
     xhttp.send(content);
+    getPendingList();
+    getProduct();
 }
 
 
@@ -176,6 +196,8 @@ function addToPendingListAuto(productID) {
             "application/x-www-form-urlencoded;charset=UTF-8"
             );
     xhttp.send(content);
+    getPendingList();
+    getProduct();
 }
 
 function setUpModal(productID) {
@@ -236,5 +258,6 @@ function updateQuantity() {
     xhttp.send(content);
     document.getElementById("product-newquantity").value = "";
     $("#editModal").modal("hide");
+    getPendingList();
     getProduct();
 }
