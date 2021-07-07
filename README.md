@@ -4,7 +4,7 @@ This project is introduced as a solution for small-to-medium-sized grocery store
 ## Team Member
 - Trần Minh Quân - Backend + Planner
 - Hoàng Phước Thành - Backend + Frontend 
-- Lưu Đức Hùng - - Backend + Frontend 
+- Lưu Đức Hùng - Backend + Frontend 
 - Lê Nguyễn Hữu Quốc - Backend
 - Hồng Nhật Dương - Backend
 ## Project user's interface:
