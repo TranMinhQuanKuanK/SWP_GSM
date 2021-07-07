@@ -11299,8 +11299,8 @@ html {
 
 .table-border-custom{
     color: black !important;
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
 }
 
 .table-border-custom > tbody {
@@ -11402,7 +11402,7 @@ html {
 }
 
 .btn-inventory:hover {
-    color: black;
+    opacity: 1;
 }
 
 .btn-import-goods:hover{

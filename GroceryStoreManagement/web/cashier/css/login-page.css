@@ -13,45 +13,36 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #5f80e2;    
-}
-
-.brand-name {
-    display: flex;
-    position: fixed;
-    top: 6% !important;
-    left: auto;
-    font-weight: bold;
-    font-size: 6rem;
-    z-index: -10000;
-    color: #fff;
+    background: #4e73df;
 }
 
 .login {
     width: 100%;
     max-width: 50rem;
+    /*background-color: #f7e672;*/
     border-radius: 20px;
     padding: 5.5rem 3.5rem;
+    /*background: linear-gradient(145deg, #decf67, #fff67a);*/
     box-shadow:  30px 30px 61px #334b91,
         -30px -30px 61px #699bff;
 }
 
 .login-heading {
     text-align: center;
+    z-index:0;
     white-space:nowrap;
     margin-bottom: 3rem;
 }
-
 .login-h1{
     font-weight: bold;
     font-size: 6rem;
-    color: white;
+    z-index: 3;
 }
 
 .login-field {
     display: flex;
     align-items: center;
-    background-color: #c2cff4;
+    background-color: #ebfaff;
     padding: 1.5rem;
     border-radius: 1rem;
     margin-bottom: 20px;
@@ -86,20 +77,16 @@ body {
     font-size: 1.6rem;
 }
 
-.login__login-btn {
-    display: flex; 
-    justify-content: center;
-}
 /*Login button*/
 .login-btn {
     font-family: "Poppins", sans-serif;
     font-size: 1.8rem;
     font-weight: 500;
-    background-color: #e4e9fa;
+    background-color: transparent;
     color: black;
     border-radius: 40px;
     display: block;
-    width: 50%;
+    width: 100%;
     padding: 15px 10px;
     border: 2px solid black;
     cursor: pointer;
@@ -112,7 +99,7 @@ body {
     font: normal normal normal 2.5rem/1 FontAwesome;
     font-weight: 400;
     position: absolute;
-    left: 80%;
+    left: 70%;
     top: 53%;
     bottom: 0;
     opacity: 0;
@@ -146,7 +133,7 @@ body {
 
 .error-icon{
     padding-top: 0.5rem;
-    color: red;
+    color: #344667;
     font-size: 1.6rem;
     width: 20px;
     text-align: center;
