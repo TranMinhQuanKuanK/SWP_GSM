@@ -91,7 +91,7 @@ function printProductList(data) {
             var th_index = document.createElement("th");
             th_index.setAttribute("scope", "row");
             th_index.innerHTML = index;
-            th_index.style.textAlign = "right";
+            th_index.style.textAlign = "center";
 
             var td_name = document.createElement("td");
             td_name.innerHTML = data[i].name;
@@ -116,20 +116,20 @@ function printProductList(data) {
             var td_button = document.createElement("td");
             var Add_bt = document.createElement("a");
 
-            Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2'></i>";
-            Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
+            // Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2' ></i>";
+            // Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
 
             const foundInPending = Boolean(pendingList.filter(item => item.product_ID === data[i].product_ID).length);
 
             if (foundInPending === false) {
-                Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2'></i>";
+                Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2' style='cursor: pointer;'></i>";
                 Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
             } else {
-                Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2' style='opacity: 0.2;'></i>";
-                Add_bt.setAttribute("style", "pointer-events: none; cursor: default;");
+                Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2' style='opacity: 0.2; cursor: not-allowed;'></i>";
+                // Add_bt.setAttribute("style", "pointer-events: none;");
             }
             var Edit_bt = document.createElement("a");
-            Edit_bt.innerHTML = "<i class='far fa-edit btn-inventory'></i>";
+            Edit_bt.innerHTML = "<i class='far fa-edit btn-inventory'  style='cursor: pointer;'></i>";
             Edit_bt.setAttribute("data-toggle", "modal");
             Edit_bt.setAttribute("data-target", "#editModal");
             Edit_bt.setAttribute("onclick", "setUpModal(" + data[i].product_ID + ")");
@@ -156,9 +156,14 @@ function addToPendingListByOwner(productID) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
             if (notification == "1") {
-                notification = "Đã thêm vào Pending List";
+                // notification = "Đã thêm vào Pending List";
+                console.log('alo alo')
+                $('#success-to-save-toast').toast({
+                    delay: 2000
+                });
+                $('#success-to-save-toast').toast('show');
             }
-            alert(notification);
+            // alert(notification);
         }
     };
     content =

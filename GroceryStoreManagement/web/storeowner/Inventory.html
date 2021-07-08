@@ -39,7 +39,12 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-
+        <style>
+            /* button {
+                cursor: pointer;
+            }
+            button:disabled */
+        </style>
     </head>
 
     <body id="page-top">
@@ -92,7 +97,7 @@
                                         <h6 class="font-weight-bold text-primary pt-3 pr-0 d-flex">Tên sản phẩm: &nbsp;</h6>
                                         <input class="form-control col-2 mt-2 mb-2" type="search" placeholder="Sản phẩm"
                                                id="inputSearchVal" style="color:black;">
-                                        <h6 class="font-weight-bold text-primary pt-3 pr-0 d-flex">&nbsp; / Loại hàng:
+                                        <h6 class="font-weight-bold text-primary pl-3 pt-3 pr-0 d-flex">&nbsp; Loại hàng:
                                         </h6>
                                         <div class="input-group col-2 mt-2 mb-2">
                                             <select class="custom-select" id="inputGroupSelect01" style="color:black;">
@@ -102,10 +107,9 @@
                                         <button class="btn btn-primary mt-2 mb-2" type="button"
                                                 onclick="getProduct()"><i class="fas fa-search"></i></button>
 
-
                                         <div class="row d-flex mt-2 ml-3">
                                             <div class="input-group-text mb-2">
-                                                <input type="checkbox" id="noos_check">
+                                                <input type="checkbox" id="noos_check"  onclick="getProduct()" style="cursor: pointer;">
                                             </div>
                                             <label class="mt-2 mb-2 ml-2 " for="noos_check" style="color: black;">
                                                 Chỉ hiện thị sản phẩm sắp hết hàng
@@ -125,11 +129,11 @@
                                         <table class="table table-striped table-border-custom" id="productTable">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" class="table-heading" style="width:5%;"></th>
-                                                    <th scope="col" class="table-heading" style="width:40%;">Tên mặt hàng</th>
+                                                    <th scope="col" class="table-heading text-center" style="width:5%;">STT</th>
+                                                    <th scope="col" class="table-heading text-left" style="width:40%;">Tên mặt hàng</th>
                                                     <th scope="col" class="table-heading" style="width:15%;">Loại hàng</th>
-                                                    <th scope="col" class="table-heading" style="width:15%;">Ngưỡng thiếu</th>
-                                                    <th scope="col" class="table-heading" style="width:10%;">Số lượng</th>
+                                                    <th scope="col" class="table-heading text-right" style="width:15%;">Số lượng tối thiểu</th>
+                                                    <th scope="col" class="table-heading text-right" style="width:10%;">Số lượng</th>
                                                     <th scope="col" class="table-heading" style="width:15%;"></th>
                                                 </tr>
                                             </thead>
@@ -177,44 +181,63 @@
                     <div class="modal-body">
                         <form class="form-inline">
                             <div class="form-group mb-2">
-                                <label for="productname-label" class="sr-only">Product name</label>
+                                <label for="productname-label" class="sr-only">Tên mặt hàng</label>
                                 <input type="text" readonly class="form-control-plaintext" id="productname-label"
                                        value="Product name:" disabled>
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <label for="productname" class="sr-only">Product name</label>
+                                <label for="productname" class="sr-only">Tên mặt hàng</label>
                                 <input type="text" class="form-control" id="productname" disabled>
                             </div>
                             <input type="hidden" id="hiddenProductID">
                         </form>
                         <form class="form-inline">
                             <div class="form-group mb-2">
-                                <label for="product-oldquantity-label" class="sr-only">Product old quantity</label>
+                                <label for="product-oldquantity-label" class="sr-only">Số lượng hiện tại</label>
                                 <input type="text" readonly class="form-control-plaintext" id="product-oldquantity-label"
                                        value="Product old quantity:" disabled>
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <label for="product-oldquantity" class="sr-only">Product old quantity</label>
+                                <label for="product-oldquantity" class="sr-only">Số lượng hiện tại</label>
                                 <input type="number" class="form-control" id="product-oldquantity" disabled>
                             </div>
                         </form>
                         <form class="form-inline">
                             <div class="form-group mb-2">
-                                <label for="product-newquantity-label" class="sr-only">Product new quantity</label>
+                                <label for="product-newquantity-label" class="sr-only">Số lượng mới</label>
                                 <input type="text" readonly class="form-control-plaintext" id="product-newquantity-label"
                                        value="Product new quantity:" disabled>
                             </div>
                             <div class="form-group mx-sm-3 mb-2">
-                                <label for="product-newquantity" class="sr-only">Product new quantity</label>
+                                <label for="product-newquantity" class="sr-only">Số lượng mới</label>
                                 <input type="number" class="form-control" id="product-newquantity" value="">
                             </div>
                         </form>
 
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="#" onClick="updateQuantity();return false;">Save changes</a>
+                        <a class="btn btn-primary" href="#" onClick="updateQuantity();return false;">Lưu thay đổi</a>
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Quay lại</button>
                     </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Successful to edit product toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; z-index: 8000; position: -webkit-sticky;
+        position: sticky;">
+            <div id="success-to-save-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-auto text-success">Thay đổi thành công</strong>
+                    <small>Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Thêm vào thành công
                 </div>
             </div>
         </div>
