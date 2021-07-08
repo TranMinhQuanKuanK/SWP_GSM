@@ -1,7 +1,4 @@
-//window.onload = function (){
-//    var receiptList;
-//    GetPreviousReceipt();
-//};
+var receiptList;
 function GetPreviousReceipt() {
     var request = new XMLHttpRequest();
     var dateStart = document.getElementById("date-from").value;
