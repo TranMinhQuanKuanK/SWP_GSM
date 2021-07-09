@@ -154,14 +154,11 @@ function addToPendingListByOwner(productID) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
             if (notification == "1") {
-                // notification = "Đã thêm vào Pending List";
-                console.log('alo alo')
                 $('#success-to-save-toast').toast({
-                    delay: 2000
+                    delay: 3000
                 });
                 $('#success-to-save-toast').toast('show');
             }
-            // alert(notification);
         }
     };
     content =
@@ -187,9 +184,11 @@ function addToPendingListAuto(productID) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
             if (notification == "1") {
-                notification = "Đã tự động thêm vào Pending List do duới ngưỡng";
+                $('#success-auto-save-toast').toast({
+                    delay: 3000
+                });
+                $('#success-auto-save-toast').toast('show');
             }
-            alert(notification);
         }
     };
     content =
