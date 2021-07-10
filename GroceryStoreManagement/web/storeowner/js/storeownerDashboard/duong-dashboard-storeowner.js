@@ -71,4 +71,8 @@ function addToReceipt(productID) {
             "application/x-www-form-urlencoded;charset=UTF-8"
             );
     xhttp.send(content);
+    $('#success-to-add-toast').toast({
+        delay: 3000
+    });
+    $('#success-to-add-toast').toast('show');
 }
