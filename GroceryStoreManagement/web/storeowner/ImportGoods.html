@@ -39,7 +39,18 @@
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        <style>
+            a i {
+                cursor: pointer;
+                transition: font-size 0.2s, color 0.2s;
+            }
 
+            a i:hover,
+            a i:focus {
+                color: royalblue;
+                font-size: 2rem !important;
+            }
+        </style>
     </head>
 
     <body id="page-top">
@@ -182,6 +193,38 @@
             <i class="fas fa-angle-up"></i>
         </a>
 
+        <!-- Successful to edit product toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; z-index: 8000; position: -webkit-sticky;
+        position: sticky;">
+            <div id="success-to-save-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-auto text-success">Thay đổi thành công</strong>
+                    <small>Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Nhập hàng thành công
+                </div>
+            </div>
+        </div>
+        <!-- Successful to edit product toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; z-index: 8000; position: -webkit-sticky;
+        position: sticky;">
+            <div id="fail-to-save-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-auto text-danger">Thay đổi thất bại</strong>
+                    <small>Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Hãy thêm hàng để nhập
+                </div>
+            </div>
+        </div>
         <!-- Bootstrap core JavaScript-->
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
         <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

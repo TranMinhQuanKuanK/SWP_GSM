@@ -22,6 +22,7 @@ function renderReceiptList(data) {
         if (data[i].is_selling !== false) {
             index++;
             var tr = document.createElement("tr");
+            tr.setAttribute("id", data[i].receipt_ID);
 
             var th_index = document.createElement("th");
             th_index.setAttribute("scope", "row");
@@ -37,22 +38,30 @@ function renderReceiptList(data) {
             td_total.innerHTML = data[i].total.toLocaleString('vi', {style : 'currency', currency : 'VND'});
             td_total.setAttribute("class", "text-right");
 
-            var td_button = document.createElement("td");
-            var Add_bt = document.createElement("a");
-            Add_bt.innerHTML = "<i class='fas fa-info-circle btn-inventory'></i>";
-            Add_bt.setAttribute("onclick", "GetDetail(" + data[i].receipt_ID + ")");
-            td_button.appendChild(Add_bt);
-
+            // var td_button = document.createElement("td");
+            // var Add_bt = document.createElement("a");
+            // Add_bt.innerHTML = "<i class='fas fa-info-circle btn-inventory'></i>";
+            // Add_bt.setAttribute("onclick", "GetDetail(" + data[i].receipt_ID + ")");
+            // td_button.appendChild(Add_bt);
+            
             tr.appendChild(th_index);
             tr.appendChild(td_date);
             tr.appendChild(td_user);
             tr.appendChild(td_total);
-            tr.appendChild(td_button);
+            // tr.appendChild(td_button);
 
             document.getElementById("tableContent").appendChild(tr);
         }
     } // finish printing a product detail row
 }
+var receiptIDForTable
+$('#tableContent').on('click', 'tr', function () {
+    $(this).find('tr[id=" + receiptIDForTable + "]').removeClass('activeRow');
+    receiptIDForTable = ($(this).closest('tr').attr("id"));
+    $(this).closest('tr').addClass('activeRow');
+    GetDetail(receiptIDForTable);
+});
+$("#tableContent").css("cursor", "pointer");
 
 var receiptDetail;
 
