@@ -222,3 +222,15 @@ function importReceipt() {
         $('#fail-to-save-toast').toast('show');
     }
 }
+
+function handleImportReceipt() {
+    if (receiptOnSession.total_cost === 0) {
+        $('#fail-to-save-toast').toast({
+            delay: 3000
+        });
+        $('#fail-to-save-toast').toast('show');
+    }
+    else {
+        $('#confirmImportModal').modal("show");
+    }
+}

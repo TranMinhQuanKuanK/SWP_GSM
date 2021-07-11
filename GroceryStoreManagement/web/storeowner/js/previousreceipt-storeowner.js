@@ -30,9 +30,11 @@ function renderReceiptList(data) {
 
             var td_date = document.createElement("td");
             td_date.innerHTML = data[i].import_date;
+            td_date.setAttribute("class", "text-left");
 
             var td_user = document.createElement("td");
             td_user.innerHTML = data[i].owner_name;
+            td_user.setAttribute("class", "text-left");
 
             var td_total = document.createElement("td");
             td_total.innerHTML = data[i].total.toLocaleString('vi', {style : 'currency', currency : 'VND'});
@@ -56,7 +58,9 @@ function renderReceiptList(data) {
 }
 var receiptIDForTable
 $('#tableContent').on('click', 'tr', function () {
-    $(this).find('tr[id=" + receiptIDForTable + "]').removeClass('activeRow');
+    if (receiptIDForTable != undefined) {
+        $(`tr[id=${receiptIDForTable}]`).removeClass('activeRow');
+    }
     receiptIDForTable = ($(this).closest('tr').attr("id"));
     $(this).closest('tr').addClass('activeRow');
     GetDetail(receiptIDForTable);

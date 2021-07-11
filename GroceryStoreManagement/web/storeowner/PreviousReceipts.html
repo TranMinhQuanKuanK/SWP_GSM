@@ -37,15 +37,15 @@
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <style>
-            table.table-hover tbody tr:hover,
-            table.table-hover tbody tr:focus {
+            /* table.table-hover tbody tr:hover {
                 background-color: #4d73df;
                 color: #fff;
-            }
+                opacity: 0.6;
+            } */
 
             .activeRow {
                 background-color: #4d73df !important;
-                color: #fff;
+                color: #fff !important;
             }
         </style>
     </head>
@@ -168,13 +168,13 @@
                                                     <span class="pt-1 ml-1 bill-info" id="IMPORTDATE"></span>
                                                 </div>
                                             </div>
-                                            <div class="row">
+                                            <div class="row" >
                                                 <div class="justify-content-start d-flex" style="width:45%;">
                                                     <span class="m-0 font-weight-bold text-primary pt-1 ml-1 d-flex" style="color: red !important;">Tổng:
                                                         &nbsp;</span>
                                                 </div>
                                                 <div class="justify-content-start d-flex" style="width:55%;">
-                                                    <span class="pt-1 ml-1 bill-info" id="TOTALCOST"></span>
+                                                    <span class="pt-1 ml-1 bill-info font-weight-bold" id="TOTALCOST" style="color: red !important;"></span>
                                                 </div>
                                             </div>
   
@@ -185,10 +185,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th scope="col" class="table-heading" style="width:5%;"></th>
-                                                        <th scope="col" class="table-heading" style="width:30%;">TÊN SP</th>
+                                                        <th scope="col" class="table-heading text-left" style="width:30%;">TÊN SP</th>
                                                         <th scope="col" class="table-heading" style="width:20%;">SỐ LƯỢNG</th>
-                                                        <th scope="col" class="table-heading" style="width:20%;">ĐƠN GIÁ</th>
-                                                        <th scope="col" class="table-heading" style="width:25%;">THÀNH TIỀN</th>
+                                                        <th scope="col" class="table-heading text-right" style="width:20%;">ĐƠN GIÁ</th>
+                                                        <th scope="col" class="table-heading text-right" style="width:25%;">THÀNH TIỀN</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="receiptDetailContent">
