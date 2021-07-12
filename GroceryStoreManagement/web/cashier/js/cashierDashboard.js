@@ -48,8 +48,9 @@ function DisplayProductInfo(id) {
   if (product == -1) console.log("error! Can't find product");
   document.getElementById("product-info-name").innerHTML = product.name;
   document.getElementById("product-info-quantity").innerHTML = product.quantity;
-  document.getElementById("product-info-price").innerHTML =
-    eVietnamCurrency(product.selling_price);
+  document.getElementById("product-info-price").innerHTML = eVietnamCurrency(
+    product.selling_price
+  );
   document.getElementById("product-info-location").innerHTML = product.location;
 }
 
@@ -436,7 +437,10 @@ function searchCustomerByPhone() {
         currentBill.customer_dto = result_dto;
         printBill(currentBill);
       } else if (result_dto == null) {
-        alert("Không tìm thấy khách hàng tương ứng!");
+        $('#fail-to-find-customer-toast').toast({
+          delay: 2000
+      });
+      $('#fail-to-find-customer-toast').toast('show');
       }
     };
     xhttp.send();
@@ -668,7 +672,10 @@ function clearbill() {
 }
 function Checkout() {
   if (currentBill.total_cost == 0) {
-    alert("Không mua gì sao checkout????");
+    $("#fail-to-save-toast").toast({
+      delay: 2000,
+    });
+    $("#fail-to-save-toast").toast("show");
   } else {
     var cash = document.getElementById("cash").value.split(".").join("");
     var xhttp = new XMLHttpRequest();
@@ -681,6 +688,10 @@ function Checkout() {
       SearchProduct();
       document.getElementById("cash").value = "";
       $("#bill-preview-modal").modal("hide");
+      $("#success-to-save-toast").toast({
+        delay: 2000,
+      });
+      $("#success-to-save-toast").toast("show");
     };
     xhttp.send();
     //clear bill, đóng modal
@@ -839,7 +850,7 @@ function eVietnam(num) {
 }
 
 function eVietnamCurrency(num) {
-  return num.toLocaleString("vi", { style: 'currency', currency: 'VND' });
+  return num.toLocaleString("vi", { style: "currency", currency: "VND" });
 }
 // DisplayProductList(
 //   productList,

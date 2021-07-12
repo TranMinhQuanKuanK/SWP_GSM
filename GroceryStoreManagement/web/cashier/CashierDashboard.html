@@ -30,7 +30,7 @@
         <div class="container-fluid heading royalblueBg">
             <div class="d-flex justify-content-between pl-2 align-items-center">
                 <div class="my-auto">
-                    <h3 class="my-auto font-weight-bold">TẠP HÓA ÔNG SÁU </h3>
+                    <h3 class="my-auto font-weight-bold">TẠP HÓA ÔNG SÁU</h3>
                 </div>
                 <!-- Chào cashier và cái nút bánh răng -->
                 <div class="d-flex justify-content-between pr-2">
@@ -389,15 +389,14 @@
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="logOutLabel">Bạn chắc chưa?</h5>
+                        <h5 class="modal-title" id="logOutLabel">Đăng xuất</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form class="text-center">
-                            <button type="button" class="btn royalblueBg me-2" onclick="location.href = 'Logout';">Đăng
-                                xuất</button>
+                            <button type="button" class="btn royalblueBg mr-2" onclick="location.href = 'Logout';">Đồng ý</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                         </form>
                     </div>
@@ -439,7 +438,7 @@
             </div>
         </div>
 
-        <!-- Checkout Modal -->
+        <!-- Checkout Modal
         <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
@@ -451,13 +450,14 @@
                     </div>
                     <div class="modal-body">
                         <form class="text-center">
-                            <button type="submit" class="btn btn-success me-2">Xác nhận</button>
+                            <button type="submit" class="btn btn-success">Xác nhận</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
         <!--Bill error Modal -->
         <div class="modal fade" id="bill-error-modal" tabindex="-1" aria-labelledby="createFeedbackLabel"
             aria-hidden="true">
@@ -580,6 +580,55 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fail to checkout toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; right: 5px; z-index: 8000;
+        position: fixed;">
+            <div id="fail-to-save-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-4 text-danger">Thanh toán thất bại</strong>
+                    <small class="my-auto">Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Hãy chọn hàng hóa cần thanh toán
+                </div>
+            </div>
+        </div>
+        <!-- Fail to checkout toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; right: 5px; z-index: 7999;
+        position: fixed;">
+            <div id="fail-to-find-customer-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-4 text-danger">Tìm kiếm thất bại</strong>
+                    <small class="my-auto">Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Không tìm thấy khách hàng tương ứng
+                </div>
+            </div>
+        </div>
+
+        <!-- Successful to checkout toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; right: 5px; z-index: 8000; position: fixed;">
+            <div id="success-to-save-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-5 text-success">Thanh toán thành công</strong>
+                    <small class="my-auto">Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Chúc mừng!
                 </div>
             </div>
         </div>
