@@ -87,33 +87,39 @@ function printProductList(data) {
         if (data[i].is_selling !== false) {
             index++;
             var tr = document.createElement("tr");
-
+            
             var th_index = document.createElement("th");
             th_index.setAttribute("scope", "row");
             th_index.innerHTML = index;
             th_index.style.textAlign = "right";
-
+            th_index.style.verticalAlign = "middle";
+            
             var td_name = document.createElement("td");
             td_name.innerHTML = data[i].name;
             td_name.style.textAlign = "left";
+            td_name.style.verticalAlign = "middle";
 
             var td_category = document.createElement("td");
             td_category.innerHTML = data[i].category.name;
+            td_category.style.verticalAlign = "middle";
 
             var td_threshold = document.createElement("td");
             td_threshold.innerHTML = data[i].lower_threshold;
             td_threshold.setAttribute("class", "text-right");
             td_threshold.setAttribute("id", "thresholdOf" + data[i].product_ID);
+            td_threshold.style.verticalAlign = "middle";
 
             var td_quantity = document.createElement("td");
             td_quantity.setAttribute("class", "text-right");
             td_quantity.innerHTML = data[i].quantity;
+            td_quantity.style.verticalAlign = "middle";
 
             if (data[i].lower_threshold >= data[i].quantity) {
                 tr.className = "red-row";
             }
 
             var td_button = document.createElement("td");
+            td_button.style.verticalAlign = "middle";
             var Add_bt = document.createElement("a");
 
             Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2'></i>";

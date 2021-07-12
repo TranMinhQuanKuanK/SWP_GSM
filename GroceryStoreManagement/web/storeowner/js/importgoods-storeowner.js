@@ -36,16 +36,20 @@ function renderPendingList(data) {
         var th_index = document.createElement("th");
         th_index.setAttribute("scope", "row");
         th_index.innerHTML = index;
+        th_index.style.verticalAlign = "middle";
 
         var td_name = document.createElement("td");
         td_name.innerHTML = data[i].product_name;
         td_name.style.textAlign = "left";
+        td_name.style.verticalAlign = "middle";
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = data[i].product_quantity;
         td_quantity.setAttribute("class", "text-right");
+        td_quantity.style.verticalAlign = "middle";
 
         var td_button = document.createElement("td");
+        td_button.style.verticalAlign = "middle";
         var Add_bt = document.createElement("a");
         Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-import-goods'></i>";
         Add_bt.setAttribute("onclick", "addToReceipt(" + data[i].product_ID + ")");
@@ -115,14 +119,17 @@ function renderReceiptDetail() {
         th_index.setAttribute("scope", "row");
         th_index.innerHTML = index;
         th_index.setAttribute("class", "text-right");
+        th_index.style.verticalAlign = "middle";
         
         var td_name = document.createElement("td");
         td_name.innerHTML = receiptItems[i].product.name;
         td_name.setAttribute("class", "text-left");
+        td_name.style.verticalAlign = "middle";
         
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
         input_quantity.style.width = "80%";
+        input_quantity.style.verticalAlign = "middle";
         input_quantity.setAttribute("class", "text-right float-right");
         input_quantity.setAttribute("id", "quantityOf" + receiptItems[i].product.product_ID);
         input_quantity.setAttribute("type", "number");
@@ -135,18 +142,20 @@ function renderReceiptDetail() {
         var td_price = document.createElement("td");
         td_price.innerHTML = receiptItems[i].product.selling_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_price.setAttribute("class", "text-right");
+        td_price.style.verticalAlign = "middle";
 
         var td_cost = document.createElement("td");
         let totalcost = receiptItems[i].product.selling_price * receiptItems[i].quantity;
         td_cost.innerHTML = totalcost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_cost.setAttribute("class", "text-right");
+        td_cost.style.verticalAlign = "middle";
 
         var td_button = document.createElement("td");
+        td_button.style.verticalAlign = "middle";
         var Remove_bt = document.createElement("a");
         Remove_bt.innerHTML = "<i class='fas fa-times-circle btn-inventory'></i>";
         Remove_bt.setAttribute("onclick", "removeFromReceipt(" + receiptItems[i].product.product_ID + ")");
         td_button.appendChild(Remove_bt);
-
 
         tr.appendChild(th_index);
         tr.appendChild(td_name);

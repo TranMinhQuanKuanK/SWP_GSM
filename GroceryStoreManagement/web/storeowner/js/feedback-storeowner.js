@@ -17,7 +17,7 @@ function GetAllFeedbackList(){
         }
     };
     
-    xhttp.open("GET","GetFeedbackList", true);
+    xhttp.open("GET","GetFeedbackList", false);
     xhttp.send();
 }
 
@@ -39,7 +39,7 @@ function GetAllFeedbackListFromButton(button){
         url = "GetFeedbackList?feedback_ID=" + feedback_ID;
     }
     
-    xhttp.open("GET",url, true);
+    xhttp.open("GET",url, false);
     xhttp.send();
 }
 
@@ -93,7 +93,7 @@ function GetUnSeenFeedbackList(){
         }
     };
     
-    xhttp.open("GET","UnSeenFeedback", true);
+    xhttp.open("GET","UnSeenFeedback", false);
     xhttp.send();
 }
 
@@ -105,6 +105,7 @@ function GetUnSeenFeedbackListFromButton(button){
         if (this.readyState >= 4 && this.status <= 200) {
             let feedbackObject = JSON.parse(this.responseText);
             processUnSeenFeedback(feedbackObject);
+            console.log(feedbackObject);
         }
     };
     
@@ -114,7 +115,7 @@ function GetUnSeenFeedbackListFromButton(button){
         url = "UnSeenFeedback?feedback_ID=" + feedback_ID;
     }
     
-    xhttp.open("GET",url, true);
+    xhttp.open("GET",url, false);
     xhttp.send();
 }
 

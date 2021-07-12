@@ -44,7 +44,7 @@ body {
 
 .login-h1{
     font-weight: bold;
-    font-size: 6rem;
+    font-size: 5rem;
     color: white;
 }
 
@@ -55,6 +55,7 @@ body {
     padding: 1.5rem;
     border-radius: 1rem;
     margin-bottom: 20px;
+    border: thin solid black;
 }
 
 .login-field:focus-within{
@@ -101,10 +102,11 @@ body {
     display: block;
     width: 50%;
     padding: 15px 10px;
-    border: 2px solid black;
+    border: thin solid transparent;
     cursor: pointer;
     position: relative;
     transition: all 0.5s;
+    box-shadow: 7px 7px 13px #93c6ff, -7px -7px 13px #2b3a66;
 }
 
 .login-btn::after {

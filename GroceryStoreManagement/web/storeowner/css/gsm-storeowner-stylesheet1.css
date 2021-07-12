@@ -11024,7 +11024,6 @@ body.sidebar-toggled footer.sticky-footer {
 /*sidebar*/
 
 .hr-dashboard{
-    margin-bottom:-0.9rem;
     z-index: 1;
 }
 
@@ -11066,11 +11065,17 @@ body.sidebar-toggled footer.sticky-footer {
     padding-bottom: 0.4rem !important;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    opacity: 0.5;
 }
 
 .logout-link-button:hover{
     border:3px solid white;
     border-radius: 30px;
+    opacity: 1;
+}
+
+.logout-link:hover {
+    background-color: #1A1A27 !important;
 }
 /**/
 /**/
@@ -11090,6 +11095,7 @@ body.sidebar-toggled footer.sticky-footer {
     -webkit-transition: background-color .2s linear, opacity .2s linear;
     -moz-transition: background-color .2s linear, opacity .2s linear;
     transition: background-color .2s linear, opacity .2s linear;
+     z-index: 10000;
 }
 
 .ps-container:hover .ps-scrollbar-x-rail,
@@ -11124,6 +11130,7 @@ body.sidebar-toggled footer.sticky-footer {
     -webkit-transition: background-color .2s linear, opacity .2s linear;
     -moz-transition: background-color .2s linear, opacity .2s linear;
     transition: background-color .2s linear, opacity .2s linear;
+    z-index: 10000;
 }
 
 .ps-container:hover .ps-scrollbar-y-rail,
@@ -11262,20 +11269,10 @@ html {
     color: #000000;
 }
 
-.nav-item {
-    margin-top: -0.15rem;
-    opacity: 0.4;
-}
-
-.nav-item:hover {
-    background-color: #1E1E2D;
-    opacity: 1;
-}
-
 .menu-icon {
     width: 1.3rem;
-    color: #4F99FF;
-    font-size: 1.1rem !important;
+    color: white;
+    font-size: 1.2rem !important;
 }
 
 .seen-feedback {
@@ -11408,3 +11405,45 @@ html {
 .btn-import-goods:hover{
     opacity: 1;
 }
+
+/* Menu active page */
+.sidebar .menu-active-page {
+    background-color: #f3f4f7;
+    z-index: 100;
+}
+
+.sidebar .menu-active-page a i, .sidebar .menu-active-page a span {
+    color: black !important;
+}
+
+.sidebar .menu-active-page:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 45%;
+    transform: translateY(-100%);
+    box-shadow: 10px 10px 0 0 #f3f4f7;
+}
+
+.sidebar .menu-active-page:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border-radius: 45%;
+    transform: translateY(100%);
+    box-shadow: 10px -10px 0 0 #f3f4f7;
+}
+
+.nav-item:not(.menu-active-page):hover{
+    background-color: #414162;
+}
+
+/**/
