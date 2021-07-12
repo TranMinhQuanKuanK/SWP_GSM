@@ -155,7 +155,7 @@ function addToPendingListByOwner(productID) {
             notification = JSON.parse(this.responseText);
             if (notification == "1") {
                 $('#success-to-save-toast').toast({
-                    delay: 3000
+                    delay: 2000
                 });
                 $('#success-to-save-toast').toast('show');
             }
@@ -185,7 +185,7 @@ function addToPendingListAuto(productID) {
             notification = JSON.parse(this.responseText);
             if (notification == "1") {
                 $('#success-auto-save-toast').toast({
-                    delay: 3000
+                    delay: 2000
                 });
                 $('#success-auto-save-toast').toast('show');
             }
