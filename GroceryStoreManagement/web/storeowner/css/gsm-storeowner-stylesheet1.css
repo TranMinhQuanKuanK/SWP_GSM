@@ -11414,6 +11414,7 @@ html {
 
 .sidebar .menu-active-page a i, .sidebar .menu-active-page a span {
     color: black !important;
+    font-weight: 650;
 }
 
 .sidebar .menu-active-page:before {
