@@ -143,6 +143,7 @@ var clickedProductID;
 // Handle edit product
 $('#product-list tbody').on('click', 'tr', function () {
     clickedProductID = ($(this).closest('tr').attr("id"));
+    $(this).closest('tr').addClass('selected');
     $('#editProductModal').modal("show");
 });
 

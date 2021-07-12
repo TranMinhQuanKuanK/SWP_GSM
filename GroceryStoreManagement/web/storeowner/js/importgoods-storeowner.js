@@ -205,7 +205,10 @@ function importReceipt() {
             console.log(this.responseText);
             receiptOnSession = JSON.parse(this.responseText);
             if (receiptOnSession == null) {
-                alert("Đã nhập hàng vào kho!");
+                $('#success-to-save-toast').toast({
+                    delay: 3000
+                });
+                $('#success-to-save-toast').toast('show');
             }
         };
         xhttp.open("GET", "MakeNewReceipt", false);
@@ -213,6 +216,21 @@ function importReceipt() {
         getPendingList();
         getReceipt();
     } else {
-        alert("Xin nhập dữ liệu vào form!");
+        $('#fail-to-save-toast').toast({
+            delay: 3000
+        });
+        $('#fail-to-save-toast').toast('show');
+    }
+}
+
+function handleImportReceipt() {
+    if (receiptOnSession.total_cost === 0) {
+        $('#fail-to-save-toast').toast({
+            delay: 3000
+        });
+        $('#fail-to-save-toast').toast('show');
+    }
+    else {
+        $('#confirmImportModal').modal("show");
     }
 }
