@@ -20,6 +20,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -114,6 +115,8 @@ public class AuthAndDispatcherFilter implements Filter {
 
         Throwable problem = null;
         try {
+            HttpServletResponse httpResponse = ((HttpServletResponse) response);
+            httpResponse.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
 
             ServletContext context = request.getServletContext();
             HttpServletRequest rq = (HttpServletRequest) request;
@@ -138,7 +141,7 @@ public class AuthAndDispatcherFilter implements Filter {
                         || fileType.equals("woff2")
                         || fileType.equals("map")
                         || fileType.equals("scss")) {
-                    chain.doFilter(request, response);
+                    chain.doFilter(request, httpResponse);
                     isAllowed = true;
                 }
             }
@@ -162,7 +165,7 @@ public class AuthAndDispatcherFilter implements Filter {
                     }
                 }
                 RequestDispatcher rd = rq.getRequestDispatcher(convertedURI);
-                rd.forward(request, response);
+                rd.forward(request, httpResponse);
             }
         } catch (Throwable t) {
             // If an exception is thrown somewhere down the filter chain,

@@ -42,10 +42,8 @@ public class AddToReceiptFromPendingServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            System.out.println("I went to pending_to_receipt servlet");
             HttpSession session = request.getSession();
             Integer product_ID = Integer.parseInt(request.getParameter("product_ID"));
-            System.out.println("product id toi nhan la: " + product_ID);
             ReceiptObj receipt = (ReceiptObj)session.getAttribute("RECEIPT");
             ProductDAO pDAO = new ProductDAO();
             ProductDTO pDTO = pDAO.GetProductByID(product_ID);

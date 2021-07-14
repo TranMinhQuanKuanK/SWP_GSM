@@ -127,8 +127,8 @@ public class PreBillDAO {
                 //5. Process result
                 while (rs.next()) {
                     int billID = rs.getInt("bill_ID");
-                    String name = "...";
-                    String phoneNo = "...";
+                    String name = "Khách hàng vãng lai";
+                    String phoneNo = "Không có";
                     String buyDate = rs.getString("buy_date");
                     int totalCost = rs.getInt("total_cost");
                     List<PreBillDetailDTO> details = getBillDetails(billID);

@@ -39,15 +39,21 @@ public class GetPreviousReceiptListServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String dateFrom = request.getParameter("date-from").replace('T', ' ');
-            String dateTo = request.getParameter("date-to").replace('T', ' ');
+            String dateFrom = request.getParameter("date-from");
+            String dateTo = request.getParameter("date-to");
+            if (dateFrom.length() == 10) {
+                dateFrom += " 00:00:00";
+            }
+            if (dateTo.length() == 10) {
+                dateTo += " 23:59:59";
+            }
             PreviousReceiptDAO DAO = new PreviousReceiptDAO();
             ArrayList<PreviousReceiptDTO> receiptList = DAO.GetPreviousReceipt(dateFrom, dateTo);
             Gson gson = new Gson();
             String productJSONString = gson.toJson(receiptList);
             out.print(productJSONString);
             out.flush();
-        }catch (SQLException e) {
+        } catch (SQLException e) {
             log("SQLException " + e.getMessage());
         } catch (NamingException e) {
             log("NamingException " + e.getMessage());

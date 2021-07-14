@@ -17,7 +17,7 @@ function GetAllFeedbackList(){
         }
     };
     
-    xhttp.open("GET","GetFeedbackList", true);
+    xhttp.open("GET","GetFeedbackList", false);
     xhttp.send();
 }
 
@@ -39,7 +39,7 @@ function GetAllFeedbackListFromButton(button){
         url = "GetFeedbackList?feedback_ID=" + feedback_ID;
     }
     
-    xhttp.open("GET",url, true);
+    xhttp.open("GET",url, false);
     xhttp.send();
 }
 
@@ -64,7 +64,9 @@ function processAllFeedback(data){
         count += 1;
         cell1.innerHTML = count;
         cell1.style.textAlign = "right";
-        cell2.innerHTML = data[i].feedback_date;
+        let temp = Date.parse(data[i].feedback_date);
+        let temp_datetime = new Date(temp).toLocaleString('en-AU').toUpperCase();
+        cell2.innerHTML = temp_datetime;
         cell2.style.textAlign = "left";
         cell3.innerHTML = data[i].feedback_content;
         cell3.style.textAlign = "left";
@@ -91,7 +93,7 @@ function GetUnSeenFeedbackList(){
         }
     };
     
-    xhttp.open("GET","UnSeenFeedback", true);
+    xhttp.open("GET","UnSeenFeedback", false);
     xhttp.send();
 }
 
@@ -103,6 +105,7 @@ function GetUnSeenFeedbackListFromButton(button){
         if (this.readyState >= 4 && this.status <= 200) {
             let feedbackObject = JSON.parse(this.responseText);
             processUnSeenFeedback(feedbackObject);
+            console.log(feedbackObject);
         }
     };
     
@@ -112,7 +115,7 @@ function GetUnSeenFeedbackListFromButton(button){
         url = "UnSeenFeedback?feedback_ID=" + feedback_ID;
     }
     
-    xhttp.open("GET",url, true);
+    xhttp.open("GET",url, false);
     xhttp.send();
 }
 
@@ -137,7 +140,9 @@ function processUnSeenFeedback(data){
         count += 1;
         cell1.innerHTML = count;
         cell1.style.textAlign = "right";
-        cell2.innerHTML = data[i].feedback_date;
+        let temp = Date.parse(data[i].feedback_date);
+        let temp_datetime = new Date(temp).toLocaleString('en-AU').toUpperCase();
+        cell2.innerHTML = temp_datetime;
         cell2.style.textAlign = "left";
         cell3.innerHTML = data[i].feedback_content;
         cell3.style.textAlign = "left";

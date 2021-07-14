@@ -3,7 +3,6 @@ var dateFrom, dateTo;
 window.onload = onloadFunction();
 
 function onloadFunction() {
-        console.log("SDFSDFSDFSDFSDFSDFSDFSDF?SF?SD?F?@$#?#??#");
     getTime();
 
     var labels = document.getElementsByClassName("statistics-info");
@@ -29,7 +28,7 @@ function showFinancialStatistic() {
     url += "?date-from=" + dateFrom;
     url += "&date-to=" + dateTo;
 
-    request.open('GET', url, true);
+    request.open('GET', url, false);
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         renderFinancialStatistic(result);
@@ -50,7 +49,7 @@ function showProductStatistic() {
     url += "?date-from=" + dateFrom;
     url += "&date-to=" + dateTo;
 
-    request.open('GET', url, true);
+    request.open('GET', url, false);
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         renderProductStatistic(result);
@@ -89,7 +88,7 @@ function showCustomerStatistic() {
     url += "?date-from=" + dateFrom;
     url += "&date-to=" + dateTo;
 
-    request.open('GET', url, true);
+    request.open('GET', url, false);
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         renderCustomerStatistic(result);

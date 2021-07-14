@@ -86,7 +86,7 @@
                                                 <i class="fas fa-user-plus"></i>
                                             </button>
 
-                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-warning btn-change-password"
+                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-secondary btn-change-password"
                                                     data-toggle="modal" data-target="#change-password-modal">
                                                 <span>Đổi mật khẩu &nbsp;</span>
                                                 <i class="fas fa-undo"></i>
@@ -101,7 +101,7 @@
                                             <table class="table table-striped table-border-custom">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" class="table-heading" style="width:10%;">STT</th>
+                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
                                                         <th scope="col" class="table-heading" style="width:25%;">Tên đăng nhập</th>
                                                         <th scope="col" class="table-heading" style="width:25%;">Họ và tên</th>
                                                         <th scope="col" class="table-heading" style="width:20%;">Vai trò</th>
@@ -200,32 +200,32 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-primary">Đăng ký tài khoản</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <h3 class="modal-title text-primary my-auto">Đăng ký tài khoản</h3>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="clearModal()">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
                             <span class="m-0 pt-1 ml-1">Họ và tên</span>
-                            <input class="form-control" type="text" id="new-name">
-                            <p style="color:red" id="error-name"></p>
+                            <input class="form-control modal-input" type="text" id="new-name">
+                            <p class="modal-error" style="color:red" id="error-name"></p>
                         </div>
                         <div class="form-group">
                             <span class="m-0 pt-1 ml-1">Tên đăng nhập</span>
-                            <input class="form-control" type="text" id="new-username">
-                            <p id="error-username"></p>
-                            <p style="color:red" id="error-username-exist"></p>
+                            <input class="form-control modal-input" type="text" id="new-username">
+                            <p class="modal-error" style="color:red" id="error-username"></p>
+                            <p class="modal-error" style="color:red" id="error-username-exist"></p>
                         </div>
                         <div class="form-group">
                             <span class="m-0 pt-1 ml-1">Mật khẩu</span>
-                            <input class="form-control" type="password" id="new-password">
-                            <p style="color:red" id="error-password"></p>
+                            <input class="form-control modal-input" type="password" id="new-password">
+                            <p class="modal-error" style="color:red" id="error-password"></p>
                         </div>
                         <div class="form-group">
                             <span class="m-0 pt-1 ml-1">Xác nhận mật khẩu</span>
-                            <input class="form-control" type="password" id="new-confirm">
-                            <p style="color:red" id="error-confirm"></p>
+                            <input class="form-control modal-input" type="password" id="new-confirm">
+                            <p class="modal-error" style="color:red" id="error-confirm"></p>
                         </div>
                         <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-owner"/>
                         <span class="m-0 pt-2">&nbsp; Chủ tiệm</span><br>
@@ -235,7 +235,7 @@
 
                     <div class="modal-footer">
                         <button class="btn btn-primary" onclick="createNewAccount()">Đăng ký</button>
-                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button class="btn btn-secondary" data-dismiss="modal" onclick="clearModal()">Hủy</button>
                     </div>
                 </div>
             </div>
@@ -248,8 +248,8 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title text-primary" id="changePasswordLabel">Đổi mật khẩu</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <h3 class="modal-title text-primary my-auto" id="changePasswordLabel">Đổi mật khẩu</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearModal()">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
@@ -257,27 +257,27 @@
                         <form>
                             <div class="form-group">
                                 <label for="currentPassword">Mật khẩu hiện tại</label>
-                                <input type="password" class="form-control" id="currentPassword"
+                                <input type="password" class="form-control modal-input" id="currentPassword"
                                        aria-describedby="currentPassword">
-                                <span style="color:red" id="current-password-error"></span>
+                                <span class="modal-error" style="color:red" id="current-password-error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="newPassword">Mật khẩu mới</label>
-                                <input type="password" class="form-control" id="newPassword"
+                                <input type="password" class="form-control modal-input" id="newPassword"
                                        aria-describedby="newPassword">
-                                <span style="color:red" id="new-password-error"></span>
+                                <span class="modal-error" style="color:red" id="new-password-error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
-                                <input type="password" class="form-control" id="confirmNewPassword"
+                                <input type="password" class="form-control modal-input" id="confirmNewPassword"
                                        aria-describedby="confirmNewPassword">
-                                <span style="color:red" id="confirm-password-error"></span>
+                                <span class="modal-error" style="color:red" id="confirm-password-error"></span>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" onclick="passwordChange()">Đổi mật khẩu</button>
-                        <button type="button" class="btn btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="button" class="btn btn btn-secondary" data-dismiss="modal" onclick="clearModal()">Hủy</button>
                     </div>
                 </div>
             </div>

@@ -28,12 +28,12 @@
     <div class="container-fluid p-0">
         <!-- Header bao gồm tên cửa hàng + tên cashier + nút logout -->
         <div class="container-fluid heading royalblueBg">
-            <div class="d-flex justify-content-between pr-2 pl-2">
+            <div class="d-flex justify-content-between pl-2 align-items-center">
                 <div class="my-auto">
-                    <h3 class="my-auto font-weight-bold">TẠP HÓA ÔNG SÁU </h3>
+                    <h3 class="my-auto font-weight-bold">TẠP HÓA ÔNG SÁU</h3>
                 </div>
                 <!-- Chào cashier và cái nút bánh răng -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between pr-2">
                     <p class="h5 mr-3 my-auto" id="cashier-name">Chào, </p>
                     <div class="btn-group">
                         <button type="button" class="btn royalblueBg border border-light btn-sm" data-toggle="dropdown"
@@ -63,10 +63,10 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- cột bên trái của body -->
-                <div class="col-4 col-xl-6 d-flex flex-column shadow-sm pr-0 border">
+                <div class="col-12 col-xl-6 d-flex flex-column shadow-sm pr-0 pl-2 border rounded body-left">
                     <!-- Thanh search sản phẩm -->
-                    <div class="input-group shadow-sm">
-                        <button type="button" class="btn btn-secondary">
+                    <div class="input-group shadow-sm" style="height: 7%;">
+                        <button type="button" class="btn btn-secondary h-100">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-search" viewBox="0 0 16 16">
                                 <path
@@ -74,14 +74,14 @@
                             </svg>
                         </button>
                         <!-- Thanh Search Hàng Hóa -->
-                        <input oninput="SearchProduct()" type="text" class="form-control"
+                        <input oninput="SearchProduct()" type="text" class="form-control h-100"
                             placeholder="Tìm kiếm món hàng" aria-label="Tìm kiếm món hàng"
                             aria-describedby="search-product-bar" id="product-search-bar">
                     </div>
                     <!-- Category và tên hàng hóa -->
-                    <div class="d-flex" style="height: 650px;">
+                    <div class="d-flex" style="height: 93%;">
                         <!-- Category -->
-                        <div class="col-4 col-xl-3 d-flex flex-column bg-light p-0 overflow-auto">
+                        <div class="col-3 d-flex flex-column bg-light p-0 overflow-auto">
                             <table class="table table-borderless table-category-list">
                                 <thead class="content-title border shadow-sm">
                                     <tr>
@@ -106,7 +106,8 @@
 
                         </div>
                         <!-- Hàng hóa -->
-                        <div class="col-8 col-xl-9 d-flex flex-column p-0 overflow-auto">
+                        <div class="col-9 d-flex flex-column p-0 h-100">
+                            <div class="overflow-auto">
                             <table class="table table-striped table-hover table-borderless table-product-list">
                                 <colgroup>
                                     <col class="product-list-name">
@@ -136,17 +137,17 @@
                                 </tbody>
                             </table>
 
-
+                            </div>
 
                             <!-- Show additional info of products -->
-                            <div id="product-info" class="d-none mt-auto overflow-hidden">
+                            <div id="product-info" class="d-none mt-auto overflow-auto">
                                 <div
-                                    class="product-info d-flex flex-row card card-body border-warning justify-content-between">
+                                    class="d-flex flex-row card card-body border-warning justify-content-between h-100">
                                     <div class="w-50">
                                         <h5 id="product-info-name" class="card-title"></h5>
                                         <h6 id="product-info-price"></h6>
                                     </div>
-                                    <div>
+                                    <div class="text-right">
                                         <p>Số lượng còn lại: <span id="product-info-quantity"></span></p>
                                         <p>Vị trí: <span id="product-info-location"></span></p>
                                     </div>
@@ -157,9 +158,9 @@
 
                 </div>
                 <!-- cột bên phải của body -->
-                <div style="height: 688px;" class="col-8 col-xl-6 d-flex flex-column">
+                <div class="col-12 col-xl-6 d-flex flex-column body-right">
                     <!-- Bill -->
-                    <div class="h-75 overflow-auto">
+                    <div class="overflow-auto">
                         <table class="table table-striped border shadow-sm table-bill">
                             <thead class="content-title">
                                 <tr>
@@ -203,7 +204,7 @@
                         </table>
                     </div>
                     <!-- Phần dưới của cột bên phải -->
-                    <div class="mt-auto d-flex shadow-sm">
+                    <div class="mt-auto d-flex shadow-sm border rounded">
                         <!-- Phần khách hàng -->
                         <div class="col-5 shadow-sm mt-auto">
                             <!-- Thanh search khách hàng -->
@@ -328,7 +329,7 @@
                         <form>
                             <div class="form-group">
                                 <label for="feedback" class="col-form-label required">Nội dung:</label>
-                                <textarea class="form-control" id="feedback" required></textarea>
+                                <textarea class="form-control" id="feedback" rows="5" required></textarea>
                             </div>
                         </form>
                     </div>
@@ -388,15 +389,14 @@
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="logOutLabel">Bạn chắc chưa?</h5>
+                        <h5 class="modal-title" id="logOutLabel">Đăng xuất</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form class="text-center">
-                            <button type="button" class="btn royalblueBg me-2" onclick="location.href = 'Logout';">Đăng
-                                xuất</button>
+                            <button type="button" class="btn royalblueBg mr-2" onclick="location.href = 'Logout';">Đồng ý</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                         </form>
                     </div>
@@ -438,7 +438,7 @@
             </div>
         </div>
 
-        <!-- Checkout Modal -->
+        <!-- Checkout Modal
         <div class="modal fade" id="checkout" tabindex="-1" aria-labelledby="checkoutLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-sm">
                 <div class="modal-content">
@@ -450,13 +450,14 @@
                     </div>
                     <div class="modal-body">
                         <form class="text-center">
-                            <button type="submit" class="btn btn-success me-2">Xác nhận</button>
+                            <button type="submit" class="btn btn-success">Xác nhận</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+
         <!--Bill error Modal -->
         <div class="modal fade" id="bill-error-modal" tabindex="-1" aria-labelledby="createFeedbackLabel"
             aria-hidden="true">
@@ -499,7 +500,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div style="max-height: 530px;">
+                        <div style="max-height: 420px;">
                             <form>
                                 <div class="form-group">
                                     Khách hàng: <span id="bill-preview-customer-name" style="font-weight: bold;">Trần
@@ -508,7 +509,7 @@
                                         style="font-weight: bold; color:red;">20</span>
                                     <div style="position: relative;
                                              min-height: 100px;
-                                             max-height: 300px;
+                                             max-height: 200px;
                                              overflow: auto;" class="mb-2 mt-2">
                                         <table class="table table-striped border shadow-sm table-bill">
                                             <thead class="content-title">
@@ -579,6 +580,55 @@
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Quay lại</button>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fail to checkout toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; right: 5px; z-index: 8000;
+        position: fixed;">
+            <div id="fail-to-save-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-4 text-danger">Thanh toán thất bại</strong>
+                    <small class="my-auto">Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Hãy chọn hàng hóa cần thanh toán
+                </div>
+            </div>
+        </div>
+        <!-- Fail to checkout toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; right: 5px; z-index: 7999;
+        position: fixed;">
+            <div id="fail-to-find-customer-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-4 text-danger">Tìm kiếm thất bại</strong>
+                    <small class="my-auto">Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Không tìm thấy khách hàng tương ứng
+                </div>
+            </div>
+        </div>
+
+        <!-- Successful to checkout toast -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; right: 5px; z-index: 8000; position: fixed;">
+            <div id="success-to-save-toast" class="toast hide" role="alert" > 
+                <div class="toast-header">
+                    <strong class="mr-5 text-success">Thanh toán thành công</strong>
+                    <small class="my-auto">Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                   Chúc mừng!
                 </div>
             </div>
         </div>
