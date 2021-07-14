@@ -9,7 +9,7 @@
                     </div>
                     <div class="sidebar-brand-text"><span id='admin-name'></span></div>
                     <div class="nav-item active align-items-center justify-content-center mb-1 logout-link">
-                        <a class="nav-link d-flex justify-content-center align-items-center logout-link logout-link-button"
+                        <a id="logout-part" class="nav-link d-flex justify-content-center align-items-center logout-link logout-link-button"
                            href="Logout" data-toggle="modal" data-target="#logoutModal">
                             <span class="mt-1">Đăng xuất</span>
                             <i class="ml-2 fas fa-sign-out-alt menu-icon"></i>
@@ -133,17 +133,12 @@ src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69
     //gửi request
     xhttp.send();</script>
 <script>
-    /*
-     $(".nav-item a").on("click", function() {
-     $(this).parent().find("li.menu-active-page").removeClass('menu-active-page');
-     $(this).addClass("menu-active-page");
-     });
-     */
     $(function(){
         $('.nav-item a').filter( function(){
             return this.href == location.href}).parent().addClass('menu-active-page').siblings().removeClass('menu-active-page');
             $('.nav-item a').click(function(){
                 $(this).parent().addClass('menu-active-page').siblings().removeClass('menu-active-page');
+                $("div").find(".menu-active-page").removeClass("menu-active-page");
         });
     });
 </script>
