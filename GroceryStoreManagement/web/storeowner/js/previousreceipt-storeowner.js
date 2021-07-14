@@ -31,10 +31,12 @@ function renderReceiptList(data) {
 
             var td_date = document.createElement("td");
             td_date.innerHTML = data[i].import_date;
+            td_date.setAttribute("class", "text-left");
             td_date.style.verticalAlign = "middle";
 
             var td_user = document.createElement("td");
             td_user.innerHTML = data[i].owner_name;
+            td_user.setAttribute("class", "text-left");
             td_user.style.verticalAlign = "middle";
 
             var td_total = document.createElement("td");
@@ -140,6 +142,7 @@ function renderReceiptDetail() {
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = receiptDetail[i].quantity;
+        td_quantity.setAttribute("class", "text-right");
         td_quantity.style.verticalAlign = "middle";
 
         var td_price = document.createElement("td");
