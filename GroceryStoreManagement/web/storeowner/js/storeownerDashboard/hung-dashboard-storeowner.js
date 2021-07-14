@@ -15,7 +15,7 @@ function GetUnSeenFeedbackListDashboard(){
         }
     };
     
-    xhttp.open("GET","UnSeenFeedback", true);
+    xhttp.open("GET","UnSeenFeedback", false);
     xhttp.send();
 }
 
@@ -35,7 +35,7 @@ function GetUnSeenFeedbackListFromButtonDashboard(button){
         var url = "UnSeenFeedback?feedback_ID=" + feedback_ID;
     }
     
-    xhttp.open("GET",url, true);
+    xhttp.open("GET",url, false);
     xhttp.send();
 }
 
