@@ -46,7 +46,7 @@ public class PreviousReceiptDAO implements Serializable {
                     String owner_name = getStoreOwnerName(store_owner_username);
                     int total = rs.getInt("total");
                     PreviousReceiptDTO DTO = new PreviousReceiptDTO(receipt_ID, import_date, owner_name, total);
-                    listReceipt.add(DTO);
+                    listReceipt.add(0, DTO);
                 }
             }
         } finally {
