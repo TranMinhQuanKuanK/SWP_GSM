@@ -117,17 +117,29 @@ function createHTMLForEachProduct(product) {
 // KuanK's function - send feedback to server
 function sendFeedback() {
   var xhttp = new XMLHttpRequest();
-  content =
-    "feedback_content=" +
-    encodeURIComponent(document.getElementById("feedback").value);
-  xhttp.open("POST", "SendFeedback", true);
-  xhttp.setRequestHeader(
-    "Content-Type",
-    "application/x-www-form-urlencoded;charset=UTF-8"
-  );
-  xhttp.send(content);
-  document.getElementById("feedback").value = "";
-  $("#createFeedback").modal("hide");
+  if (document.getElementById("feedback").value.length > 1000) {
+    document.getElementById("feedback-1000-char-error").innerHTML =
+      "Phản hồi không được vượt quá 1000 kí tự";
+  } else if (document.getElementById("feedback").value.length > 0) {
+    content =
+      "feedback_content=" +
+      encodeURIComponent(document.getElementById("feedback").value);
+    xhttp.open("POST", "SendFeedback", true);
+    xhttp.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded;charset=UTF-8"
+    );
+    xhttp.send(content);
+    //dọn dẹp modal
+    document.getElementById("feedback").value = "";
+    document.getElementById("feedback-1000-char-error").innerHTML = "";
+    $("#createFeedback").modal("hide");
+
+    $("#success-to-send-feedback").toast({
+      delay: 2000,
+    });
+    $("#success-to-send-feedback").toast("show");
+  }
 }
 
 // KuanK's function - get cashier name from server and render ít
@@ -345,30 +357,23 @@ function SearchProduct() {
   //nếu category khác null thì thêm vào query string
   if (category_id != null) url += "&category_id=" + category_id;
   //nếu không có tên và category_id = tất cả (null) thì cho productList là rỗng
-  if (name == "" && category_id == null) {
-    productList = [];
+  // if (name == "" && category_id == null) {
+  //   productList = [];
+  //   RenderProduct();
+  // } else {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", url, true);
+  xhttp.onload = function () {
+    productList = JSON.parse(this.responseText);
+    //  console.log(productList);
     RenderProduct();
-  } else {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", url, true);
-    xhttp.onload = function () {
-      productList = JSON.parse(this.responseText);
-      //  console.log(productList);
-      RenderProduct();
-    };
-    xhttp.send();
-  }
+  };
+  xhttp.send();
+  // }
 }
 
 //KuanK đã sửa - render product list
 function RenderProduct() {
-  // Load products
-  // var ProducthtmlList = document.getElementById("product-list");
-  // ProducthtmlList.innerHTML = "";
-  // for (i = 0; i < productList.length; i++) {
-  //   ProducthtmlList.appendChild(createHTMLForEachProduct(productList[i]));
-  // }
-
   DisplayProductList(
     productList,
     rows_per_page,
@@ -437,10 +442,10 @@ function searchCustomerByPhone() {
         currentBill.customer_dto = result_dto;
         printBill(currentBill);
       } else if (result_dto == null) {
-        $('#fail-to-find-customer-toast').toast({
-          delay: 2000
-      });
-      $('#fail-to-find-customer-toast').toast('show');
+        $("#fail-to-find-customer-toast").toast({
+          delay: 2000,
+        });
+        $("#fail-to-find-customer-toast").toast("show");
       }
     };
     xhttp.send();
@@ -656,6 +661,11 @@ function RegisterCustomer() {
         //search sẵn cho khách hàng
         document.getElementById("phone-no-input").value = customerPhoneNo;
         searchCustomerByPhone();
+
+        $("#success-to-create-customer").toast({
+          delay: 2000,
+        });
+        $("#success-to-create-customer").toast("show");
       }
     }
   }
@@ -706,6 +716,7 @@ function pageLoadKuanK() {
   getCashierName();
   getBill();
   getCategory();
+  SearchProduct();
 }
 
 /* ====================================
