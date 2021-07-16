@@ -11213,7 +11213,7 @@ body.sidebar-toggled footer.sticky-footer {
 #perfect-scrollbar {
     overflow: hidden !important;
     position: absolute !important;
-    max-height: 100%;
+    height: auto;
 }
 
 /**/
