@@ -11041,7 +11041,10 @@ body.sidebar-toggled footer.sticky-footer {
 .sidebar-brand-icon, .sidebar-brand-text {
     color: #FFFFFF;
 }
-
+.sidebar-logo-icon, .sidebar-logo-text {
+    color: #FFFFFF;
+    font-size: 1.1rem;
+}
 .sidebar-icon {
     color: #3699FF;
 }
