@@ -4,7 +4,18 @@
             <!-- Sidebar - Brand -->
             <li>
                 <div class="sidebar-brand align-items-center justify-content-center mb-1">
-                    <div class="sidebar-brand-icon mb-2">
+                    <div class="sidebar-brand-icon mb-1" style="margin-top:-1.2rem; ">
+                        <img src="/GroceryStoreManagement/storeowner/favicon/taphoaongsau_logo_blacknwhite.png" width="190" height="95" alt="logo of our web">
+                    </div>
+
+                </div>
+            </li>
+            <li >
+                <hr class="sidebar-divider">
+            </li>
+            <li>
+                <div class="sidebar-brand align-items-center justify-content-center mb-1" >
+                    <div class="sidebar-brand-icon mb-2" style="margin-top:-1.5rem;">
                         <i class="fas fa-user-circle"></i>
                     </div>
                     <div class="sidebar-brand-text"><span id='admin-name'></span></div>
@@ -42,7 +53,6 @@
                     Menu
                 </div>
             </li>
-
             <!-- Nav Item - Inventory-->
             <li class="nav-item">
                 <a class="nav-link" href="InventoryPage">
@@ -134,12 +144,12 @@ src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69
     xhttp.send();</script>
 <script>
     $(function(){
-        $('.nav-item a').filter( function(){
-            return this.href == location.href}).parent().addClass('menu-active-page').siblings().removeClass('menu-active-page');
-            $('.nav-item a').click(function(){
-                $(this).parent().addClass('menu-active-page').siblings().removeClass('menu-active-page');
-                $("div").find(".menu-active-page").removeClass("menu-active-page");
-        });
+    $('.nav-item a').filter(function(){
+    return this.href == location.href}).parent().addClass('menu-active-page').siblings().removeClass('menu-active-page');
+    $('.nav-item a').click(function(){
+    $(this).parent().addClass('menu-active-page').siblings().removeClass('menu-active-page');
+    $("div").find(".menu-active-page").removeClass("menu-active-page");
+    });
     });
 </script>
 <!-- Log out Modal -->
