@@ -80,30 +80,30 @@ public class EditProductInfoServlet extends HttpServlet {
                     err.setSellingPriceErr("Tiền bán phải lớn hơn 0");
                 }
             }
-            System.out.println(Integer.parseInt(request.getParameter("productID")));
-            System.out.println(request.getParameter("productID"));
+
             productID = Integer.parseInt(request.getParameter("productID"));
             productName = request.getParameter("productName");
             productCategoryID = Integer.parseInt(request.getParameter("productCategoryID"));
             productUnitLabel = request.getParameter("productUnitLabel");
             productLocation = request.getParameter("productLocation");
             productIsSelling = request.getParameter("productIsSelling").equals("true");
-
+            
+            if (productLocation.length() > 15) {
+                productLocation = productLocation.substring(0, 15);
+            }
             if (productName.equals("") || productName.length() > 100) {
                 foundErr = true;
                 err.setNameErr("Tên món hàng phải từ 1 tới 100 chữ");
             }
 
             if (dao.ConfirmMatchedProduct(productName, productID)) {
-                System.out.println(dao.ConfirmMatchedProduct(productName, productID));
                 foundErr = true;
                 err.setNameErr("Tên món hàng đã tồn tại");
             }
-            System.out.println(err);
+
             Gson gson = new Gson();
             if (foundErr) {
                 String jsonErr = gson.toJson(err);
-                System.out.println(jsonErr);
                 out.print(jsonErr);
             } else {
                 boolean result = dao.UpdateProductInfo(productID, productName, productCategoryID, productLowerThreshold, productCostPrice, productSellingPrice, productUnitLabel, productLocation, productIsSelling);

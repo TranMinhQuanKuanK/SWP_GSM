@@ -111,7 +111,7 @@
                                                     hàng:
                                                 </h6>
                                                 <div class="input-group my-auto w-75">
-                                                    <input type="text" class="form-control" id="txtSearchProductName">
+                                                    <input type="text" class="form-control" id="txtSearchProductName" maxlength="70">
                                                 </div>
                                             </div>
                                             <div class="col-3 d-flex justify-content-between my-auto">
@@ -204,7 +204,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="edit-product-name" class="col-form-label required">Tên:</label>
-                                    <input type="text" class="form-control" id="add-product-name" required>
+                                    <input type="text" class="form-control" id="add-product-name" maxlength="100" required>
                                 </div>
                             </div>
                             <p class="text-danger d-none" id="add-product-name-warning"></p>
@@ -217,7 +217,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="unit-label" class="col-form-label">Đơn vị:</label>
-                                    <input type="text" class="form-control" id="add-unit-label">
+                                    <input type="text" class="form-control" maxlength="15" id="add-unit-label">
                                 </div>
                             </div>
 
@@ -225,7 +225,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="add-cost-price" class="col-form-label required">Giá mua:</label>
                                     <div class="input-group">
-                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-cost-price" required>
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-cost-price" maxlength="12" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text">đ</span>
                                         </div>
@@ -234,7 +234,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="add-selling-price" class="col-form-label required">Giá bán:</label>
                                     <div class="input-group">
-                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-selling-price" required>
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-selling-price" maxlength="12" required>
                                         <div class="input-group-append">
                                             <span class="input-group-text">đ</span>
                                         </div>
@@ -253,7 +253,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="add-location" class="col-form-label">Vị trí:</label>
-                                    <input type="text" class="form-control" id="add-location">
+                                    <input type="text" class="form-control" id="add-location" maxlength="100">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -268,8 +268,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                         <button id="add-product-save-btn" type="button" class="btn btn-primary">Thêm mới</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                     </div>
                 </div>
             </div>
@@ -294,7 +294,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="edit-product-name" class="col-form-label required">Tên:</label>
-                                    <input type="text" class="form-control" id="edit-product-name" required disabled>
+                                    <input type="text" class="form-control" id="edit-product-name" required disabled maxlength="100">
                                 </div>
                             </div>
                             <p class="text-danger d-none" id="edit-product-name-warning"></p>
@@ -307,7 +307,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="edit-unit-label" class="col-form-label">Đơn vị:</label>
-                                    <input type="text" class="form-control" id="edit-unit-label" disabled>
+                                    <input type="text" class="form-control" id="edit-unit-label" disabled maxlength="15">
                                 </div>
                             </div>
 
@@ -315,7 +315,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="edit-cost-price" class="col-form-label required">Giá mua:</label>
                                     <div class="input-group">
-                                        <input type="text" pattern="[0-9]*" class="form-control" id="edit-cost-price" required disabled>
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="edit-cost-price" maxlength="12" required disabled>
                                         <div class="input-group-append">
                                             <span class="input-group-text">đ</span>
                                         </div>
@@ -324,7 +324,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="edit-selling-price" class="col-form-label required">Giá bán:</label>
                                     <div class="input-group">
-                                        <input type="text" pattern="[0-9]*" class="form-control" id="edit-selling-price" required disabled>
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="edit-selling-price" maxlength="12" required disabled>
                                         <div class="input-group-append">
                                             <span class="input-group-text">đ</span>
                                         </div>
@@ -343,7 +343,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-12">
                                     <label for="edit-location" class="col-form-label">Vị trí:</label>
-                                    <input type="text" class="form-control" id="edit-location" disabled>
+                                    <input type="text" class="form-control" id="edit-location" disabled maxlength="100">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -358,8 +358,8 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary edit-product-close-btn" data-dismiss="modal">Đóng</button>
                         <button id="edit-product-save-btn" type="button" class="btn btn-primary" disabled>Lưu thay đổi</button>
+                        <button type="button" class="btn btn-secondary edit-product-close-btn" data-dismiss="modal">Đóng</button>
                     </div>
                 </div>
             </div>

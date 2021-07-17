@@ -77,7 +77,7 @@
                         <!-- Thanh Search Hàng Hóa -->
                         <input oninput="SearchProduct()" type="text" class="form-control h-100"
                             placeholder="Tìm kiếm món hàng" aria-label="Tìm kiếm món hàng"
-                            aria-describedby="search-product-bar" id="product-search-bar">
+                            aria-describedby="search-product-bar" maxlength="100" id="product-search-bar">
                     </div>
                     <!-- Category và tên hàng hóa -->
                     <div class="d-flex" style="height: 93%;">
@@ -220,7 +220,7 @@
                                 </button>
                                 <!-- Thanh Search Khách hàng -->
                                 <input type="text" class="form-control" placeholder="Nhập SĐT" aria-label="Nhập SĐT"
-                                    aria-describedby="search-customer-bar" id="phone-no-input">
+                                    aria-describedby="search-customer-bar" maxlength="11" id="phone-no-input">
 
                                 <!-- Button register customer -->
                                 <a data-toggle="tooltip" data-placement="top" title="Đăng ký khách hàng">
@@ -293,7 +293,7 @@
                                     <tr class="text-right">
                                         <td style="font-weight:bold;">Khách đưa</td>
                                         <td>
-                                            <input id="cash" class="text-right" type="text" pattern="[0-9]*">
+                                            <input id="cash" class="text-right" type="text" pattern="[0-9]*" maxlength="11">
                                         </td>
                                     </tr>
                                 </tbody>
@@ -331,7 +331,7 @@
                             <div class="form-group">
                                 <label for="feedback" class="col-form-label required">Nội dung (dưới 1000 kí
                                     tự):</label>
-                                <textarea class="form-control" id="feedback" rows="5" required></textarea>
+                                <textarea class="form-control" id="feedback" rows="5" required maxlength="999"></textarea>
                             </div>
                         </form>
                         <p style="color:red" id="feedback-1000-char-error"></p>
@@ -361,19 +361,19 @@
                             <div class="form-group">
                                 <label for="currentPassword" class="required">Mật khẩu hiện tại</label>
                                 <input type="password" class="form-control" id="currentPassword"
-                                    aria-describedby="currentPassword">
+                                    aria-describedby="currentPassword" maxlength="50">
                                 <span style="color:red" id="current-password-error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="newPassword" class="required">Mật khẩu mới</label>
                                 <input type="password" class="form-control" id="newPassword"
-                                    aria-describedby="newPassword" required>
+                                    aria-describedby="newPassword" required maxlength="50">
                                 <span style="color:red" id="new-password-error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="confirmNewPassword" class="required">Xác nhận mật khẩu mới</label>
                                 <input type="password" class="form-control" id="confirmNewPassword"
-                                    aria-describedby="confirmNewPassword" required>
+                                    aria-describedby="confirmNewPassword" required maxlength="50">
                                 <span style="color:red" id="confirm-password-error"></span>
                             </div>
                         </form>
@@ -423,13 +423,13 @@
                             <div class="form-group">
                                 <label for="customerName" class="required">Tên khách hàng</label>
                                 <input type="text" class="form-control" id="customerName"
-                                    aria-describedby="customerName" required>
+                                    aria-describedby="customerName" required maxlength="50">
                                 <span style="color:red" id="customer-name-error"></span>
                             </div>
                             <div class="form-group">
                                 <label for="customerPhoneNo" class="required">Số điện thoại</label>
                                 <input type="text" class="form-control" id="customerPhoneNo"
-                                    aria-describedby="customerPhoneNo" required>
+                                    aria-describedby="customerPhoneNo" maxlength="11" required>
                                 <span style="color:red" id="phone-no-error"></span>
                             </div>
                         </form>
