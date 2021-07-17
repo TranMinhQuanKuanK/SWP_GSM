@@ -1,61 +1,61 @@
 name: auto-build-deploy
 
 on:
-        push:
-                branches:
-                        - "deploy"
+  push:
+    branches:
+      - "deploy"
 jobs:
-        build-check:
-                runs-on: ubuntu-latest
-                steps:
-                        - name: checking allow to build
-                          run: |
-                                  if [ ${{secrets.BUILD}} == ACTIVE ] 
-                                  then
-                                    echo '------------------- ready to deploy --------------------'
-                                  else 
-                                    echo 'not ready'
-                                    exit 1
-                                  fi
-        build-push:
-                needs: build-check
-                runs-on: ubuntu-latest
-                steps:
-                        - name: Checkout
-                          uses: actions/checkout@v2
-                        - name: Login Docker Hub
-                          uses: docker/login-action@v1
-                          with:
-                                  username: ${{ secrets.DOCKER_USERNAME }}
-                                  password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
-                        - name: Set up Docker Buildx
-                          uses: docker/setup-buildx-action@v1
-                          id: buildx
-                        - name: Build and Push for Server
-                          uses: docker/build-push-action@v2
-                          id: docker_build_server
-                          with:
-                                  context: .
-                                  file: ./Dockerfile
-                                  builder: ${{steps.buildx.outputs.name}}
-                                  push: true
-                                  tags: 385873380/grocerystoremanagement:latest
-                        - name: Verify
-                          run: |
-                                  echo ${{steps.docker_build_server.outputs.digest}}
-                                  echo 'Build done, ready to deploy'
-        deploy:
-                runs-on: ubuntu-latest
-                needs: build-push
-                steps:
-                        - name: executing remote ssh commands using ssh key
-                          uses: appleboy/ssh-action@master
-                          with:
-                                  host: ${{ secrets.HOST }}
-                                  username: ${{ secrets.USERNAME }}
-                                  password: ${{ secrets.PASSWORD }}
-                                  port: ${{ secrets.PORT }}
-                                  script: |
-                                          cd app
-                                          docker-compose pull 
-                                          docker-compose up -d
+  build-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checking allow to build
+        run: |
+          if [ ${{secrets.BUILD}} == ACTIVE ] 
+          then
+            echo '------------------- ready to deploy --------------------'
+          else 
+            echo 'not ready'
+            exit 1
+          fi
+  build-push:
+    needs: build-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Login Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        id: buildx
+      - name: Build and Push for Server
+        uses: docker/build-push-action@v2
+        id: docker_build_server
+        with:
+          context: .
+          file: ./Dockerfile
+          builder: ${{steps.buildx.outputs.name}}
+          push: true
+          tags: kuank/grocerystoremanagement:latest
+      - name: Verify
+        run: |
+          echo ${{steps.docker_build_server.outputs.digest}}
+          echo 'Build done, ready to deploy'
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-push
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd app
+            docker-compose pull 
+            docker-compose up -d
