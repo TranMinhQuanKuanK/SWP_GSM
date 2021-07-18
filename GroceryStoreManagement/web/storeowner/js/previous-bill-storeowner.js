@@ -110,43 +110,44 @@ function renderPreBillDetailList(billID) {
             cellCost.innerHTML = formatNumber(billDetails[i].cost);
             cellTotal.innerHTML = formatNumber(billDetails[i].total);
             
+            cellQuantity.style.textAlign = "right";
             cellCost.style.textAlign = "right";
             cellTotal.style.textAlign = "right";
         }
     }
+    var tableSum = document.getElementById("pre-bill-detail-summary");
+    tableSum.innerHTML = "";
+    var row = tableSum.insertRow(-1);
 
-    var row = table.insertRow(-1);
-    row.insertCell(0);
-    row.insertCell(1);
-    row.insertCell(2);
-    var cellTotalCostLabel = row.insertCell(3);
-    var cellTotalCost = row.insertCell(4);
+    var cellTotalCostLabel = row.insertCell(0);
+    var cellTotalCost = row.insertCell(1);
     cellTotalCostLabel.innerHTML = "Tổng cộng";
     cellTotalCostLabel.className = "total-previous-bills";
-    cellTotalCostLabel.style.textAlign = "left";
+    cellTotalCostLabel.style.width = "80%";
+    cellTotalCostLabel.style.textAlign = "right";
     cellTotalCost.innerHTML = formatNumber(totalCost);
     cellTotalCost.className = "total-previous-bills-price";
     cellTotalCost.style.textAlign = "right";
+    cellTotalCost.style.width = "20%";
+
     
-    var row = table.insertRow(-1);
-    row.insertCell(0);
-    row.insertCell(1);
-    row.insertCell(2);
-    var cellPointUsedLabel = row.insertCell(3);
-    var cellPointUsed = row.insertCell(4);
+    var row = tableSum.insertRow(-1);
+    var cellPointUsedLabel = row.insertCell(0);
+    var cellPointUsed = row.insertCell(1);
     cellPointUsedLabel.innerHTML = "Điểm sử dụng";
-    cellPointUsedLabel.style.textAlign = "left";
+    cellPointUsedLabel.style.width = "80%";
+    cellPointUsedLabel.style.textAlign = "right";
     cellPointUsed.innerHTML = pointUsed;
     cellPointUsed.style.textAlign = "right";
+    cellPointUsed.style.width = "20%";
 
-    var row = table.insertRow(-1);
-    row.insertCell(0);
-    row.insertCell(1);
-    row.insertCell(2);
-    var cellCashLabel = row.insertCell(3);
-    var cellCash = row.insertCell(4);
+    var row = tableSum.insertRow(-1);
+    var cellCashLabel = row.insertCell(0);
+    var cellCash = row.insertCell(1);
     cellCashLabel.innerHTML = "Khách đưa";
-    cellCashLabel.style.textAlign = "left";
+    cellCashLabel.style.width = "80%";
+    cellCashLabel.style.textAlign = "right";
     cellCash.innerHTML = formatNumber(cash);
     cellCash.style.textAlign = "right";
+    cellCash.style.width = "20%";
 }
