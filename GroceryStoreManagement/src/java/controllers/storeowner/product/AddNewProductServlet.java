@@ -73,7 +73,10 @@ public class AddNewProductServlet extends HttpServlet {
             productUnitLabel = request.getParameter("productUnitLabel");
             productLocation = request.getParameter("productLocation");
             productIsSelling = request.getParameter("productIsSelling").equals("true");
-
+            
+            if (productLocation.length() > 15) {
+                productLocation = productLocation.substring(0, 15);
+            }
             if (productName.equals("") || productName.length() > 100) {
                 foundErr = true;
                 err.setNameErr("Tên món hàng phải từ 1 tới 100 chữ");

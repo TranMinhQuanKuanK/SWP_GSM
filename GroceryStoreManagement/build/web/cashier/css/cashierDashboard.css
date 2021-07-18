@@ -1,0 +1,178 @@
+* {
+    font-family: "Nunito", sans-serif;
+}
+
+@media (max-width: 1000px) {
+    * {
+        font-size: 0.8125rem;
+    }
+}
+h5 {
+    margin: auto 0;
+}
+
+a,
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: #000;
+}
+
+/* =======================
+        LAYOUT
+    ====================
+*/
+textarea {
+   resize: none;
+}
+
+.heading {
+    padding: 1vmin;
+}
+
+.content-title {
+    height: 70px;
+}
+
+
+
+
+.content-title th {
+    background-color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+.body-left {
+    max-height: 85vh;
+    margin-bottom: 1em;
+}
+
+.body-right {
+    max-height: 85vh;
+    margin-bottom: 1em;
+}
+
+@media (min-width: 1367px) and (max-width: 1699px) {
+    .body-left {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 1em;
+    }
+
+    .body-right {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 1em;
+    }
+}
+@media (min-width: 1700px) and (max-width: 2000px)  {
+    .body-left {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 2em;
+    }
+
+    .body-right {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 2em;
+    }
+}
+/* TABLE CATEGORY LIST */
+
+#category-list td:hover,
+td:focus {
+    cursor: pointer;
+}
+
+.table-category-list {
+    min-width: 110px;
+}
+
+/* TABLE PRODUCT LIST */
+th.product-list-name {
+    width: 59%;
+}
+
+th.product-list-price {
+    width: 40%;
+}
+
+th.product-list-info {
+    width: 10%;
+}
+
+.table-product-list {
+    min-width: 450px;
+}/*
+
+*/#product-info {
+    min-width: 450px;
+    min-height: 130px;
+}
+
+/* TABLE BILL */
+
+th.bill-number {
+    width: 5%;
+}
+
+th.bill-name {
+    width: 35%;
+}
+
+th.bill-price {
+    width: 15%;
+}
+
+th.bill-quantity {
+    width: 15%;
+}
+
+.table-bill input {
+    max-width: 50px;
+}
+
+th.bill-remove {
+    width: 10%;
+}
+
+th.bill-total-price {
+    width: 20%;
+}
+
+/* TABLE CHECKOUT */
+
+.table-checkout input {
+    max-width: 110px;
+}
+
+.table-checkout td:first-child {
+    width: 65%;
+}
+
+/* Custom colors for product list */
+.product-out-of-stock {
+    color: #fff;
+    background: #ff352ee3 !important;
+}
+.product-low-quantity {
+    background: #ffcc00 !important;
+}
+
+.royalblueBg {
+    color: #fff !important;
+    background-color: #4e73df !important;
+}
+
+button.royalblueBg:hover,
+button.royalblueBg:focus {
+    color: #fff !important;
+    background-color: #4461b1 !important;
+}
+
+form label.required:after {
+    color: red;
+    content: " *";
+}

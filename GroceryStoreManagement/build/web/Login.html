@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <title>Login Page</title>
+        <link rel="stylesheet" href="cashier/css/reset.css" />
+        <link rel="stylesheet" href="cashier/css/login-page.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <link rel="apple-touch-icon" sizes="57x57" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="/GroceryStoreManagement/storeowner/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/GroceryStoreManagement/storeowner/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/GroceryStoreManagement/storeowner/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/GroceryStoreManagement/storeowner/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/GroceryStoreManagement/storeowner/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        
+    </head>
+
+    <body>
+        <div class="login-title">
+            <h1 class="brand-name">TẠP HÓA ÔNG bảy</h1>
+            <img src="/GroceryStoreManagement/storeowner/favicon/taphoaongsau_logo_colored.png" alt="logo of our web" class="logo">
+        </div>
+
+        <form action="javascript:void(0);" class="login-form" autocomplete="off">
+            <h1 class="login-heading"><span class="login-h1">Đăng nhập</span></h1>
+
+            <!--Input field-->
+            <div class="login-field">
+                <i class="fa fa-user-circle-o login-icon"></i>
+                <input id="txtUsername" type="text" class="login-input" placeholder="Tài khoản" required>
+            </div>
+            <div class="login-field">
+                <i class="fa fa-lock login-icon"></i>
+                <input id="txtPassword" type="password" class="login-input" placeholder="Mật khẩu" required>
+            </div>
+            <!--/ End of input field-->
+
+            <!--Error field-->
+            <div class="error-field" style='display:none;' id='ErrorMessageDiv'>
+                <i class="fa fa-exclamation-triangle error-icon"></i>
+                <p class="error-message" onfocus="this.blur()"  id='ErrorMessage'></p>
+            </div>
+            <!--/ End of error field-->
+            
+            <div class="login__login-btn">
+                <button class="login-btn" onclick="checkLogin()">Đăng nhập</button>
+            </div>
+
+        </form>
+        <script>
+            function checkLogin() {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function () {
+                    if (this.readyState >= 4 && this.status <= 200) {
+                        var loginErrorObject = JSON.parse(this.responseText);
+                        processLoginResponse(loginErrorObject);
+                    }
+                };
+                var txtUsername = document.getElementById("txtUsername").value;
+                var txtPassword = document.getElementById("txtPassword").value;
+                //                var formdata = new FormData();
+                //                formdata.append('txtUsername', txtUsername);
+                //                formdata.append('txtPassword', txtPassword);
+                var formTxt = 'txtUsername=' + encodeURIComponent(txtUsername) +
+                        '&txtPassword=' + encodeURIComponent(txtPassword);
+
+                xhttp.open("POST", "LoginServlet", true);
+                xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhttp.send(formTxt);
+            }
+
+            function processLoginResponse(data) {
+                if (data.has_Error) {
+                    document.getElementById("ErrorMessage").innerHTML = data.LoginErr;
+                    document.getElementById("ErrorMessageDiv").setAttribute("style", "display:true");
+                } else {
+                    //window.location.href = "TestSuccessLogin.html";
+
+                    if (data.user_type == 1) {
+                        window.location.href = "StoreownerDashboardPage";
+                    } else {
+                        window.location.href = "CashierDashboardPage";
+                    }
+                    //document.getElementById("ErrorMessage").innerHTML = "login successs! you are " + role;
+                }
+            }
+        </script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+
+    </body>
+
+</html>
