@@ -94,12 +94,16 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
             }
 
             span.badge:not(.d-none) {
+                width: 23px;
+                height: 23px;
+                border-radius: 50%;
+                font-size: 1em;
                 animation: blink 1s linear infinite;
             }
 
             @keyframes blink{
-                0%{opacity: 0;}
-                50%{opacity: .5;}
+                0%{opacity: .3;}
+                50%{opacity: .6;}
                 100%{opacity: 1;}
             }
         </style>
@@ -222,9 +226,11 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card border-left-danger p-2 shadow-sm"
                                      style="min-height: 540px; max-height: 545px;">
                                     <div class="card-heading">
-                                        <div class="d-flex justify-content-center align-items-center mb-1">
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
                                             <h5 class="font-weight-bold my-auto mr-1" style="color: #ed7468;">HÀNG SẮP HẾT</h5>
-                                            <span class="badge badge-danger d-none mb-auto">!</span>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                <i class="fas fa-exclamation"></i>
+                                        </span>
                                         </div>
                                         <div class="d-flex justify-content-end">
                                             <button style="max-height: 30px;" type="button" class="btn btn-danger btn-sm"
@@ -246,10 +252,12 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card p-2 shadow-sm border-left-info"
                                      style="min-height: 540px; max-height: 545px;">
                                     <div class="card-heading">
-                                        <div class="d-flex justify-content-center align-items-center mb-1">
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
                                             <h5 class="font-weight-bold my-auto" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG
                                                 <span class="statistics-info mr-1"></span></h5>
-                                                <span class="badge badge-info d-none mb-auto">!</span>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                    <i class="fas fa-exclamation"></i>
+                                            </span>
 
                                         </div>
                                         <div class="d-flex justify-content-between">
@@ -273,10 +281,12 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card p-2 shadow-sm border-left-custom"
                                      style="min-height: 315px; max-height: 320px; margin-bottom: 10px;">
                                     <div class="card-heading">
-                                        <div class="d-flex justify-content-center align-items-center mb-1">
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
                                         <h5 class="font-weight-bold my-auto" style="color: #AA2EE6;">TOP 10 SẢN PHẨM
                                             <span class="statistics-info mr-1"></span></h5>
-                                            <span class="badge d-none mb-auto" style="background-color: #AA2EE6; color: #fff;">!</span>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                <i class="fas fa-exclamation"></i>
+                                        </span>
 
                                         </div>
                                         <div class="d-flex justify-content-between">
@@ -298,11 +308,13 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card p-2 shadow-sm border-left-success"
                                      style="min-height: 210px; max-height: 215px;">
                                     <div class="card-heading">
-                                        <div class="d-flex justify-content-center align-items-center mb-1">
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
                                             <h5 class="font-weight-bold my-auto mr-1" style="color: #1cc88a;">
                                                 FEEDBACK CHƯA ĐỌC
                                             </h5>
-                                            <span class="badge d-none mb-auto" style="background-color: #1cc88a; color: #fff;">!</span>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                <i class="fas fa-exclamation"></i>
+                                        </span>
                                         </div>
                                         <div class="d-flex justify-content-end">
                                             <button style="max-height: 30px;" type="button" class="btn btn-success btn-sm"

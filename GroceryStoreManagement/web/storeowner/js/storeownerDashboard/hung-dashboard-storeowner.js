@@ -5,19 +5,39 @@
  */
 
 window.onload = GetUnSeenFeedbackListDashboard();
-
+var prevFeedbackList = null;
 function GetUnSeenFeedbackListDashboard(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState >= 4 && this.status <= 200) {
             let feedbackObject = JSON.parse(this.responseText);
             processUnSeenFeedbackDashboard(feedbackObject);
+            prevFeedbackList = feedbackObject;
         }
     };
     
     xhttp.open("GET","UnSeenFeedback", false);
     xhttp.send();
 }
+
+function UpdateUnSeenFeedbackList(){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState >= 4 && this.status <= 200) {
+            let feedbackObject = JSON.parse(this.responseText);
+            if (JSON.stringify(feedbackObject) !== JSON.stringify(prevFeedbackList)) {
+                processUnSeenFeedbackDashboard(feedbackObject);
+                prevFeedbackList = feedbackObject;
+                notifyNewUpdate("feedback-section");
+            }
+        }
+    };
+    
+    xhttp.open("GET","UnSeenFeedback", false);
+    xhttp.send();
+}
+
+setInterval(UpdateUnSeenFeedbackList, 15000);
 
 function GetUnSeenFeedbackListFromButtonDashboard(button){
     var xhttp = new XMLHttpRequest();
@@ -26,6 +46,7 @@ function GetUnSeenFeedbackListFromButtonDashboard(button){
         if (this.readyState >= 4 && this.status <= 200) {
             let feedbackObject = JSON.parse(this.responseText);
             processUnSeenFeedbackDashboard(feedbackObject);
+            prevFeedbackList = feedbackObject;
         }
     };
     
