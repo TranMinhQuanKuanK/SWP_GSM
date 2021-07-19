@@ -65,6 +65,13 @@
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between my-3">
                             <h1 class="mb-0" id="header-page">QUẢN LÍ NHÂN VIÊN</h1>
+                            <div class="d-sm-flex align-items-center justify-content-end mb-1">
+                                <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-primary import-goods-link"
+                                        data-toggle="modal" data-target="#change-password-modal">
+                                    <i class="fas fa-undo"></i>
+                                    <span>&nbsp;Đổi mật khẩu</span>
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Divider -->
@@ -80,16 +87,10 @@
                                         <h3 class="font-weight-bold text-primary header-center my-auto">DANH SÁCH TÀI KHOẢN</h3>
 
                                         <div class="d-sm-flex align-items-center justify-content-end">
-                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-primary btn-create-account"
+                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-secondary btn-create-account"
                                                     data-toggle="modal" data-target="#add-new-modal">
-                                                <span>Tạo tài khoản &nbsp;</span>
-                                                <i class="fas fa-user-plus"></i>
-                                            </button>
-
-                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-secondary btn-change-password"
-                                                    data-toggle="modal" data-target="#change-password-modal">
-                                                <span>Đổi mật khẩu &nbsp;</span>
-                                                <i class="fas fa-undo"></i>
+                                                 <i class="fas fa-user-plus"></i>
+                                                <span>&nbsp;Tạo tài khoản</span>
                                             </button>
                                         </div>
                                     </div>
@@ -105,8 +106,8 @@
                                                         <th scope="col" class="table-heading" style="width:25%;">Tên đăng nhập</th>
                                                         <th scope="col" class="table-heading" style="width:25%;">Họ và tên</th>
                                                         <th scope="col" class="table-heading" style="width:20%;">Vai trò</th>
-                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
-                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
+                                                        <th scope="col" class="table-heading" style="width:10%;">Đặt lại</th>
+                                                        <th scope="col" class="table-heading" style="width:10%;">Xóa</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="account-list-area">
