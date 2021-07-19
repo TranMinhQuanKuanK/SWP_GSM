@@ -32,7 +32,7 @@ function renderPendingList(data) {
                     btAdd.innerHTML = "Thêm";
                     
                     var btIgnore = document.createElement("button");
-                    btIgnore.setAttribute("style", "height: 1.8rem");
+                    btIgnore.setAttribute("style", "height: 1.8rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;");
                     btIgnore.setAttribute("type", "button");
                     btIgnore.setAttribute("class", "btn btn-outline-secondary btn-sm my-auto");
                     btIgnore.setAttribute("onclick", "changeStatusInPendingList(" + data[i].product_ID + ")");
