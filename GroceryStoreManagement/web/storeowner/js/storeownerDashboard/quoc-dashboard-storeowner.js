@@ -1,7 +1,4 @@
-var dateFrom, dateTo;
-var prevFinancialStatistics = null;
-var prevCustomerStatistics = null;
-var prevProductStatistics = null;
+var dateFrom, dateTo, prevFinancialStatistics, prevCustomerStatistics, prevProductStatistics;
 
 window.onload = onloadFunction();
 

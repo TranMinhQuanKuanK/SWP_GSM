@@ -5,7 +5,7 @@
  */
 
 window.onload = GetUnSeenFeedbackListDashboard();
-var prevFeedbackList = null;
+var prevFeedbackList;
 function GetUnSeenFeedbackListDashboard(){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {

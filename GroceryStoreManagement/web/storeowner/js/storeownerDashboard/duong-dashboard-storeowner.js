@@ -1,5 +1,5 @@
 window.onload = getPendingList();
-var prevPendingList = null;
+var prevPendingList;
 
 function getPendingList() {
   var xhttp = new XMLHttpRequest();
@@ -7,7 +7,6 @@ function getPendingList() {
   xhttp.onload = function () {
     var pendingList = JSON.parse(this.responseText);
     renderPendingList(pendingList);
-    setInterval(updatePendingList, 15000);
   };
   xhttp.send();
 }
@@ -29,12 +28,10 @@ function updatePendingList() {
   xhttp.send();
 }
 
+setInterval(updatePendingList, 15000);
 
 function renderPendingList(data) {
-    console.log(data)
-    console.log(prevPendingList);
     prevPendingList = data;
-    console.log(prevPendingList);
 
   document.getElementById("pending-list-on-dashboard").innerHTML = "";
   for (i = 0; i < data.length; i++) {
