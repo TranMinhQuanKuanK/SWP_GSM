@@ -4,7 +4,7 @@
             <!-- Sidebar - Brand -->
             <li>
                 <div class="sidebar-brand align-items-center justify-content-center mb-1">
-                    <div class="sidebar-brand-icon mb-1" style="margin-top:-1.2rem; ">
+                    <div class="sidebar-brand-icon mb-1" style="margin-top:-1.3rem; ">
                         <img src="/GroceryStoreManagement/storeowner/favicon/taphoaongsau_logo_blacknwhite.png" width="190" height="95" alt="logo of our web">
                     </div>
 
@@ -118,9 +118,27 @@
             </li>
 
             <!-- Divider -->
-            <li class="mt-1">
+            <li class="mt-1" style="margin-bottom: -1rem;">
                 <hr class="sidebar-divider d-none d-md-block">
             </li>
+
+            <!-- Nav Item - Cashier Password Change -->
+            <li class="nav-item">
+                <button class="nav-link btn-setting" data-toggle="modal" data-target="#settingPointsModal">
+                    <i class="fas fa-sliders-h menu-icon"></i>
+                    <span>&nbsp; Cài đặt tích điểm</span>
+                </button>
+            </li>
+
+            <li>
+                <hr class="sidebar-divider">
+            </li>
+
+            <li class="sidebar-card d-flex">
+                <p class="text-center mb-2">Trang web này được phát triển bởi</p>
+                <span class="btn-success btn-sm mb-1" style="pointer-events: none;"><strong>Q2HTD Team</strong></span> 
+            </li>
+
         </ul>
     </div>
 </div>
@@ -150,8 +168,7 @@ src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69
     $(this).parent().addClass('menu-active-page').siblings().removeClass('menu-active-page');
     $("div").find(".menu-active-page").removeClass("menu-active-page");
     });
-    });
-</script>
+    });</script>
 <!-- Log out Modal -->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
@@ -173,3 +190,32 @@ src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-8216c69
         </div>
     </div>
 </div>
+
+<!-- Settings Modal -->
+<div class="modal fade" id="settingPointsModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title text-primary my-auto" >Cài đặt tích điểm</h3>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form style="align-items: center; padding-top:0.5rem; ">
+                    <div class="form-group row d-flex align-items-center">
+                        <label for="currentPointSettings" style="margin-left:1rem; margin-top: 0.5rem; font-size: 1.2rem; color:black; font-weight: 600;">Giá trị tích lũy : &nbsp;</label>
+                        <input type="number" class="form-control modal-input" style="width: 25%;" id="currentPointSettings"/>
+                        <span style="font-size: 1.2rem; color:black; font-weight: 600;">&nbsp;đ / 1 điểm.</span>
+                        <span class="modal-error w-100" style="margin-left:1rem; margin-top: 0.5rem; font-size: 1.1rem; color:red; font-weight: 600;">Lỗi cmnr !</span>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="">Lưu cài đặt</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End of Settings Modal-->
