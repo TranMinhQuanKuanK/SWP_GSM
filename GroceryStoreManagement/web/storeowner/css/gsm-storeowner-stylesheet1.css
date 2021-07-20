@@ -11362,10 +11362,6 @@ html {
     cursor: pointer;
 }
 
-.btn-create-account{
-    margin-right: 1rem;
-}
-
 .btn-change-password{
     margin-right:1rem;
 }
@@ -11450,4 +11446,38 @@ html {
     background-color: #414162;
 }
 
+.btn-setting {
+    border: none;
+    background-color: #1A1A27 !important;
+}
+
+.btn-setting:hover {
+    background-color: #414162 !important;
+}
 /**/
+.sidebar .sidebar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.875rem;
+  border-radius: 0.35rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.sidebar .sidebar-card .sidebar-card-illustration {
+  height: 3rem;
+  display: block;
+}
+
+.sidebar .sidebar-card .sidebar-card-title {
+  font-weight: bold;
+}
+
+.sidebar .sidebar-card p {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+}
