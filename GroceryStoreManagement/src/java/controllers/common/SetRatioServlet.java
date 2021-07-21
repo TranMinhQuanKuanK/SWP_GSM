@@ -6,6 +6,7 @@
 package controllers.common;
 
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
@@ -37,13 +38,13 @@ public class SetRatioServlet extends HttpServlet {
         response.setContentType("text/plain;charset=UTF-8");
         try {
             Integer.parseInt(request.getParameter("newRatio"));
-            request.getParameter("newRatio");
             ServletContext sc = getServletContext();
             String realPath = sc.getRealPath("/");
             String configPropertyFilePath = realPath + "WEB-INF/GSMconfig.properties";
             Properties appProps = new Properties();
             appProps.load(new FileInputStream(configPropertyFilePath));
             appProps.setProperty("pointRatio",request.getParameter("newRatio"));
+            appProps.store(new FileWriter(configPropertyFilePath), "comment");
         } catch (Exception ex) {
             log("Parsing ratio error, "+ex.getMessage());
         }

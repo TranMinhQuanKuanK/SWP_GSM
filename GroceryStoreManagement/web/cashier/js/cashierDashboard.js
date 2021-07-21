@@ -9,6 +9,7 @@ const pagination_element = document.getElementById("page-selection");
 var accountErrObj;
 var customerErrObj;
 var previewCash;
+var pointRatio;
 function SearchForProduct(id) {
   for (i = 0; i < productList.length; i++) {
     if (productList[i].product_ID == id) return productList[i];
@@ -335,6 +336,11 @@ function printPreviewBill(billObject) {
             ? parseInt(cash) - parseInt(total)
             : 0
         );
+  //in ra điểm tương lai:
+  document.getElementById("bill-preview-new-point").innerHTML = Math.floor(
+    currentBill.total_cost / pointRatio
+  );
+
   $("#bill-preview-modal").modal("show");
 }
 function display_Bill_ErrorMessage() {
@@ -710,11 +716,23 @@ function Checkout() {
     }
   }
 }
+function getRatio() {
+  var xhttp = new XMLHttpRequest();
 
+  xhttp.open("GET", "GetRatio", true);
+  xhttp.onload = function () {
+    document.getElementById("point-rate").innerHTML = formatNumber(
+      this.responseText
+    );
+    pointRatio = parseInt(this.responseText);
+  };
+  xhttp.send();
+}
 // KuanK's function
 function pageLoadKuanK() {
   getCashierName();
   getBill();
+  getRatio();
   getCategory();
   SearchProduct();
 }

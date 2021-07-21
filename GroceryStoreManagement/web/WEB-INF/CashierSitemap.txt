@@ -18,3 +18,4 @@ CreateNewCustomer = CreateNewCustomerServlet
 Checkout = CheckoutServlet
 ClearBill = ClearBillServlet
 GetRatio = GetRatioServlet
+SetRatio = SetRatioServlet
