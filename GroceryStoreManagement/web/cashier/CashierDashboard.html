@@ -490,17 +490,18 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div style="max-height: 425px;">
+                        <div style="max-height: 410px;">
                             <form>
-                                <div class="form-group">
-                                    Khách hàng: <span id="bill-preview-customer-name" style="font-weight: bold;">Trần
-                                        Minh Quân</span></br>
-                                        <div class="d-flex justify-content-between">
-                                        
+                                <div class="form-group mb-0">
+                                    <div class="d-flex justify-content-between">
                                         <p>
-                                            Điểm tích lũy hiện tại: <span id="bill-preview-customer-point"
-                                                style="font-weight: bold; color:red;">20</span>
-                                        </p>    
+                                            Khách hàng: <span id="bill-preview-customer-name" style="font-weight: bold;">Trần
+                                                Minh Quân</span></br>
+                                        </p>
+                                        
+                                        <!-- <p>
+                                            Điểm tích lũy hiện tại: 
+                                        </p>     -->
                                         <p>
                                             Bạn sẽ nhận được: <span id="bill-preview-new-point"
                                             style="font-weight: bold; color:red;">...</span>
@@ -543,14 +544,31 @@
                                                                                                           style="font-weight: bold; color:red">60.000</span></li>
                                                                                     <li> Tiền mặt khách đưa: <span id="bill-preview-cash">40.000</span></li>
                                                                                 </ul>-->
-                                    <table class="table table-borderless table-sm">
+                                    <table class="table table-borderless table-sm mb-0">
                                         <tbody>
                                             <tr>
-                                                <th scope="row" class="text-right" style="width: 80%;">Tổng tiền:</th>
+                                                <th scope="row" class="text-right" style="width: 80%;">
+                                                    <div class="d-flex justify-content-between m-0 p-0">
+                                                        <p class="m-0">Tiền mặt khách đưa: 
+                                                            <span id="bill-preview-cash" style="font-weight: normal;"></span>
+                                                        </p>
+                                                        <span>Tổng tiền:</span>
+                                                    </div>
+                                                </th>
                                                 <td class="text-right pr-3"><span id="bill-preview-total"></span></td>
                                             </tr>
                                             <tr>
-                                                <th scope="row" class="text-right" style="width: 80%;">Giảm giá:</th>
+                                                <th scope="row" class="text-right" style="width: 80%;">
+                                                    <div class="d-flex justify-content-between m-0 p-0">
+                                                        <p class="m-0">
+                                                            <span style="margin-right: 5em;">
+                                                                Tiền thối:
+                                                            </span>
+                                                            <span id="bill-preview-change" style="font-weight: normal;"></span>
+                                                        </p>
+                                                        <span>Giảm giá:</span>
+                                                    </div>
+                                                </th>
                                                 <td class="text-right pr-3"><span id="bill-preview-discount"></span>
                                                 </td>
                                             </tr>
@@ -560,14 +578,19 @@
                                                         style="font-weight: bold; color:red"></span></td>
                                             </tr>
                                             <tr>
-                                                <th scope="row" class="text-right" style="width: 80%;">Tiền mặt khách
-                                                    đưa: </th>
-                                                <td class="text-right pr-3"><span id="bill-preview-cash"></span></td>
+                                                <th scope="row" class="text-right" style="width: 80%;">Điểm tích lũy: </th>
+                                                <td class="text-right pr-3" style="font-weight: bold; color:royalblue;">
+                                                    <del><span id="bill-preview-customer-point" style=" font-size: 0.8em;">10</span></del>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                                                      </svg>
+                                                    <span id="bill-preview-new-point">40</span>
+                                                </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <th scope="row" class="text-right" style="width: 80%;">Tiền thối: </th>
                                                 <td class="text-right pr-3"><span id="bill-preview-change"></span></td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
