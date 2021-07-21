@@ -92,6 +92,20 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                     min-height: 30px;
                 }
             }
+
+            span.badge:not(.d-none) {
+                width: 23px;
+                height: 23px;
+                border-radius: 50%;
+                font-size: 1em;
+                animation: blink 1s linear infinite;
+            }
+
+            @keyframes blink{
+                0%{opacity: .3;}
+                50%{opacity: .6;}
+                100%{opacity: 1;}
+            }
         </style>
         <!--favicon link-->
         <link rel="apple-touch-icon" sizes="57x57" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-57x57.png">
@@ -131,7 +145,7 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                     <div class="container-fluid">
                         <!-- Page Heading -->
                         <div class="d-sm-flex align-items-center justify-content-between my-3">
-                            <h1 class="mb-0" id="header-page">TỔNG QUAN CỬA HÀNG</h1>
+                            <h1 class="mb-0" id="header-page">TRANG CHỦ</h1>
                             <button class="btn d-none d-sm-inline-block btn btn-lg shadow-sm bg-primary"
                                     onclick="window.location.href = 'ImportGoodsPage';">
                                 <i class="fas fa-box-open" style="color: #fff;"></i>&nbsp;
@@ -212,7 +226,12 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card border-left-danger p-2 shadow-sm"
                                      style="min-height: 540px; max-height: 545px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold header-center" style="color: #ed7468;">HÀNG SẮP HẾT</h5>
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
+                                            <h5 class="font-weight-bold my-auto mr-1" style="color: #ed7468;">HÀNG SẮP HẾT</h5>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                <i class="fas fa-exclamation"></i>
+                                        </span>
+                                        </div>
                                         <div class="d-flex justify-content-end">
                                             <button style="max-height: 30px;" type="button" class="btn btn-danger btn-sm"
                                                     onclick="window.location.href = 'InventoryPage'">
@@ -233,8 +252,14 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card p-2 shadow-sm border-left-info"
                                      style="min-height: 540px; max-height: 545px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold header-center" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG
-                                            <span class="statistics-info"></span></h5>
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
+                                            <h5 class="font-weight-bold my-auto" style="color: #36b9cc;">TOP 10 KHÁCH HÀNG
+                                                <span class="statistics-info mr-1"></span></h5>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                    <i class="fas fa-exclamation"></i>
+                                            </span>
+
+                                        </div>
                                         <div class="d-flex justify-content-between">
                                             <p class="ml-1" style="color: #36b9cc;">(theo tổng chi tiêu)</p>
                                             <button type="button" style="max-height: 30px;" class="btn btn-info btn-sm"
@@ -256,8 +281,14 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card p-2 shadow-sm border-left-custom"
                                      style="min-height: 315px; max-height: 320px; margin-bottom: 10px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold header-center" style="color: #AA2EE6;">TOP 10 SẢN PHẨM
-                                            <span class="statistics-info"></span></h5>
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
+                                        <h5 class="font-weight-bold my-auto" style="color: #AA2EE6;">TOP 10 SẢN PHẨM
+                                            <span class="statistics-info mr-1"></span></h5>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                <i class="fas fa-exclamation"></i>
+                                        </span>
+
+                                        </div>
                                         <div class="d-flex justify-content-between">
                                             <p class="ml-1" style="color: #AA2EE6;">(theo số lượng đã bán)</p>
                                             <button style="max-height: 30px;" type="button" class="btn btn-custom btn-sm"
@@ -277,8 +308,14 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                 <div class="card p-2 shadow-sm border-left-success"
                                      style="min-height: 210px; max-height: 215px;">
                                     <div class="card-heading">
-                                        <h5 class="font-weight-bold header-center" style="color: #1cc88a;">FEEDBACK CHƯA ĐỌC
-                                        </h5>
+                                        <div class="d-flex justify-content-center align-items-center mb-1 position-relative">
+                                            <h5 class="font-weight-bold my-auto mr-1" style="color: #1cc88a;">
+                                                FEEDBACK CHƯA ĐỌC
+                                            </h5>
+                                            <span class="badge badge-danger d-none position-absolute" style="left: 1%;">
+                                                <i class="fas fa-exclamation"></i>
+                                        </span>
+                                        </div>
                                         <div class="d-flex justify-content-end">
                                             <button style="max-height: 30px;" type="button" class="btn btn-success btn-sm"
                                                     onclick="window.location.href = 'FeedbackListPage'">
@@ -300,18 +337,20 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
         
         <div class="d-flex justify-content-end" style="bottom: 5px; z-index: 8000; position: -webkit-sticky;
         position: sticky;">
-        <div id="success-to-add-toast" class="toast hide" role="alert">
-            <div class="toast-header">
-                <strong class="mr-auto text-success">Thay đổi thành công</strong>
-                <small>Mới</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+        <div id="toast">
+            <div id="success-to-add-toast" class="toast hide" role="alert">
+                <div class="toast-header">
+                    <strong class="mr-auto text-success">Thay đổi thành công</strong>
+                    <small>Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="toast-body bg-light">
+                    Đã thêm vào Biên lai nhập hàng
+                </div>
             </div>
-            <div class="toast-body bg-light">
-                Đã thêm vào danh sách chờ Nhập hàng
             </div>
-        </div>
         </div>
 
         <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
@@ -334,20 +373,8 @@ FEEDBACK CHƯA ĐỌC: Dòng 435
                                                             $("#sidebar-placeholder").replaceWith(data);
                                                         });
 
-                                                        //            $("#feedback-section button").find("i").on("mouseenter", function () {
-                                                        //                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-900");
-                                                        //            });
-                                                        //
-                                                        //            $("#feedback-section button").find("i").on("mouseout", function () {
-                                                        //                $(this).attr("class", "fas fa-check-circle fa-2x text-gray-600");
-                                                        //            });
-                                                        //        ------------------------------------------------------------
-                                                        function PageLoad() {
-                                                            PrintTop10Customer();
-                                                            PrintTop10Product();
-                                                            PrintSummary();
-                                                            PrintFeedback();
-                                                        }
+                                                        getSuccessToast("new-change", "Cập nhật thay đổi", "Dữ liệu mới đã được cập nhật");
+                                                        
         </script>
     </body>
 

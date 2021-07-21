@@ -165,3 +165,42 @@ function getTime() {
         dateFrom[i].max = dateTo[i].value;
     }
 }
+
+function getSuccessToast(id, title, message) {
+    document.getElementById("toast").innerHTML += `
+    <!-- Successful to create ${title} -->
+        <div class="d-flex justify-content-end" style="bottom: 5px; right: 5px; z-index: 8000; position: fixed;">
+            <div id=${id} class="toast hide" role="alert">
+                <div class="toast-header d-flex justify-content-between">
+                    <strong class="mr-5 text-success">${title}</strong>
+                    <div class="">
+                        <small class="my-auto">Mới</small>
+                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    
+                </div>
+                <div class="toast-body bg-light">
+                ${message}
+                </div>
+            </div>
+        </div>
+    `
+}
+
+function callToast(id, time) {
+    console.log("true");
+    $(`#${id}`).toast({
+        delay: time
+    });
+    $(`#${id}`).toast('show');
+}
+
+function notifyNewUpdate(id) {
+    $(`#${id}`).parent().parent().find(".badge").removeClass("d-none");
+    setTimeout(function () {
+        $(`#${id}`).parent().parent().find(".badge").addClass("d-none");
+    }, 5000);
+    callToast("new-change", 5000);
+}
