@@ -124,7 +124,11 @@ $(document).ready(function () {
             }
         }
     });
+
 });
+
+// Create toast
+getSuccessToast("success", "Thành công", "Hàng hóa đã được cập nhật!");
 
 $("#category-list, #outOfStockItems").on('change', function () {
     setTimeout(function () {
@@ -234,10 +238,11 @@ $('#edit-product-save-btn').on("click", function () {
                     setTimeout(function () {
                         productList.ajax.reload();
                     }, 500);
-                    $('#success-to-save-toast').toast({
-                        delay: 2000
-                    });
-                    $('#success-to-save-toast').toast('show');
+                    // $('#success-to-save-toast').toast({
+                    //     delay: 2000
+                    // });
+                    // $('#success-to-save-toast').toast('show');
+                    callToast("success", 2000);
                     toggleDisabledForProductInfo(true);
                 } else {
                     console.log("edit error running");
@@ -329,11 +334,11 @@ $('#add-product-save-btn').on("click", function () {
                     setTimeout(function () {
                         productList.ajax.reload();
                     }, 500);
-                    $('#success-to-save-toast').toast({
-                        delay: 2000
-                    });
-                    $('#success-to-save-toast').toast('show');
-
+                    // $('#success-to-save-toast').toast({
+                    //     delay: 2000
+                    // });
+                    // $('#success-to-save-toast').toast('show');
+                    callToast("success", 2000);
                     $("#add-product-name").val("");
                     $("#add-category-name option:selected").val("");
                     $("#add-lower-threshold").val("");
