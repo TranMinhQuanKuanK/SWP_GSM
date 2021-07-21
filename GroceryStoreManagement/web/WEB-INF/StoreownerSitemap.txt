@@ -41,3 +41,5 @@ GetReceipt = GetReceiptServlet
 EditQuantityInReceipt = EditQuantityInReceiptServlet
 MakeNewReceipt = MakeNewReceiptServlet
 GetReceiptInformation = GetReceiptInformationServlet
+GetRatio = GetRatioServlet
+SetRatio = SetRatioServlet

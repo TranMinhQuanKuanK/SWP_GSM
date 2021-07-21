@@ -82,10 +82,11 @@ public class GetPreviousBillListServlet extends HttpServlet {
             } else {
                 //2.2 Call DAO
                 PreBillDAO dao = new PreBillDAO();
+                String guestName = StringNormalizer.normalize("Khách hàng vãng lai");
                 dao.searchPreviousBill(searchValue, dateFrom, dateTo);
-                if (searchValue.length() == 0) {
+                if (searchValue.length() == 0 || guestName.contains(searchValue)) {
                     dao.searchGuestPreviousBill(dateFrom, dateTo);
-                }
+                } 
 
                 List<PreBillDTO> resultList = dao.getPreBillList();
 

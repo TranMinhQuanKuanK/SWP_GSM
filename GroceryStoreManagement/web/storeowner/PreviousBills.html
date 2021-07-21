@@ -38,7 +38,7 @@
         <meta name="theme-color" content="#ffffff">
     </head>
 
-    <body id="page-top" onload="getTime()">
+    <body id="page-top" onload="getTime(); showPreBillList();">
 
         <!-- Page Wrapper -->
         <div id="wrapper">
@@ -97,10 +97,10 @@
                                                 </div>
                                             </div>
 
-                                            <h6 class="font-weight-bold text-primary ml-3 d-flex row pt-2">Tên/SĐT: &nbsp;</h6> 
+                                            <h6 class="font-weight-bold text-primary ml-3 d-flex row pt-2">Tên / SĐT: &nbsp;</h6> 
                                             <div class="form-group d-flex">
                                                 <div class="input-group col-10">
-                                                    <input type="text" class="form-control" id="search-value" style="color:black;">
+                                                    <input type="text" class="form-control" id="search-value" maxlength="100" style="color:black;">
                                                 </div>
                                                 <button onclick="showPreBillList()"
                                                        class="btn btn-primary mb-5 ml-1">
@@ -113,10 +113,10 @@
                                             <table class="table table-striped table-border-custom">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" class="table-heading" style="width:5%;"></th>
+                                                        <th scope="col" class="table-heading" style="width:5%;">STT</th>
                                                         <th scope="col" class="table-heading" style="width:40%;">Tên khách hàng</th>
-                                                        <th scope="col" class="table-heading" style="width:25%;">Tổng</th>
-                                                        <th scope="col" class="table-heading" style="width:30%;">Ngày</th>
+                                                        <th scope="col" class="table-heading text-right" style="width:25%;">Tổng <span style="text-transform:none;">(đ)</span></th>
+                                                        <th scope="col" class="table-heading text-center" style="width:30%;">Ngày</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="pre-bill-area">
@@ -196,17 +196,21 @@
                                             <table class="table table-striped table-border-custom">
                                                 <thead>
                                                     <tr>
-                                                        <th scope="col" class="table-heading" style="width:5%;"></th>
-                                                        <th scope="col" class="table-heading" style="width:35%;">Tên sản phẩm</th>
-                                                        <th scope="col" class="table-heading" style="width:20%;">Số lượng</th>
-                                                        <th scope="col" class="table-heading" style="width:20%;">Đơn giá</th>
-                                                        <th scope="col" class="table-heading" style="width:20%;">Thành tiền</th>
+                                                        <th scope="col" class="table-heading" style="width:5%;">STT</th>
+                                                        <th scope="col" class="table-heading text-left" style="width:35%;">Tên sản phẩm</th>
+                                                        <th scope="col" class="table-heading text-right" style="width:20%;">Số lượng</th>
+                                                        <th scope="col" class="table-heading text-right" style="width:20%;">Đơn giá <span style="text-transform:none;">(đ)</span></span></th>
+                                                        <th scope="col" class="table-heading text-right" style="width:20%;">Thành tiền <span style="text-transform:none;">(đ)</span></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="pre-bill-detail-area">
                                                 </tbody>
                                             </table>
-
+                                            <table class="table table-sm table-borderless" style="color: black; font-size: 120%;">
+                                                
+                                                <tbody id="pre-bill-detail-summary">
+                                                </tbody>
+                                            </table>
                                             <span class="pt-1 bill-info" id="empty-bill-label" style="display:none">Hóa đơn không có sản phẩm
                                                 nào</span>
                                         </div>

@@ -8,7 +8,8 @@ const productList_element = document.getElementById("product-list"); //biến c�
 const pagination_element = document.getElementById("page-selection");
 var accountErrObj;
 var customerErrObj;
-
+var previewCash;
+var pointRatio;
 function SearchForProduct(id) {
   for (i = 0; i < productList.length; i++) {
     if (productList[i].product_ID == id) return productList[i];
@@ -48,8 +49,9 @@ function DisplayProductInfo(id) {
   if (product == -1) console.log("error! Can't find product");
   document.getElementById("product-info-name").innerHTML = product.name;
   document.getElementById("product-info-quantity").innerHTML = product.quantity;
-  document.getElementById("product-info-price").innerHTML =
-    product.selling_price;
+  document.getElementById("product-info-price").innerHTML = eVietnamCurrency(
+    product.selling_price
+  );
   document.getElementById("product-info-location").innerHTML = product.location;
 }
 
@@ -116,17 +118,29 @@ function createHTMLForEachProduct(product) {
 // KuanK's function - send feedback to server
 function sendFeedback() {
   var xhttp = new XMLHttpRequest();
-  content =
-    "feedback_content=" +
-    encodeURIComponent(document.getElementById("feedback").value);
-  xhttp.open("POST", "SendFeedback", true);
-  xhttp.setRequestHeader(
-    "Content-Type",
-    "application/x-www-form-urlencoded;charset=UTF-8"
-  );
-  xhttp.send(content);
-  document.getElementById("feedback").value = "";
-  $("#createFeedback").modal("hide");
+  if (document.getElementById("feedback").value.length > 1000) {
+    document.getElementById("feedback-1000-char-error").innerHTML =
+      "Phản hồi không được vượt quá 1000 kí tự";
+  } else if (document.getElementById("feedback").value.length > 0) {
+    content =
+      "feedback_content=" +
+      encodeURIComponent(document.getElementById("feedback").value);
+    xhttp.open("POST", "SendFeedback", true);
+    xhttp.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded;charset=UTF-8"
+    );
+    xhttp.send(content);
+    //dọn dẹp modal
+    document.getElementById("feedback").value = "";
+    document.getElementById("feedback-1000-char-error").innerHTML = "";
+    $("#createFeedback").modal("hide");
+
+    $("#success-to-send-feedback").toast({
+      delay: 2000,
+    });
+    $("#success-to-send-feedback").toast("show");
+  }
 }
 
 // KuanK's function - get cashier name from server and render ít
@@ -238,8 +252,9 @@ function printBill(billObject) {
   );
   document.getElementById("discount").innerHTML =
     "<del>" + formatNumber(discount) + "</del>";
-  document.getElementById("total-after-discount").innerHTML =
-    "<strong>" + formatNumber(total_cost_after_discount) + "</strong>";
+  document.getElementById("total-after-discount").innerHTML = formatNumber(
+    total_cost_after_discount
+  );
   //in ra tên customer
   renderCustomer();
 
@@ -249,13 +264,11 @@ function printBill(billObject) {
 
 function printPreviewBill(billObject) {
   //in tên và điểm
-  document.getElementById(
-    "bill-preview-customer-name"
-  ).innerHTML = document.getElementById("customer-name").innerHTML;
+  document.getElementById("bill-preview-customer-name").innerHTML =
+    document.getElementById("customer-name").innerHTML;
 
-  document.getElementById(
-    "bill-preview-customer-point"
-  ).innerHTML = document.getElementById("point-of-customer").innerHTML;
+  document.getElementById("bill-preview-customer-point").innerHTML =
+    document.getElementById("point-of-customer").innerHTML;
   //in bảng bill
   document.getElementById("bill-preview-area").innerHTML = "";
   for (i = 0; i < billObject.Bill_Detail.length; i++) {
@@ -292,22 +305,42 @@ function printPreviewBill(billObject) {
     document.getElementById("bill-preview-area").appendChild(tr);
   }
   //in phần thành tiền/giảm giá/tổng tiền/khách đưa:
-  document.getElementById(
-    "bill-preview-total"
-  ).innerHTML = document.getElementById("total").innerHTML;
+  document.getElementById("bill-preview-total").innerHTML =
+    document.getElementById("total").innerHTML;
 
-  document.getElementById(
-    "bill-preview-discount"
-  ).innerHTML = document.getElementById("discount").innerHTML;
+  document.getElementById("bill-preview-discount").innerHTML =
+    document.getElementById("discount").innerHTML;
 
-  document.getElementById(
-    "bill-preview-total-after-discount"
-  ).innerHTML = document.getElementById("total-after-discount").innerHTML;
+  document.getElementById("bill-preview-total-after-discount").innerHTML =
+    document.getElementById("total-after-discount").innerHTML;
 
   document.getElementById("bill-preview-cash").innerHTML =
     document.getElementById("cash").value == ""
       ? "...Chưa nhập..."
       : formatNumber(document.getElementById("cash").value);
+
+  var cash = parseInt(
+    document.getElementById("cash").value.split(".").join("")
+  );
+  var total = parseInt(
+    document
+      .getElementById("total-after-discount")
+      .innerHTML.split(".")
+      .join("")
+  );
+  document.getElementById("bill-preview-change").innerHTML =
+    document.getElementById("cash").value == ""
+      ? "...Chưa nhập..."
+      : formatNumber(
+          parseInt(cash) - parseInt(total) > 0
+            ? parseInt(cash) - parseInt(total)
+            : 0
+        );
+  //in ra điểm tương lai:
+  document.getElementById("bill-preview-new-point").innerHTML = Math.floor(
+    currentBill.total_cost / pointRatio
+  );
+
   $("#bill-preview-modal").modal("show");
 }
 function display_Bill_ErrorMessage() {
@@ -330,30 +363,23 @@ function SearchProduct() {
   //nếu category khác null thì thêm vào query string
   if (category_id != null) url += "&category_id=" + category_id;
   //nếu không có tên và category_id = tất cả (null) thì cho productList là rỗng
-  if (name == "" && category_id == null) {
-    productList = [];
+  // if (name == "" && category_id == null) {
+  //   productList = [];
+  //   RenderProduct();
+  // } else {
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", url, true);
+  xhttp.onload = function () {
+    productList = JSON.parse(this.responseText);
+    //  console.log(productList);
     RenderProduct();
-  } else {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", url, true);
-    xhttp.onload = function () {
-      productList = JSON.parse(this.responseText);
-      //  console.log(productList);
-      RenderProduct();
-    };
-    xhttp.send();
-  }
+  };
+  xhttp.send();
+  // }
 }
 
 //KuanK đã sửa - render product list
 function RenderProduct() {
-  // Load products
-  // var ProducthtmlList = document.getElementById("product-list");
-  // ProducthtmlList.innerHTML = "";
-  // for (i = 0; i < productList.length; i++) {
-  //   ProducthtmlList.appendChild(createHTMLForEachProduct(productList[i]));
-  // }
-
   DisplayProductList(
     productList,
     rows_per_page,
@@ -406,24 +432,30 @@ function setCategoryAndSearch(event, id) {
   $("#category-list tr td").removeClass("royalblueBg");
   event.target.setAttribute("class", "royalblueBg");
   category_id = id;
+  document.getElementById("product-search-bar").value = "";
   SearchProduct();
 }
 
 function searchCustomerByPhone() {
   var xhttp = new XMLHttpRequest();
   var phone_no = document.getElementById("phone-no-input").value;
-  xhttp.open("GET", "GetCustomerByPhone?phone_no=" + phone_no, true);
-  xhttp.onload = function () {
-    //nếu kết quả trả về null thì thôi, còn nếu khác null thì in ra
-    result_dto = JSON.parse(this.responseText);
-    if (result_dto != null) {
-      currentBill.customer_dto = result_dto;
-      printBill(currentBill);
-    } else if (result_dto == null) {
-      alert("Không tìm thấy khách hàng tương ứng!");
-    }
-  };
-  xhttp.send();
+  if (phone_no != "") {
+    xhttp.open("GET", "GetCustomerByPhone?phone_no=" + phone_no, true);
+    xhttp.onload = function () {
+      //nếu kết quả trả về null thì thôi, còn nếu khác null thì in ra
+      result_dto = JSON.parse(this.responseText);
+      if (result_dto != null) {
+        currentBill.customer_dto = result_dto;
+        printBill(currentBill);
+      } else if (result_dto == null) {
+        $("#fail-to-find-customer-toast").toast({
+          delay: 2000,
+        });
+        $("#fail-to-find-customer-toast").toast("show");
+      }
+    };
+    xhttp.send();
+  }
 }
 
 function renderCustomer() {
@@ -503,8 +535,9 @@ function calculateDiscount() {
 
 function EditQuantityBill(product_id) {
   var xhttp = new XMLHttpRequest();
-  quantity = document.getElementById("quantity-for-product-" + product_id)
-    .value;
+  quantity = document.getElementById(
+    "quantity-for-product-" + product_id
+  ).value;
   xhttp.open(
     "GET",
     "EditQuantityBill?product_id=" + product_id + "&quantity=" + quantity,
@@ -631,16 +664,36 @@ function RegisterCustomer() {
         clearAllError();
         clearAllInput();
         $("#registerCustomer").modal("hide");
+        //search sẵn cho khách hàng
+        document.getElementById("phone-no-input").value = customerPhoneNo;
+        searchCustomerByPhone();
+
+        $("#success-to-create-customer").toast({
+          delay: 2000,
+        });
+        $("#success-to-create-customer").toast("show");
       }
     }
   }
 }
+function clearbill() {
+  var xhttp = new XMLHttpRequest();
 
+  xhttp.open("GET", "ClearBill", true);
+  xhttp.onload = function () {
+    getBill();
+    document.getElementById("cash").value = "";
+  };
+  xhttp.send();
+}
 function Checkout() {
   if (currentBill.total_cost == 0) {
-    alert("Chưa mua gì mà bấm thanh toán????? Bị khùng hả?");
+    $("#fail-to-save-toast").toast({
+      delay: 2000,
+    });
+    $("#fail-to-save-toast").toast("show");
   } else {
-    var cash = document.getElementById("cash").value.replaceAll(".", "");
+    var cash = document.getElementById("cash").value.split(".").join("");
     var xhttp = new XMLHttpRequest();
 
     xhttp.open("GET", "Checkout?cash=" + cash, true);
@@ -648,8 +701,13 @@ function Checkout() {
       // customerErrObj = JSON.parse(this.responseText);
       clearBill();
       getBill();
+      SearchProduct();
       document.getElementById("cash").value = "";
       $("#bill-preview-modal").modal("hide");
+      $("#success-to-save-toast").toast({
+        delay: 2000,
+      });
+      $("#success-to-save-toast").toast("show");
     };
     xhttp.send();
     //clear bill, đóng modal
@@ -658,12 +716,25 @@ function Checkout() {
     }
   }
 }
+function getRatio() {
+  var xhttp = new XMLHttpRequest();
 
+  xhttp.open("GET", "GetRatio", true);
+  xhttp.onload = function () {
+    document.getElementById("point-rate").innerHTML = formatNumber(
+      this.responseText
+    );
+    pointRatio = parseInt(this.responseText);
+  };
+  xhttp.send();
+}
 // KuanK's function
 function pageLoadKuanK() {
   getCashierName();
   getBill();
+  getRatio();
   getCategory();
+  SearchProduct();
 }
 
 /* ====================================
@@ -775,37 +846,40 @@ function DisplayPagination() {
 
 // Format user input for currency
 $("#cash").on("input", function () {
-    /*
+  /*
      * These additional lines prevent the function from running when the user 
      makes a selection within the input
      or presses the arrow keys on the keyboard
      */
-    var selection = window.getSelection().toString();
-    if (selection !== '') {
-        return;
-    }
-    if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
-        return;
-    }
-    // End of additional checks
+  var selection = window.getSelection().toString();
+  if (selection !== "") {
+    return;
+  }
+  if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
+    return;
+  }
+  // End of additional checks
 
-    /*
+  /*
      *  Retrieve the value from the input.
      Sanitize the value using RegEx by removing unnecessary characters such as spaces, underscores, dashes, and letters.
      Deploy parseInt() function to make sure the value is an integer (a round number).
      Add the thousand separator with the eVietnam() function, then pass the sanitised value back to the input element.
      */
-    var input = $(this).val();
-    var input = input.replace(/[\D\s\._\-]+/g, "");
-    input = input ? parseInt(input, 10) : 0;
-    $(this).val(function () {
-        return (input === 0) ? "" : eVietnam(input);
-    });
+  var input = $(this).val();
+  var input = input.replace(/[\D\s\._\-]+/g, "");
+  input = input ? parseInt(input, 10) : 0;
+  $(this).val(function () {
+    return input === 0 ? "" : eVietnam(input);
+  });
 });
 
 function eVietnam(num) {
-    console.log(num.toLocaleString('vi'));
-    return num.toLocaleString('vi');
+  return num.toLocaleString("vi");
+}
+
+function eVietnamCurrency(num) {
+  return num.toLocaleString("vi", { style: "currency", currency: "VND" });
 }
 // DisplayProductList(
 //   productList,

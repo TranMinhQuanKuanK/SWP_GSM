@@ -6,13 +6,17 @@
 package controllers.cashier.dashboard;
 
 import com.google.gson.Gson;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
 import javax.naming.NamingException;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +47,20 @@ public class CheckoutServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    private Integer getRatio() throws FileNotFoundException {
+        try {
+        ServletContext sc = getServletContext();
+        String realPath = sc.getRealPath("/");
+        String configPropertyFilePath = realPath + "WEB-INF/GSMconfig.properties";
+        Properties appProps = new Properties();
+        appProps.load(new FileInputStream(configPropertyFilePath));
+        return Integer.parseInt(appProps.getProperty("pointRatio"));
+        } catch (Exception ex) {
+            log("CheckoutServlet get Ratio exception: "+ex.getMessage());
+        }
+        return null;
+    }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -83,31 +101,31 @@ public class CheckoutServlet extends HttpServlet {
             System.out.println("profit: " + profit);
             System.out.println("point_used: " + point_used);
             System.out.println("---------------------------");
-            
-               
+
             BillDAO bDAO = new BillDAO();
             //ghi bill xuống database
             Integer Bill_ID = bDAO.CreateBill(phone_no, buy_date,
                     cashier_username, total_cost, point_used, cash, profit);
-           PendingItemDAO ppDAO = new PendingItemDAO();
+            PendingItemDAO ppDAO = new PendingItemDAO();
             ArrayList<PendingItemDTO> pendingList = ppDAO.GetPendingList();
             ProductDAO pDAO = new ProductDAO();
-           
+
             CustomerDAO cDAO = new CustomerDAO();
-            cDAO.AddPointCustomer(phone_no, 
-                    (int) Math.floor(total_cost/20000) - point_used);
-            
+
+            cDAO.AddPointCustomer(phone_no,
+                    (int) Math.floor(total_cost / this.getRatio()) - point_used);
+
             for (BillItemObject detail : Bill_Detail) {
-                
+
                 Integer product_id = detail.getProduct().getProduct_ID();
                 Integer quantity = detail.getQuantity();
                 Integer cost = detail.getProduct().getSelling_price();
                 Integer total = cost * quantity;
-                 //ghi bill detail xuống db
+                //ghi bill detail xuống db
                 bDAO.CreateBillDetail(Bill_ID, product_id, quantity, cost, total);
-                
+
                 //tìm xem đã có trong danh sách pending chưa
-                boolean is_lower_than_threshold = pDAO.AddQuantityToProduct(product_id, (-1)*quantity );
+                boolean is_lower_than_threshold = pDAO.AddQuantityToProduct(product_id, (-1) * quantity);
                 boolean already_in_pending = false;
                 if (is_lower_than_threshold) {
                     for (int i = 0; i < pendingList.size(); i++) {
@@ -115,15 +133,15 @@ public class CheckoutServlet extends HttpServlet {
                             already_in_pending = true;
                         }
                     }
+                    if (already_in_pending == false) {
+                        PendingItemDAO pendingDAO = new PendingItemDAO();
+                        pendingDAO.CreatePendingList(product_id, buy_date, "Hết hàng - được thêm tự động");
+                    }
                 }
                 //ghi vào pending
-                if (already_in_pending == false) { 
-                    PendingItemDAO pendingDAO = new PendingItemDAO();
-                    pendingDAO.CreatePendingList(product_id, buy_date, "Hết hàng - được thêm tự động");                
-                }
             }
-            request.getSession().setAttribute("BILL",null);
-            
+            request.getSession().setAttribute("BILL", null);
+
             Gson gson = new Gson();
             String billJSONString = gson.toJson(null);
             out.print(billJSONString);

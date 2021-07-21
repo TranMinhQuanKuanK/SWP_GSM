@@ -66,6 +66,7 @@ public class GetFinancialChartServlet extends HttpServlet {
                 List<String> events = new ArrayList<>();
                 List<Integer> revenue = new ArrayList<>();
                 List<Integer> profit = new ArrayList<>();
+                List<Integer> cost = new ArrayList<>();
                 
                 String dateIterator = dateFrom;
                 while (dateIterator.compareTo(dateTo) <= 0) {
@@ -77,10 +78,11 @@ public class GetFinancialChartServlet extends HttpServlet {
                 for (String month : events) {
                     revenue.add(dao.getSumRevenue(month, dao.nextMonth(month)));
                     profit.add(dao.getSumProfit(month, dao.nextMonth(month)));
+                    cost.add(dao.getSumCost(month, dao.nextMonth(month)));
                     events.set(i++, StringNormalizer.monthNormalize(month)); 
                 }
                 
-                FinancialChartDataObj result = new FinancialChartDataObj(events, revenue, profit);
+                FinancialChartDataObj result = new FinancialChartDataObj(events, revenue, profit, cost);
                 
                 Gson gson = new Gson();
                 String financialStatisticJSONS = gson.toJson(result);

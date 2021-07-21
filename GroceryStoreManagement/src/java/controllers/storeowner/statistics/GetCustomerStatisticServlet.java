@@ -47,6 +47,14 @@ public class GetCustomerStatisticServlet extends HttpServlet {
         StatisticErrorObj errors = new StatisticErrorObj();
         String dateFrom = request.getParameter("date-from").replace('T', ' ');
         String dateTo = request.getParameter("date-to").replace('T', ' ');
+        
+        if (dateFrom.length() == 10) {
+            dateFrom += " 00:00:00";
+        }
+
+        if (dateTo.length() == 10) {
+            dateTo += " 23:59:59";
+        }
 
         try (PrintWriter out = response.getWriter()) {
             //1. Check error

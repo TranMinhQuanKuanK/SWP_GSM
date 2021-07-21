@@ -1,8 +1,8 @@
 var receiptOnSession;
 
 window.onload = function () {
-    getPendingList();
     getReceipt();
+    getPendingList();
 };
 
 function getReceipt() {
@@ -24,8 +24,7 @@ function getPendingList() {
     };
     xhttp.open("GET", "GetPendingItemList", false);
     xhttp.send();
-}
-;
+};
 
 function renderPendingList(data) {
     document.getElementById("tableContent").innerHTML = "";
@@ -37,14 +36,20 @@ function renderPendingList(data) {
         var th_index = document.createElement("th");
         th_index.setAttribute("scope", "row");
         th_index.innerHTML = index;
+        th_index.style.verticalAlign = "middle";
 
         var td_name = document.createElement("td");
         td_name.innerHTML = data[i].product_name;
+        td_name.style.textAlign = "left";
+        td_name.style.verticalAlign = "middle";
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = data[i].product_quantity;
+        td_quantity.setAttribute("class", "text-right");
+        td_quantity.style.verticalAlign = "middle";
 
         var td_button = document.createElement("td");
+        td_button.style.verticalAlign = "middle";
         var Add_bt = document.createElement("a");
         Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-import-goods'></i>";
         Add_bt.setAttribute("onclick", "addToReceipt(" + data[i].product_ID + ")");
@@ -100,7 +105,7 @@ function addToReceipt(productID) {
 function renderReceiptDetail() {
     document.getElementById("receiptContent").innerHTML = "";
     document.getElementById("TOTALCOST").innerHTML = "";
-    var totalcost = receiptOnSession.total_cost;
+    var totalcost = receiptOnSession.total_cost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
     var td_totalcost = document.createElement("span");
     td_totalcost.innerHTML = totalcost;
     document.getElementById("TOTALCOST").appendChild(td_totalcost);
@@ -113,13 +118,18 @@ function renderReceiptDetail() {
         var th_index = document.createElement("th");
         th_index.setAttribute("scope", "row");
         th_index.innerHTML = index;
-
+        th_index.setAttribute("class", "text-right");
+        th_index.style.verticalAlign = "middle";
+        
         var td_name = document.createElement("td");
         td_name.innerHTML = receiptItems[i].product.name;
-
+        td_name.setAttribute("class", "text-left");
+        td_name.style.verticalAlign = "middle";
+        
         var td_quantity = document.createElement("td");
         var input_quantity = document.createElement("input");
         input_quantity.style.width = "80%";
+        input_quantity.style.verticalAlign = "middle";
         input_quantity.setAttribute("class", "text-right float-right");
         input_quantity.setAttribute("id", "quantityOf" + receiptItems[i].product.product_ID);
         input_quantity.setAttribute("type", "number");
@@ -130,19 +140,22 @@ function renderReceiptDetail() {
 
 
         var td_price = document.createElement("td");
-        td_price.innerHTML = receiptItems[i].product.selling_price;
+        td_price.innerHTML = receiptItems[i].product.selling_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_price.setAttribute("class", "text-right");
+        td_price.style.verticalAlign = "middle";
 
         var td_cost = document.createElement("td");
-        td_cost.innerHTML = receiptItems[i].product.selling_price * receiptItems[i].quantity;
+        let totalcost = receiptItems[i].product.selling_price * receiptItems[i].quantity;
+        td_cost.innerHTML = totalcost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_cost.setAttribute("class", "text-right");
+        td_cost.style.verticalAlign = "middle";
 
         var td_button = document.createElement("td");
+        td_button.style.verticalAlign = "middle";
         var Remove_bt = document.createElement("a");
         Remove_bt.innerHTML = "<i class='fas fa-times-circle btn-inventory'></i>";
         Remove_bt.setAttribute("onclick", "removeFromReceipt(" + receiptItems[i].product.product_ID + ")");
         td_button.appendChild(Remove_bt);
-
 
         tr.appendChild(th_index);
         tr.appendChild(td_name);
@@ -201,7 +214,10 @@ function importReceipt() {
             console.log(this.responseText);
             receiptOnSession = JSON.parse(this.responseText);
             if (receiptOnSession == null) {
-                alert("Đã nhập hàng vào kho!");
+                $('#success-to-save-toast').toast({
+                    delay: 3000
+                });
+                $('#success-to-save-toast').toast('show');
             }
         };
         xhttp.open("GET", "MakeNewReceipt", false);
@@ -209,6 +225,21 @@ function importReceipt() {
         getPendingList();
         getReceipt();
     } else {
-        alert("Xin nhập dữ liệu vào form!");
+        $('#fail-to-save-toast').toast({
+            delay: 3000
+        });
+        $('#fail-to-save-toast').toast('show');
+    }
+}
+
+function handleImportReceipt() {
+    if (receiptOnSession.total_cost === 0) {
+        $('#fail-to-save-toast').toast({
+            delay: 3000
+        });
+        $('#fail-to-save-toast').toast('show');
+    }
+    else {
+        $('#confirmImportModal').modal("show");
     }
 }

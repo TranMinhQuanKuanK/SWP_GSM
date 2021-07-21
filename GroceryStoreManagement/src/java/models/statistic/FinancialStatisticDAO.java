@@ -232,6 +232,12 @@ public class FinancialStatisticDAO {
 
                 //3. Create statement and assign parameter value if any
                 stm = con.prepareStatement(sql);
+                if (dateFrom.length() == 7) {
+                    dateFrom += "-01";
+                }
+                if (dateTo.length() == 7) {
+                    dateTo += "-01";
+                }
                 stm.setString(1, dateFrom);
                 stm.setString(2, dateTo);
 

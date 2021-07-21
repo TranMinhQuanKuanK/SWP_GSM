@@ -11,3 +11,6 @@ nbdist/
 # End of https://www.toptal.com/developers/gitignore/api/netbeans
 GroceryStoreManagement/web/META-INF/context.xml
 /GroceryStoreManagement/dist/
+GroceryStoreManagement/nbproject/project.properties
+GroceryStoreManagement/nbproject/project.properties
+GroceryStoreManagement/nbproject/project.properties

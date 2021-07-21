@@ -22,22 +22,30 @@ function renderReceiptList(data) {
         if (data[i].is_selling !== false) {
             index++;
             var tr = document.createElement("tr");
+            tr.setAttribute("id", data[i].receipt_ID);
 
             var th_index = document.createElement("th");
             th_index.setAttribute("scope", "row");
             th_index.innerHTML = index;
+            th_index.style.verticalAlign = "middle";
 
             var td_date = document.createElement("td");
             td_date.innerHTML = data[i].import_date;
+            td_date.setAttribute("class", "text-left");
+            td_date.style.verticalAlign = "middle";
 
             var td_user = document.createElement("td");
             td_user.innerHTML = data[i].owner_name;
+            td_user.setAttribute("class", "text-left");
+            td_user.style.verticalAlign = "middle";
 
             var td_total = document.createElement("td");
-            td_total.innerHTML = data[i].total;
+            td_total.innerHTML = data[i].total.toLocaleString('vi', {style : 'currency', currency : 'VND'});
             td_total.setAttribute("class", "text-right");
+            td_total.style.verticalAlign = "middle";
 
             var td_button = document.createElement("td");
+            td_button.style.verticalAlign = "middle";
             var Add_bt = document.createElement("a");
             Add_bt.innerHTML = "<i class='fas fa-info-circle btn-inventory'></i>";
             Add_bt.setAttribute("onclick", "GetDetail(" + data[i].receipt_ID + ")");
@@ -47,12 +55,22 @@ function renderReceiptList(data) {
             tr.appendChild(td_date);
             tr.appendChild(td_user);
             tr.appendChild(td_total);
-            tr.appendChild(td_button);
+            // tr.appendChild(td_button);
 
             document.getElementById("tableContent").appendChild(tr);
         }
     } // finish printing a product detail row
 }
+var receiptIDForTable
+$('#tableContent').on('click', 'tr', function () {
+    if (receiptIDForTable != undefined) {
+        $(`tr[id=${receiptIDForTable}]`).removeClass('activeRow');
+    }
+    receiptIDForTable = ($(this).closest('tr').attr("id"));
+    $(this).closest('tr').addClass('activeRow');
+    GetDetail(receiptIDForTable);
+});
+$("#tableContent").css("cursor", "pointer");
 
 var receiptDetail;
 
@@ -89,8 +107,10 @@ function GetDetail(receiptID) {
     document.getElementById("IMPORTDATE").innerHTML = "";
     document.getElementById("TOTALCOST").innerHTML = "";
     var td_totalcost = document.createElement("span");
-    td_totalcost.innerHTML = totalReceipt;
-
+    td_totalcost.innerHTML = totalReceipt.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+    td_totalcost.style.color = "red";
+    td_totalcost.style.fontWeight = "600";
+    
     var td_username = document.createElement("span");
     td_username.innerHTML = username;
 
@@ -113,21 +133,28 @@ function renderReceiptDetail() {
         var th_index = document.createElement("th");
         th_index.setAttribute("scope", "row");
         th_index.innerHTML = index;
+        th_index.style.verticalAlign = "middle";
 
         var td_name = document.createElement("td");
         td_name.innerHTML = receiptDetail[i].productName;
+        td_name.style.textAlign = "left";
+        td_name.style.verticalAlign = "middle";
 
         var td_quantity = document.createElement("td");
         td_quantity.innerHTML = receiptDetail[i].quantity;
+        td_quantity.setAttribute("class", "text-right");
+        td_quantity.style.verticalAlign = "middle";
 
         var td_price = document.createElement("td");
-        td_price.innerHTML = receiptDetail[i].cost;
+        td_price.innerHTML = receiptDetail[i].cost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_price.setAttribute("class", "text-right");
+        td_price.style.verticalAlign = "middle";
 
         var td_total = document.createElement("td");
-        td_total.innerHTML = receiptDetail[i].total;
+        td_total.innerHTML = receiptDetail[i].total.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_total.setAttribute("class", "text-right");
         tempTotal += receiptDetail[i].total;
+        td_total.style.verticalAlign = "middle";
 
         tr.appendChild(th_index);
         tr.appendChild(td_name);

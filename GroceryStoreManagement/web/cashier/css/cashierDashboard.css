@@ -2,6 +2,11 @@
     font-family: "Nunito", sans-serif;
 }
 
+@media (max-width: 1000px) {
+    * {
+        font-size: 0.8125rem;
+    }
+}
 h5 {
     margin: auto 0;
 }
@@ -12,10 +17,14 @@ a:focus {
     text-decoration: none;
     color: #000;
 }
+
 /* =======================
         LAYOUT
     ====================
 */
+textarea {
+   resize: none;
+}
 
 .heading {
     padding: 1vmin;
@@ -25,12 +34,51 @@ a:focus {
     height: 70px;
 }
 
+
+
+
 .content-title th {
     background-color: #fff;
     position: sticky;
     top: 0;
 }
 
+.body-left {
+    max-height: 85vh;
+    margin-bottom: 1em;
+}
+
+.body-right {
+    max-height: 85vh;
+    margin-bottom: 1em;
+}
+
+@media (min-width: 1367px) and (max-width: 1699px) {
+    .body-left {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 1em;
+    }
+
+    .body-right {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 1em;
+    }
+}
+@media (min-width: 1700px) and (max-width: 2000px)  {
+    .body-left {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 2em;
+    }
+
+    .body-right {
+        min-height: 80vh;
+        max-height: 90vh;
+        margin-bottom: 2em;
+    }
+}
 /* TABLE CATEGORY LIST */
 
 #category-list td:hover,
@@ -56,12 +104,12 @@ th.product-list-info {
 }
 
 .table-product-list {
-    min-width: 500px;
-}
+    min-width: 450px;
+}/*
 
-.product-info {
-    min-width: 500px;
-    min-height: 150px;
+*/#product-info {
+    min-width: 450px;
+    min-height: 130px;
 }
 
 /* TABLE BILL */
@@ -107,25 +155,24 @@ th.bill-total-price {
 /* Custom colors for product list */
 .product-out-of-stock {
     color: #fff;
-    background: #ff0800e3 !important;
+    background: #ff352ee3 !important;
 }
 .product-low-quantity {
-    background: #FFCC00 !important;
+    background: #ffcc00 !important;
 }
 
 .royalblueBg {
-    color: #fff;
+    color: #fff !important;
     background-color: #4e73df !important;
 }
 
-button .royalblueBg:hover,
-button .royalblueBg:focus{
+button.royalblueBg:hover,
+button.royalblueBg:focus {
     color: #fff !important;
-    background-color: #395fcc !important;
+    background-color: #4461b1 !important;
 }
 
-form label.required:after
-{
+form label.required:after {
     color: red;
     content: " *";
 }

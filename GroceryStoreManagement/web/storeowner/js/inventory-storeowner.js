@@ -9,6 +9,7 @@ window.onload = function () {
     };
     xhttp.open("GET", "GetCategoryList", false);
     xhttp.send();
+    getPendingList();
     getProduct();
 };
 
@@ -25,9 +26,10 @@ function processCategory(data) {
     }
 }
 
-var productObject;
-var notification;
-var tempThreshold;
+let productObject;
+let notification;
+let tempThreshold;
+let pendingList;
 
 function getProduct() {
     productObject = null;
@@ -44,7 +46,7 @@ function getProduct() {
     if (noos.checked == true) {
         if (cat_ID === "all") {
             var url =
-                    "GetProductList?search_value=" + search_val + 
+                    "GetProductList?search_value=" + search_val +
                     "&only_noos_items=1";
         } else {
             var url =
@@ -59,13 +61,24 @@ function getProduct() {
             var url = "GetProductList?search_value=" + search_val;
         } else {
             var url =
-                    "GetProductList?search_value=" + search_val + 
+                    "GetProductList?search_value=" + search_val +
                     "&category_id=" + cat_ID;
         }
     }
     xhttp.open("GET", url, false);
     xhttp.send();
 }
+
+function getPendingList() {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        console.log(this.responseText);
+        pendingList = JSON.parse(this.responseText);
+    };
+    xhttp.open("GET", "GetPendingItemList", false);
+    xhttp.send();
+}
+;
 
 function printProductList(data) {
     document.getElementById("tableContent").innerHTML = "";
@@ -74,40 +87,53 @@ function printProductList(data) {
         if (data[i].is_selling !== false) {
             index++;
             var tr = document.createElement("tr");
-
+            
             var th_index = document.createElement("th");
             th_index.setAttribute("scope", "row");
             th_index.innerHTML = index;
             th_index.style.textAlign = "right";
-
+            th_index.style.verticalAlign = "middle";
+            
             var td_name = document.createElement("td");
             td_name.innerHTML = data[i].name;
             td_name.style.textAlign = "left";
-            
+            td_name.style.verticalAlign = "middle";
+
             var td_category = document.createElement("td");
             td_category.innerHTML = data[i].category.name;
+            td_category.style.verticalAlign = "middle";
 
             var td_threshold = document.createElement("td");
             td_threshold.innerHTML = data[i].lower_threshold;
             td_threshold.setAttribute("class", "text-right");
             td_threshold.setAttribute("id", "thresholdOf" + data[i].product_ID);
+            td_threshold.style.verticalAlign = "middle";
 
             var td_quantity = document.createElement("td");
             td_quantity.setAttribute("class", "text-right");
             td_quantity.innerHTML = data[i].quantity;
+            td_quantity.style.verticalAlign = "middle";
 
             if (data[i].lower_threshold >= data[i].quantity) {
                 tr.className = "red-row";
             }
 
             var td_button = document.createElement("td");
+            td_button.style.verticalAlign = "middle";
             var Add_bt = document.createElement("a");
 
-            Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-inventory mr-2'></i>";
-            Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
 
+            const foundInPending = Boolean(pendingList.filter(item => item.product_ID === data[i].product_ID).length);
+
+            if (foundInPending === false) {
+                Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2' style='cursor: pointer;'></i>";
+                Add_bt.setAttribute("onclick", "addToPendingListByOwner(" + data[i].product_ID + ")");
+            } else {
+                Add_bt.innerHTML = "<i class='far fa-share-square btn-inventory mr-2' style='opacity: 0.2; cursor: not-allowed;'></i>";
+                // Add_bt.setAttribute("style", "pointer-events: none;");
+            }
             var Edit_bt = document.createElement("a");
-            Edit_bt.innerHTML = "<i class='fas fa-ellipsis-h btn-inventory'></i>";
+            Edit_bt.innerHTML = "<i class='far fa-edit btn-inventory'  style='cursor: pointer;'></i>";
             Edit_bt.setAttribute("data-toggle", "modal");
             Edit_bt.setAttribute("data-target", "#editModal");
             Edit_bt.setAttribute("onclick", "setUpModal(" + data[i].product_ID + ")");
@@ -133,10 +159,12 @@ function addToPendingListByOwner(productID) {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
-            if (notification == "1"){
-                notification = "Đã thêm vào Pending List";
+            if (notification == "1") {
+                $('#success-to-save-toast').toast({
+                    delay: 2000
+                });
+                $('#success-to-save-toast').toast('show');
             }
-            alert(notification);
         }
     };
     content =
@@ -150,6 +178,8 @@ function addToPendingListByOwner(productID) {
             "application/x-www-form-urlencoded;charset=UTF-8"
             );
     xhttp.send(content);
+    getPendingList();
+    getProduct();
 }
 
 
@@ -159,10 +189,12 @@ function addToPendingListAuto(productID) {
         if (this.readyState >= 4 && this.status <= 200) {
             console.log(this.responseText);
             notification = JSON.parse(this.responseText);
-            if (notification == "1"){
-                notification = "Đã tự động thêm vào Pending List do duới ngưỡng";
+            if (notification == "1") {
+                $('#success-auto-save-toast').toast({
+                    delay: 2000
+                });
+                $('#success-auto-save-toast').toast('show');
             }
-            alert(notification);
         }
     };
     content =
@@ -176,6 +208,8 @@ function addToPendingListAuto(productID) {
             "application/x-www-form-urlencoded;charset=UTF-8"
             );
     xhttp.send(content);
+    getPendingList();
+    getProduct();
 }
 
 function setUpModal(productID) {
@@ -218,7 +252,7 @@ function updateQuantity() {
             break;
         }
     }
-    if(tempThreshold >= newquantity){
+    if (tempThreshold >= newquantity) {
         addToPendingListAuto(productID);
     } else {
         changeStatusInPendingListIfHas(productID);
@@ -236,5 +270,6 @@ function updateQuantity() {
     xhttp.send(content);
     document.getElementById("product-newquantity").value = "";
     $("#editModal").modal("hide");
+    getPendingList();
     getProduct();
 }
