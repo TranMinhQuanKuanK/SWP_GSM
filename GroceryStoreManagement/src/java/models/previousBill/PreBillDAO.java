@@ -40,7 +40,7 @@ public class PreBillDAO {
             if (con != null) {
                 //2. Create SQL string
                 String sql = "SELECT bill_ID, name, customer.phone_no, buy_date, total_cost, "
-                           + "cashier_username, point_used, cash "
+                           + "cashier_username, point_used, point_gained, point_after, cash "
                            + "FROM customer_bill "
                            + "JOIN customer ON customer.phone_no = customer_bill.phone_no "
                            + "WHERE ? <= buy_date AND buy_date <= ?";
@@ -62,7 +62,9 @@ public class PreBillDAO {
                     int totalCost = rs.getInt("total_cost");
                     List<PreBillDetailDTO> details = getBillDetails(billID);
                     String cashier = getCashierName(rs.getString("cashier_username"));
-                    int pointUsed = rs.getInt("point_used");
+                    int pointUsed = rs.getInt("point_used");                   
+                    int pointGained = rs.getInt("point_gained");
+                    int pointAfter = rs.getInt("point_after");
                     int cash = rs.getInt("cash");
 
                     if (searchValue.length() == 0 || Character.isDigit(searchValue.charAt(0))) {
@@ -79,8 +81,8 @@ public class PreBillDAO {
                         this.preBillList = new ArrayList<>();
                     }
 
-                    this.preBillList.add(new PreBillDTO(billID, totalCost, pointUsed, cash,
-                            name, phoneNo, buyDate, cashier, details));
+                    this.preBillList.add(new PreBillDTO(billID, totalCost, pointUsed, pointGained, 
+                            pointAfter, cash, name, phoneNo, buyDate, cashier, details));
                 }
             }
         } finally {
@@ -111,7 +113,7 @@ public class PreBillDAO {
             if (con != null) {
                 //2. Create SQL string
                 String sql = "SELECT bill_ID, buy_date, total_cost, "
-                           + "cashier_username, point_used, cash "
+                           + "cashier_username, point_used, point_gained, point_after, cash "
                            + "FROM customer_bill "
                            + "WHERE customer_bill.phone_no IS NULL AND "
                            + "? <= buy_date AND buy_date <= ?";
@@ -133,15 +135,17 @@ public class PreBillDAO {
                     int totalCost = rs.getInt("total_cost");
                     List<PreBillDetailDTO> details = getBillDetails(billID);
                     String cashier = getCashierName(rs.getString("cashier_username"));
-                    int pointUsed = rs.getInt("point_used");
+                    int pointUsed = rs.getInt("point_used");                   
+                    int pointGained = rs.getInt("point_gained");
+                    int pointAfter = rs.getInt("point_after");
                     int cash = rs.getInt("cash");
 
                     if (this.preBillList == null) {
                         this.preBillList = new ArrayList<>();
                     }
 
-                    this.preBillList.add(new PreBillDTO(billID, totalCost, pointUsed, cash,
-                            name, phoneNo, buyDate, cashier, details));
+                    this.preBillList.add(new PreBillDTO(billID, totalCost, pointUsed, pointGained, 
+                            pointAfter, cash, name, phoneNo, buyDate, cashier, details));
                 }
             }
         } finally {
