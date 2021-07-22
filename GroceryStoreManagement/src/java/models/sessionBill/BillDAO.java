@@ -13,7 +13,8 @@ public class BillDAO implements Serializable {
 
     //để checkout
     public Integer CreateBill(String phone_no, Timestamp buy_date, String cashier_username,
-            Integer total_cost, Integer point_used, Integer cash, Integer profit)
+            Integer total_cost, Integer point_used, Integer point_gained,
+            Integer point_after, Integer cash, Integer profit)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -23,8 +24,8 @@ public class BillDAO implements Serializable {
             con = DBHelpers.makeConnection();
             String sql = "INSERT INTO customer_bill(phone_no,"
                     + "buy_date, cashier_username, total_cost, "
-                    + "point_used , cash, profit)"
-                    + " VALUES (?,?,?,?,?,?,?)";
+                    + "point_used ,point_gained,point_after, cash, profit)"
+                    + " VALUES (?,?,?,?,?,?,?,?,?)";
 
             stm = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             stm.setString(1, phone_no);
@@ -32,8 +33,10 @@ public class BillDAO implements Serializable {
             stm.setString(3, cashier_username);
             stm.setInt(4, total_cost);
             stm.setInt(5, point_used);
-            stm.setInt(6, cash);
-            stm.setInt(7, profit);
+            stm.setInt(6, point_gained);
+            stm.setInt(7, point_after);
+            stm.setInt(8, cash);
+            stm.setInt(9, profit);
             stm.executeUpdate();
             rs = stm.getGeneratedKeys();
             if (rs.next()) {

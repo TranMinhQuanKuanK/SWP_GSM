@@ -498,14 +498,15 @@
                                 <div class="form-group mb-0">
                                     <div class="d-flex justify-content-between">
                                         <p>
-                                            Khách hàng: <span id="bill-preview-customer-name" style="font-weight: bold;">Trần
+                                            Khách hàng: <span id="bill-preview-customer-name"
+                                                style="font-weight: bold;">Trần
                                                 Minh Quân</span></br>
                                         </p>
-                                        
+
                                         <!-- <p>
                                             Điểm tích lũy hiện tại: 
                                         </p>     -->
-                                        <p>
+                                        <p style="visibility:hidden" id="you-will-receive-xx-point-after">
                                             Bạn sẽ nhận được: <span id="bill-preview-new-point"
                                                 style="font-weight: bold; color:red;">...</span>
                                             điểm sau khi thanh toán.
@@ -552,8 +553,9 @@
                                             <tr>
                                                 <th scope="row" class="text-right" style="width: 80%;">
                                                     <div class="d-flex justify-content-between m-0 p-0">
-                                                        <p class="m-0">Tiền mặt khách đưa: 
-                                                            <span id="bill-preview-cash" style="font-weight: normal;"></span>
+                                                        <p class="m-0">Tiền mặt khách đưa:
+                                                            <span id="bill-preview-cash"
+                                                                style="font-weight: normal;"></span>
                                                         </p>
                                                         <span>Tổng tiền:</span>
                                                     </div>
@@ -567,7 +569,8 @@
                                                             <span style="margin-right: 5em;">
                                                                 Tiền thối:
                                                             </span>
-                                                            <span id="bill-preview-change" style="font-weight: normal;"></span>
+                                                            <span id="bill-preview-change"
+                                                                style="font-weight: normal;"></span>
                                                         </p>
                                                         <span>Giảm giá:</span>
                                                     </div>
@@ -580,14 +583,19 @@
                                                 <td class="text-right pr-3"><span id="bill-preview-total-after-discount"
                                                         style="font-weight: bold; color:red"></span></td>
                                             </tr>
-                                            <tr>
-                                                <th scope="row" class="text-right" style="width: 80%;">Điểm tích lũy: </th>
+                                            <tr style="visibility:hidden" id="point-after-tr">
+                                                <th scope="row" class="text-right" style="width: 80%;">Điểm tích lũy:
+                                                </th>
                                                 <td class="text-right pr-3" style="font-weight: bold; color:royalblue;">
-                                                    <del><span id="bill-preview-customer-point" style="font-size: 0.8em;">10</span></del>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                                                      </svg>
-                                                    <span id="bill-preview-new-point">40</span>
+                                                    <del><span id="bill-preview-customer-point"
+                                                            style="font-size: 0.8em;">10</span></del>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                        fill="currentColor" class="bi bi-arrow-right"
+                                                        viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd"
+                                                            d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                                    </svg>
+                                                    <span id="point-after-checkout">40</span>
                                                 </td>
                                             </tr>
                                             <!-- <tr>
