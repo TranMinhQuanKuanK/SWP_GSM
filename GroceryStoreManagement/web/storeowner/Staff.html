@@ -135,8 +135,6 @@
                         </div>
                         <!--/ End of Look up Table -->
 
-                    </div>
-
                 </div>
                 <!-- /.container-fluid -->
 
@@ -160,16 +158,16 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title text-primary">Xác nhận</h5>
+                    <h3 class="modal-title text-primary">Xác nhận</h3>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
 
                 <div class="modal-body">
-                    <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản</span>
-                    <span class="m-0 text-primary pt-1 ml-1" id="reset-username"></span>
-                    <span class="m-0 pt-1 ml-1">không?</span>
+                    <span class="m-0 pt-1 ml-1" style="color:black;">Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản</span>
+                    <span class="m-0 text-primary pt-1 ml-1" id="reset-username" style="font-weight: 700;"></span>
+                    <span class="m-0 pt-1 ml-1" style="color:black;">không?</span>
                 </div>
 
                 <div class="modal-footer">
@@ -189,16 +187,16 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h5 class="modal-title text-primary">Xác nhận</h5>
+                    <h3 class="modal-title text-primary">Xác nhận</h3>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
 
                 <div class="modal-body">
-                    <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn vô hiệu hóa tài khoản</span>
-                    <span class="m-0 text-primary pt-1 ml-1" id="delete-username"></span>
-                    <span class="m-0 pt-1 ml-1">không?</span>
+                    <span class="m-0 pt-1 ml-1" style="color:black;">Bạn có chắc chắn muốn vô hiệu hóa tài khoản</span>
+                    <span class="m-0 text-primary pt-1 ml-1" id="delete-username" style="font-weight: 700;"></span>
+                    <span class="m-0 pt-1 ml-1" style="color:black;">không?</span>
                 </div>
 
                 <div class="modal-footer">
@@ -224,30 +222,30 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <span class="m-0 pt-1 ml-1">Họ và tên</span>
-                        <input class="form-control modal-input" type="text" id="new-name">
+                        <span class="m-0 pt-1 ml-1" style="color:black;">Họ và tên <span style="color:red;">(*)</span> : </span>
+                        <input class="form-control modal-input" type="text" id="new-name" style="color:black;">
                         <p class="modal-error" style="color:red" id="error-name"></p>
                     </div>
                     <div class="form-group">
-                        <span class="m-0 pt-1 ml-1">Tên đăng nhập</span>
+                        <span class="m-0 pt-1 ml-1" style="color:black;">Tên đăng nhập <span style="color:red;">(*)</span> : </span>
                         <input class="form-control modal-input" type="text" id="new-username">
                         <p class="modal-error" style="color:red" id="error-username"></p>
                         <p class="modal-error" style="color:red" id="error-username-exist"></p>
                     </div>
                     <div class="form-group">
-                        <span class="m-0 pt-1 ml-1">Mật khẩu</span>
+                        <span class="m-0 pt-1 ml-1" style="color:black;">Mật khẩu <span style="color:red;">(*)</span> : </span>
                         <input class="form-control modal-input" type="password" id="new-password">
                         <p class="modal-error" style="color:red" id="error-password"></p>
                     </div>
                     <div class="form-group">
-                        <span class="m-0 pt-1 ml-1">Xác nhận mật khẩu</span>
+                        <span class="m-0 pt-1 ml-1" style="color:black;">Xác nhận mật khẩu <span style="color:red;">(*)</span> : </span>
                         <input class="form-control modal-input" type="password" id="new-confirm">
                         <p class="modal-error" style="color:red" id="error-confirm"></p>
                     </div>
                     <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-owner" />
-                    <span class="m-0 pt-2">&nbsp; Chủ tiệm</span><br>
+                    <span class="m-0 pt-2" style="color:black;">&nbsp; Chủ tiệm</span><br>
                     <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-cashier" checked="checked" />
-                    <span class="m-0 pt-2">&nbsp; Thu ngân</span>
+                    <span class="m-0 pt-2" style="color:black;">&nbsp; Thu ngân</span>
                 </div>
 
                 <div class="modal-footer">
@@ -273,21 +271,21 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="currentPassword">Mật khẩu hiện tại</label>
+                            <label for="currentPassword" style="color:black;">Mật khẩu hiện tại <span style="color:red;">(*)</span> : </label>
                             <input type="password" class="form-control modal-input" id="currentPassword"
-                                aria-describedby="currentPassword">
+                                aria-describedby="currentPassword" style="color:black;">
                             <span class="modal-error" style="color:red" id="current-password-error"></span>
                         </div>
                         <div class="form-group">
-                            <label for="newPassword">Mật khẩu mới</label>
+                            <label for="newPassword" style="color:black;">Mật khẩu mới <span style="color:red;">(*)</span> : </label>
                             <input type="password" class="form-control modal-input" id="newPassword"
-                                aria-describedby="newPassword">
+                                aria-describedby="newPassword" style="color:black;">
                             <span class="modal-error" style="color:red" id="new-password-error"></span>
                         </div>
                         <div class="form-group">
-                            <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
+                            <label for="confirmNewPassword" style="color:black;">Xác nhận mật khẩu mới <span style="color:red;">(*)</span> : </label>
                             <input type="password" class="form-control modal-input" id="confirmNewPassword"
-                                aria-describedby="confirmNewPassword">
+                                aria-describedby="confirmNewPassword" style="color:black;">
                             <span class="modal-error" style="color:red" id="confirm-password-error"></span>
                         </div>
                     </form>
