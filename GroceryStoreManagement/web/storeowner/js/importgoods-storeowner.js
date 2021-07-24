@@ -140,12 +140,12 @@ function renderReceiptDetail() {
 
 
         var td_price = document.createElement("td");
-        td_price.innerHTML = receiptItems[i].product.selling_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+        td_price.innerHTML = receiptItems[i].product.cost_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_price.setAttribute("class", "text-right");
         td_price.style.verticalAlign = "middle";
 
         var td_cost = document.createElement("td");
-        let totalcost = receiptItems[i].product.selling_price * receiptItems[i].quantity;
+        let totalcost = receiptItems[i].product.cost_price * receiptItems[i].quantity;
         td_cost.innerHTML = totalcost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_cost.setAttribute("class", "text-right");
         td_cost.style.verticalAlign = "middle";

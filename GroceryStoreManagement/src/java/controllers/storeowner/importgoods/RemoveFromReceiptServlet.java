@@ -50,7 +50,7 @@ public class RemoveFromReceiptServlet extends HttpServlet {
             }
             if (result >= 0) {
                 ReceiptItem selected_for_remove_Product = details.get(result);
-                int price_lost = selected_for_remove_Product.getProduct().getSelling_price()
+                int price_lost = selected_for_remove_Product.getProduct().getCost_price()
                         * selected_for_remove_Product.getQuantity();
                 details.remove(result);
                 receipt.setTotal_cost(receipt.getTotal_cost() - price_lost);

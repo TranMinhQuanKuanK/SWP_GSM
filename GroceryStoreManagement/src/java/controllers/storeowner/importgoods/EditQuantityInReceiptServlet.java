@@ -55,7 +55,7 @@ public class EditQuantityInReceiptServlet extends HttpServlet {
                     if (new_quantity >= 1) {
                             //sửa Giá total cost 
                             Integer quantity_difference = new_quantity - receipt.getReceipt_detail().get(i).getQuantity();
-                            Integer currentPrice = receipt.getReceipt_detail().get(i).getProduct().getSelling_price();
+                            Integer currentPrice = receipt.getReceipt_detail().get(i).getProduct().getCost_price();
                             receipt.setTotal_cost(receipt.getTotal_cost() + quantity_difference * currentPrice);
                             //sửa quantity trong receipt_items
                             receipt_items.get(i).setQuantity(new_quantity);

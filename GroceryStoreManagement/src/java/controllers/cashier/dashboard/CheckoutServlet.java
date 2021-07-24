@@ -49,14 +49,14 @@ public class CheckoutServlet extends HttpServlet {
      */
     private Integer getRatio() throws FileNotFoundException {
         try {
-        ServletContext sc = getServletContext();
-        String realPath = sc.getRealPath("/");
-        String configPropertyFilePath = realPath + "WEB-INF/GSMconfig.properties";
-        Properties appProps = new Properties();
-        appProps.load(new FileInputStream(configPropertyFilePath));
-        return Integer.parseInt(appProps.getProperty("pointRatio"));
+            ServletContext sc = getServletContext();
+            String realPath = sc.getRealPath("/");
+            String configPropertyFilePath = realPath + "WEB-INF/GSMconfig.properties";
+            Properties appProps = new Properties();
+            appProps.load(new FileInputStream(configPropertyFilePath));
+            return Integer.parseInt(appProps.getProperty("pointRatio"));
         } catch (Exception ex) {
-            log("CheckoutServlet get Ratio exception: "+ex.getMessage());
+            log("CheckoutServlet get Ratio exception: " + ex.getMessage());
         }
         return null;
     }
@@ -77,11 +77,18 @@ public class CheckoutServlet extends HttpServlet {
 
             Integer total_cost = billObj.getTotal_cost();
             Integer point_used = 0;
+            Integer point_gained = 0;
+            Integer point_after = 0;
             if (billObj.isUse_point()) {
                 point_used = Math.min((int) Math.ceil(billObj.getTotal_cost() / 1000),
                         billObj.getCustomer_dto().getPoint()); //???
             }
+            if (billObj.getCustomer_dto() != null) {
+                point_gained = (int) Math.floor((double) (total_cost / this.getRatio()));
+                point_after = billObj.getCustomer_dto().getPoint() - point_used + point_gained;
+            }
 
+            //????????????? debug và sẽ xem xét
             Integer cash = request.getParameter("cash").length() > 0 ? Integer.parseInt(request.getParameter("cash")) : 0;
 
             ArrayList<BillItemObject> Bill_Detail = billObj.getBill_Detail();
@@ -92,20 +99,10 @@ public class CheckoutServlet extends HttpServlet {
             }
             profit -= point_used * 1000;
 
-            System.out.println("---------------------------");
-            System.out.println("Bill detail: cashier:" + cashier_username);
-            System.out.println("phone no: " + phone_no);
-            System.out.println("buy date: " + buy_date);
-            System.out.println("total_cost: " + total_cost);
-            System.out.println("cash: " + cash);
-            System.out.println("profit: " + profit);
-            System.out.println("point_used: " + point_used);
-            System.out.println("---------------------------");
-
             BillDAO bDAO = new BillDAO();
             //ghi bill xuống database
             Integer Bill_ID = bDAO.CreateBill(phone_no, buy_date,
-                    cashier_username, total_cost, point_used, cash, profit);
+                    cashier_username, total_cost, point_used, point_gained, point_after, cash, profit);
             PendingItemDAO ppDAO = new PendingItemDAO();
             ArrayList<PendingItemDTO> pendingList = ppDAO.GetPendingList();
             ProductDAO pDAO = new ProductDAO();
@@ -151,11 +148,7 @@ public class CheckoutServlet extends HttpServlet {
         } catch (NamingException e) {
             log("NamingException " + e.getMessage());
         }
-//        catch (SQLException e) {
-//            log("SQLException " + e.getMessage());
-//        } catch (NamingException e) {
-//            log("NamingException " + e.getMessage());
-//        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
