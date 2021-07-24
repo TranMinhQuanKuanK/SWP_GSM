@@ -64,7 +64,7 @@ public class AddToReceiptFromPendingServlet extends HttpServlet {
                 if (!found) {
                         ReceiptItem receiptItem = new ReceiptItem(pDTO, 1);
                         receipt.getReceipt_detail().add(receiptItem);
-                        receipt.setTotal_cost(receipt.getTotal_cost() + pDTO.getSelling_price());
+                        receipt.setTotal_cost(receipt.getTotal_cost() + pDTO.getCost_price());
                 }
                 session.setAttribute("RECEIPT", receipt);
             }

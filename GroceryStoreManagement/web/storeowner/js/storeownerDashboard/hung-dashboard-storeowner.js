@@ -71,11 +71,11 @@ function processUnSeenFeedbackDashboard(data){
         let li = document.createElement("li");
         li.className = "list-group-item";
         
-        let p = document.createElement("p");
-        p.className = "none-feedback-noti";
-        p.innerHTML = "Bạn đã đọc hết tất cả phản hồi";
-        
-        li.appendChild(p);
+        let div = document.createElement("div");
+        div.className = "none-feedback-noti";
+        div.innerHTML = "Bạn đã đọc hết tất cả phản hồi.";
+        div.style.verticalAlign = "middle";
+        li.appendChild(div);
         feedbackSection.appendChild(li);
     } 
     else for (i = 0; i < data.length; i++) {

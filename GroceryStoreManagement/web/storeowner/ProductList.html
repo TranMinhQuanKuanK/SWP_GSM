@@ -287,85 +287,83 @@
                     <i class="fas fa-angle-up"></i>
                 </a>-->
 
-    <!-- Add Modal-->
-    <div
-      class="modal fade"
-      id="addProductModal"
-      tabindex="-1"
-      role="dialog"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Thông tin</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="edit-product-name" class="col-form-label required"
-                    >Tên:</label
-                  >
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="add-product-name"
-                    maxlength="100"
-                    required
-                  />
-                </div>
-              </div>
-              <p class="text-danger d-none" id="add-product-name-warning"></p>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label
-                    for="edit-category-name"
-                    class="col-form-label required"
-                    >Nhóm:</label
-                  >
-                  <select
-                    class="form-control category-list-modal"
-                    id="add-category-name"
-                  >
-                    <option value="" selected></option>
-                  </select>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="unit-label" class="col-form-label">Đơn vị:</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    maxlength="15"
-                    id="add-unit-label"
-                  />
-                </div>
-              </div>
+        <!-- Add Modal-->
+        <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Thông tin</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="add-product-name" class="col-form-label required">Tên:</label>
+                                    <input type="text" class="form-control" id="add-product-name" maxlength="100" required>
+                                </div>
+                            </div>
+                            <p class="text-danger d-none" id="add-product-name-warning"></p>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="add-category-name" class="col-form-label required">Nhóm:</label>
+                                    <select class="form-control category-list-modal" id="add-category-name">
+                                        <option value="" selected></option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="add-unit-label" class="col-form-label">Đơn vị:</label>
+                                    <input type="text" class="form-control" maxlength="15" id="add-unit-label">
+                                </div>
+                            </div>
 
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                  <label for="add-cost-price" class="col-form-label required"
-                    >Giá mua:</label
-                  >
-                  <div class="input-group">
-                    <input
-                      type="text"
-                      pattern="[0-9]*"
-                      class="form-control"
-                      id="add-cost-price"
-                      maxlength="12"
-                      required
-                    />
-                    <div class="input-group-append">
-                      <span class="input-group-text">đ</span>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="add-cost-price" class="col-form-label required">Giá mua:</label>
+                                    <div class="input-group">
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-cost-price" maxlength="12" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="add-selling-price" class="col-form-label required">Giá bán:</label>
+                                    <div class="input-group">
+                                        <input type="text" pattern="[0-9]*" class="form-control" id="add-selling-price" maxlength="12" required>
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="add-lower-threshold" class="col-form-label required">Ngưỡng:</label>
+
+                                    <input type="number" class="form-control" id="add-lower-threshold" required>
+                                </div>
+                            </div>
+                            <p class="text-danger d-none" id="add-cost-price-warning"></p>
+                            <p class="text-danger d-none" id="add-selling-price-warning"></p>
+                            <p class="text-danger d-none" id="add-lower-threshold-warning"></p>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="add-location" class="col-form-label">Vị trí:</label>
+                                    <input type="text" class="form-control" id="add-location" maxlength="100">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="addIsSelling" id="add-is-selling">
+                                    <label class="form-check-label" for="edit-is-selling">
+                                        Đang bán
+                                    </label>
+                                </div>
+                            </div>
+
+                        </form>
                     </div>
                   </div>
                 </div>

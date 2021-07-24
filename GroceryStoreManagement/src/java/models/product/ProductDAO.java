@@ -10,10 +10,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.naming.NamingException;
 import models.category.CategoryDAO;
 import models.category.CategoryDTO;
+import models.pendingItem.PendingItemDAO;
 import utils.DBHelpers;
 import utils.StringNormalizer;
 
@@ -294,11 +297,12 @@ public class ProductDAO implements Serializable {
                 while (rs.next()) {
                     boolean bool = StringNormalizer.normalize(rs.getString("name")).equals(productName);
                     if (bool) {
-                        if (productID == 0) return bool;
-                        else {
+                        if (productID == 0) {
+                            return bool;
+                        } else {
                             System.out.println(StringNormalizer.normalize(rs.getString("name")));
-                        System.out.println(rs.getInt("product_ID") != productID);
-                        return rs.getInt("product_ID") != productID;
+                            System.out.println(rs.getInt("product_ID") != productID);
+                            return rs.getInt("product_ID") != productID;
                         }
                     }
                 }
@@ -371,7 +375,7 @@ public class ProductDAO implements Serializable {
 
         return false;
     }
-    
+
     public boolean changeQuantity(Integer productID, Integer quantity) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -407,18 +411,29 @@ public class ProductDAO implements Serializable {
 
         return false;
     }
-     public boolean AddNewProduct( String productName, int categoryID, int threshold, int costPrice, int sellingPrice, String unitLabel, String location, boolean isSelling) throws SQLException, NamingException {
+
+    private void addNewProductToPendingList(int new_product_ID) throws NamingException, SQLException {
+
+        //gọi DAO của Dương để thêm vào pending list
+        Date date = new Date();
+        Timestamp noteday = new Timestamp(date.getTime());
+        PendingItemDAO pDAO = new PendingItemDAO();
+        pDAO.CreatePendingList(new_product_ID, noteday, "Được thêm tự động lúc thêm mặt hàng");
+
+    }
+
+    public boolean AddNewProduct(String productName, int categoryID, int threshold, int costPrice, int sellingPrice, String unitLabel, String location, boolean isSelling) throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
+        ResultSet rs = null;
         try {
             con = DBHelpers.makeConnection();
             if (con != null) {
 
-
                 String sql = "INSERT INTO product(name, quantity, cost_price, selling_price, lower_threshold, category_ID, unit_label, location, is_selling) "
-                        + "VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?)"; 
-                
-                stm = con.prepareStatement(sql);
+                        + "VALUES(?, 0, ?, ?, ?, ?, ?, ?, ?)";
+
+                stm = con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
                 stm.setNString(1, productName);
                 stm.setInt(2, costPrice);
                 stm.setInt(3, sellingPrice);
@@ -428,8 +443,15 @@ public class ProductDAO implements Serializable {
                 stm.setNString(7, location);
                 stm.setBoolean(8, isSelling);
 
+                int new_product_ID = -1;
                 int rowAffect = stm.executeUpdate();
-                
+                rs = stm.getGeneratedKeys();
+                if (rs.next()) {
+                    new_product_ID = rs.getInt(1);
+                }
+
+                this.addNewProductToPendingList(new_product_ID);
+
                 return rowAffect > 0;
             }
 
@@ -439,6 +461,9 @@ public class ProductDAO implements Serializable {
             }
             if (con != null) {
                 con.close();
+            }
+            if (rs != null) {
+                rs.close();
             }
         }
 

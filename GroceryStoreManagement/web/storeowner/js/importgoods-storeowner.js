@@ -103,88 +103,70 @@ function addToReceipt(productID) {
 }
 
 function renderReceiptDetail() {
-  document.getElementById("receiptContent").innerHTML = "";
-  document.getElementById("TOTALCOST").innerHTML = "";
-  var totalcost = receiptOnSession.total_cost.toLocaleString("vi", {
-    style: "currency",
-    currency: "VND",
-  });
-  var td_totalcost = document.createElement("span");
-  td_totalcost.innerHTML = totalcost;
-  document.getElementById("TOTALCOST").appendChild(td_totalcost);
-  var index = 0;
-  var receiptItems = receiptOnSession.receipt_detail;
-  for (i = 0; i < receiptItems.length; i++) {
-    index++;
-    var tr = document.createElement("tr");
+    document.getElementById("receiptContent").innerHTML = "";
+    document.getElementById("TOTALCOST").innerHTML = "";
+    var totalcost = receiptOnSession.total_cost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+    var td_totalcost = document.createElement("span");
+    td_totalcost.innerHTML = totalcost;
+    document.getElementById("TOTALCOST").appendChild(td_totalcost);
+    var index = 0;
+    var receiptItems = receiptOnSession.receipt_detail;
+    for (i = 0; i < receiptItems.length; i++) {
+        index++;
+        var tr = document.createElement("tr");
 
-    var th_index = document.createElement("th");
-    th_index.setAttribute("scope", "row");
-    th_index.innerHTML = index;
-    th_index.setAttribute("class", "text-right");
-    th_index.style.verticalAlign = "middle";
+        var th_index = document.createElement("th");
+        th_index.setAttribute("scope", "row");
+        th_index.innerHTML = index;
+        th_index.setAttribute("class", "text-right");
+        th_index.style.verticalAlign = "middle";
+        
+        var td_name = document.createElement("td");
+        td_name.innerHTML = receiptItems[i].product.name;
+        td_name.setAttribute("class", "text-left");
+        td_name.style.verticalAlign = "middle";
+        
+        var td_quantity = document.createElement("td");
+        var input_quantity = document.createElement("input");
+        input_quantity.style.width = "80%";
+        input_quantity.style.verticalAlign = "middle";
+        input_quantity.setAttribute("class", "text-right float-right");
+        input_quantity.setAttribute("id", "quantityOf" + receiptItems[i].product.product_ID);
+        input_quantity.setAttribute("type", "number");
+        input_quantity.setAttribute("value", receiptItems[i].quantity);
+        input_quantity.setAttribute("min", "1");
+        input_quantity.setAttribute("onchange", "updateQuantityItem(" + receiptItems[i].product.product_ID + ")");
+        input_quantity.addEventListener("input", restrictNumberInputOnly);
+        td_quantity.appendChild(input_quantity);
 
-    var td_name = document.createElement("td");
-    td_name.innerHTML = receiptItems[i].product.name;
-    td_name.setAttribute("class", "text-left");
-    td_name.style.verticalAlign = "middle";
 
-    var td_quantity = document.createElement("td");
-    var input_quantity = document.createElement("input");
-    input_quantity.style.width = "80%";
-    input_quantity.style.verticalAlign = "middle";
-    input_quantity.setAttribute("class", "text-right float-right");
-    input_quantity.setAttribute(
-      "id",
-      "quantityOf" + receiptItems[i].product.product_ID
-    );
-    input_quantity.setAttribute("type", "number");
-    input_quantity.setAttribute("value", receiptItems[i].quantity);
-    input_quantity.setAttribute("min", "1");
-    input_quantity.setAttribute(
-      "onchange",
-      "updateQuantityItem(" + receiptItems[i].product.product_ID + ")"
-    );
-    input_quantity.addEventListener("input", restrictNumberInputOnly);
-    td_quantity.appendChild(input_quantity);
+        var td_price = document.createElement("td");
+        td_price.innerHTML = receiptItems[i].product.cost_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+        td_price.setAttribute("class", "text-right");
+        td_price.style.verticalAlign = "middle";
 
-    var td_price = document.createElement("td");
-    td_price.innerHTML = receiptItems[i].product.selling_price.toLocaleString(
-      "vi",
-      { style: "currency", currency: "VND" }
-    );
-    td_price.setAttribute("class", "text-right");
-    td_price.style.verticalAlign = "middle";
+        var td_cost = document.createElement("td");
+        let totalcost = receiptItems[i].product.cost_price * receiptItems[i].quantity;
+        td_cost.innerHTML = totalcost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+        td_cost.setAttribute("class", "text-right");
+        td_cost.style.verticalAlign = "middle";
 
-    var td_cost = document.createElement("td");
-    let totalcost =
-      receiptItems[i].product.selling_price * receiptItems[i].quantity;
-    td_cost.innerHTML = totalcost.toLocaleString("vi", {
-      style: "currency",
-      currency: "VND",
-    });
-    td_cost.setAttribute("class", "text-right");
-    td_cost.style.verticalAlign = "middle";
+        var td_button = document.createElement("td");
+        td_button.style.verticalAlign = "middle";
+        var Remove_bt = document.createElement("a");
+        Remove_bt.innerHTML = "<i class='fas fa-times-circle btn-inventory'></i>";
+        Remove_bt.setAttribute("onclick", "removeFromReceipt(" + receiptItems[i].product.product_ID + ")");
+        td_button.appendChild(Remove_bt);
 
-    var td_button = document.createElement("td");
-    td_button.style.verticalAlign = "middle";
-    var Remove_bt = document.createElement("a");
-    Remove_bt.innerHTML = "<i class='fas fa-times-circle btn-inventory'></i>";
-    Remove_bt.setAttribute(
-      "onclick",
-      "removeFromReceipt(" + receiptItems[i].product.product_ID + ")"
-    );
-    td_button.appendChild(Remove_bt);
+        tr.appendChild(th_index);
+        tr.appendChild(td_name);
+        tr.appendChild(td_quantity);
+        tr.appendChild(td_price);
+        tr.appendChild(td_cost);
+        tr.appendChild(td_button);
 
-    tr.appendChild(th_index);
-    tr.appendChild(td_name);
-    tr.appendChild(td_quantity);
-    tr.appendChild(td_price);
-    tr.appendChild(td_cost);
-    tr.appendChild(td_button);
-
-    document.getElementById("receiptContent").appendChild(tr);
-  }
+        document.getElementById("receiptContent").appendChild(tr);
+    }
 }
 
 function updateQuantityItem(productID) {

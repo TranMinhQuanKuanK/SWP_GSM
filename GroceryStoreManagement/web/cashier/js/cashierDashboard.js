@@ -9,6 +9,7 @@ const pagination_element = document.getElementById("page-selection");
 var accountErrObj;
 var customerErrObj;
 var previewCash;
+var pointRatio;
 function SearchForProduct(id) {
   for (i = 0; i < productList.length; i++) {
     if (productList[i].product_ID == id) return productList[i];
@@ -238,7 +239,6 @@ function printBill(billObject) {
 
   var discount;
   if (currentBill.use_point == true) {
-    //console.log("Current bill use point: " + currentBill.use_point);
     if (Math.ceil(currentBill.total_cost / 1000) < currentCustomer.point)
       discount = Math.ceil(currentBill.total_cost / 1000) * 1000;
     else discount = currentCustomer.point * 1000;
@@ -335,8 +335,45 @@ function printPreviewBill(billObject) {
             ? parseInt(cash) - parseInt(total)
             : 0
         );
+
+  //in ra điểm tương lai và điểm tích lũy thay đổi
+  if (currentCustomer != null) {
+    var number_of_point_used;
+    var new_point_gained_after_checkout = Math.floor(
+      currentBill.total_cost / pointRatio
+    );
+    var current_point_of_customer = parseInt(
+      document.getElementById("point-of-customer").innerHTML
+    );
+    document.getElementById(
+      "you-will-receive-xx-point-after"
+    ).style.visibility = "visible";
+
+    document.getElementById("point-after-tr").style.visibility = "visible";
+
+    document.getElementById("bill-preview-new-point").innerHTML =
+      new_point_gained_after_checkout;
+
+    if (currentBill.use_point == true) {
+      if (Math.ceil(currentBill.total_cost / 1000) < currentCustomer.point)
+        number_of_point_used = Math.ceil(currentBill.total_cost / 1000);
+      else number_of_point_used = currentCustomer.point;
+    } else number_of_point_used = 0;
+
+    document.getElementById("point-after-checkout").innerHTML =
+      current_point_of_customer -
+      number_of_point_used +
+      new_point_gained_after_checkout;
+  } else {
+    document.getElementById(
+      "you-will-receive-xx-point-after"
+    ).style.visibility = "hidden";
+    document.getElementById("point-after-tr").style.visibility = "hidden";
+  }
+
   $("#bill-preview-modal").modal("show");
 }
+
 function display_Bill_ErrorMessage() {
   errorObj = currentBill.err_obj;
   //clear error area
@@ -710,11 +747,23 @@ function Checkout() {
     }
   }
 }
+function getRatio() {
+  var xhttp = new XMLHttpRequest();
 
+  xhttp.open("GET", "GetRatio", true);
+  xhttp.onload = function () {
+    document.getElementById("point-rate").innerHTML = formatNumber(
+      this.responseText
+    );
+    pointRatio = parseInt(this.responseText);
+  };
+  xhttp.send();
+}
 // KuanK's function
 function pageLoadKuanK() {
   getCashierName();
   getBill();
+  getRatio();
   getCategory();
   SearchProduct();
 }
