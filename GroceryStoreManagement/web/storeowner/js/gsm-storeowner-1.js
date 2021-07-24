@@ -268,7 +268,7 @@ function restrictNumberInputOnly(event) {
   var input = input.replace(/[\D\s\._\-]+/g, "");
   input = input ? parseInt(input, 10) : 0;
   $(event.target).val(function () {
-    return input === 0 ? "" : input;
+    return input === 0 ? 1 : input;
   });
 }
 
