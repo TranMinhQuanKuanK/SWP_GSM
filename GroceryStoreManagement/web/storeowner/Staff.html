@@ -1,299 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="">
-        <meta name="author" content="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-        <title>Quản lí tài khoản</title>
+    <title>Quản lí tài khoản</title>
 
-        <!-- Custom fonts for this template-->
-        <link href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link
-            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-            rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link
+      href="/GroceryStoreManagement/storeowner/vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
 
-        <!-- Custom styles for this template-->
-        <link href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css" rel="stylesheet">
-        <!-- Link jquery for sidebar -->
-        <script src="//code.jquery.com/jquery.min.js"></script>
-        <link rel="apple-touch-icon" sizes="57x57" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-57x57.png">
-        <link rel="apple-touch-icon" sizes="60x60" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/GroceryStoreManagement/storeowner/favicon/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"  href="/GroceryStoreManagement/storeowner/favicon/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/GroceryStoreManagement/storeowner/favicon/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/GroceryStoreManagement/storeowner/favicon/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/GroceryStoreManagement/storeowner/favicon/favicon-16x16.png">
-        <link rel="manifest" href="/GroceryStoreManagement/storeowner/favicon/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-    </head>
+    <!-- Custom styles for this template-->
+    <link
+      href="/GroceryStoreManagement/storeowner/css/gsm-storeowner-stylesheet1.css"
+      rel="stylesheet"
+    />
+    <!-- Link jquery for sidebar -->
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/GroceryStoreManagement/storeowner/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/GroceryStoreManagement/storeowner/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/GroceryStoreManagement/storeowner/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/GroceryStoreManagement/storeowner/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/GroceryStoreManagement/storeowner/favicon/favicon-16x16.png"
+    />
+    <link
+      rel="manifest"
+      href="/GroceryStoreManagement/storeowner/favicon/manifest.json"
+    />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+  </head>
 
-    <body id="page-top" onload="showAccountList()">
+  <body id="page-top" onload="showAccountList()">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <div id="sidebar-placeholder"></div>
+      <script>
+        $.get("Sidebar", function (data) {
+          $("#sidebar-placeholder").replaceWith(data);
+        });
+      </script>
+      <!-- End of Sidebar -->
 
-        <!-- Page Wrapper -->
-        <div id="wrapper">
-
-            <!-- Sidebar -->
-            <div id="sidebar-placeholder">
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <!-- Page Heading -->
+            <div
+              class="d-sm-flex align-items-center justify-content-between my-3"
+            >
+              <h1 class="mb-0" id="header-page">QUẢN LÍ NHÂN VIÊN</h1>
             </div>
-            <script>
-                $.get("Sidebar", function (data) {
-                    $("#sidebar-placeholder").replaceWith(data);
-                });
-            </script>
-            <!-- End of Sidebar -->
 
-            <!-- Content Wrapper -->
-            <div id="content-wrapper" class="d-flex flex-column">
+            <!-- Divider -->
+            <hr class="sidebar-divider mb-2" />
 
-                <!-- Main Content -->
-                <div id="content">
+            <!-- Content Row -->
+            <div class="row">
+              <!-- Look up Table -->
+              <div class="col-xl-12">
+                <div class="card shadow mb-4">
+                  <div
+                    class="
+                      card-header
+                      py-3
+                      d-sm-flex
+                      align-items-center
+                      justify-content-between
+                    "
+                  >
+                    <h3
+                      class="
+                        font-weight-bold
+                        text-primary
+                        header-center
+                        my-auto
+                      "
+                    >
+                      DANH SÁCH TÀI KHOẢN
+                    </h3>
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
+                    <div
+                      class="d-sm-flex align-items-center justify-content-end"
+                    >
+                      <button
+                        class="
+                          d-flex
+                          justify-content-center
+                          align-items-center
+                          d-sm-inline-block
+                          btn btn-lg btn-primary btn-create-account
+                        "
+                        data-toggle="modal"
+                        data-target="#add-new-modal"
+                      >
+                        <span>Tạo tài khoản &nbsp;</span>
+                        <i class="fas fa-user-plus"></i>
+                      </button>
 
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between my-3">
-                            <h1 class="mb-0" id="header-page">QUẢN LÍ NHÂN VIÊN</h1>
-                        </div>
-
-                        <!-- Divider -->
-                        <hr class="sidebar-divider mb-2">
-
-                        <!-- Content Row -->
-                        <div class="row">
-
-                            <!-- Look up Table -->
-                            <div class="col-xl-12">
-                                <div class="card shadow mb-4">
-                                    <div class="card-header py-3 d-sm-flex align-items-center justify-content-between">
-                                        <h3 class="font-weight-bold text-primary header-center my-auto">DANH SÁCH TÀI KHOẢN</h3>
-
-                                        <div class="d-sm-flex align-items-center justify-content-end">
-                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-primary btn-create-account"
-                                                    data-toggle="modal" data-target="#add-new-modal">
-                                                <span>Tạo tài khoản &nbsp;</span>
-                                                <i class="fas fa-user-plus"></i>
-                                            </button>
-
-                                            <button class="d-flex justify-content-center align-items-center d-sm-inline-block btn btn-lg btn-secondary btn-change-password"
-                                                    data-toggle="modal" data-target="#change-password-modal">
-                                                <span>Đổi mật khẩu &nbsp;</span>
-                                                <i class="fas fa-undo"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <div class="card-body">
-
-                                        <!-- Look up Table Content -->
-                                        <div class="text-center small">
-                                            <table class="table table-striped table-border-custom">
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
-                                                        <th scope="col" class="table-heading" style="width:25%;">Tên đăng nhập</th>
-                                                        <th scope="col" class="table-heading" style="width:25%;">Họ và tên</th>
-                                                        <th scope="col" class="table-heading" style="width:20%;">Vai trò</th>
-                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
-                                                        <th scope="col" class="table-heading" style="width:10%;"></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="account-list-area">
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!--/ End of Look up Table Content -->
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!--/ End of Look up Table -->
-
-                        </div>
-
+                      <button
+                        class="
+                          d-flex
+                          justify-content-center
+                          align-items-center
+                          d-sm-inline-block
+                          btn btn-lg btn-secondary btn-change-password
+                        "
+                        data-toggle="modal"
+                        data-target="#change-password-modal"
+                      >
+                        <span>Đổi mật khẩu &nbsp;</span>
+                        <i class="fas fa-undo"></i>
+                      </button>
                     </div>
-                    <!-- /.container-fluid -->
+                  </div>
 
+                  <div class="card-body">
+                    <!-- Look up Table Content -->
+                    <div class="text-center small">
+                      <table class="table table-striped table-border-custom">
+                        <thead>
+                          <tr>
+                            <th
+                              scope="col"
+                              class="table-heading"
+                              style="width: 10%"
+                            ></th>
+                            <th
+                              scope="col"
+                              class="table-heading"
+                              style="width: 25%"
+                            >
+                              Tên đăng nhập
+                            </th>
+                            <th
+                              scope="col"
+                              class="table-heading"
+                              style="width: 25%"
+                            >
+                              Họ và tên
+                            </th>
+                            <th
+                              scope="col"
+                              class="table-heading"
+                              style="width: 20%"
+                            >
+                              Vai trò
+                            </th>
+                            <th
+                              scope="col"
+                              class="table-heading"
+                              style="width: 10%"
+                            ></th>
+                            <th
+                              scope="col"
+                              class="table-heading"
+                              style="width: 10%"
+                            ></th>
+                          </tr>
+                        </thead>
+                        <tbody id="account-list-area"></tbody>
+                      </table>
+                    </div>
+                    <!--/ End of Look up Table Content -->
+                  </div>
                 </div>
-                <!-- End of Main Content -->
-
+              </div>
+              <!--/ End of Look up Table -->
             </div>
-            <!-- End of Content Wrapper -->
-
+          </div>
+          <!-- /.container-fluid -->
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Main Content -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
-        <!-- Modal Confirm Reset Password -->
-        <div class="modal fade modal-center-position" id="reset-password-modal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+    <!-- Modal Confirm Reset Password -->
+    <div
+      class="modal fade modal-center-position"
+      id="reset-password-modal"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-primary">Xác nhận</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
 
-                    <div class="modal-header">
-                        <h5 class="modal-title text-primary">Xác nhận</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
+          <div class="modal-body">
+            <span class="m-0 pt-1 ml-1"
+              >Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản</span
+            >
+            <span class="m-0 text-primary pt-1 ml-1" id="reset-username"></span>
+            <span class="m-0 pt-1 ml-1">không?</span>
+          </div>
 
-                    <div class="modal-body">
-                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn đặt lại mật khẩu cho tài khoản</span>
-                        <span class="m-0 text-primary pt-1 ml-1" id="reset-username"></span>
-                        <span class="m-0 pt-1 ml-1">không?</span>
-                    </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              onclick="resetAccount(document.getElementById('reset-username').innerHTML)"
+            >
+              Đồng ý
+            </button>
+            <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Modal Confirm Reset Password -->
 
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" onclick="resetAccount(document.getElementById('reset-username').innerHTML)">Đồng ý</button>
-                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    </div>
+    <!-- Modal Confirm Delete Account -->
+    <div
+      class="modal fade modal-center-position"
+      id="delete-account-modal"
+      role="dialog"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-primary">Xác nhận</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
 
-                </div>
+          <div class="modal-body">
+            <span class="m-0 pt-1 ml-1"
+              >Bạn có chắc chắn muốn vô hiệu hóa tài khoản</span
+            >
+            <span
+              class="m-0 text-primary pt-1 ml-1"
+              id="delete-username"
+            ></span>
+            <span class="m-0 pt-1 ml-1">không?</span>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              onclick="deleteAccount(document.getElementById('delete-username').innerHTML)"
+            >
+              Đồng ý
+            </button>
+            <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End of Modal Confirm Delete Account -->
+
+    <!-- Add New Account Modal -->
+    <div class="modal fade" id="add-new-modal" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title text-primary my-auto">Đăng ký tài khoản</h3>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+              onclick="clearModal()"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <span class="m-0 pt-1 ml-1">Họ và tên</span>
+              <input
+                class="form-control modal-input"
+                type="text"
+                id="new-name"
+              />
+              <p class="modal-error" style="color: red" id="error-name"></p>
             </div>
-        </div>
-        <!-- End of Modal Confirm Reset Password -->
-
-        <!-- Modal Confirm Delete Account -->
-        <div class="modal fade modal-center-position" id="delete-account-modal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h5 class="modal-title text-primary">Xác nhận</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-
-                    <div class="modal-body">
-                        <span class="m-0 pt-1 ml-1">Bạn có chắc chắn muốn vô hiệu hóa tài khoản</span>
-                        <span class="m-0 text-primary pt-1 ml-1" id="delete-username"></span>
-                        <span class="m-0 pt-1 ml-1">không?</span>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" onclick="deleteAccount(document.getElementById('delete-username').innerHTML)">Đồng ý</button>
-                        <button class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                    </div>
-
-                </div>
+            <div class="form-group">
+              <span class="m-0 pt-1 ml-1">Tên đăng nhập</span>
+              <input
+                class="form-control modal-input"
+                type="text"
+                id="new-username"
+              />
+              <p class="modal-error" style="color: red" id="error-username"></p>
+              <p
+                class="modal-error"
+                style="color: red"
+                id="error-username-exist"
+              ></p>
             </div>
-        </div>
-        <!-- End of Modal Confirm Delete Account -->
-
-        <!-- Add New Account Modal -->
-        <div class="modal fade" id="add-new-modal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title text-primary my-auto">Đăng ký tài khoản</h3>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="clearModal()">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <span class="m-0 pt-1 ml-1">Họ và tên</span>
-                            <input class="form-control modal-input" type="text" id="new-name">
-                            <p class="modal-error" style="color:red" id="error-name"></p>
-                        </div>
-                        <div class="form-group">
-                            <span class="m-0 pt-1 ml-1">Tên đăng nhập</span>
-                            <input class="form-control modal-input" type="text" id="new-username">
-                            <p class="modal-error" style="color:red" id="error-username"></p>
-                            <p class="modal-error" style="color:red" id="error-username-exist"></p>
-                        </div>
-                        <div class="form-group">
-                            <span class="m-0 pt-1 ml-1">Mật khẩu</span>
-                            <input class="form-control modal-input" type="password" id="new-password">
-                            <p class="modal-error" style="color:red" id="error-password"></p>
-                        </div>
-                        <div class="form-group">
-                            <span class="m-0 pt-1 ml-1">Xác nhận mật khẩu</span>
-                            <input class="form-control modal-input" type="password" id="new-confirm">
-                            <p class="modal-error" style="color:red" id="error-confirm"></p>
-                        </div>
-                        <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-owner"/>
-                        <span class="m-0 pt-2">&nbsp; Chủ tiệm</span><br>
-                        <input class="m-0 pt-2 ml-2" type="radio" name="new-role" id="new-is-cashier" checked="checked"/>
-                        <span class="m-0 pt-2">&nbsp; Thu ngân</span>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button class="btn btn-primary" onclick="createNewAccount()">Đăng ký</button>
-                        <button class="btn btn-secondary" data-dismiss="modal" onclick="clearModal()">Hủy</button>
-                    </div>
-                </div>
+            <div class="form-group">
+              <span class="m-0 pt-1 ml-1">Mật khẩu</span>
+              <input
+                class="form-control modal-input"
+                type="password"
+                id="new-password"
+              />
+              <p class="modal-error" style="color: red" id="error-password"></p>
             </div>
-        </div>
-        <!-- End of Add New Account Modal -->
-
-        <!-- Change Pasword Modal -->
-        <div class="modal fade" id="change-password-modal" tabindex="-1" aria-labelledby="changePasswordLabel"
-             aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title text-primary my-auto" id="changePasswordLabel">Đổi mật khẩu</h3>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearModal()">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="form-group">
-                                <label for="currentPassword">Mật khẩu hiện tại</label>
-                                <input type="password" class="form-control modal-input" id="currentPassword"
-                                       aria-describedby="currentPassword">
-                                <span class="modal-error" style="color:red" id="current-password-error"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="newPassword">Mật khẩu mới</label>
-                                <input type="password" class="form-control modal-input" id="newPassword"
-                                       aria-describedby="newPassword">
-                                <span class="modal-error" style="color:red" id="new-password-error"></span>
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
-                                <input type="password" class="form-control modal-input" id="confirmNewPassword"
-                                       aria-describedby="confirmNewPassword">
-                                <span class="modal-error" style="color:red" id="confirm-password-error"></span>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" onclick="passwordChange()">Đổi mật khẩu</button>
-                        <button type="button" class="btn btn btn-secondary" data-dismiss="modal" onclick="clearModal()">Hủy</button>
-                    </div>
-                </div>
+            <div class="form-group">
+              <span class="m-0 pt-1 ml-1">Xác nhận mật khẩu</span>
+              <input
+                class="form-control modal-input"
+                type="password"
+                id="new-confirm"
+              />
+              <p class="modal-error" style="color: red" id="error-confirm"></p>
             </div>
+            <input
+              class="m-0 pt-2 ml-2"
+              type="radio"
+              name="new-role"
+              id="new-is-owner"
+            />
+            <span class="m-0 pt-2">&nbsp; Chủ tiệm</span><br />
+            <input
+              class="m-0 pt-2 ml-2"
+              type="radio"
+              name="new-role"
+              id="new-is-cashier"
+              checked="checked"
+            />
+            <span class="m-0 pt-2">&nbsp; Thu ngân</span>
+          </div>
+
+          <div class="modal-footer">
+            <button class="btn btn-primary" onclick="createNewAccount()">
+              Đăng ký
+            </button>
+            <button
+              class="btn btn-secondary"
+              data-dismiss="modal"
+              onclick="clearModal()"
+            >
+              Hủy
+            </button>
+          </div>
         </div>
-        <!--End of Change Password Modal-->
+      </div>
+    </div>
+    <!-- End of Add New Account Modal -->
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Change Pasword Modal -->
+    <div
+      class="modal fade"
+      id="change-password-modal"
+      tabindex="-1"
+      aria-labelledby="changePasswordLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3
+              class="modal-title text-primary my-auto"
+              id="changePasswordLabel"
+            >
+              Đổi mật khẩu
+            </h3>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+              onclick="clearModal()"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="currentPassword">Mật khẩu hiện tại</label>
+                <input
+                  type="password"
+                  class="form-control modal-input"
+                  id="currentPassword"
+                  aria-describedby="currentPassword"
+                />
+                <span
+                  class="modal-error"
+                  style="color: red"
+                  id="current-password-error"
+                ></span>
+              </div>
+              <div class="form-group">
+                <label for="newPassword">Mật khẩu mới</label>
+                <input
+                  type="password"
+                  class="form-control modal-input"
+                  id="newPassword"
+                  aria-describedby="newPassword"
+                />
+                <span
+                  class="modal-error"
+                  style="color: red"
+                  id="new-password-error"
+                ></span>
+              </div>
+              <div class="form-group">
+                <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
+                <input
+                  type="password"
+                  class="form-control modal-input"
+                  id="confirmNewPassword"
+                  aria-describedby="confirmNewPassword"
+                />
+                <span
+                  class="modal-error"
+                  style="color: red"
+                  id="confirm-password-error"
+                ></span>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="passwordChange()"
+            >
+              Đổi mật khẩu
+            </button>
+            <button
+              type="button"
+              class="btn btn btn-secondary"
+              data-dismiss="modal"
+              onclick="clearModal()"
+            >
+              Hủy
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--End of Change Password Modal-->
 
-        <!-- Core plugin JavaScript-->
-        <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Toast area -->
+    <div id="toast"></div>
+    <!-- Bootstrap core JavaScript-->
+    <script src="/GroceryStoreManagement/storeowner/vendor/jquery/jquery.min.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
-        <script src="/GroceryStoreManagement/storeowner/js/staff-storeowner.js"></script>
-    </body>
+    <!-- Core plugin JavaScript-->
+    <script src="/GroceryStoreManagement/storeowner/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-1.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/js/gsm-storeowner-2.js"></script>
+    <script src="/GroceryStoreManagement/storeowner/js/staff-storeowner.js"></script>
+  </body>
 </html>
