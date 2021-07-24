@@ -132,9 +132,11 @@ function renderReceiptDetail() {
         input_quantity.style.verticalAlign = "middle";
         input_quantity.setAttribute("class", "text-right float-right");
         input_quantity.setAttribute("id", "quantityOf" + receiptItems[i].product.product_ID);
-        input_quantity.setAttribute("type", "number");
+        input_quantity.setAttribute("type", "text");
+        input_quantity.setAttribute("pattern", "[0-9]*");
+        input_quantity.setAttribute("maxlength", "5");
         input_quantity.setAttribute("value", receiptItems[i].quantity);
-        input_quantity.setAttribute("min", "1");
+        // input_quantity.setAttribute("min", "1");
         input_quantity.setAttribute("onchange", "updateQuantityItem(" + receiptItems[i].product.product_ID + ")");
         input_quantity.addEventListener("input", restrictNumberInputOnly);
         td_quantity.appendChild(input_quantity);
