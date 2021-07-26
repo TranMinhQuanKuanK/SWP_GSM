@@ -63,7 +63,7 @@ public class MakeNewReceiptServlet extends HttpServlet {
                 
                 Integer product_id = detail.getProduct().getProduct_ID();
                 Integer quantity = detail.getQuantity();
-                Integer price = detail.getProduct().getSelling_price();
+                Integer price = detail.getProduct().getCost_price();
                 Integer costItem = price * quantity;
                 //Them vao ReceiptDetailDB
                 ReceiptDetailDAO rdDAO = new ReceiptDetailDAO();

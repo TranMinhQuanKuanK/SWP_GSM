@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.naming.NamingException;
@@ -17,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.pendingItem.PendingItemDAO;
 import models.product.ProductDAO;
 import models.product.ProductError;
 import utils.TryParseInt;
@@ -73,9 +76,12 @@ public class AddNewProductServlet extends HttpServlet {
             productUnitLabel = request.getParameter("productUnitLabel");
             productLocation = request.getParameter("productLocation");
             productIsSelling = request.getParameter("productIsSelling").equals("true");
-            
-            if (productLocation.length() > 15) {
-                productLocation = productLocation.substring(0, 15);
+
+            if (productUnitLabel.length() > 15) {
+                productUnitLabel = productUnitLabel.substring(0, 14);
+            }
+            if (productLocation.length() > 100) {
+                productLocation = productLocation.substring(0, 99);
             }
             if (productName.equals("") || productName.length() > 100) {
                 foundErr = true;
@@ -125,6 +131,8 @@ public class AddNewProductServlet extends HttpServlet {
             } else {
                 boolean result = dao.AddNewProduct(productName, productCategoryID, productLowerThreshold, productCostPrice, productSellingPrice, productUnitLabel, productLocation, productIsSelling);
                 if (result) {
+                  
+                  
                     String json = gson.toJson(null);
                     out.print(json);
                 } else {

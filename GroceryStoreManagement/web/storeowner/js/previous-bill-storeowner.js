@@ -6,17 +6,18 @@ function showPreBillList() {
     var url = "GetPreviousBillList";
     url += "?date-from=" + document.getElementById("date-from").value;
     url += "&date-to=" + document.getElementById("date-to").value;
+
     if (document.getElementById("search-value").value !== "") {
         url += "&search-value=" + document.getElementById("search-value").value;
     }
-    request.open('GET', url, true);
+
+    request.open("GET", url, true);
     request.onload = function () {
         var result = JSON.parse(this.responseText);
         if (result.isError) {
             alert(result.dateError);
         } else {
             preBillList = result;
-            renderPreBillList();
         }
         renderPreBillList();
     };
@@ -45,14 +46,14 @@ function renderPreBillList() {
         cellCustName.innerHTML = preBillList[i].name;
         cellTotalCost.innerHTML = formatNumber(preBillList[i].totalCost);
         cellBuyDate.innerHTML = preBillList[i].buyDate.substring(0, 10);
-        
+
         cellTotalCost.style.textAlign = "right";
-        
+
         var createClickHandler = function (i, row) {
             return function () {
                 for (var j = 0; j < table.rows.length; j++) {
                     table.rows[j].classList.remove("active-row");
-                } 
+                }
                 row.className = "active-row";
                 renderPreBillDetailList(preBillList[i].billID);
             };
@@ -85,6 +86,8 @@ function renderPreBillDetailList(billID) {
             cashierName.innerHTML = preBillList[i].cashier;
             totalCost = preBillList[i].totalCost;
             pointUsed = preBillList[i].pointUsed;
+            pointGained = preBillList[i].pointGained;
+            pointAfter = preBillList[i].pointAfter;
             cash = preBillList[i].cash;
         }
     }
@@ -109,45 +112,78 @@ function renderPreBillDetailList(billID) {
             cellQuantity.innerHTML = billDetails[i].quantity;
             cellCost.innerHTML = formatNumber(billDetails[i].cost);
             cellTotal.innerHTML = formatNumber(billDetails[i].total);
-            
+
             cellQuantity.style.textAlign = "right";
             cellCost.style.textAlign = "right";
             cellTotal.style.textAlign = "right";
         }
     }
+    
     var tableSum = document.getElementById("pre-bill-detail-summary");
     tableSum.innerHTML = "";
     var row = tableSum.insertRow(-1);
 
     var cellTotalCostLabel = row.insertCell(0);
     var cellTotalCost = row.insertCell(1);
-    cellTotalCostLabel.innerHTML = "Tổng cộng";
-    cellTotalCostLabel.className = "total-previous-bills";
+    cellTotalCostLabel.innerHTML = "Tổng cộng:";
     cellTotalCostLabel.style.width = "80%";
+    cellTotalCostLabel.style.fontWeight = "bold";
     cellTotalCostLabel.style.textAlign = "right";
-    cellTotalCost.innerHTML = formatNumber(totalCost);
-    cellTotalCost.className = "total-previous-bills-price";
+    cellTotalCost.innerHTML = formatNumber(totalCost); 
     cellTotalCost.style.textAlign = "right";
     cellTotalCost.style.width = "20%";
 
-    
     var row = tableSum.insertRow(-1);
     var cellPointUsedLabel = row.insertCell(0);
     var cellPointUsed = row.insertCell(1);
-    cellPointUsedLabel.innerHTML = "Điểm sử dụng";
+    cellPointUsedLabel.innerHTML = "Giảm giá:";
     cellPointUsedLabel.style.width = "80%";
+    cellPointUsedLabel.style.fontWeight = "bold";
     cellPointUsedLabel.style.textAlign = "right";
-    cellPointUsed.innerHTML = pointUsed;
+    cellPointUsed.innerHTML = formatNumber(pointUsed * 1000);
     cellPointUsed.style.textAlign = "right";
     cellPointUsed.style.width = "20%";
+    cellPointUsed.style.textDecoration = "line-through";
 
     var row = tableSum.insertRow(-1);
     var cellCashLabel = row.insertCell(0);
     var cellCash = row.insertCell(1);
-    cellCashLabel.innerHTML = "Khách đưa";
+    cellCashLabel.innerHTML = "Thành tiền:";
     cellCashLabel.style.width = "80%";
+    cellCashLabel.style.fontWeight = "bold";
     cellCashLabel.style.textAlign = "right";
-    cellCash.innerHTML = formatNumber(cash);
+    cellCash.innerHTML = formatNumber(totalCost - pointUsed * 1000);
     cellCash.style.textAlign = "right";
+    cellCash.style.color = "red";
+    cellCash.style.fontWeight = "bold";
     cellCash.style.width = "20%";
+
+    if (customerName.innerHTML !== "Khách hàng vãng lai") {
+        var row = tableSum.insertRow(-1);
+        var cellPointLabel = row.insertCell(0);
+        var cellPoint = row.insertCell(1);
+        cellPointLabel.innerHTML = "Điểm tích lũy:";
+        cellPointLabel.style.width = "80%";
+        cellPointLabel.style.fontWeight = "bold";
+        cellPointLabel.style.textAlign = "right";
+        cellPoint.innerHTML = `
+          <del>
+              <span style="font-size: 0.8em;">
+                  ${
+                pointAfter - pointGained + pointUsed
+                }
+              </span>
+          </del>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+          <span>${
+                pointAfter 
+                }</span>
+      `;
+        cellPoint.style.textAlign = "right";
+        cellPoint.style.color = "royalBlue";
+        cellPoint.style.width = "20%";
+        cellPoint.style.fontWeight = "bold";
+    }
 }

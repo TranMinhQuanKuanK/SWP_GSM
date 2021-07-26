@@ -12,14 +12,17 @@ import java.util.List;
  * @author Huu Quoc
  */
 public class PreBillDTO {
-    int billID, totalCost, pointUsed, cash;
+
+    int billID, totalCost, pointUsed, pointGained, pointAfter, cash;
     String name, phoneNo, buyDate, cashier;
     List<PreBillDetailDTO> details;
 
-    public PreBillDTO(int billID, int totalCost, int pointUsed, int cash, String name, String phoneNo, String buyDate, String cashier, List<PreBillDetailDTO> details) {
+    public PreBillDTO(int billID, int totalCost, int pointUsed, int pointGained, int pointAfter, int cash, String name, String phoneNo, String buyDate, String cashier, List<PreBillDetailDTO> details) {
         this.billID = billID;
         this.totalCost = totalCost;
         this.pointUsed = pointUsed;
+        this.pointGained = pointGained;
+        this.pointAfter = pointAfter;
         this.cash = cash;
         this.name = name;
         this.phoneNo = phoneNo;
@@ -91,12 +94,28 @@ public class PreBillDTO {
     public void setCash(int cash) {
         this.cash = cash;
     }
-    
+
     public List<PreBillDetailDTO> getDetails() {
         return details;
     }
 
     public void setDetails(List<PreBillDetailDTO> details) {
         this.details = details;
+    }
+    
+    public int getPointGained() {
+        return pointGained;
+    }
+
+    public void setPointGained(int pointGained) {
+        this.pointGained = pointGained;
+    }
+
+    public int getPointAfter() {
+        return pointAfter;
+    }
+
+    public void setPointAfter(int pointAfter) {
+        this.pointAfter = pointAfter;
     }
 }
