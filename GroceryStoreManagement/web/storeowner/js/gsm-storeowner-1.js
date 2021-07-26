@@ -272,6 +272,36 @@ function restrictNumberInputOnly(event) {
   });
 }
 
+// Format user input for number
+function restrictNumInputMinZero(event) {
+  /*
+     * These additional lines prevent the function from running when the user 
+     makes a selection within the input
+     or presses the arrow keys on the keyboard
+     */
+  var selection = window.getSelection().toString();
+  if (selection !== "") {
+    return;
+  }
+  if ($.inArray(event.keyCode, [38, 40, 37, 39]) !== -1) {
+    return;
+  }
+  // End of additional checks
+
+  /*
+     *  Retrieve the value from the input.
+     Sanitize the value using RegEx by removing unnecessary characters such as spaces, underscores, dashes, and letters.
+     Deploy parseInt() function to make sure the value is an integer (a round number).
+     Add the thousand separator with the eVietnam() function, then pass the sanitised value back to the input element.
+     */
+  var input = $(event.target).val();
+  var input = input.replace(/[\D\s\._\-]+/g, "");
+  input = input ? parseInt(input, 10) : 0;
+  $(event.target).val(function () {
+    return input === 0 ? 0 : input;
+  });
+}
+
 function eVietnam(num) {
   console.log(num.toLocaleString("vi"));
   return num.toLocaleString("vi");
