@@ -239,7 +239,6 @@ function printBill(billObject) {
 
   var discount;
   if (currentBill.use_point == true) {
-    //console.log("Current bill use point: " + currentBill.use_point);
     if (Math.ceil(currentBill.total_cost / 1000) < currentCustomer.point)
       discount = Math.ceil(currentBill.total_cost / 1000) * 1000;
     else discount = currentCustomer.point * 1000;
@@ -336,13 +335,45 @@ function printPreviewBill(billObject) {
             ? parseInt(cash) - parseInt(total)
             : 0
         );
-  //in ra điểm tương lai:
-  document.getElementById("bill-preview-new-point").innerHTML = Math.floor(
-    currentBill.total_cost / pointRatio
-  );
+
+  //in ra điểm tương lai và điểm tích lũy thay đổi
+  if (currentCustomer != null) {
+    var number_of_point_used;
+    var new_point_gained_after_checkout = Math.floor(
+      currentBill.total_cost / pointRatio
+    );
+    var current_point_of_customer = parseInt(
+      document.getElementById("point-of-customer").innerHTML
+    );
+    document.getElementById(
+      "you-will-receive-xx-point-after"
+    ).style.visibility = "visible";
+
+    document.getElementById("point-after-tr").style.visibility = "visible";
+
+    document.getElementById("bill-preview-new-point").innerHTML =
+      new_point_gained_after_checkout;
+
+    if (currentBill.use_point == true) {
+      if (Math.ceil(currentBill.total_cost / 1000) < currentCustomer.point)
+        number_of_point_used = Math.ceil(currentBill.total_cost / 1000);
+      else number_of_point_used = currentCustomer.point;
+    } else number_of_point_used = 0;
+
+    document.getElementById("point-after-checkout").innerHTML =
+      current_point_of_customer -
+      number_of_point_used +
+      new_point_gained_after_checkout;
+  } else {
+    document.getElementById(
+      "you-will-receive-xx-point-after"
+    ).style.visibility = "hidden";
+    document.getElementById("point-after-tr").style.visibility = "hidden";
+  }
 
   $("#bill-preview-modal").modal("show");
 }
+
 function display_Bill_ErrorMessage() {
   errorObj = currentBill.err_obj;
   //clear error area
@@ -446,6 +477,7 @@ function searchCustomerByPhone() {
       result_dto = JSON.parse(this.responseText);
       if (result_dto != null) {
         currentBill.customer_dto = result_dto;
+        document.getElementById("discount-checkbox").parentNode.classList.remove("d-none");
         printBill(currentBill);
       } else if (result_dto == null) {
         $("#fail-to-find-customer-toast").toast({
@@ -463,7 +495,7 @@ function renderCustomer() {
   // console.log(currentBill.customer_dto);
   if (currentCustomer != null) {
     document.getElementById("customer-name").innerHTML = currentCustomer.name;
-
+    document.getElementById("discount-checkbox").parentNode.classList.remove("d-none");
     document.getElementById("point-of-customer").innerHTML =
       currentCustomer.point;
     //set attribute cho ô giảm giá
@@ -476,6 +508,7 @@ function renderCustomer() {
     document.getElementById("point-of-customer").innerHTML = "...";
     document.getElementById("discount-checkbox").checked =
       currentBill.use_point == false;
+    document.getElementById("discount-checkbox").parentNode.classList.add("d-none");
     document.getElementById("phone-no-input").value = "";
   }
 }

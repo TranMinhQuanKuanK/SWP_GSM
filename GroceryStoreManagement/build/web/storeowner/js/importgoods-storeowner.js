@@ -1,105 +1,105 @@
 var receiptOnSession;
 
 window.onload = function () {
-    getReceipt();
-    getPendingList();
+  getReceipt();
+  getPendingList();
 };
 
 function getReceipt() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        receiptOnSession = JSON.parse(this.responseText);
-        renderReceiptDetail();
-    };
-    xhttp.open("GET", "GetReceipt", false);
-    xhttp.send();
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    receiptOnSession = JSON.parse(this.responseText);
+    renderReceiptDetail();
+  };
+  xhttp.open("GET", "GetReceipt", false);
+  xhttp.send();
 }
 
 function getPendingList() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        console.log(this.responseText);
-        var pendingList = JSON.parse(this.responseText);
-        renderPendingList(pendingList);
-    };
-    xhttp.open("GET", "GetPendingItemList", false);
-    xhttp.send();
-};
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    console.log(this.responseText);
+    var pendingList = JSON.parse(this.responseText);
+    renderPendingList(pendingList);
+  };
+  xhttp.open("GET", "GetPendingItemList", false);
+  xhttp.send();
+}
 
 function renderPendingList(data) {
-    document.getElementById("tableContent").innerHTML = "";
-    var index = 0;
-    for (i = 0; i < data.length; i++) {
-        index++;
-        var tr = document.createElement("tr");
+  document.getElementById("tableContent").innerHTML = "";
+  var index = 0;
+  for (i = 0; i < data.length; i++) {
+    index++;
+    var tr = document.createElement("tr");
 
-        var th_index = document.createElement("th");
-        th_index.setAttribute("scope", "row");
-        th_index.innerHTML = index;
-        th_index.style.verticalAlign = "middle";
+    var th_index = document.createElement("th");
+    th_index.setAttribute("scope", "row");
+    th_index.innerHTML = index;
+    th_index.style.verticalAlign = "middle";
 
-        var td_name = document.createElement("td");
-        td_name.innerHTML = data[i].product_name;
-        td_name.style.textAlign = "left";
-        td_name.style.verticalAlign = "middle";
+    var td_name = document.createElement("td");
+    td_name.innerHTML = data[i].product_name;
+    td_name.style.textAlign = "left";
+    td_name.style.verticalAlign = "middle";
 
-        var td_quantity = document.createElement("td");
-        td_quantity.innerHTML = data[i].product_quantity;
-        td_quantity.setAttribute("class", "text-right");
-        td_quantity.style.verticalAlign = "middle";
+    var td_quantity = document.createElement("td");
+    td_quantity.innerHTML = data[i].product_quantity;
+    td_quantity.setAttribute("class", "text-right");
+    td_quantity.style.verticalAlign = "middle";
 
-        var td_button = document.createElement("td");
-        td_button.style.verticalAlign = "middle";
-        var Add_bt = document.createElement("a");
-        Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-import-goods'></i>";
-        Add_bt.setAttribute("onclick", "addToReceipt(" + data[i].product_ID + ")");
+    var td_button = document.createElement("td");
+    td_button.style.verticalAlign = "middle";
+    var Add_bt = document.createElement("a");
+    Add_bt.innerHTML = "<i class='fas fa-plus-circle btn-import-goods'></i>";
+    Add_bt.setAttribute("onclick", "addToReceipt(" + data[i].product_ID + ")");
 
-        var Ignore_bt = document.createElement("a");
-        Ignore_bt.innerHTML = "<i class='fas fa-minus-circle btn-import-goods ml-3'></i>";
-        Ignore_bt.setAttribute("onclick", "changeStatusInPendingList(" + data[i].product_ID + ")");
+    var Ignore_bt = document.createElement("a");
+    Ignore_bt.innerHTML =
+      "<i class='fas fa-minus-circle btn-import-goods ml-3'></i>";
+    Ignore_bt.setAttribute(
+      "onclick",
+      "changeStatusInPendingList(" + data[i].product_ID + ")"
+    );
 
-        td_button.appendChild(Add_bt);
-        td_button.appendChild(Ignore_bt);
+    td_button.appendChild(Add_bt);
+    td_button.appendChild(Ignore_bt);
 
-        tr.appendChild(th_index);
-        tr.appendChild(td_name);
-        tr.appendChild(td_quantity);
-        tr.appendChild(td_button);
+    tr.appendChild(th_index);
+    tr.appendChild(td_name);
+    tr.appendChild(td_quantity);
+    tr.appendChild(td_button);
 
-        document.getElementById("tableContent").appendChild(tr);
-    }
+    document.getElementById("tableContent").appendChild(tr);
+  }
 }
 
 function changeStatusInPendingList(productID) {
-    var xhttp = new XMLHttpRequest();
-    content =
-            "product_ID=" +
-            encodeURIComponent(productID);
-    xhttp.open("POST", "UpdateSuggestion", false);
-    xhttp.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded;charset=UTF-8"
-            );
-    xhttp.send(content);
-    getPendingList();
+  var xhttp = new XMLHttpRequest();
+  content = "product_ID=" + encodeURIComponent(productID);
+  xhttp.open("POST", "UpdateSuggestion", false);
+  xhttp.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded;charset=UTF-8"
+  );
+  xhttp.send(content);
+  getPendingList();
 }
 
 function addToReceipt(productID) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        console.log(this.responseText);
-        receiptOnSession = JSON.parse(this.responseText);
-    };
-    content =
-            "product_ID=" +
-            encodeURIComponent(productID);
-    xhttp.open("POST", "AddToReceiptFromPending", false);
-    xhttp.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded;charset=UTF-8"
-            );
-    xhttp.send(content);
-    renderReceiptDetail();
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    console.log(this.responseText);
+    receiptOnSession = JSON.parse(this.responseText);
+  };
+  content = "product_ID=" + encodeURIComponent(productID);
+  xhttp.open("POST", "AddToReceiptFromPending", false);
+  xhttp.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded;charset=UTF-8"
+  );
+  xhttp.send(content);
+  renderReceiptDetail();
 }
 
 function renderReceiptDetail() {
@@ -132,20 +132,23 @@ function renderReceiptDetail() {
         input_quantity.style.verticalAlign = "middle";
         input_quantity.setAttribute("class", "text-right float-right");
         input_quantity.setAttribute("id", "quantityOf" + receiptItems[i].product.product_ID);
-        input_quantity.setAttribute("type", "number");
+        input_quantity.setAttribute("type", "text");
+        input_quantity.setAttribute("pattern", "[0-9]*");
+        input_quantity.setAttribute("maxlength", "5");
         input_quantity.setAttribute("value", receiptItems[i].quantity);
-        input_quantity.setAttribute("min", "1");
+        // input_quantity.setAttribute("min", "1");
         input_quantity.setAttribute("onchange", "updateQuantityItem(" + receiptItems[i].product.product_ID + ")");
+        input_quantity.addEventListener("input", restrictNumberInputOnly);
         td_quantity.appendChild(input_quantity);
 
 
         var td_price = document.createElement("td");
-        td_price.innerHTML = receiptItems[i].product.selling_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
+        td_price.innerHTML = receiptItems[i].product.cost_price.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_price.setAttribute("class", "text-right");
         td_price.style.verticalAlign = "middle";
 
         var td_cost = document.createElement("td");
-        let totalcost = receiptItems[i].product.selling_price * receiptItems[i].quantity;
+        let totalcost = receiptItems[i].product.cost_price * receiptItems[i].quantity;
         td_cost.innerHTML = totalcost.toLocaleString('vi', {style : 'currency', currency : 'VND'});
         td_cost.setAttribute("class", "text-right");
         td_cost.style.verticalAlign = "middle";
@@ -169,77 +172,74 @@ function renderReceiptDetail() {
 }
 
 function updateQuantityItem(productID) {
-    var tempQuantity = document.getElementById("quantityOf" + productID).value;
-    var xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        console.log(this.responseText);
-        receiptOnSession = JSON.parse(this.responseText);
-    };
-    content =
-            "product_id=" +
-            encodeURIComponent(productID) +
-            "&quantity=" +
-            encodeURIComponent(tempQuantity);
-    xhttp.open("POST", "EditQuantityInReceipt", false);
-    xhttp.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded;charset=UTF-8"
-            );
-    xhttp.send(content);
-    renderReceiptDetail();
+  var tempQuantity = document.getElementById("quantityOf" + productID).value;
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    console.log(this.responseText);
+    receiptOnSession = JSON.parse(this.responseText);
+  };
+  content =
+    "product_id=" +
+    encodeURIComponent(productID) +
+    "&quantity=" +
+    encodeURIComponent(tempQuantity);
+  xhttp.open("POST", "EditQuantityInReceipt", false);
+  xhttp.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded;charset=UTF-8"
+  );
+  xhttp.send(content);
+  renderReceiptDetail();
 }
 
 function removeFromReceipt(productID) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onload = function () {
-        console.log(this.responseText);
-        receiptOnSession = JSON.parse(this.responseText);
-    };
-    content =
-            "product_ID=" +
-            encodeURIComponent(productID);
-    xhttp.open("POST", "RemoveFromReceipt", false);
-    xhttp.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded;charset=UTF-8"
-            );
-    xhttp.send(content);
-    renderReceiptDetail();
+  var xhttp = new XMLHttpRequest();
+  xhttp.onload = function () {
+    console.log(this.responseText);
+    receiptOnSession = JSON.parse(this.responseText);
+  };
+  content = "product_ID=" + encodeURIComponent(productID);
+  xhttp.open("POST", "RemoveFromReceipt", false);
+  xhttp.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded;charset=UTF-8"
+  );
+  xhttp.send(content);
+  renderReceiptDetail();
 }
 
 function importReceipt() {
-    if (receiptOnSession.total_cost !== 0) {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onload = function () {
-            console.log(this.responseText);
-            receiptOnSession = JSON.parse(this.responseText);
-            if (receiptOnSession == null) {
-                $('#success-to-save-toast').toast({
-                    delay: 3000
-                });
-                $('#success-to-save-toast').toast('show');
-            }
-        };
-        xhttp.open("GET", "MakeNewReceipt", false);
-        xhttp.send();
-        getPendingList();
-        getReceipt();
-    } else {
-        $('#fail-to-save-toast').toast({
-            delay: 3000
+  if (receiptOnSession.total_cost !== 0) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+      console.log(this.responseText);
+      receiptOnSession = JSON.parse(this.responseText);
+      if (receiptOnSession == null) {
+        $("#success-to-save-toast").toast({
+          delay: 3000,
         });
-        $('#fail-to-save-toast').toast('show');
-    }
+        $("#success-to-save-toast").toast("show");
+      }
+    };
+    xhttp.open("GET", "MakeNewReceipt", false);
+    xhttp.send();
+    getPendingList();
+    getReceipt();
+  } else {
+    $("#fail-to-save-toast").toast({
+      delay: 3000,
+    });
+    $("#fail-to-save-toast").toast("show");
+  }
 }
 
 function handleImportReceipt() {
-    if (receiptOnSession.total_cost === 0) {
-        $('#fail-to-save-toast').toast({
-            delay: 3000
-        });
-        $('#fail-to-save-toast').toast('show');
-    }
-    else {
-        $('#confirmImportModal').modal("show");
-    }
+  if (receiptOnSession.total_cost === 0) {
+    $("#fail-to-save-toast").toast({
+      delay: 3000,
+    });
+    $("#fail-to-save-toast").toast("show");
+  } else {
+    $("#confirmImportModal").modal("show");
+  }
 }
