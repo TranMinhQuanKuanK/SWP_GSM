@@ -88,8 +88,11 @@ public class EditProductInfoServlet extends HttpServlet {
             productLocation = request.getParameter("productLocation");
             productIsSelling = request.getParameter("productIsSelling").equals("true");
             
-            if (productLocation.length() > 15) {
-                productLocation = productLocation.substring(0, 15);
+            if (productUnitLabel.length() > 15) {
+                productUnitLabel = productUnitLabel.substring(0, 14);
+            }
+            if (productLocation.length() > 100) {
+                productLocation = productLocation.substring(0, 99);
             }
             if (productName.equals("") || productName.length() > 100) {
                 foundErr = true;

@@ -477,6 +477,7 @@ function searchCustomerByPhone() {
       result_dto = JSON.parse(this.responseText);
       if (result_dto != null) {
         currentBill.customer_dto = result_dto;
+        document.getElementById("discount-checkbox").parentNode.classList.remove("d-none");
         printBill(currentBill);
       } else if (result_dto == null) {
         $("#fail-to-find-customer-toast").toast({
@@ -494,7 +495,7 @@ function renderCustomer() {
   // console.log(currentBill.customer_dto);
   if (currentCustomer != null) {
     document.getElementById("customer-name").innerHTML = currentCustomer.name;
-
+    document.getElementById("discount-checkbox").parentNode.classList.remove("d-none");
     document.getElementById("point-of-customer").innerHTML =
       currentCustomer.point;
     //set attribute cho ô giảm giá
@@ -507,6 +508,7 @@ function renderCustomer() {
     document.getElementById("point-of-customer").innerHTML = "...";
     document.getElementById("discount-checkbox").checked =
       currentBill.use_point == false;
+    document.getElementById("discount-checkbox").parentNode.classList.add("d-none");
     document.getElementById("phone-no-input").value = "";
   }
 }
